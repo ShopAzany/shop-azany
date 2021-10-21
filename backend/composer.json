@@ -1,0 +1,16 @@
+{
+    "require": {
+        "illuminate/database": "^5.4",
+        "phpmailer/phpmailer": "^6.0",
+        "cboden/ratchet": "^0.4.1"
+    },
+
+
+	"autoload":{
+		"classmap": [
+			"app/models",
+			"app/classes",
+			"app/core"
+		]
+	}
+}
