@@ -1,6 +1,6 @@
 <app-header homePage="seller"></app-header>
 <div id="sellerHome">
-    <div class="container-fluid" id="startSelling">
+    <!--div class="container-fluid" id="startSelling">
         <div class="d-flex justify-content-between cont">
             <div class="left-side">
                 <div class="text">
@@ -16,7 +16,67 @@
                 <img src="{{treatImgUrl(content?.banner_info?.banner)}}" alt="">
             </div>
         </div>
+    </div-->
+    <div class="container">
+        <div class="row mt-5 contain">
+            <div class="card col-lg-4">
+                <div class="card-container">
+                    <h3 class="card-title">Basic</h3>
+                    <h4> 3000/<span style="font-size: smaller;">month</span></h4>
+                    <hr>
+                    <ul>
+                        <li>1 Free personal Ad</li>
+                        <li>Free Azany Business Newsletter</li>
+                        <li>Unlimited Access to Azany Marketplace</li>
+                        <li>Reward Points</li>
+                    </ul>
+                    <div class="buttonSell">
+                        <a routerLink="/seller/register" class="vendorPrimaryBtn">Sign Up</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card col-lg-4">
+                <div class="card-container">
+                    <h3 class="card-title">Standard</h3>
+                    <h4> 5000/<span style="font-size: smaller;">month</span></h4>
+                    <hr>
+                    <ul>
+                        <li>2 Free personal Ad</li>
+                        <li>Double Reward Points</li>
+                        <li>Free Shipping On Oders Above 300K Naira</li>
+                        <li>Free Azany Business Newsletter</li>
+                        <li>Unlimited Access To Azany Marketplace</li>
+                    </ul>
+                    <div class="buttonSell">
+                        <a routerLink="/seller/register" class="vendorPrimaryBtn">Sign Up</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card col-lg-4">
+                <div class="card-container">
+                    <h3 class="card-title">Premium</h3>
+                    <h4> 7000/<span style="font-size: smaller;">month</span></h4>
+                    <hr>
+                    <ul>
+                        <li>3 Free personal Ad</li>
+                        <li>Double Reward Points</li>
+                        <li>Live Shows On Our Platform</li>
+                        <li>Free Shipping On Oders Above 400K Naira</li>
+                        <li>Free 2Gb Naira Data Card</li>
+                        <li>Free Azany Business Newsletter</li>
+                        <li>Free Business Mentoring</li>
+                        <li>Sign Up 5 New Businesses On Azany Get 5 Months Free</li>
+                        <li>Early Access To Sales and Promotion on Azany PLatform</li>
+                        <li>Unlimited Access To Azany Marketplace</li>
+                    </ul>
+                    <div class="buttonSell">
+                        <a routerLink="/seller/register" class="vendorPrimaryBtn">Sign Up</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    
     <div *ngIf="content?.how_it_work && content?.how_it_work?.length" class="container-fluid contProcess">
         <h2>How it Works</h2>
         <div class="contGrid">
