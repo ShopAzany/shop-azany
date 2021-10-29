@@ -1,0 +1,215 @@
+<app-header></app-header>
+<div class="bodyContainer">
+    <div id="shoppingCart">
+        <div class="emptyCart" [class.d-none]="cartItems?.length">
+            <div class="svgCont">
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="300px" height="300px" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet">
+                    <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" fill="#000000"
+                        stroke="none">
+                        <path
+                            d="M453 4811 c-44 -28 -61 -85 -39 -132 19 -40 -3 -26 267 -178 119 -67 228 -134 243 -150 24 -25 71 -183 382 -1297 195 -698 364 -1297 375 -1331 59 -179 228 -328 416 -368 56 -12 227 -15 996 -15 1008 0 969 -2 995 55 31 67 1 136 -66 155 -24 6 -358 10 -958 10 -1009 0 -958 -3 -1049 60 -65 45 -111 111 -140 202 -14 43 -25 85 -25 93 0 12 149 15 978 18 1088 4 1013 -1 1162 74 103 52 204 154 253 253 24 48 117 336 258 800 216 709 220 726 207 764 -18 56 -73 84 -129 67 -21 -7 -46 -22 -54 -34 -8 -12 -111 -342 -229 -732 -118 -391 -227 -733 -241 -761 -30 -60 -93 -126 -152 -161 -92 -54 -70 -53 -1135 -53 -544 0 -988 2 -988 4 0 23 -624 2228 -640 2262 -42 86 -99 130 -355 274 -132 74 -253 136 -270 138 -17 2 -43 -5 -62 -17z" />
+                        <path
+                            d="M2726 4645 c-436 -90 -757 -423 -826 -858 -17 -103 -7 -309 18 -402 86 -307 272 -536 547 -670 170 -83 245 -100 450 -100 205 0 280 17 450 100 210 102 368 260 470 470 83 168 99 245 99 450 0 177 -7 223 -55 355 -61 166 -180 330 -320 443 -100 82 -266 166 -389 197 -110 29 -341 36 -444 15z m383 -221 c156 -38 319 -139 428 -267 63 -73 143 -231 169 -332 25 -100 23 -294 -4 -396 -40 -148 -144 -317 -252 -408 -410 -346 -1022 -223 -1261 252 -61 121 -81 209 -82 357 -1 153 16 226 83 365 115 236 343 403 605 445 79 12 231 4 314 -16z" />
+                        <path
+                            d="M2499 4051 c-24 -24 -29 -38 -29 -76 l0 -47 144 -147 145 -146 -145 -146 -144 -147 0 -47 c0 -38 5 -52 29 -76 24 -24 38 -29 76 -29 l47 0 147 144 146 145 146 -145 147 -144 47 0 c38 0 52 5 76 29 24 24 29 38 29 76 l0 47 -144 147 -145 146 145 146 144 147 0 47 c0 38 -5 52 -29 76 -24 24 -38 29 -76 29 l-47 0 -147 -144 -146 -145 -146 145 -147 144 -47 0 c-38 0 -52 -5 -76 -29z" />
+                        <path
+                            d="M2167 1140 c-108 -34 -191 -106 -241 -210 -29 -60 -31 -73 -31 -170 0 -96 3 -110 29 -165 38 -77 114 -153 191 -191 55 -26 69 -29 165 -29 93 0 111 3 163 27 110 52 182 134 217 246 24 77 25 138 5 217 -57 216 -287 343 -498 275z m203 -220 c59 -30 84 -73 88 -150 3 -55 0 -70 -20 -100 -66 -97 -182 -115 -269 -43 -33 28 -68 94 -69 128 0 67 48 146 105 171 45 20 120 17 165 -6z" />
+                        <path
+                            d="M3480 1146 c-117 -32 -202 -102 -255 -209 -99 -201 -19 -433 185 -531 60 -29 73 -31 170 -31 96 0 110 3 165 29 77 38 153 114 191 191 26 55 29 69 29 165 0 97 -2 110 -31 170 -83 174 -275 265 -454 216z m173 -220 c68 -28 115 -114 103 -190 -22 -138 -188 -200 -294 -111 -92 77 -78 240 26 295 44 23 119 26 165 6z" />
+                    </g>
+                </svg>
+            </div>
+            <div class="txtCont">
+                <h4>Your Shopping Cart is Empty</h4>
+                <p>Don’t miss out on great deals! Start shopping right away</p>
+                <a routerLink="/" class="vendorPrimaryBtn">Start Shopping</a>
+            </div>
+        </div>
+        <section *ngIf="cartItems?.length" id="availableCart" class="availableCart">
+            <div class="leftPart">
+                <div class="headPart">
+                    <h3 class="title">Shopping Cart({{cartItems?.length}})</h3>
+                    <a *ngIf="selItems < 1" href="javascript:void(0)" (click)="allSectionChange('select')" id="selectAllBtn">Select all items</a>
+                    <a *ngIf="selItems > 0" href="javascript:void(0)" (click)="allSectionChange('deselect')" id="selectAllBtn">Deselect all items</a>
+                </div>
+                <div id="cartItemCont" class="cartItemCont">
+                    <div *ngFor="let item of cartItems; let i = index;" class="cartItem">
+                        <div class="d-flex">
+                            <div class="checkboxCont">
+                                <input type="checkbox" #checkbox (change)="checkChange($event, i)" name="cart{{item?.id}}" id="cart{{item?.id}}" hidden>
+                                <label for="cart{{item?.id}}">
+                                    <i class="fa fa-check"></i>
+                                </label>
+                            </div>
+                            <div class="imgCont">
+                                <img src="{{treatImgUrl(item?.featured_img)}}" alt="" class="w-100">
+                            </div>
+                            <div class="txtCont">
+                                <div class="prodName">
+                                    <a routerLink="/product/{{item?.pid}}/{{cleanUrl(item?.product_name)}}">{{item?.product_name}}</a>
+                                </div>
+                                <div class="stockStatus">Only {{item?.variation?.quantity}} Left In Stock</div>
+                                <div class="variationCont d-flex align-items-center flex-wrap">
+                                    <div *ngIf="item?.variation?.name" class="variItem d-flex align-items-center">
+                                        <span class="key">{{item?.variation?.name}}</span>
+                                        <span class="value">{{item?.variation?.value}}</span>
+                                        <span *ngIf="item?.variation?.hex_code" class="color" [style.backgroundColor]="vari?.hex_code"></span>
+                                    </div>
+                                </div>
+                                <div class="pricePercCont d-flex align-items-center flex-wrap">
+                                    <div class="salePrice">
+                                        <span class="curr" [innerHTML]="curr | safeHtml"></span>{{numberFormat(item?.sales_price)[0]}}<span class="decimal">.{{numberFormat(item?.sales_price)[1]}}</span>
+                                    </div>
+                                    <div *ngIf="item?.regular_price" class="d-flex align-items-center">
+                                        <span class="regPrice"><span class="curr"
+                                                [innerHTML]="curr | safeHtml"></span>{{item?.regular_price | number : '1.2-2'}}
+                                        </span>
+                                        <span class="perc">{{item?.variation?.discount}}% Off</span>
+                                    </div>
+                                </div>
+                                <div class="qtyCont d-flex align-items-center">
+                                    <span class="minus" (click)="item?.quantity == 1 || (updating?.id == i && updating?.status) ? null : updateQty(-1, i)" [class.disabled]="item?.quantity == 1">
+                                        <svg *ngIf="!(updating?.id == i && updating?.status)" width="20" height="20"
+                                            viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M11 0C8.82441 0 6.69767 0.645139 4.88873 1.85383C3.07979 3.06253 1.66989 4.78049 0.83733 6.79048C0.00476617 8.80047 -0.213071 11.0122 0.211367 13.146C0.635804 15.2798 1.68345 17.2398 3.22183 18.7782C4.76021 20.3166 6.72022 21.3642 8.85401 21.7886C10.9878 22.2131 13.1995 21.9952 15.2095 21.1627C17.2195 20.3301 18.9375 18.9202 20.1462 17.1113C21.3549 15.3023 22 13.1756 22 11C21.9966 8.08367 20.8365 5.28778 18.7744 3.22563C16.7122 1.16347 13.9163 0.00344047 11 0ZM11 20C9.21997 20 7.47992 19.4722 5.99987 18.4832C4.51983 17.4943 3.36628 16.0887 2.68509 14.4442C2.0039 12.7996 1.82567 10.99 2.17294 9.24419C2.5202 7.49836 3.37737 5.89471 4.63604 4.63604C5.89472 3.37737 7.49836 2.5202 9.24419 2.17293C10.99 1.82567 12.7996 2.0039 14.4442 2.68508C16.0887 3.36627 17.4943 4.51983 18.4832 5.99987C19.4722 7.47991 20 9.21997 20 11C19.9974 13.3861 19.0483 15.6738 17.361 17.361C15.6738 19.0483 13.3861 19.9974 11 20ZM16 11C16 11.2652 15.8946 11.5196 15.7071 11.7071C15.5196 11.8946 15.2652 12 15 12H7C6.73479 12 6.48043 11.8946 6.2929 11.7071C6.10536 11.5196 6 11.2652 6 11C6 10.7348 6.10536 10.4804 6.2929 10.2929C6.48043 10.1054 6.73479 10 7 10H15C15.2652 10 15.5196 10.1054 15.7071 10.2929C15.8946 10.4804 16 10.7348 16 11Z"
+                                                fill="#222222" />
+                                        </svg>
+                                        <i *ngIf="(updating?.id == i && updating?.status)"
+                                            class="fa fa-spinner fa-spin"></i>
+                                    </span>
+                                    <div class="qtyTxt">{{item?.quantity}}</div>
+                                    <span class="plus" (click)="item?.quantity == item?.variation?.quantity || (updating?.id == i && updating?.status) ? null : updateQty(1, i)" [class.disabled]="item?.quantity == item?.variation?.quantity">
+                                        <svg *ngIf="!(updating?.id == i && updating?.status)" width="20" height="20"
+                                            viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M10 0C8.02219 0 6.08879 0.58649 4.4443 1.6853C2.79981 2.78412 1.51809 4.3459 0.761209 6.17317C0.00433284 8.00043 -0.193701 10.0111 0.192152 11.9509C0.578004 13.8907 1.53041 15.6725 2.92894 17.0711C4.32746 18.4696 6.10929 19.422 8.0491 19.8079C9.98891 20.1937 11.9996 19.9957 13.8268 19.2388C15.6541 18.4819 17.2159 17.2002 18.3147 15.5557C19.4135 13.9112 20 11.9778 20 10C20 8.68678 19.7413 7.38642 19.2388 6.17317C18.7363 4.95991 17.9997 3.85752 17.0711 2.92893C16.1425 2.00035 15.0401 1.26375 13.8268 0.761205C12.6136 0.258658 11.3132 0 10 0ZM10 18C8.41775 18 6.87104 17.5308 5.55544 16.6518C4.23985 15.7727 3.21447 14.5233 2.60897 13.0615C2.00347 11.5997 1.84504 9.99113 2.15372 8.43928C2.4624 6.88743 3.22433 5.46197 4.34315 4.34315C5.46197 3.22433 6.88743 2.4624 8.43928 2.15372C9.99113 1.84504 11.5997 2.00346 13.0615 2.60896C14.5233 3.21447 15.7727 4.23984 16.6518 5.55544C17.5308 6.87103 18 8.41775 18 10C18 12.1217 17.1572 14.1566 15.6569 15.6569C14.1566 17.1571 12.1217 18 10 18ZM14 9H11V6C11 5.73478 10.8946 5.48043 10.7071 5.29289C10.5196 5.10536 10.2652 5 10 5C9.73479 5 9.48043 5.10536 9.2929 5.29289C9.10536 5.48043 9 5.73478 9 6V9H6C5.73479 9 5.48043 9.10536 5.2929 9.29289C5.10536 9.48043 5 9.73478 5 10C5 10.2652 5.10536 10.5196 5.2929 10.7071C5.48043 10.8946 5.73479 11 6 11H9V14C9 14.2652 9.10536 14.5196 9.2929 14.7071C9.48043 14.8946 9.73479 15 10 15C10.2652 15 10.5196 14.8946 10.7071 14.7071C10.8946 14.5196 11 14.2652 11 14V11H14C14.2652 11 14.5196 10.8946 14.7071 10.7071C14.8946 10.5196 15 10.2652 15 10C15 9.73478 14.8946 9.48043 14.7071 9.29289C14.5196 9.10536 14.2652 9 14 9Z"
+                                                fill="#222222" />
+                                        </svg>
+                                        <i *ngIf="(updating?.id == i && updating?.status)"
+                                            class="fa fa-spinner fa-spin"></i>
+                                    </span>
+                                </div>
+                                <div class="shippingInfo d-flex flex-wrap">
+                                    <div class="shippingInfoItem">
+                                        <div class="key">Shipping Fee:</div>
+                                        <div class="fee"><span [innerHTML]="curr | safeHtml"></span>{{item?.shipping_fee}}
+                                        </div>
+                                    </div>
+                                    <div class="shippingInfoItem">
+                                        <div class="key">Shipping Method:</div>
+                                        <div class="method">{{item?.shipping_method}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="actionQtyCont">
+                                <div class="action">
+                                    <a href="javascript:void(0)" (click)="deleting?.id == i && deleting?.status ? null : deleteItem(i)" class="delete">
+                                        <svg *ngIf="!(deleting?.id == i && deleting?.status)" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M21 4H16V1C16 0.734784 15.8946 0.48043 15.7071 0.292893C15.5196 0.105357 15.2652 0 15 0H7C6.73478 0 6.48043 0.105357 6.29289 0.292893C6.10536 0.48043 6 0.734784 6 1V4H1C0.734784 4 0.48043 4.10536 0.292893 4.29289C0.105357 4.48043 0 4.73478 0 5C0 5.26522 0.105357 5.51957 0.292893 5.70711C0.48043 5.89464 0.734784 6 1 6H2.061L3 21.063C3.01604 21.3171 3.12844 21.5556 3.31427 21.7297C3.50009 21.9038 3.74535 22.0005 4 22H18C18.2547 22.0005 18.4999 21.9038 18.6857 21.7297C18.8716 21.5556 18.984 21.3171 19 21.063L19.939 6H21C21.2652 6 21.5196 5.89464 21.7071 5.70711C21.8946 5.51957 22 5.26522 22 5C22 4.73478 21.8946 4.48043 21.7071 4.29289C21.5196 4.10536 21.2652 4 21 4ZM8 2H14V4H8V2ZM17.061 20H4.939L4.064 6H17.936L17.061 20ZM8 10V16C8 16.2652 7.89464 16.5196 7.70711 16.7071C7.51957 16.8946 7.26522 17 7 17C6.73478 17 6.48043 16.8946 6.29289 16.7071C6.10536 16.5196 6 16.2652 6 16V10C6 9.73478 6.10536 9.48043 6.29289 9.29289C6.48043 9.10536 6.73478 9 7 9C7.26522 9 7.51957 9.10536 7.70711 9.29289C7.89464 9.48043 8 9.73478 8 10ZM12 10V16C12 16.2652 11.8946 16.5196 11.7071 16.7071C11.5196 16.8946 11.2652 17 11 17C10.7348 17 10.4804 16.8946 10.2929 16.7071C10.1054 16.5196 10 16.2652 10 16V10C10 9.73478 10.1054 9.48043 10.2929 9.29289C10.4804 9.10536 10.7348 9 11 9C11.2652 9 11.5196 9.10536 11.7071 9.29289C11.8946 9.48043 12 9.73478 12 10ZM15 9C15.2652 9 15.5196 9.10536 15.7071 9.29289C15.8946 9.48043 16 9.73478 16 10V16C16 16.2652 15.8946 16.5196 15.7071 16.7071C15.5196 16.8946 15.2652 17 15 17C14.7348 17 14.4804 16.8946 14.2929 16.7071C14.1054 16.5196 14 16.2652 14 16V10C14 9.73478 14.1054 9.48043 14.2929 9.29289C14.4804 9.10536 14.7348 9 15 9Z"
+                                                fill="black" />
+                                        </svg>
+                                        <i *ngIf="(deleting?.id == i && deleting?.status)" class="fa fa-spinner fa-spin"></i>
+                                    </a>
+                                    <a href="javascript:void(0)" [class.isFav]="item?.isFavorite" (click)="updatingFav?.pid == item?.pid && updatingFav?.status ? null: toggleFav(item)" class="favBtnCus">
+                                        <svg *ngIf="!(updatingFav?.pid == item?.pid && updatingFav?.status)" width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M19.16 2.00017C18.1 0.937373 16.6948 0.288706 15.1984 0.171335C13.7019 0.0539653 12.2128 0.475631 11 1.36017C9.72769 0.413803 8.14402 -0.0153233 6.56795 0.159203C4.99188 0.333729 3.54047 1.09894 2.506 2.30075C1.47154 3.50256 0.930854 5.05169 0.992833 6.63618C1.05481 8.22067 1.71485 9.72283 2.84003 10.8402L9.05003 17.0602C9.57005 17.5719 10.2704 17.8588 11 17.8588C11.7296 17.8588 12.43 17.5719 12.95 17.0602L19.16 10.8402C20.3276 9.66543 20.983 8.07644 20.983 6.42017C20.983 4.76389 20.3276 3.1749 19.16 2.00017ZM17.75 9.46017L11.54 15.6702C11.4694 15.7415 11.3853 15.7982 11.2926 15.8368C11.1999 15.8755 11.1005 15.8954 11 15.8954C10.8996 15.8954 10.8002 15.8755 10.7075 15.8368C10.6148 15.7982 10.5307 15.7415 10.46 15.6702L4.25003 9.43017C3.46579 8.62851 3.02664 7.55163 3.02664 6.43017C3.02664 5.3087 3.46579 4.23182 4.25003 3.43017C5.04919 2.64115 6.127 2.19873 7.25003 2.19873C8.37306 2.19873 9.45088 2.64115 10.25 3.43017C10.343 3.52389 10.4536 3.59829 10.5755 3.64906C10.6973 3.69983 10.828 3.72596 10.96 3.72596C11.092 3.72596 11.2227 3.69983 11.3446 3.64906C11.4665 3.59829 11.5771 3.52389 11.67 3.43017C12.4692 2.64115 13.547 2.19873 14.67 2.19873C15.7931 2.19873 16.8709 2.64115 17.67 3.43017C18.4651 4.22132 18.9186 5.29236 18.9336 6.41385C18.9485 7.53535 18.5237 8.6181 17.75 9.43017V9.46017Z"
+                                                fill="black" />
+                                        </svg>
+                                        <i *ngIf="(updatingFav?.pid == item?.pid && updatingFav?.status)" class="fa fa-spinner fa-spin"></i>
+                                    </a>
+                                </div>
+                                <div class="qtyPar">
+                                    <div class="qtyCont d-flex align-items-center">
+                                        <span class="minus" (click)="item?.quantity == 1 || (updating?.id == i && updating?.status) ? null : updateQty(-1, i)" [class.disabled]="item?.quantity == 1">
+                                            <svg *ngIf="!(updating?.id == i && updating?.status)" width="20" height="20"
+                                                viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M11 0C8.82441 0 6.69767 0.645139 4.88873 1.85383C3.07979 3.06253 1.66989 4.78049 0.83733 6.79048C0.00476617 8.80047 -0.213071 11.0122 0.211367 13.146C0.635804 15.2798 1.68345 17.2398 3.22183 18.7782C4.76021 20.3166 6.72022 21.3642 8.85401 21.7886C10.9878 22.2131 13.1995 21.9952 15.2095 21.1627C17.2195 20.3301 18.9375 18.9202 20.1462 17.1113C21.3549 15.3023 22 13.1756 22 11C21.9966 8.08367 20.8365 5.28778 18.7744 3.22563C16.7122 1.16347 13.9163 0.00344047 11 0ZM11 20C9.21997 20 7.47992 19.4722 5.99987 18.4832C4.51983 17.4943 3.36628 16.0887 2.68509 14.4442C2.0039 12.7996 1.82567 10.99 2.17294 9.24419C2.5202 7.49836 3.37737 5.89471 4.63604 4.63604C5.89472 3.37737 7.49836 2.5202 9.24419 2.17293C10.99 1.82567 12.7996 2.0039 14.4442 2.68508C16.0887 3.36627 17.4943 4.51983 18.4832 5.99987C19.4722 7.47991 20 9.21997 20 11C19.9974 13.3861 19.0483 15.6738 17.361 17.361C15.6738 19.0483 13.3861 19.9974 11 20ZM16 11C16 11.2652 15.8946 11.5196 15.7071 11.7071C15.5196 11.8946 15.2652 12 15 12H7C6.73479 12 6.48043 11.8946 6.2929 11.7071C6.10536 11.5196 6 11.2652 6 11C6 10.7348 6.10536 10.4804 6.2929 10.2929C6.48043 10.1054 6.73479 10 7 10H15C15.2652 10 15.5196 10.1054 15.7071 10.2929C15.8946 10.4804 16 10.7348 16 11Z"
+                                                    fill="#222222" />
+                                            </svg>
+                                            <i *ngIf="(updating?.id == i && updating?.status)"
+                                                class="fa fa-spinner fa-spin"></i>
+                                        </span>
+                                        <div class="qtyTxt">{{item?.quantity}}</div>
+                                        <span class="plus" (click)="item?.quantity == item?.variation?.quantity || (updating?.id == i && updating?.status) ? null : updateQty(1, i)" [class.disabled]="item?.quantity == item?.variation?.quantity">
+                                            <svg *ngIf="!(updating?.id == i && updating?.status)" width="20" height="20"
+                                                viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M10 0C8.02219 0 6.08879 0.58649 4.4443 1.6853C2.79981 2.78412 1.51809 4.3459 0.761209 6.17317C0.00433284 8.00043 -0.193701 10.0111 0.192152 11.9509C0.578004 13.8907 1.53041 15.6725 2.92894 17.0711C4.32746 18.4696 6.10929 19.422 8.0491 19.8079C9.98891 20.1937 11.9996 19.9957 13.8268 19.2388C15.6541 18.4819 17.2159 17.2002 18.3147 15.5557C19.4135 13.9112 20 11.9778 20 10C20 8.68678 19.7413 7.38642 19.2388 6.17317C18.7363 4.95991 17.9997 3.85752 17.0711 2.92893C16.1425 2.00035 15.0401 1.26375 13.8268 0.761205C12.6136 0.258658 11.3132 0 10 0ZM10 18C8.41775 18 6.87104 17.5308 5.55544 16.6518C4.23985 15.7727 3.21447 14.5233 2.60897 13.0615C2.00347 11.5997 1.84504 9.99113 2.15372 8.43928C2.4624 6.88743 3.22433 5.46197 4.34315 4.34315C5.46197 3.22433 6.88743 2.4624 8.43928 2.15372C9.99113 1.84504 11.5997 2.00346 13.0615 2.60896C14.5233 3.21447 15.7727 4.23984 16.6518 5.55544C17.5308 6.87103 18 8.41775 18 10C18 12.1217 17.1572 14.1566 15.6569 15.6569C14.1566 17.1571 12.1217 18 10 18ZM14 9H11V6C11 5.73478 10.8946 5.48043 10.7071 5.29289C10.5196 5.10536 10.2652 5 10 5C9.73479 5 9.48043 5.10536 9.2929 5.29289C9.10536 5.48043 9 5.73478 9 6V9H6C5.73479 9 5.48043 9.10536 5.2929 9.29289C5.10536 9.48043 5 9.73478 5 10C5 10.2652 5.10536 10.5196 5.2929 10.7071C5.48043 10.8946 5.73479 11 6 11H9V14C9 14.2652 9.10536 14.5196 9.2929 14.7071C9.48043 14.8946 9.73479 15 10 15C10.2652 15 10.5196 14.8946 10.7071 14.7071C10.8946 14.5196 11 14.2652 11 14V11H14C14.2652 11 14.5196 10.8946 14.7071 10.7071C14.8946 10.5196 15 10.2652 15 10C15 9.73478 14.8946 9.48043 14.7071 9.29289C14.5196 9.10536 14.2652 9 14 9Z"
+                                                    fill="#222222" />
+                                            </svg>
+                                            <i *ngIf="(updating?.id == i && updating?.status)"
+                                                class="fa fa-spinner fa-spin"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="action">
+                            <a href="javascript:void(0)" (click)="deleting?.id == i && deleting?.status ? null : deleteItem(i)" class=" addToCartLink">
+                                <svg *ngIf="!(deleting?.id == i && deleting?.status)" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M21 4H16V1C16 0.734784 15.8946 0.48043 15.7071 0.292893C15.5196 0.105357 15.2652 0 15 0H7C6.73478 0 6.48043 0.105357 6.29289 0.292893C6.10536 0.48043 6 0.734784 6 1V4H1C0.734784 4 0.48043 4.10536 0.292893 4.29289C0.105357 4.48043 0 4.73478 0 5C0 5.26522 0.105357 5.51957 0.292893 5.70711C0.48043 5.89464 0.734784 6 1 6H2.061L3 21.063C3.01604 21.3171 3.12844 21.5556 3.31427 21.7297C3.50009 21.9038 3.74535 22.0005 4 22H18C18.2547 22.0005 18.4999 21.9038 18.6857 21.7297C18.8716 21.5556 18.984 21.3171 19 21.063L19.939 6H21C21.2652 6 21.5196 5.89464 21.7071 5.70711C21.8946 5.51957 22 5.26522 22 5C22 4.73478 21.8946 4.48043 21.7071 4.29289C21.5196 4.10536 21.2652 4 21 4ZM8 2H14V4H8V2ZM17.061 20H4.939L4.064 6H17.936L17.061 20ZM8 10V16C8 16.2652 7.89464 16.5196 7.70711 16.7071C7.51957 16.8946 7.26522 17 7 17C6.73478 17 6.48043 16.8946 6.29289 16.7071C6.10536 16.5196 6 16.2652 6 16V10C6 9.73478 6.10536 9.48043 6.29289 9.29289C6.48043 9.10536 6.73478 9 7 9C7.26522 9 7.51957 9.10536 7.70711 9.29289C7.89464 9.48043 8 9.73478 8 10ZM12 10V16C12 16.2652 11.8946 16.5196 11.7071 16.7071C11.5196 16.8946 11.2652 17 11 17C10.7348 17 10.4804 16.8946 10.2929 16.7071C10.1054 16.5196 10 16.2652 10 16V10C10 9.73478 10.1054 9.48043 10.2929 9.29289C10.4804 9.10536 10.7348 9 11 9C11.2652 9 11.5196 9.10536 11.7071 9.29289C11.8946 9.48043 12 9.73478 12 10ZM15 9C15.2652 9 15.5196 9.10536 15.7071 9.29289C15.8946 9.48043 16 9.73478 16 10V16C16 16.2652 15.8946 16.5196 15.7071 16.7071C15.5196 16.8946 15.2652 17 15 17C14.7348 17 14.4804 16.8946 14.2929 16.7071C14.1054 16.5196 14 16.2652 14 16V10C14 9.73478 14.1054 9.48043 14.2929 9.29289C14.4804 9.10536 14.7348 9 15 9Z"
+                                        fill="black" />
+                                </svg>
+                                <i *ngIf="(deleting?.id == i && deleting?.status)" class="fa fa-spinner fa-spin"></i>
+                                <span *ngIf="!(deleting?.id == i && deleting?.status)">Remove Item </span>
+                                <span *ngIf="(deleting?.id == i && deleting?.status)">Removing</span>
+                            </a>
+                            <a href="javascript:void(0)" (click)="updatingFav?.pid == item?.pid && updatingFav?.status ? null: toggleFav(item)" class="addToCartLink">
+                                <svg *ngIf="!(updatingFav?.pid == item?.pid && updatingFav?.status)" width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M19.16 2.00017C18.1 0.937373 16.6948 0.288706 15.1984 0.171335C13.7019 0.0539653 12.2128 0.475631 11 1.36017C9.72769 0.413803 8.14402 -0.0153233 6.56795 0.159203C4.99188 0.333729 3.54047 1.09894 2.506 2.30075C1.47154 3.50256 0.930854 5.05169 0.992833 6.63618C1.05481 8.22067 1.71485 9.72283 2.84003 10.8402L9.05003 17.0602C9.57005 17.5719 10.2704 17.8588 11 17.8588C11.7296 17.8588 12.43 17.5719 12.95 17.0602L19.16 10.8402C20.3276 9.66543 20.983 8.07644 20.983 6.42017C20.983 4.76389 20.3276 3.1749 19.16 2.00017ZM17.75 9.46017L11.54 15.6702C11.4694 15.7415 11.3853 15.7982 11.2926 15.8368C11.1999 15.8755 11.1005 15.8954 11 15.8954C10.8996 15.8954 10.8002 15.8755 10.7075 15.8368C10.6148 15.7982 10.5307 15.7415 10.46 15.6702L4.25003 9.43017C3.46579 8.62851 3.02664 7.55163 3.02664 6.43017C3.02664 5.3087 3.46579 4.23182 4.25003 3.43017C5.04919 2.64115 6.127 2.19873 7.25003 2.19873C8.37306 2.19873 9.45088 2.64115 10.25 3.43017C10.343 3.52389 10.4536 3.59829 10.5755 3.64906C10.6973 3.69983 10.828 3.72596 10.96 3.72596C11.092 3.72596 11.2227 3.69983 11.3446 3.64906C11.4665 3.59829 11.5771 3.52389 11.67 3.43017C12.4692 2.64115 13.547 2.19873 14.67 2.19873C15.7931 2.19873 16.8709 2.64115 17.67 3.43017C18.4651 4.22132 18.9186 5.29236 18.9336 6.41385C18.9485 7.53535 18.5237 8.6181 17.75 9.43017V9.46017Z"
+                                        fill="black" />
+                                </svg>
+                                <i *ngIf="(updatingFav?.pid == item?.pid && updatingFav?.status)" class="fa fa-spinner fa-spin"></i>
+                                <span *ngIf="!(updatingFav?.pid == item?.pid && updatingFav?.status)">{{item?.isFavorite
+                                    ? 'Saved to Wishlist' : 'Save to Wishlist'}}</span>
+                                <span *ngIf="(updatingFav?.pid == item?.pid && updatingFav?.status)">Updating</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div id="selectTotal" class="totalCont d-flex align-items-center justify-content-end">
+                    <div *ngIf="!subTotal" class="noItems">No Item(s) Selected</div>
+                    <div *ngIf="subTotal" class="totalCalc align-items-center">
+                        <span>Subtotal ({{selItems}} items):</span>
+                        <div class="salePrice">
+                            <span class="curr" [innerHTML]="curr | safeHtml"></span> {{numberFormat(subTotal)[0]}}<span class="decimal">.{{numberFormat(subTotal)[1]}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rightPart">
+                <div class="orderSummary">
+                    <h4 class="orderSummaryTitle">Order Summary</h4>
+                    <div class="summaryCont">
+                        <div id="subTotal" class="summaryItem justify-content-between d-flex align-items-center">
+                            <span>Subtotal:</span>
+                            <span><span [innerHTML]="curr | safeHtml"></span>{{subTotal | number : '1.2-2'}}</span>
+                        </div>
+                        <div id="shipping" class="summaryItem justify-content-between d-flex align-items-center">
+                            <span>Shipping:</span>
+                            <span><span [innerHTML]="curr | safeHtml"></span>{{shipping | number : '1.2-2'}}</span>
+                        </div>
+                    </div>
+                    <div id="totalSummary" class="totalCont justify-content-between d-flex align-items-center">
+                        <b>Total:</b>
+                        <b><span [innerHTML]="curr | safeHtml"></span>{{total | number : '1.2-2'}}</b>
+                    </div>
+                    <div class="proceedBtnCont">
+                        <a *ngIf="!proceeding" href="javascript:void(0)" id="proceedToCheckout" [class.disabled]="!subTotal" class="addToCartLink" (click)="subTotal ? proceedToCheckout() : null"><span>Proceed to
+                                Checkout</span></a>
+                        <a *ngIf="proceeding" href="javascript:void(0)" id="proceedToCheckout" class="addToCartLink disabled"><i class="fa fa-spinner fa-spin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <app-related-items *ngIf="false"></app-related-items>
+    </div>
+</div>
+<app-subscribe></app-subscribe>
+<app-footer></app-footer>

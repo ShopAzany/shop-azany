@@ -1,0 +1,10 @@
+@import '../each-product/each-product.component.scss';
+.advertProd {
+    .itemName {
+        max-height: 27px;
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}

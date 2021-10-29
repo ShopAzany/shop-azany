@@ -1,0 +1,92 @@
+<app-header></app-header>
+<div id="seller">
+    <div class="page-wrapper">
+        <div class="container-fluid">
+            <div class="productContainer">
+                <app-product-nav-bar activeLink="shipping" [title]="lastRoute == 'edit' ? 'Edit Product Listing' : 'Create Product Listing'">
+                </app-product-nav-bar>
+
+                <div class="form-section">
+                    <h5 class="mb-5 mt-5">Selling Details</h5>
+                    <form [formGroup]="form" (ngSubmit)="submit()">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <label>Product Location Country</label>
+                                    <select class="form-control custom-select" formControlName="pro_location_country">
+                                        <option [ngValue]="null" disabled selected>--Choose country location of
+                                            product--
+                                        </option>
+                                        <option *ngFor="let country of countries" value="{{country.name}}">
+                                            {{country.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-6 col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <label>Product Location State</label>
+                                    <input type="text" class="form-control" formControlName="pro_location_state" placeholder="Enter state location of product">
+                                </div>
+                            </div>
+
+                            <div class="col-xl-6 col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <label>Shipping Method</label>
+                                    <input type="text" [class.error]="shipping_method?.touched && shipping_method?.invalid" class="form-control" placeholder="Enter Shipping Method" formControlName="shipping_method">
+                                    <div *ngIf="shipping_method?.touched && shipping_method?.invalid" class="errorDisp">
+                                        <i class="fa fa-exclamation-circle"></i><span>This field is required</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-6 col-lg-6 col-md-6">
+                                <div class="form-group">
+                                    <label>Shipping Fee</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text c-border" [innerHTML]="currency"></span>
+                                        </div>
+                                        <input type="text" [class.error]="shipping_fee?.touched && shipping_fee?.invalid" class="form-control" placeholder="0.00" formControlName="shipping_fee">
+                                    </div>
+                                    <div *ngIf="shipping_fee?.touched && shipping_fee?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="return-policy">
+                            <div class="cusCheckbox">
+                                <input type="checkbox" hidden id="allow_shipping" formControlName="allow_shipping_outside">
+                                <label for="allow_shipping">
+                                    <div class="checkbox">
+                                        <i class="fa fa-check"></i>
+                                    </div>
+                                    <span>Allow Shipping Outside State</span>
+                                </label>
+                            </div>
+                            <p class="warning d-flex align-items-center">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM11 7V9H13V7H11ZM11 11V17H13V11H11ZM4 12C4 16.41 7.59 20 12 20C16.41 20 20 16.41 20 12C20 7.59 16.41 4 12 4C7.59 4 4 7.59 4 12Z"
+                                        fill="black" />
+                                </svg>
+                                <span>Enabling shipping outside state may incure Tax expenses</span>
+                            </p>
+                        </div>
+
+                        <div class="text-center mt-5">
+                            <button *ngIf="!isSubmitting" class="vendorPrimaryBtn" [disabled]="!form.valid">SUBMIT</button>
+                            <button *ngIf="isSubmitting" disabled type="button" class="vendorPrimaryBtn"><i
+                                    class="fa fa-spin fa-spinner"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

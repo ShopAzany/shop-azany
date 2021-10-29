@@ -1,0 +1,73 @@
+@import '../../../../themes/user-style.scss';
+.orderWrap {
+    height: 200px;
+    border: 2px solid #ccc;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    .order-img-wrap {
+        width: 25%;
+        background-color: #9F9F9F;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+    .order-cont-wrap {
+        width: 75%;
+        margin-left: 15px;
+        .order-name {
+            font-size: 22px;
+            font-family: calibri;
+            margin-top: 15px;
+        }
+        .order-para {
+            margin-top: 20px;
+            font-size: 12px;
+            font-weight: 550;
+        }
+        .det-btn {
+            position: relative;
+            bottom: -20px;
+            a {
+                color: $primary;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+.activeRoot {
+    border-bottom: 4px solid #000;
+    padding-bottom: 10px;
+}
+
+@media only screen and (max-width: 495px) {
+    .orderWrap {
+        display: block !important;
+        height: unset;
+        .order-img-wrap {
+            width: 100%;
+            background-color: #9F9F9F;
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+        .order-cont-wrap {
+            width: 100%;
+            margin-left: 0px;
+            .det-btn {
+                position: relative;
+                bottom: 0px;
+            }
+            .order-para {
+                margin-top: 10px;
+                font-size: 12px;
+                font-weight: 550;
+            }
+        }
+    }
+}

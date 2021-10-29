@@ -1,0 +1,422 @@
+<app-header></app-header>
+<div id="productDetails" class="bodyContainer">
+    <div *ngIf="isLoading" class="loaderCont p-5">
+        <app-loading></app-loading>
+    </div>
+    <div *ngIf="!isLoading">
+        <app-breadcrumb [category]="breadcrumbCat"></app-breadcrumb>
+        <section class="row margBottom">
+            <div class="col-lg-6">
+                <div class="prodDetailsImgSection">
+                    <div class="imgCont w-100">
+                        <img *ngFor="let img of images; let i = index;" src="{{img}}" alt="" [class.cusActive]="i == activeImg" class="w-100">
+                    </div>
+                    <div class="slideInd w-100">
+                        <app-flex-slider *ngIf="images?.length" [slideResizeConfig]="slideResizeConfig">
+                            <div class="flexCont">
+                                <div *ngFor="let img of images; let i = index;" (touchstart)="activeImg = i" (click)="activeImg = i" class="carouselItem">
+                                    <img src="{{img}}" [class.cusActive]="i == activeImg" alt="" class="w-100">
+                                </div>
+                            </div>
+                            <i class="icons icon-arrow-left prev"></i>
+                            <i class="icons icon-arrow-right next"></i>
+                        </app-flex-slider>
+                    </div>
+                </div>
+                <div class="shareProduct">
+                    <div class="shareTitle">Share This Product</div>
+                    <div class="shareLinkCont d-flex align-items-center">
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-envelope-o"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="rightProdInfoTxt">
+                    <h4 class="prodName">{{product?.name}}</h4>
+                    <div class="ratingFavCont d-flex align-items-center">
+                        <div class="starRateCont">
+                            <i *ngFor="let rt of ratingArr" class="fa fa-star"></i>
+                            <i *ngFor="let rt of noRating" class="fa fa-star norating"></i>
+                        </div>
+                        <span class="ratingTxt">({{product?.rate_number | number}} reviews)</span>
+                        <a href="javascript:void(0)" (click)="updatingFav ? null : addFav()" [class.isFav]="isFavorite" class="favBtn">
+                            <svg *ngIf="!updatingFav" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M25.625 5.76113C24.9407 4.93312 24.0812 4.2672 23.1086 3.81134C22.1359 3.35548 21.0742 3.12103 20 3.12488C18.1621 3.06923 16.3727 3.72012 15 4.94363C13.6274 3.72012 11.838 3.06923 10 3.12488C8.92583 3.12103 7.86416 3.35548 6.89149 3.81134C5.91881 4.2672 5.05935 4.93312 4.37502 5.76113C3.18377 7.20613 1.93752 9.82238 2.76377 14.0861C4.08252 20.8949 13.9713 26.4824 14.3888 26.7111C14.5749 26.8149 14.7844 26.8694 14.9975 26.8694C15.2106 26.8694 15.4202 26.8149 15.6063 26.7111C16.0263 26.4774 25.915 20.8899 27.2313 14.0861C28.0625 9.82238 26.8163 7.20613 25.625 5.76113ZM24.7825 13.6111C23.85 18.4249 17.0725 22.9024 15 24.1749C12.08 22.4124 6.07252 17.9874 5.22377 13.6111C4.58252 10.3036 5.46002 8.38238 6.31002 7.35238C6.75953 6.81002 7.3235 6.37386 7.96147 6.07519C8.59944 5.77652 9.2956 5.62274 10 5.62488C10.7524 5.56845 11.5065 5.70795 12.1889 6.02976C12.8713 6.35157 13.4587 6.84472 13.8938 7.46113C14.0011 7.65855 14.1593 7.82358 14.3521 7.93902C14.5448 8.05447 14.765 8.11611 14.9897 8.11751C15.2144 8.11892 15.4353 8.06004 15.6295 7.94701C15.8237 7.83398 15.984 7.67094 16.0938 7.47488C16.528 6.85367 17.1166 6.35635 17.8016 6.03194C18.4866 5.70753 19.2443 5.56723 20 5.62488C20.7059 5.62144 21.4038 5.7746 22.0434 6.07331C22.683 6.37203 23.2483 6.80887 23.6988 7.35238C24.5463 8.38238 25.4238 10.3036 24.7825 13.6111Z"
+                                    fill="#222222" />
+                            </svg>
+                            <i *ngIf="updatingFav" class="fa fa-spinner fa-spin"></i>
+                        </a>
+                    </div>
+                    <div class="pricePerPar">
+                        <div class="pricePercCont d-flex flex-wrap align-items-center">
+                            <h3 class="salePrice"><span class="curr" [innerHTML]="currency | safeHtml"></span>{{salesPrice[0]}}<span class="decimal">.{{salesPrice[1]}}</span>
+                            </h3>
+                            <div *ngIf="regularPrice" class="percRegPrice">
+                                <span class="regPrice"><span class="curr"
+                                        [innerHTML]="currency | safeHtml"></span>{{regularPrice | number : '1.2-2'}}
+                                </span>
+                                <span class="perc">{{discount | number : '1.0-0'}}% Off</span>
+                            </div>
+                            <!-- <h3 class="salePrice">₦10,269<span class="decimal">.89</span></h3>
+                        <span class="regPrice">₦10,269.89</span>
+                        <span class="perc">20% Off</span> -->
+                        </div>
+                        <div class="discountTxt">Instant Discount: Promo valid while product is still in stock</div>
+                    </div>
+
+                    <!-- <div class="variationCont">
+                    <div *ngFor="let vari of variations; let i = index;" class="eachVariation">
+                        <div class="variationHead d-flex justify-content-between">
+                            <div class="variName">{{vari?.name}}:</div>
+                            <a *ngIf="vari?.name == 'Size'" href="javascript:null">Size Guide</a>
+                        </div>
+                        <div class="variationBody" [class.imgGrid]="vari?.variations[0]?.image">
+                            <div *ngFor="let subvari of vari?.variations; let j = index;" class="variationItem">
+                                <input type="radio" name="{{vari?.name}}" value="{{subvari?.value}}" id="vari{{i}}{{j}}"
+                                    hidden>
+                                <label for="vari{{i}}{{j}}">
+                                    <img *ngIf="subvari?.image" src="{{subvari?.image}}" alt="{{subvari?.value}}">
+                                    <span *ngIf="!subvari?.image">{{subvari?.value}}</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                    <div *ngIf="productVariations" class="variationCont">
+                        <div class="eachVariation">
+                            <div class="variationHead d-flex justify-content-between">
+                                <div class="variName">{{productVariations[0]?.name}}:</div>
+                                <a *ngIf="productVariations[0]?.name == 'Size'" href="javascript:null">Size Guide</a>
+                            </div>
+                            <div class="variationBody" [class.imgGrid]="productVariations[0]?.image">
+                                <div *ngFor="let vari of productVariations; let i = index;" class="variationItem">
+                                    <input type="radio" [disabled]="!selectable(vari)" [checked]="productVariations.length == 1 && selectable(vari)" type="radio" id="{{i+vari.name}}" name="{{vari.name}}" hidden (change)="selectable(vari) ? onChnage(vari) : null" value="{{vari?.value}}"
+                                        hidden>
+                                    <label for="{{i+vari.name}}">
+                                        <img *ngIf="vari?.image" src="{{vari?.image}}" alt="{{vari?.value}}">
+                                        <span *ngIf="!vari?.image">{{vari?.value}}</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="quantPar">
+                        <div class="quantHead">Quantity:</div>
+                        <div class="quantBody d-flex align-items-center">
+                            <div class="quantCont d-flex align-items-center">
+                                <span class="minus" [class.disabled]="curPurcQty == 1" (mousedown)="qtyCtrl(-1)">
+                                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g>
+                                            <path
+                                                d="M15 1.25C12.2805 1.25 9.62208 2.05642 7.36091 3.56729C5.09973 5.07816 3.33736 7.22562 2.29665 9.7381C1.25595 12.2506 0.983654 15.0153 1.5142 17.6825C2.04475 20.3497 3.35431 22.7997 5.27728 24.7227C7.20025 26.6457 9.65027 27.9552 12.3175 28.4858C14.9847 29.0163 17.7494 28.744 20.2619 27.7033C22.7744 26.6626 24.9218 24.9003 26.4327 22.6391C27.9436 20.3779 28.75 17.7195 28.75 15C28.7457 11.3546 27.2957 7.85973 24.718 5.28203C22.1403 2.70434 18.6454 1.2543 15 1.25ZM15 26.25C12.775 26.25 10.5999 25.5902 8.74983 24.354C6.89978 23.1179 5.45784 21.3609 4.60635 19.3052C3.75487 17.2495 3.53208 14.9875 3.96616 12.8052C4.40025 10.6229 5.47171 8.61839 7.04505 7.04505C8.61839 5.47171 10.6229 4.40025 12.8052 3.96617C14.9875 3.53208 17.2495 3.75487 19.3052 4.60636C21.3609 5.45784 23.1179 6.89978 24.354 8.74984C25.5902 10.5999 26.25 12.775 26.25 15C26.2467 17.9827 25.0604 20.8422 22.9513 22.9513C20.8422 25.0604 17.9827 26.2467 15 26.25ZM21.25 15C21.25 15.3315 21.1183 15.6495 20.8839 15.8839C20.6495 16.1183 20.3315 16.25 20 16.25H10C9.66848 16.25 9.35054 16.1183 9.11612 15.8839C8.88169 15.6495 8.75 15.3315 8.75 15C8.75 14.6685 8.88169 14.3505 9.11612 14.1161C9.35054 13.8817 9.66848 13.75 10 13.75H20C20.3315 13.75 20.6495 13.8817 20.8839 14.1161C21.1183 14.3505 21.25 14.6685 21.25 15Z"
+                                                fill="#222222" />
+                                        </g>
+                                    </svg>
+                                </span>
+                                <div class="qntTxt">{{curPurcQty}}</div>
+                                <span class="plus" [class.disabled]="curPurcQty == prdQuant" (mousedown)="qtyCtrl(1)">
+                                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M15 2.5C12.5277 2.5 10.111 3.23311 8.05538 4.60663C5.99976 5.98015 4.39761 7.93238 3.45151 10.2165C2.50542 12.5005 2.25787 15.0139 2.74019 17.4386C3.2225 19.8634 4.41301 22.0907 6.16117 23.8388C7.90933 25.587 10.1366 26.7775 12.5614 27.2598C14.9861 27.7421 17.4995 27.4946 19.7836 26.5485C22.0676 25.6024 24.0199 24.0002 25.3934 21.9446C26.7669 19.889 27.5 17.4723 27.5 15C27.5 13.3585 27.1767 11.733 26.5485 10.2165C25.9203 8.69989 24.9996 7.3219 23.8388 6.16117C22.6781 5.00043 21.3001 4.07969 19.7836 3.45151C18.267 2.82332 16.6415 2.5 15 2.5ZM15 25C13.0222 25 11.0888 24.4135 9.4443 23.3147C7.79981 22.2159 6.51809 20.6541 5.76121 18.8268C5.00433 16.9996 4.8063 14.9889 5.19215 13.0491C5.57801 11.1093 6.53041 9.32746 7.92894 7.92893C9.32746 6.53041 11.1093 5.578 13.0491 5.19215C14.9889 4.8063 16.9996 5.00433 18.8268 5.7612C20.6541 6.51808 22.2159 7.79981 23.3147 9.4443C24.4135 11.0888 25 13.0222 25 15C25 17.6522 23.9464 20.1957 22.0711 22.0711C20.1957 23.9464 17.6522 25 15 25ZM20 13.75H16.25V10C16.25 9.66848 16.1183 9.35054 15.8839 9.11612C15.6495 8.8817 15.3315 8.75 15 8.75C14.6685 8.75 14.3505 8.8817 14.1161 9.11612C13.8817 9.35054 13.75 9.66848 13.75 10V13.75H10C9.66848 13.75 9.35054 13.8817 9.11612 14.1161C8.8817 14.3505 8.75001 14.6685 8.75001 15C8.75001 15.3315 8.8817 15.6495 9.11612 15.8839C9.35054 16.1183 9.66848 16.25 10 16.25H13.75V20C13.75 20.3315 13.8817 20.6495 14.1161 20.8839C14.3505 21.1183 14.6685 21.25 15 21.25C15.3315 21.25 15.6495 21.1183 15.8839 20.8839C16.1183 20.6495 16.25 20.3315 16.25 20V16.25H20C20.3315 16.25 20.6495 16.1183 20.8839 15.8839C21.1183 15.6495 21.25 15.3315 21.25 15C21.25 14.6685 21.1183 14.3505 20.8839 14.1161C20.6495 13.8817 20.3315 13.75 20 13.75Z"
+                                            fill="#222222" />
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="quantInfo">
+                                <div>Additional 5% off (3 pieces or more)</div>
+                                <div>{{prdQuant | number}} pieces available</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shippingDeliveryCont">
+                        <div class="shipPrice d-flex align-items-center justify-content-between">
+                            <b>Shipping: <span><span [innerHTML]="currency | safeHtml"></span>{{product?.shipping_fee |
+                                    number :
+                                    '1.2-2'}}</span></b>
+                            <a href="#">See Details</a>
+                        </div>
+                        <div class="toLocationDelivery">
+                            <app-cus-accordion>
+                                <div class="accHead">
+                                    <span>to Nigeria via Azany Standard Shipping</span>
+                                    <i class="icons icon-arrow-down"></i>
+                                </div>
+                                <div class="accBody cusShow">
+                                    <div class="delivery d-flex align-items-center">
+                                        <div class="deliveryTxt">Estimated Delivery:</div>
+                                        <div class="deliveryValue"><span>10-20</span> days</div>
+                                    </div>
+                                </div>
+                            </app-cus-accordion>
+                        </div>
+                    </div>
+                    <div class="btnCont">
+                        <button class="buyNow addToCartLink disabled" [class.disabled]="(productVariations && !cartVariation) || (!selectable(product?.variation[0]) && !cartVariation) || buying" (click)="(productVariations && !cartVariation) || (!selectable(product?.variation[0]) && !cartVariation) || buying ? null : addToCart('buyNow')">
+                            <span *ngIf="!buying">Buy Now</span>
+                            <i *ngIf="buying" class="fa fa-spinner fa-spin"></i>
+                        </button>
+                        <!-- <button class="buyNow addToCartLink disabled">Buy Now</button> -->
+                        <button *ngIf="!adding" class="addToCartLink" (click)="addToCart('addToCart')">
+                            <svg width="21" height="21" viewBox="0 0 21 21" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M1.5 2H3.5V16C3.5 16.2652 3.60536 16.5196 3.79289 16.7071C3.98043 16.8946 4.23478 17 4.5 17H16.5C16.7151 17 16.9245 16.9307 17.0971 16.8022C17.2697 16.6738 
+                                    17.3963 16.4931 17.458 16.287L20.458 6.287C20.5027 6.13769 20.5119 5.97999 20.4849 5.82649C20.4579 5.67298 20.3953 5.52793 20.3022 5.4029C20.2092 5.27786 20.0882 5.17632 19.9489 5.10637C19.8096 5.03641 19.6559 4.99999 19.5 5H5.5V1C5.5 0.734784 5.39464 0.48043 5.20711 0.292893C5.01957 0.105357 4.76522 0 4.5 0H1.5C1.23478 0 0.98043 0.105357 0.792893 0.292893C0.605357 0.48043 0.5 0.734784 0.5 1C0.5 1.26522 0.605357 1.51957 0.792893 1.70711C0.98043 1.89464 1.23478 2 1.5 2ZM5.5 7H18.156L15.756 15H5.5V7ZM5 18C5.29667 18 5.58668 18.088 5.83336 18.2528C6.08003 18.4176 6.27229 18.6519 6.38582 18.926C6.49935 19.2001 6.52906 19.5017 6.47118 19.7926C6.4133 20.0836 6.27044 20.3509 6.06066 20.5607C5.85088 20.7704 5.58361 20.9133 5.29264 20.9712C5.00166 21.0291 4.70006 20.9993 4.42597 20.8858C4.15189 20.7723 3.91762 20.58 3.7528 20.3334C3.58797 20.0867 3.5 19.7967 3.5 19.5C3.5 19.1022 3.65804 18.7206 3.93934 18.4393C4.22064 18.158 4.60218 18 5 18ZM15 18C15.2967 18 15.5867 18.088 15.8334 18.2528C16.08 18.4176 16.2723 18.6519 16.3858 18.926C16.4993 19.2001 16.5291 19.5017 16.4712 19.7926C16.4133 20.0836 16.2704 20.3509 16.0607 20.5607C15.8509 20.7704 15.5836 20.9133 15.2926 20.9712C15.0017 21.0291 14.7001 20.9993 14.426 20.8858C14.1519 20.7723 13.9176 20.58 13.7528 20.3334C13.588 20.0867 13.5 19.7967 13.5 19.5C13.5 19.1022 13.658 18.7206 13.9393 18.4393C14.2206 18.158 14.6022 18 15 18Z"
+                                    fill="white" />
+                            </svg>
+                            <span>Add to cart</span>
+                        </button>
+                        <button *ngIf="adding" class="addToCartLink disabled">
+                            <i class="fa fa-spinner fa-spin"></i>
+                        </button>
+                    </div>
+                    <div class="protectionInfo d-flex align-items-center">
+                        <div class="iconCont">
+                            <svg width="20" height="25" viewBox="0 0 20 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M19.5375 2.0624C19.3923 1.94492 19.2226 1.86149 19.0409 1.81823C18.8592 1.77496 18.6701 1.77297 18.4875 1.8124C17.1518 2.09233 15.7729 2.09589 14.4358 1.82288C13.0987 1.54986 11.8316 1.00604 10.7125 0.224897C10.5033 0.0797382 10.2547 0.00195312 10 0.00195312C9.74533 0.00195312 9.49674 0.0797382 9.2875 0.224897C8.16844 1.00604 6.90134 1.54986 5.56421 1.82288C4.22707 2.09589 2.8482 2.09233 1.5125 1.8124C1.32992 1.77297 1.14083 1.77496 0.959125 1.81823C0.77742 1.86149 0.607719 1.94492 0.462499 2.0624C0.317474 2.18005 0.200651 2.32869 0.120615 2.49742C0.0405792 2.66614 -0.000635367 2.85065 -4.02538e-07 3.0374V12.3499C-0.0011117 14.1421 0.425966 15.9086 1.24567 17.5023C2.06537 19.0961 3.25397 20.4709 4.7125 21.5124L9.275 24.7624C9.4867 24.9131 9.74012 24.9941 10 24.9941C10.2599 24.9941 10.5133 24.9131 10.725 24.7624L15.2875 21.5124C16.746 20.4709 17.9346 19.0961 18.7543 17.5023C19.574 15.9086 20.0011 14.1421 20 12.3499V3.0374C20.0006 2.85065 19.9594 2.66614 19.8794 2.49742C19.7993 2.32869 19.6825 2.18005 19.5375 2.0624ZM17.5 12.3499C17.501 13.7433 17.1691 15.1169 16.5321 16.3562C15.895 17.5955 14.9712 18.6647 13.8375 19.4749L10 22.2124L6.1625 19.4749C5.02879 18.6647 4.10498 17.5955 3.46794 16.3562C2.83089 15.1169 2.49904 13.7433 2.5 12.3499V4.4749C5.12053 4.69919 7.74505 4.09118 10 2.7374C12.2549 4.09118 14.8795 4.69919 17.5 4.4749V12.3499ZM11.925 9.4874L8.5625 12.8624L7.45 11.7374C7.21462 11.502 6.89538 11.3698 6.5625 11.3698C6.22962 11.3698 5.91038 11.502 5.675 11.7374C5.43962 11.9728 5.30739 12.292 5.30739 12.6249C5.30739 12.9578 5.43962 13.277 5.675 13.5124L7.675 15.5124C7.7912 15.6296 7.92945 15.7226 8.08178 15.786C8.2341 15.8495 8.39748 15.8821 8.5625 15.8821C8.72752 15.8821 8.8909 15.8495 9.04322 15.786C9.19554 15.7226 9.3338 15.6296 9.45 15.5124L13.75 11.2499C13.9854 11.0145 14.1176 10.6953 14.1176 10.3624C14.1176 10.0295 13.9854 9.71028 13.75 9.4749C13.5146 9.23952 13.1954 9.10728 12.8625 9.10728C12.5296 9.10728 12.2104 9.23952 11.975 9.4749L11.925 9.4874Z"
+                                    fill="#222222" />
+                            </svg>
+                        </div>
+                        <div class="txtCont">
+                            <h5>60-Day Buyer Protection</h5>
+                            <span>Money back guarantee</span>
+                        </div>
+                    </div>
+                    <div class="sellerInfo">
+                        <div class="sellerAcc">
+                            <app-cus-accordion>
+                                <div class="accHead d-flex align-items-center justify-content-between">
+                                    <h5 class="m-0">Seller Information</h5>
+                                    <i class="icons icon-arrow-right"></i>
+                                </div>
+                                <div class="accBody cusShow" id="sellerInfo">
+                                    <div class="sellerNameRating d-flex align-items-center">
+                                        <span class="sellerName">{{product?.sellerInfo?.biz_name}}</span>
+                                        <span class="sellerRateCount">({{product?.sellerRate}})</span>
+                                        <svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M19 7.757L13.722 12.111L15.371 19.5L9.5 15.278L3.629 19.5L5.278 12.111L0 7.757L6.333 6.833L9.5 0.5L12.667 6.833L19 7.757Z"
+                                                fill="#FEB700" />
+                                        </svg>
+                                    </div>
+                                    <div class="otherInfo">
+                                        <div class="eachInfo">99.9% Positive feedback</div>
+                                        <div class="eachInfo">
+                                            <span class="key">Order Fulfillment Rate:</span>
+                                            <span class="value">{{product?.sellerOrderFulfilment?.result}}</span>
+                                        </div>
+                                        <div class="eachInfo">
+                                            <span class="key">Quality Score:</span>
+                                            <span class="value">Excellent</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </app-cus-accordion>
+                        </div>
+                        <div class="linkCont">
+                            <a href="#">Contact Seller</a>
+                            <a href="#">See other items</a>
+                        </div>
+                        <div class="status">registered business seller</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="otherProdInfo">
+            <div class="prodInfoItem">
+                <div class="headPart">Product Description</div>
+                <div class="bodyPart" [innerHTML]="product?.description | safeHtml">{{product?.description}}
+                </div>
+            </div>
+            <div class="prodInfoItem">
+                <div class="headPart">Specifications</div>
+                <div class="bodyPart">
+                    <h5 class="featureHeading">Key features</h5>
+                    <ul>
+                        <li *ngFor="let feat of features">{{feat?.feature}}</li>
+                        <!-- <li>Clothing material: Cotton</li>
+                    <li>Colors available: Black, Grey, Blue, White</li>
+                    <li>Features: breathable and Comfortable.</li>
+                    <li>Long Sleeve Hoodie.</li> -->
+                    </ul>
+                </div>
+            </div>
+            <div class="prodInfoItem">
+                <div class="headPart">Package Specifications</div>
+                <div class="bodyPart">
+                    <div *ngIf="product?.sku" class="specItem">
+                        <b class="key">SKU:</b>
+                        <span class="value">FA55252IJIJIBBIB478</span>
+                    </div>
+                    <div class="specItem">
+                        <b class="key">Care Label:</b>
+                        <span class="value">Please check out our clothing size chart and Azany official men’s clothing
+                            size
+                            chart</span>
+                    </div>
+                    <div *ngIf="product?.color" class="specItem">
+                        <b class="key">Colors Available:</b>
+                        <span class="value">Black, Grey, Blue, White</span>
+                    </div>
+                    <div *ngIf="product?.material" class="specItem">
+                        <b class="key">Main Material:</b>
+                        <span class="value">{{product?.material}}</span>
+                    </div>
+                    <div class="specItem">
+                        <b class="key">Production Country:</b>
+                        <span class="value">{{product?.manufacture_country}}</span>
+                    </div>
+                    <div *ngIf="product?.weight" class="specItem">
+                        <b class="key">Weight (kg):</b>
+                        <span class="value">{{product?.weight}}</span>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="ratings && ratings?.length" class="reviewCont prodInfoItem">
+                <div class="leftPart">
+                    <h4>Customer Reviews</h4>
+                    <div class="starRatingCont">
+                        <div class="rateScore">
+                            <span class="score">4.0</span>/5
+                        </div>
+                        <div class="starRating">
+                            <svg width="120" height="24" viewBox="0 0 120 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M21.5 9.757L16.222 14.111L17.871 21.5L12 17.278L6.129 21.5L7.778 14.111L2.5 9.757L8.833 8.833L12 2.5L15.167 8.833L21.5 9.757Z"
+                                    fill="#FEB700" />
+                                <path
+                                    d="M45.5 9.757L40.222 14.111L41.871 21.5L36 17.278L30.129 21.5L31.778 14.111L26.5 9.757L32.833 8.833L36 2.5L39.167 8.833L45.5 9.757Z"
+                                    fill="#FEB700" />
+                                <path
+                                    d="M69.5 9.757L64.222 14.111L65.871 21.5L60 17.278L54.129 21.5L55.778 14.111L50.5 9.757L56.833 8.833L60 2.5L63.167 8.833L69.5 9.757Z"
+                                    fill="#FEB700" />
+                                <path
+                                    d="M93.5 9.757L88.222 14.111L89.871 21.5L84 17.278L78.129 21.5L79.778 14.111L74.5 9.757L80.833 8.833L84 2.5L87.167 8.833L93.5 9.757Z"
+                                    fill="#FEB700" />
+                                <path
+                                    d="M117.5 9.757L112.222 14.111L113.871 21.5L108 17.278L102.129 21.5L103.778 14.111L98.5 9.757L104.833 8.833L108 2.5L111.167 8.833L117.5 9.757Z"
+                                    fill="#BBBBBB" />
+                            </svg>
+                        </div>
+                        <div class="ratingTxt">300 ratings</div>
+                    </div>
+                    <div class="ratingBarCont">
+                        <div class="ratingBarItem">
+                            <span class="starTxt">5 Star</span>
+                            <div class="ratingBar">
+                                <div class="ratingIndic"></div>
+                            </div>
+                            <span class="ratingScore">75%</span>
+                        </div>
+                        <div class="ratingBarItem">
+                            <span class="starTxt">4 Star</span>
+                            <div class="ratingBar">
+                                <div class="ratingIndic"></div>
+                            </div>
+                            <span class="ratingScore">75%</span>
+                        </div>
+                        <div class="ratingBarItem">
+                            <span class="starTxt">3 Star</span>
+                            <div class="ratingBar">
+                                <div class="ratingIndic"></div>
+                            </div>
+                            <span class="ratingScore">75%</span>
+                        </div>
+                        <div class="ratingBarItem">
+                            <span class="starTxt">2 Star</span>
+                            <div class="ratingBar">
+                                <div class="ratingIndic"></div>
+                            </div>
+                            <span class="ratingScore">75%</span>
+                        </div>
+                        <div class="ratingBarItem">
+                            <span class="starTxt">1 Star</span>
+                            <div class="ratingBar">
+                                <div class="ratingIndic"></div>
+                            </div>
+                            <span class="ratingScore">75%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="rightPart">
+                    <div class="rightReviewsInner">
+                        <div class="reviewsHead">Top Reviews from Customers</div>
+                        <div *ngFor="let review of [1,1,1,1]" class="eachReview">
+                            <div class="userInfo d-flex align-items-center">
+                                <div class="userImgCont">
+                                    <svg width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M9 10C9.98891 10 10.9556 9.70676 11.7779 9.15735C12.6001 8.60794 13.241 7.82705 13.6194 6.91342C13.9978 5.99979 14.0969 4.99446 13.9039 4.02455C13.711 3.05465 13.2348 2.16373 12.5355 1.46447C11.8363 0.765206 10.9454 0.289002 9.97545 0.0960759C9.00555 -0.0968503 8.00021 0.00216642 7.08658 0.380605C6.17295 0.759043 5.39206 1.39991 4.84265 2.22215C4.29324 3.0444 4 4.0111 4 5C4.00159 6.3256 4.52888 7.59644 5.46622 8.53378C6.40356 9.47112 7.67441 9.99841 9 10ZM9 2C9.59334 2 10.1734 2.17595 10.6667 2.50559C11.1601 2.83524 11.5446 3.30377 11.7716 3.85195C11.9987 4.40013 12.0581 5.00333 11.9424 5.58527C11.8266 6.16722 11.5409 6.70177 11.1213 7.12132C10.7018 7.54088 10.1672 7.8266 9.58527 7.94236C9.00333 8.05811 8.40013 7.9987 7.85195 7.77164C7.30377 7.54458 6.83524 7.16006 6.50559 6.66671C6.17595 6.17337 6 5.59335 6 5C6 4.20435 6.31607 3.44129 6.87868 2.87868C7.44129 2.31607 8.20435 2 9 2ZM0 21C3.55683e-08 18.6131 0.948211 16.3239 2.63604 14.636C4.32387 12.9482 6.61305 12 9 12C11.3869 12 13.6761 12.9482 15.364 14.636C17.0518 16.3239 18 18.6131 18 21C18 21.2652 17.8946 21.5196 17.7071 21.7071C17.5196 21.8946 17.2652 22 17 22C16.7348 22 16.4804 21.8946 16.2929 21.7071C16.1054 21.5196 16 21.2652 16 21C16 19.1435 15.2625 17.363 13.9497 16.0503C12.637 14.7375 10.8565 14 9 14C7.14348 14 5.36301 14.7375 4.05025 16.0503C2.7375 17.363 2 19.1435 2 21C2 21.2652 1.89464 21.5196 1.70711 21.7071C1.51957 21.8946 1.26522 22 1 22C0.734784 22 0.48043 21.8946 0.292893 21.7071C0.105357 21.5196 0 21.2652 0 21Z"
+                                            fill="#222222" />
+                                    </svg>
+                                </div>
+                                <div class="userName">Dapo Seun</div>
+                            </div>
+                            <div class="ratingRecomStatus d-flex align-items-center">
+                                <div class="starRating">
+                                    <svg width="120" height="24" viewBox="0 0 120 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M21.5 9.757L16.222 14.111L17.871 21.5L12 17.278L6.129 21.5L7.778 14.111L2.5 9.757L8.833 8.833L12 2.5L15.167 8.833L21.5 9.757Z"
+                                            fill="#FEB700" />
+                                        <path
+                                            d="M45.5 9.757L40.222 14.111L41.871 21.5L36 17.278L30.129 21.5L31.778 14.111L26.5 9.757L32.833 8.833L36 2.5L39.167 8.833L45.5 9.757Z"
+                                            fill="#FEB700" />
+                                        <path
+                                            d="M69.5 9.757L64.222 14.111L65.871 21.5L60 17.278L54.129 21.5L55.778 14.111L50.5 9.757L56.833 8.833L60 2.5L63.167 8.833L69.5 9.757Z"
+                                            fill="#FEB700" />
+                                        <path
+                                            d="M93.5 9.757L88.222 14.111L89.871 21.5L84 17.278L78.129 21.5L79.778 14.111L74.5 9.757L80.833 8.833L84 2.5L87.167 8.833L93.5 9.757Z"
+                                            fill="#FEB700" />
+                                        <path
+                                            d="M117.5 9.757L112.222 14.111L113.871 21.5L108 17.278L102.129 21.5L103.778 14.111L98.5 9.757L104.833 8.833L108 2.5L111.167 8.833L117.5 9.757Z"
+                                            fill="#BBBBBB" />
+                                    </svg>
+                                </div>
+                                <b>Highly Recommend</b>
+                                <div class="status d-flex align-items-center">
+                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M22 10.99L19.56 8.2L19.9 4.51L16.29 3.69L14.4 0.5L11 1.96L7.6 0.5L5.71 3.69L2.1 4.5L2.44 8.2L0 10.99L2.44 13.78L2.1 17.48L5.71 18.3L7.6 21.5L11 20.03L14.4 21.49L16.29 18.3L19.9 17.48L19.56 13.79L22 10.99ZM18.05 12.47L17.49 13.12L17.57 13.97L17.75 15.92L15.85 16.35L15.01 16.54L14.57 17.28L13.58 18.96L11.8 18.19L11 17.85L10.21 18.19L8.43 18.96L7.44 17.29L7 16.55L6.16 16.36L4.26 15.93L4.44 13.97L4.52 13.12L3.96 12.47L2.67 11L3.96 9.52L4.52 8.87L4.43 8.01L4.25 6.07L6.15 5.64L6.99 5.45L7.43 4.71L8.42 3.03L10.2 3.8L11 4.14L11.79 3.8L13.57 3.03L14.56 4.71L15 5.45L15.84 5.64L17.74 6.07L17.56 8.02L17.48 8.87L18.04 9.52L19.33 10.99L18.05 12.47Z"
+                                            fill="#27AE60" />
+                                        <path
+                                            d="M9.08999 12.7501L6.76999 10.4201L5.28999 11.9101L9.08999 15.7201L16.43 8.36012L14.95 6.87012L9.08999 12.7501Z"
+                                            fill="#27AE60" />
+                                    </svg>
+                                    <span>Verified Purchase</span>
+                                </div>
+                            </div>
+                            <div class="reviewTxt">
+                                This was definitely worth the buy. Super comfy, decent quality, great for leisure/casual wear. I had to get all the colors. It is extremely lightweight and goes with a lot of my pants. Good job
+                            </div>
+                            <div class="reviewDate">Reviewed on June 15, 2021</div>
+                        </div>
+                    </div>
+                    <div class="allReviewLinkCont">
+                        <a href="javascript:void(0)">See all reviews <i class="icons icon-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="prodGridSection">
+            <div class="headSection">
+                <h4>More by this seller</h4>
+                <a routerLink="/">See All Deals</a>
+            </div>
+            <div class="gridCont">
+                <div *ngFor="let prod of product?.otherSellerProduct" class="gridItem">
+                    <app-each-advert-product [currency]="currency" [product]="prod"></app-each-advert-product>
+                </div>
+            </div>
+        </section>
+        <app-related-items *ngIf="sameProduct?.length" [productsData]="{prods: sameProduct, cat: categoryTitle?.cat_slug, currency: currency}">
+        </app-related-items>
+    </div>
+</div>
+<app-subscribe></app-subscribe>
+<app-footer></app-footer>

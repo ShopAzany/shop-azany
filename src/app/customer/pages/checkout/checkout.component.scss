@@ -1,0 +1,263 @@
+@import '../../../guest/pages/shopping-cart/shopping-cart.component.scss';
+#checkoutPage .headPart {
+    margin-bottom: 40px;
+}
+
+.eachOrderInfo {
+    border-radius: 7px;
+    border: 1px solid #2222224d;
+    font-size: 14px;
+    margin-bottom: 30px;
+    .eachOrderHead {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 20px;
+        border-bottom: 1px solid #2222224d;
+        h4 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+    }
+    .action {
+        color: $primary;
+        text-decoration: none !important;
+        font-weight: 600;
+        font-size: 14px;
+    }
+    .eachOrderBody {
+        padding: 20px;
+        .emptyInfo {
+            display: flex;
+            align-items: center;
+            min-height: 74px;
+            opacity: 0.5;
+        }
+    }
+}
+
+.orderItemCont {
+    .orderItem {
+        display: flex;
+        margin-bottom: 30px;
+        .bullet {
+            min-width: 6px;
+            height: 6px;
+            width: 6px;
+            margin-top: 7px;
+            background: #c4c4c4;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .txtCont {
+            flex-grow: 1;
+        }
+        .txtCont>div {
+            margin-bottom: 2px;
+        }
+        .variationCont {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            .variationItem {
+                display: flex;
+                align-items: center;
+                margin-right: 20px;
+                .name {
+                    margin-right: 4px;
+                }
+                .color {
+                    width: 16px;
+                    height: 16px;
+                    min-width: 16px;
+                    border-radius: 50%;
+                    margin-left: 4px;
+                }
+            }
+        }
+        .priceQtyCont {
+            display: flex;
+            align-items: center;
+            .separ {
+                margin: 0 10px;
+            }
+            .price {
+                color: #354e79;
+            }
+            .qty {
+                opacity: 0.5;
+            }
+        }
+        .soldBy {
+            opacity: 0.7;
+        }
+    }
+}
+
+.inOrder {
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.deliveryOptionCont {
+    .note {
+        margin-bottom: 30px;
+        color: #22222280;
+        a {
+            color: $variantCol1;
+            font-weight: bold;
+            text-decoration: none !important;
+        }
+    }
+    .chooseRadioCont {
+        .eachRadioOpt {
+            margin-bottom: 20px;
+            input+label {
+                display: flex;
+                .cusRadio {
+                    min-width: 19px;
+                    width: 19px;
+                    margin-top: 3px;
+                    position: relative;
+                    height: 19px;
+                    border-radius: 50%;
+                    border: 2.4px solid #222222b3;
+                    margin-right: 12px;
+                    .radioInner {
+                        position: absolute;
+                        display: none;
+                        top: 50%;
+                        transform: translate(-50%, -50%);
+                        left: 50%;
+                        width: 30px;
+                        height: 30px;
+                        border-radius: 50%;
+                        background: #222222b3;
+                        animation: zoomsm 0.3s ease forwards;
+                    }
+                    @keyframes zoomsm {
+                        from {
+                            transform: translate(-50%, -50%) scale(0.6);
+                        }
+                        to {
+                            transform: translate(-50%, -50%) scale(0.3);
+                        }
+                    }
+                }
+                .arrivalDate {
+                    color: #27ae60;
+                    font-weight: bold;
+                }
+                .priceName {
+                    display: flex;
+                    align-items: center;
+                    opacity: 0.7;
+                    .separ {
+                        margin: 0 5px;
+                    }
+                }
+            }
+            input:checked+label {
+                .cusRadio {
+                    .radioInner {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.agreement {
+    margin-top: 47px;
+    color: #22222280;
+    a {
+        color: #222;
+        text-decoration: none;
+    }
+}
+
+.btnCont {
+    margin-top: 30px;
+    .addToCartLink,
+     ::ng-deep .addToCartLink {
+        width: 100%;
+        max-width: 355px;
+    }
+}
+
+.modalBody {
+    .formBody {
+        max-height: calc(100vh - 60px - 40px - 49.8px - 20px - 78px - 40px);
+        overflow: auto;
+    }
+    .formBody::-webkit-scrollbar,
+    .formBody::-webkit-scrollbar-track {
+        width: 7px;
+    }
+    .formBody::-webkit-scrollbar-thumb {
+        background: #9b9b9b;
+    }
+    .gridCont {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+    }
+}
+
+.text {
+    color: #848484;
+    font-size: 14px;
+}
+
+.dave {
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.cusRadioPay {
+    input+label {
+        cursor: pointer;
+        .radioMark {
+            position: relative;
+            border: 2px solid $primary;
+            min-width: 20px;
+            display: block;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #fff;
+            margin: 0;
+            margin-right: 10px;
+            div {
+                position: absolute;
+                left: 50%;
+                border-radius: 50%;
+                top: 50%;
+                height: 10px;
+                width: 10px;
+                background: $primary;
+                border: 2px solid $primary;
+                display: none;
+                animation: zoomin 0.3s ease forwards;
+            }
+        }
+    }
+    input:checked+label {
+        .radioMark {
+            div {
+                display: block;
+            }
+        }
+    }
+}
+
+@keyframes zoomin {
+    from {
+        transform: translate(-50%, -50%) scale(1.5);
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}

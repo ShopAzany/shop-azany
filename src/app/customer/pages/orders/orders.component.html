@@ -1,0 +1,90 @@
+<app-header></app-header>
+
+<div id="authPage">
+    <app-sidebar></app-sidebar>
+
+    <main>
+        <section class="headSection">
+            <h1 class="pageTitle">Orders</h1>
+        </section>
+        <section class="bodyPart">
+
+            <div class="orderTitle border-bottom d-flex">
+                <div (click)="orderOption('open')" [class.activeRoot]="openOrder" class="mr-4 pointer">Open Order</div>
+                <div (click)="orderOption('cancel')" [class.activeRoot]="cancelOrder" class="mr-4 pointer">Cancelled Orders
+                </div>
+            </div>
+
+            <div *ngIf="!isLoading">
+                <div *ngIf="openOrder">
+                    <div class="itemsQty my-3 font-weight-bold mt-5">
+                        {{orderCounts}} item (s)
+                    </div>
+                    <div *ngIf="orderCounts > 0">
+                        <div *ngFor="let order of orders" class="d-flex justify-content-start orderWrap">
+                            <div class="order-img-wrap">
+                                <img [src]="treatImgUrl(order?.product_json?.featured_img) | safeUrl" title="{{order?.name}}">
+                            </div>
+
+                            <div class="order-cont-wrap">
+                                <h4 class="order-name">{{order?.product_json?.name}}</h4>
+
+                                <p class="text-muted order-para">Order placed on {{order?.created_at | date}}</p>
+                                <p class="text-muted order-para">Sold By: {{order?.seller_name}}</p>
+
+                                <div class="det-btn">
+                                    <a routerLink="/customer/orders/detail/{{order?.order_number}}">ORDER DETAILS</a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <button *ngIf="orderCounts > 0 && !isLoadingMore" (click)="loadMore()" [disabled]="orderCounts <= orders.length" class="addToCartLink loadMore">Load
+                            more</button>
+
+                        <button *ngIf="isLoadingMore" disabled class="addToCartLink loadMore"><i
+                                class="fa fa-spin fa-spinner"></i> Loading...</button>
+                    </div>
+
+                    <div *ngIf="orderCounts < 1">
+                        <h4 class="text-center mt-5 mb-5">You have no Order</h4>
+                    </div>
+                </div>
+
+
+                <div *ngIf="cancelOrder">
+                    <div class="itemsQty my-3 font-weight-bold mt-5">
+                        {{cancelledOrderCounts}} item (s)
+                    </div>
+                    <div *ngIf="cancelledOrderCounts > 0">
+                        <div *ngFor="let order of cancelledOrders" class="d-flex justify-content-start orderWrap">
+                            <div class="order-img-wrap">
+                                <img src="{{order?.image}}" title="{{order?.name}}">
+                            </div>
+
+                            <div class="order-cont-wrap">
+                                <h4 class="text_truncate order-name">{{order?.name}}</h4>
+
+                                <p class="text-muted order-para">Order placed on {{order?.created_at | date}}</p>
+                                <p class="text-muted order-para">Sold By: {{order?.seller_name}}</p>
+
+                                <div class="det-btn">
+                                    <a routerLink="/customer/order/detail/{{order?.order_number}}">ORDER DETAILS</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="cancelledOrderCounts < 1">
+                        <h4 class="text-center mt-5 mb-5">You have no Cancelled Order</h4>
+                    </div>
+                </div>
+            </div>
+
+            <app-loading *ngIf="isLoading"></app-loading>
+
+
+        </section>
+    </main>
+
+</div>

@@ -1,0 +1,12 @@
+@import '../../../register/shared/nav-bar/nav-bar.component.scss';
+.tabs {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@media (max-width: 629px) {
+    .tabs {
+        left: 0;
+        transform: translateX(0);
+    }
+}

@@ -1,0 +1,283 @@
+@import '../../../../themes/colors.scss';
+.bannerSection {
+    padding-top: 20px;
+    .gridCont {
+        display: grid;
+        grid-template-columns: 60.5% auto;
+        gap: 20px;
+        .sideImages {
+            display: grid;
+            grid-template-columns: auto;
+            gap: 20px;
+        }
+    }
+    @media (max-width: 767px) {
+        .gridCont {
+            grid-template-columns: 100%;
+        }
+    }
+}
+
+.shopFromOtherCountries {
+    border-radius: 10px;
+    margin-top: 40px;
+    .tabHead {
+        background: $smLightBg;
+        display: flex;
+        border-radius: 10px 10px 0 0;
+        height: 121px;
+        .titlePart {
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: #222;
+            h4 {
+                font-weight: 600;
+                font-size: 24px;
+                white-space: nowrap;
+                line-height: 36px;
+                margin: 0;
+            }
+            p {
+                margin: 0;
+                font-size: 14px;
+                line-height: 21px;
+            }
+        }
+        .tabBtnCont {
+            flex-grow: 1;
+            display: grid;
+            padding: 0 20px;
+            align-items: center;
+            grid-template-columns: repeat(4, 1fr);
+            overflow-x: auto;
+            overflow-y: hidden;
+            column-gap: 40px;
+            a {
+                display: flex;
+                flex-direction: column;
+                padding: 10px;
+                background: #fff;
+                border-radius: 15px;
+                text-decoration: none;
+                justify-content: center;
+                align-items: center;
+                color: #222;
+                span {
+                    font-weight: 600;
+                    font-size: 14px;
+                }
+            }
+            a.cusActive {
+                background: $deepBg;
+                height: 100%;
+                border-radius: 0;
+            }
+        }
+    }
+    .tabBody {
+        background: $deepBg;
+        padding: 20px;
+        border-radius: 0 0 10px 10px;
+        .eachBody {
+            display: none;
+            animation: fadeZoom 0.4s ease forwards;
+            .gridCont {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+                gap: 20px;
+                // align-content: center;
+                // justify-items: center;
+                // place-self: center;
+                // .gridItem {
+                //     place-self: center;
+                // }
+            }
+        }
+        .eachBody.cusActive {
+            display: block;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .shopFromOtherCountries {
+        display: none;
+    }
+}
+
+@keyframes fadeZoom {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.eachSection {
+    color: #222;
+    margin-top: 40px;
+    .headCont {
+        align-items: center;
+        h4 {
+            font-size: 24px;
+            // line-height: 36px;
+            font-weight: 600;
+            margin: 0;
+        }
+        a {
+            font-size: 18px;
+            // line-height: 27px;
+            font-weight: 600;
+            color: $primary;
+        }
+        @media (max-width: 500px) {
+            h4 {
+                font-size: 18px;
+            }
+            a {
+                font-size: 14px;
+            }
+        }
+    }
+    .bodyCont {
+        padding: 15px 0;
+    }
+}
+
+.eachSection:not(.topCategories) {
+    .gridCont {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 33.33px;
+    }
+    @media (max-width: 581px) {
+        .gridCont {
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+        }
+    }
+}
+
+.topCategories {
+    .gridCont {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 35px;
+    }
+    .eachCat {
+        background: $lightBg;
+        padding: 5px;
+        text-decoration: none;
+        border-radius: 7px;
+        color: #222;
+        div {
+            text-align: center;
+            padding: 15px 0;
+            font-size: 18px;
+            // line-height: 27px;
+        }
+    }
+    @media (max-width: 716px) {
+        .gridCont {
+            gap: 10px;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        }
+        .eachCat:last-child {
+            display: none;
+        }
+    }
+    @media (max-width: 500px) {
+        .eachCat {
+            div {
+                font-size: 14px;
+                padding: 10px 0;
+            }
+        }
+    }
+}
+
+.phoneAdvert {
+    margin-top: 40px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #000;
+    img {
+        width: 100%;
+    }
+    .gridCont {
+        display: grid;
+        padding: 30px;
+        width: 100%;
+        grid-gap: 30px;
+        grid-template-columns: repeat(auto-fill, minmax(211px, 1fr));
+    }
+    @media (max-width: 1100px) and (min-width: 990px) {
+        .gridCont {
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 15px;
+            padding: 15px;
+        }
+    }
+    @media (max-width: 581px) {
+        .gridCont {
+            padding: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 10px;
+        }
+    }
+}
+
+.threeGridAds {
+    margin-top: 40px;
+    .gridCont {
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        gap: 4%;
+        img {
+            width: 100%;
+        }
+    }
+}
+
+.liveStreams {
+    margin-top: 40px;
+    .gridCont {
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        gap: 35.2px;
+        img {
+            width: 100%;
+        }
+        iframe,
+        video {
+            border: none;
+            width: 100%;
+            object-fit: cover;
+            height: 100%;
+            border-radius: 7px;
+        }
+    }
+}
+
+#cartSuccessCont {
+    position: fixed;
+    top: 10px;
+    display: flex;
+    width: 100%;
+    z-index: -1;
+    justify-content: center;
+     ::ng-deep .addCartSuccess {
+        max-width: 1370px;
+        width: 100vw;
+        z-index: 90000;
+    }
+}
+
+#cartSuccessCont.cusShow {
+    z-index: 9000;
+}

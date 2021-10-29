@@ -1,0 +1,73 @@
+<app-header></app-header>
+<div id="registerPage" class="authPageCont">
+    <div class="leftSection">
+        <h1>Ready to join
+            <span>Azany?</span>
+        </h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Diam convallis volutpat in turpis. Placerat fringilla felis, nisl, praesent imperdiet </p>
+        <div class="userImgsCont d-flex align-items-center">
+            <img src="assets/images/user.png" alt="">
+            <img src="assets/images/user2.png" alt="">
+            <img src="assets/images/user3.png" alt="">
+            <img src="assets/images/user4.png" alt="">
+        </div>
+        <div>Join the 10k+ people who shop with us </div>
+    </div>
+    <div class="rightSection">
+        <form [formGroup]="form" (ngSubmit)="submit()">
+            <h2>Create an Account</h2>
+            <div class="gridCont">
+                <div class="formGroup">
+                    <label for="name">Your Name</label>
+                    <input type="text" class="form-control" placeholder="Enter Full Name" formControlName="full_name">
+                    <div *ngIf="full_name?.touched && full_name?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>Ful name is required</span></div>
+                </div>
+                <div #emailEl class="formGroup">
+                    <label for="name">Email Address</label>
+                    <input type="email" class="form-control" [class.errorColor]="(email?.touched && email?.invalid) || (email?.touched && email?.valid && !validateEmail) || emailServerError" placeholder="Enter Email Address" formControlName="email">
+                    <div *ngIf="email?.touched && email?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>Email is required</span></div>
+                    <div *ngIf="email?.touched && email?.valid && !validateEmail" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>Enter a valid email</span></div>
+                    <div *ngIf="emailServerError" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>{{emailServerError}}</span></div>
+                </div>
+                <div class="formGroup">
+                    <label for="name">Password</label>
+                    <div class="inputCont">
+                        <input type="password" class="form-control" placeholder="At least 8 characters" formControlName="password">
+                        <i appPassToggle class="fa fa-eye-slash passToggle"></i>
+                    </div>
+                    <div *ngIf="password?.touched && password?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>Password is required</span></div>
+                </div>
+                <div class="formGroup">
+                    <label for="name">Retype Password</label>
+                    <div class="inputCont">
+                        <input type="password" class="form-control" placeholder="At least 8 characters" formControlName="retype_password" (keyup)="checkPass($event)">
+                        <i appPassToggle class="fa fa-eye-slash passToggle"></i>
+                    </div>
+                    <div *ngIf="retype_password?.touched && retype_password?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>Please retype password</span></div>
+                    <div *ngIf="notMatched"><small class="errorDisp"><i class="fa fa-exclamation-circle"></i> Password
+                            not matched</small></div>
+                </div>
+                <div #phoneEl class="formGroup">
+                    <label for="name">Mobile Number</label>
+                    <input type="text" class="form-control" placeholder="Enter Mobile Number" formControlName="phone">
+                    <div *ngIf="phone?.touched && phone?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>Phone number is required</span></div>
+                    <div *ngIf="phoneServerError" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>{{phoneServerError}}</span></div>
+                </div>
+            </div>
+            <div class="btnTxtCont">
+                <button *ngIf="!isSubmitting" [disabled]='form.invalid || !validateEmail || notMatched' type="submit" class="submitBtn">Signup</button>
+                <button *ngIf="isSubmitting" type="submit" class="submitBtn"><i class="fa fa-spin fa-spinner mr-2"></i>
+                </button>
+
+
+                <p>By creating an account, you accept Azany’s <a routerLink="/pages/terms-and-conditions">terms and
+                        conditions</a> & <a routerLink="/pages/privacy-policy">privacy
+                        policy</a></p>
+                <div class="altAuth">
+                    <span>Already have an account?</span>
+                    <a routerLink="/login">SIGN IN</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

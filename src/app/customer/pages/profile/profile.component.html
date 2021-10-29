@@ -1,0 +1,327 @@
+<app-header></app-header>
+
+<div id="authPage">
+    <app-sidebar></app-sidebar>
+
+    <main>
+        <section class="headSection">
+            <h1 class="pageTitle">Profile</h1>
+        </section>
+        <section class="bodyPart">
+
+
+            <div class="sellerInfoPar">
+                <div class="sellerInfoItem">
+                    <div class="leftPart">
+                        <div class="infoKey">Full Name</div>
+                        <div class="infoValue">{{auth?.full_name | titlecase}}</div>
+                    </div>
+                    <div class="rightPart">
+                        <a href="javascript:()" [openModal]="fullNameModal" class="action">EDIT</a>
+                    </div>
+                </div>
+
+
+                <div class="sellerInfoItem">
+                    <div class="leftPart">
+                        <div class="infoKey">Email</div>
+                        <div class="infoValue">{{auth?.email}}</div>
+                    </div>
+                    <div class="rightPart">
+                        <a href="javascript:()" [openModal]="emailModal" class="action">EDIT</a>
+                    </div>
+                </div>
+
+                <div class="sellerInfoItem">
+                    <div class="leftPart">
+                        <div class="infoKey">Mobile Number</div>
+                        <div class="infoValue">{{auth?.country_code}}{{auth?.phone}}</div>
+                    </div>
+                    <div class="rightPart">
+                        <a href="javascript:()" [openModal]="phoneModal" class="action">EDIT</a>
+                    </div>
+                </div>
+
+                <div class="sellerInfoItem">
+                    <div class="leftPart">
+                        <div class="infoKey">Gender</div>
+                        <div class="infoValue">
+                            <span class="text-capitalize" *ngIf="auth?.gender != 'none' && auth?.gender != 'not_say'">{{auth?.gender}}</span>
+                            <span *ngIf="auth?.gender == 'none'">Non-Binary</span>
+                            <span *ngIf="auth?.gender == 'not_say'">I prefer not to say</span>
+                        </div>
+                    </div>
+                    <div class="rightPart">
+                        <a href="javascript:()" [openModal]="genderModal" class="action">EDIT</a>
+                    </div>
+                </div>
+
+                <div class="sellerInfoItem">
+                    <div class="leftPart">
+                        <div class="infoKey">Birthday</div>
+                        <div class="infoValue" *ngIf="auth?.date_of_birth">{{auth?.date_of_birth | date}}</div>
+                        <div class="infoValue" *ngIf="!auth?.date_of_birth">----</div>
+                    </div>
+                    <div class="rightPart">
+                        <a href="javascript:()" [openModal]="birthdayModal" class="action">EDIT</a>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+</div>
+
+
+
+
+
+
+
+
+<app-modal #fullNameModal [closeModal]="closeModal">
+    <div class="modalContent">
+        <div class="modalHead">
+            <h4 class="modalTitle">Change Your Name</h4>
+            <span class="closeBtn">
+                <svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M0.366515 18.866L8.23277 10.9997L0.366515 3.13349C0.138818 2.89773 0.0128242 2.58198 0.0156723 2.25423C0.0185203 1.92649 0.149982 1.61297 0.381742 1.38121C0.613502 1.14945 0.927018 1.01799 1.25476 1.01514C1.58251 1.01229 1.89826 1.13829 2.13401 1.36599L10.0003 9.23224L17.8665 1.36599C17.9818 1.2466 18.1198 1.15137 18.2723 1.08586C18.4248 1.02035 18.5888 0.985864 18.7548 0.984422C18.9207 0.98298 19.0853 1.01461 19.239 1.07746C19.3926 1.14031 19.5321 1.23313 19.6495 1.35049C19.7669 1.46786 19.8597 1.60742 19.9225 1.76104C19.9854 1.91466 20.017 2.07926 20.0156 2.24524C20.0141 2.41121 19.9797 2.57524 19.9141 2.72774C19.8486 2.88025 19.7534 3.01818 19.634 3.13349L11.7678 10.9997L19.634 18.866C19.7534 18.9813 19.8486 19.1192 19.9141 19.2717C19.9797 19.4242 20.0141 19.5883 20.0156 19.7542C20.017 19.9202 19.9854 20.0848 19.9225 20.2384C19.8597 20.392 19.7669 20.5316 19.6495 20.649C19.5321 20.7663 19.3926 20.8592 19.239 20.922C19.0853 20.9849 18.9207 21.0165 18.7548 21.0151C18.5888 21.0136 18.4248 20.9791 18.2723 20.9136C18.1198 20.8481 17.9818 20.7529 17.8665 20.6335L10.0003 12.7672L2.13401 20.6335C1.89826 20.8612 1.58251 20.9872 1.25476 20.9843C0.927018 20.9815 0.613502 20.85 0.381742 20.6183C0.149982 20.3865 0.0185203 20.073 0.0156723 19.7452C0.0128242 19.4175 0.138818 19.1017 0.366515 18.866Z"
+                        fill="#E21E2D" />
+                </svg>
+            </span>
+        </div>
+        <div class="modalBody">
+            <form [formGroup]="fullNameForm" (ngSubmit)="submit(fullNameForm)">
+                <div class="form-group">
+                    <label for="biz_type">Name</label>
+                    <input formControlName="full_name" [class.error]="full_name?.touched && full_name?.invalid" class="form-control" placeholder="Enter your first name">
+                    <div *ngIf="full_name?.touched && full_name?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
+                </div>
+
+                <button *ngIf="!isSaving" [disabled]="fullNameForm.invalid" class="vendorPrimaryBtn">Save
+                    Changes</button>
+                <button *ngIf="isSaving" disabled class="vendorPrimaryBtn"><i class="fa fa-spinner fa-spin"></i>
+                    Changing...</button>
+            </form>
+        </div>
+        <div class="modalFooter"></div>
+    </div>
+</app-modal>
+
+<app-modal #emailModal [closeModal]="closeModal">
+    <div class="modalContent">
+        <div class="modalHead">
+            <h4 class="modalTitle">Change Email Address</h4>
+            <span class="closeBtn">
+                <svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M0.366515 18.866L8.23277 10.9997L0.366515 3.13349C0.138818 2.89773 0.0128242 2.58198 0.0156723 2.25423C0.0185203 1.92649 0.149982 1.61297 0.381742 1.38121C0.613502 1.14945 0.927018 1.01799 1.25476 1.01514C1.58251 1.01229 1.89826 1.13829 2.13401 1.36599L10.0003 9.23224L17.8665 1.36599C17.9818 1.2466 18.1198 1.15137 18.2723 1.08586C18.4248 1.02035 18.5888 0.985864 18.7548 0.984422C18.9207 0.98298 19.0853 1.01461 19.239 1.07746C19.3926 1.14031 19.5321 1.23313 19.6495 1.35049C19.7669 1.46786 19.8597 1.60742 19.9225 1.76104C19.9854 1.91466 20.017 2.07926 20.0156 2.24524C20.0141 2.41121 19.9797 2.57524 19.9141 2.72774C19.8486 2.88025 19.7534 3.01818 19.634 3.13349L11.7678 10.9997L19.634 18.866C19.7534 18.9813 19.8486 19.1192 19.9141 19.2717C19.9797 19.4242 20.0141 19.5883 20.0156 19.7542C20.017 19.9202 19.9854 20.0848 19.9225 20.2384C19.8597 20.392 19.7669 20.5316 19.6495 20.649C19.5321 20.7663 19.3926 20.8592 19.239 20.922C19.0853 20.9849 18.9207 21.0165 18.7548 21.0151C18.5888 21.0136 18.4248 20.9791 18.2723 20.9136C18.1198 20.8481 17.9818 20.7529 17.8665 20.6335L10.0003 12.7672L2.13401 20.6335C1.89826 20.8612 1.58251 20.9872 1.25476 20.9843C0.927018 20.9815 0.613502 20.85 0.381742 20.6183C0.149982 20.3865 0.0185203 20.073 0.0156723 19.7452C0.0128242 19.4175 0.138818 19.1017 0.366515 18.866Z"
+                        fill="#E21E2D" />
+                </svg>
+            </span>
+        </div>
+        <div class="modalBody">
+            <div *ngIf="changeEmailForm">
+                <form [formGroup]="emailForm" (ngSubmit)="submitEmail()">
+                    <div class="form-group">
+                        <label for="">Email Address</label>
+                        <input type="email" [class.error]="(email?.touched && email?.invalid) || (email?.touched && email?.valid && !validateEmail) || emailServerError" class="form-control" formControlName="email" placeholder="Enter your Business Email">
+                        <div *ngIf="email?.touched && email?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
+                        <div *ngIf="email?.touched && email?.valid && !validateEmail" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>Enter a valid email</span></div>
+                        <div *ngIf="emailServerError" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>{{emailServerError}}</span></div>
+                    </div>
+                    <button *ngIf="!isSaving" [disabled]="emailForm.invalid" class="vendorPrimaryBtn">Save
+                        Changes</button>
+                    <button *ngIf="isSaving" disabled class="vendorPrimaryBtn"><i
+                            class="fa fa-spinner fa-spin"></i></button>
+                </form>
+            </div>
+
+            <div *ngIf="isFormToken">
+                <form [formGroup]="tokenForm" (ngSubmit)="submitToken()">
+                    <div class="info">Type the token sent to your new email address here.</div>
+                    <div class="form-group mt-3">
+                        <label for="">Token</label>
+                        <input type="number" [class.error]="(token?.touched && token?.invalid) || tokenServeError" class="form-control" formControlName="token" placeholder="Enter token here">
+                        <div *ngIf="token?.touched && token?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
+                        <div *ngIf="tokenServeError" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>{{tokenServeError}}</span></div>
+                    </div>
+                    <button *ngIf="!isSaving" [disabled]="tokenForm.invalid" class="vendorPrimaryBtn">Save
+                        Changes</button>
+                    <button *ngIf="isSaving" disabled class="vendorPrimaryBtn"><i
+                            class="fa fa-spinner fa-spin"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="modalFooter">
+            <div class="info">Changing your email would require A One Time Password (OTP) will be sent to the new address to confirm it.</div>
+        </div>
+    </div>
+</app-modal>
+
+<app-modal #phoneModal [closeModal]="closeModal">
+    <div class="modalContent">
+        <div class="modalHead">
+            <h4 class="modalTitle">Change Mobile Number</h4>
+            <span class="closeBtn">
+                <svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M0.366515 18.866L8.23277 10.9997L0.366515 3.13349C0.138818 2.89773 0.0128242 2.58198 0.0156723 2.25423C0.0185203 1.92649 0.149982 1.61297 0.381742 1.38121C0.613502 1.14945 0.927018 1.01799 1.25476 1.01514C1.58251 1.01229 1.89826 1.13829 2.13401 1.36599L10.0003 9.23224L17.8665 1.36599C17.9818 1.2466 18.1198 1.15137 18.2723 1.08586C18.4248 1.02035 18.5888 0.985864 18.7548 0.984422C18.9207 0.98298 19.0853 1.01461 19.239 1.07746C19.3926 1.14031 19.5321 1.23313 19.6495 1.35049C19.7669 1.46786 19.8597 1.60742 19.9225 1.76104C19.9854 1.91466 20.017 2.07926 20.0156 2.24524C20.0141 2.41121 19.9797 2.57524 19.9141 2.72774C19.8486 2.88025 19.7534 3.01818 19.634 3.13349L11.7678 10.9997L19.634 18.866C19.7534 18.9813 19.8486 19.1192 19.9141 19.2717C19.9797 19.4242 20.0141 19.5883 20.0156 19.7542C20.017 19.9202 19.9854 20.0848 19.9225 20.2384C19.8597 20.392 19.7669 20.5316 19.6495 20.649C19.5321 20.7663 19.3926 20.8592 19.239 20.922C19.0853 20.9849 18.9207 21.0165 18.7548 21.0151C18.5888 21.0136 18.4248 20.9791 18.2723 20.9136C18.1198 20.8481 17.9818 20.7529 17.8665 20.6335L10.0003 12.7672L2.13401 20.6335C1.89826 20.8612 1.58251 20.9872 1.25476 20.9843C0.927018 20.9815 0.613502 20.85 0.381742 20.6183C0.149982 20.3865 0.0185203 20.073 0.0156723 19.7452C0.0128242 19.4175 0.138818 19.1017 0.366515 18.866Z"
+                        fill="#E21E2D" />
+                </svg>
+            </span>
+        </div>
+        <div class="modalBody">
+            <form [formGroup]="phoneForm" (ngSubmit)="submit(phoneForm)">
+                <div class="form-group">
+                    <label for="">Country/Region</label>
+                    <div class="cusDropdown countryDropdown">
+                        <div appDropdown class="inputCont clickable2">
+                            <input formControlName="country_code" [class.error]="(country_code?.touched && country_code?.invalid) || phoneServerError || invalidCountryCode" type="text" appAllowNum maxlength="5" class="form-control" placeholder="Country Code">
+                            <span class="flagIcon flag-icon-squared flag-icon-{{countryIso}}"></span>
+                            <i class="fa fa-angle-down"></i>
+                        </div>
+                        <div class="dropped">
+                            <div *ngFor="let country of countries; let i = index" class="dropItem" (click)="setCountryCode(i)">
+                                <span class="flagIcon flag-icon-squared flag-icon-{{country.iso.toLowerCase()}}"></span>
+                                <div class="txt">
+                                    <span class="countryName">{{country.name}}</span>
+                                    <span class="code">{{country.dailing}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="country_code?.touched && country_code?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>Country code is required</span></div>
+                    <div *ngIf="invalidcountry_code" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>Invalid country code</span></div>
+                </div>
+                <div class="form-group">
+                    <label for="">Number</label>
+                    <input type="text" [class.error]="(phone?.touched && phone?.invalid) || phoneServerError" formControlName="phone" appAllowNum class="form-control" placeholder="Enter Number">
+                    <div *ngIf="phoneServerError" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>{{phoneServerError}}</span></div>
+                    <div *ngIf="phone?.touched && phone?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>Phone number is required</span></div>
+                </div>
+                <button *ngIf="!isSaving" [disabled]="phoneForm.invalid || invalidCountryCode" class="vendorPrimaryBtn">Save Changes</button>
+                <button *ngIf="isSaving" disabled class="vendorPrimaryBtn"><i class="fa fa-spinner fa-spin">
+                        Changing...</i></button>
+            </form>
+        </div>
+        <div class="modalFooter">
+            <div class="info">
+                <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M11 0.5C8.82441 0.5 6.69767 1.14514 4.88873 2.35383C3.07979 3.56253 1.66989 5.28049 0.83733 7.29048C0.00476617 9.30047 -0.213071 11.5122 0.211367 13.646C0.635804 15.7798 1.68345 17.7398 3.22183 19.2782C4.76021 20.8166 6.72022 21.8642 8.85401 22.2886C10.9878 22.7131 13.1995 22.4952 15.2095 21.6627C17.2195 20.8301 18.9375 19.4202 20.1462 17.6113C21.3549 15.8023 22 13.6756 22 11.5C21.9966 8.58367 20.8365 5.78778 18.7744 3.72563C16.7122 1.66347 13.9163 0.50344 11 0.5ZM11 20.5C9.21997 20.5 7.47992 19.9722 5.99987 18.9832C4.51983 17.9943 3.36628 16.5887 2.68509 14.9442C2.0039 13.2996 1.82567 11.49 2.17294 9.74419C2.5202 7.99836 3.37737 6.39471 4.63604 5.13604C5.89472 3.87737 7.49836 3.0202 9.24419 2.67293C10.99 2.32567 12.7996 2.5039 14.4442 3.18508C16.0887 3.86627 17.4943 5.01983 18.4832 6.49987C19.4722 7.97991 20 9.71997 20 11.5C19.9971 13.8861 19.0479 16.1735 17.3608 17.8607C15.6736 19.5479 13.3861 20.4971 11 20.5ZM12 7.5H10V5.5H12V7.5ZM12 17.5H10V9.5H12V17.5Z"
+                        fill="#222222" />
+                </svg> Message and data rates may apply.
+            </div>
+        </div>
+    </div>
+</app-modal>
+
+<app-modal #genderModal [closeModal]="closeModal">
+    <div class="modalContent">
+        <div class="modalHead">
+            <h4 class="modalTitle">Gender</h4>
+            <span class="closeBtn">
+                <svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M0.366515 18.866L8.23277 10.9997L0.366515 3.13349C0.138818 2.89773 0.0128242 2.58198 0.0156723 2.25423C0.0185203 1.92649 0.149982 1.61297 0.381742 1.38121C0.613502 1.14945 0.927018 1.01799 1.25476 1.01514C1.58251 1.01229 1.89826 1.13829 2.13401 1.36599L10.0003 9.23224L17.8665 1.36599C17.9818 1.2466 18.1198 1.15137 18.2723 1.08586C18.4248 1.02035 18.5888 0.985864 18.7548 0.984422C18.9207 0.98298 19.0853 1.01461 19.239 1.07746C19.3926 1.14031 19.5321 1.23313 19.6495 1.35049C19.7669 1.46786 19.8597 1.60742 19.9225 1.76104C19.9854 1.91466 20.017 2.07926 20.0156 2.24524C20.0141 2.41121 19.9797 2.57524 19.9141 2.72774C19.8486 2.88025 19.7534 3.01818 19.634 3.13349L11.7678 10.9997L19.634 18.866C19.7534 18.9813 19.8486 19.1192 19.9141 19.2717C19.9797 19.4242 20.0141 19.5883 20.0156 19.7542C20.017 19.9202 19.9854 20.0848 19.9225 20.2384C19.8597 20.392 19.7669 20.5316 19.6495 20.649C19.5321 20.7663 19.3926 20.8592 19.239 20.922C19.0853 20.9849 18.9207 21.0165 18.7548 21.0151C18.5888 21.0136 18.4248 20.9791 18.2723 20.9136C18.1198 20.8481 17.9818 20.7529 17.8665 20.6335L10.0003 12.7672L2.13401 20.6335C1.89826 20.8612 1.58251 20.9872 1.25476 20.9843C0.927018 20.9815 0.613502 20.85 0.381742 20.6183C0.149982 20.3865 0.0185203 20.073 0.0156723 19.7452C0.0128242 19.4175 0.138818 19.1017 0.366515 18.866Z"
+                        fill="#E21E2D" />
+                </svg>
+            </span>
+        </div>
+        <div class="modalBody">
+            <form [formGroup]="genderForm" (ngSubmit)="submit(genderForm)">
+                <div class="form-group">
+                    <label for="">Gender</label>
+
+
+                    <div class="mt-5">
+                        <div class="d-flex justify-content-start" (click)="clickGender('male')">
+                            <div class="pointer" [class.activeRadio]="genderAuth == 'male' || genderNew == 'male'">
+                                <span class="bigDot">
+                                    <span class="smaDot"></span>
+                                </span>
+                            </div>
+                            <div>
+                                <p class="font-weight-550 pointer">Male</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-start" (click)="clickGender('female')">
+                            <div class="pointer" [class.activeRadio]="genderAuth == 'female' || genderNew == 'female'">
+                                <span class="bigDot"><span class="smaDot"></span></span>
+                            </div>
+                            <div>
+                                <p class="font-weight-550 pointer">Female</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-start" (click)="clickGender('none')">
+                            <div class="pointer" [class.activeRadio]="genderAuth == 'none' || genderNew == 'none'">
+                                <span class="bigDot"><span class="smaDot"></span></span>
+                            </div>
+                            <div>
+                                <p class="font-weight-550 pointer">Non-Binary</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-start" (click)="clickGender('not_say')">
+                            <div class="pointer" [class.activeRadio]="genderAuth == 'not_say' || genderNew == 'not_say'">
+                                <span class="bigDot"><span class="smaDot"></span></span>
+                            </div>
+                            <div>
+                                <p class="font-weight-550 pointer">I prefer not to say</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <button *ngIf="!isSaving" [disabled]="genderForm.invalid" class="vendorPrimaryBtn">Save
+                    Changes</button>
+                <button *ngIf="isSaving" disabled class="vendorPrimaryBtn"><i class="fa fa-spinner fa-spin"></i>
+                    Changing...</button>
+            </form>
+        </div>
+        <div class="modalFooter"></div>
+    </div>
+</app-modal>
+
+<app-modal #birthdayModal [closeModal]="closeModal">
+    <div class="modalContent">
+        <div class="modalHead">
+            <h4 class="modalTitle">Date of Birth</h4>
+            <span class="closeBtn">
+                <svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M0.366515 18.866L8.23277 10.9997L0.366515 3.13349C0.138818 2.89773 0.0128242 2.58198 0.0156723 2.25423C0.0185203 1.92649 0.149982 1.61297 0.381742 1.38121C0.613502 1.14945 0.927018 1.01799 1.25476 1.01514C1.58251 1.01229 1.89826 1.13829 2.13401 1.36599L10.0003 9.23224L17.8665 1.36599C17.9818 1.2466 18.1198 1.15137 18.2723 1.08586C18.4248 1.02035 18.5888 0.985864 18.7548 0.984422C18.9207 0.98298 19.0853 1.01461 19.239 1.07746C19.3926 1.14031 19.5321 1.23313 19.6495 1.35049C19.7669 1.46786 19.8597 1.60742 19.9225 1.76104C19.9854 1.91466 20.017 2.07926 20.0156 2.24524C20.0141 2.41121 19.9797 2.57524 19.9141 2.72774C19.8486 2.88025 19.7534 3.01818 19.634 3.13349L11.7678 10.9997L19.634 18.866C19.7534 18.9813 19.8486 19.1192 19.9141 19.2717C19.9797 19.4242 20.0141 19.5883 20.0156 19.7542C20.017 19.9202 19.9854 20.0848 19.9225 20.2384C19.8597 20.392 19.7669 20.5316 19.6495 20.649C19.5321 20.7663 19.3926 20.8592 19.239 20.922C19.0853 20.9849 18.9207 21.0165 18.7548 21.0151C18.5888 21.0136 18.4248 20.9791 18.2723 20.9136C18.1198 20.8481 17.9818 20.7529 17.8665 20.6335L10.0003 12.7672L2.13401 20.6335C1.89826 20.8612 1.58251 20.9872 1.25476 20.9843C0.927018 20.9815 0.613502 20.85 0.381742 20.6183C0.149982 20.3865 0.0185203 20.073 0.0156723 19.7452C0.0128242 19.4175 0.138818 19.1017 0.366515 18.866Z"
+                        fill="#E21E2D" />
+                </svg>
+            </span>
+        </div>
+        <div class="modalBody">
+            <form [formGroup]="birthdayForm" (ngSubmit)="submit(birthdayForm)">
+                <div class="form-group">
+                    <label for="">Date of Birth</label>
+                    <input type="date" formControlName="date_of_birth" class="form-control" placeholder="Enter business address">
+
+                    <div *ngIf="birthdatAlert" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>Oops!
+                            Current date can not be greater than your date of birth</span></div>
+
+                </div>
+                <button *ngIf="!isSaving" class="vendorPrimaryBtn">Save
+                    Changes</button>
+                <button *ngIf="isSaving" disabled class="vendorPrimaryBtn"><i class="fa fa-spinner fa-spin"></i>
+                    Changing...</button>
+            </form>
+        </div>
+        <div class="modalFooter"></div>
+    </div>
+</app-modal>

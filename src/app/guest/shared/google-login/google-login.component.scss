@@ -1,0 +1,38 @@
+// @import '../../../../../theme/login-style.scss';
+// a {
+//     height: 77px;
+//     display: flex;
+//     border: 1px solid #41709A;
+//     color: #41709a;
+//     border-radius: 5px;
+//     padding: 0 12px;
+//     align-items: center;
+//     text-decoration: none;
+//     span {
+//         flex-grow: 1;
+//         text-align: center;
+//         font-size: 22px;
+//         font-weight: 600;
+//     }
+//     i {
+//         font-size: 20px;
+//         margin-left: 10px;
+//     }
+// }
+// .google {
+//     color: #4a90e2;
+//     border-color: #4a90e2;
+//     margin-top: 10px;
+// }
+a {
+    text-decoration: none;
+    width: 100%;
+    max-width: 453px;
+    display: flex;
+    &> ::ng-deep div {
+        width: 100% !important;
+    }
+    &>div {
+        width: 100% !important;
+    }
+}

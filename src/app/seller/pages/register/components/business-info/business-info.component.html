@@ -1,0 +1,115 @@
+<app-header></app-header>
+<div id="seller">
+    <div class="container-fluid">
+        <div class="toSignup">
+            <app-nav-bar activeLink="business"></app-nav-bar>
+            <form [formGroup]="form" (ngSubmit)="submit()">
+                <div class="form-group">
+                    <label>Registered Business/Company Name</label>
+                    <input type="text" formControlName="biz_name" [class.error]="businessName?.touched && businessName?.invalid" class="form-control" placeholder="Enter the Name of your registered company">
+                    <div *ngIf="businessName?.touched && businessName?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
+                </div>
+                <div class="form-group">
+                    <label id="businessType">Type of Business</label>
+                    <div class="d-flex align-items-center flex-wrap">
+                        <div class="cusRadio">
+                            <input hidden type="radio" (change)="setFieldReq()" id="business" formControlName="biz_type" name="biz_type" value="Individual">
+                            <label for="business">
+                                <div class="radio">
+                                    <div></div>
+                                </div>
+                                <span>Individual</span>
+                            </label>
+                        </div>
+                        <div class="cusRadio">
+                            <input hidden type="radio" (change)="setFieldReq()" id="business1" formControlName="biz_type" name="biz_type" value="Registered">
+                            <label for="business1">
+                                <div class="radio">
+                                    <div></div>
+                                </div>
+                                <span>Registered Business Name</span>
+                            </label>
+                        </div>
+                        <div class="cusRadio">
+                            <input type="radio" hidden (change)="setFieldReq()" id="business2" formControlName="biz_type" name="biz_type" value="Company">
+                            <label for="business2">
+                                <div class="radio">
+                                    <div></div>
+                                </div>
+                                <span>Company</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Company Address</label>
+                    <input type="text number" formControlName="biz_address" [class.error]="companyAddress?.touched && companyAddress?.invalid" class="form-control" placeholder="Enter your Official Company address">
+                    <div *ngIf="companyAddress?.touched && companyAddress?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
+                </div>
+                <div class="form-group">
+                    <label>Alternate Address</label>
+                    <input type="text" class="form-control" formControlName="alternative_address" placeholder="Enter your Official Company address">
+                </div>
+                <div class="form-group">
+                    <label for="country">Country</label>
+                    <select type="text" [class.error]="country?.touched && country?.invalid" class="form-control" formControlName="country" id="country" placeholder="Choose Country from dropdown Menu">
+                        <option value="" disabled>Choose Country from dropdown Menu</option>
+                        <option *ngFor="let country of countries" value="{{country?.name}}">{{country?.name}}</option>
+                    </select>
+                    <div *ngIf="country?.touched && country?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
+                </div>
+                <div class="form-group">
+                    <label for="zipCode">Postal Code / Zip Code</label>
+                    <input type="text" formControlName="zip_code" appAllowNum class="form-control" id="zipCode" placeholder="Enter your Company Postal Code">
+                    <div *ngIf="postalCode?.touched && postalCode?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
+                </div>
+                <div class="form-group">
+                    <label for="city">City / Town</label>
+                    <input type="text" formControlName="city" class="form-control" [class.error]="city?.touched && city?.invalid" id="city" placeholder="What City is your Company">
+                    <div *ngIf="city?.touched && city?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
+                </div>
+                <div class="form-group">
+                    <label for="regNumber">Business Registration Number</label>
+                    <input type="text" [class.error]="regNumber?.touched && regNumber?.invalid" formControlName="biz_reg_number" class="form-control" id="regNumber" placeholder="Business Registration Number">
+                    <div *ngIf="regNumber?.touched && regNumber?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
+                </div>
+                <div class="form-group upload">
+                    <label>Upload Business Certificate</label>
+                    <div [class.d-none]="imgUrl" class="align-items-center fileCont">
+                        <input (change)="selectFile($event)" type="file" name="" id="file" hidden>
+                        <label (click)="fileTouched = true" for="file" class="uploadBtn">Upload</label>
+                        <div class="warningCont d-flex align-items-center" [class.fileError]="fileMaxError || !fileValid">
+                            <span class="mr-2">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM11 7V9H13V7H11ZM11 11V17H13V11H11ZM4 12C4 16.41 7.59 20 12 20C16.41 20 20 16.41 20 12C20 7.59 16.41 4 12 4C7.59 4 4 7.59 4 12Z"
+                                        fill="black" fill-opacity="0.54" />
+                                </svg>
+                            </span>
+                            <div *ngIf="!fileMaxError && fileValid" class="warning">Image size must be less than 2MB
+                            </div>
+                            <div *ngIf="fileMaxError" class="warning">Image size must be less than 2MB</div>
+                            <div *ngIf="!fileValid" class="warning">A business cerificate is required</div>
+                        </div>
+                    </div>
+                    <label #imgPreview id="imgPreview" [class.d-none]="!imgUrl" for="file">
+                        <div [class.d-none]="!uploadingProgress" class="cusProgress">
+                            <div class="progressInd"></div>
+                            <div class="txt">{{uploadingProgress}}%</div>
+                            <div>Uploading...</div>
+                        </div>
+                        <img *ngIf="imgUrl" [src]="sanitizeUrl(imgUrl)" alt="">
+                    </label>
+                </div>
+                <div class="btnCont">
+                    <!-- <a routerLink="/seller/register" class="vendorPrimaryBtnOutline">Previous</a> -->
+                    <button *ngIf="!isSubmitting" type="submit" [disabled]="form?.invalid" class="vendorPrimaryBtn">Next</button>
+                    <button *ngIf="isSubmitting" type="button" disabled class="vendorPrimaryBtn"><i
+                            class="fa fa-spinner fa-spin"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

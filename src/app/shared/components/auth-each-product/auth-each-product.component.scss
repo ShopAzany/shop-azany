@@ -1,0 +1,201 @@
+@import '../../../../themes/colors.scss';
+.addToCartLink {
+    margin-bottom: 15px;
+}
+
+.addToCartLink,
+.addToCartLinkOutline {
+    max-width: 236px;
+    width: 100%;
+    white-space: nowrap;
+    span {
+        white-space: nowrap;
+    }
+}
+
+.imgCont {
+    margin-right: 15px;
+    position: relative;
+    width: 280px;
+    min-width: 280px;
+    border-radius: 7px;
+    overflow: hidden;
+    height: fit-content;
+    img {
+        width: 100%;
+    }
+}
+
+@media (max-width: 870px) {
+    .imgCont {
+        width: calc(100vw * 280 / 1400 + 20px);
+        min-width: calc(100vw * 280 / 1400 + 20px);
+    }
+}
+
+.eachProduct {
+    padding: 15px;
+    margin-bottom: 30px;
+    background: #EDF0F4;
+    border-radius: 11px;
+    flex-wrap: wrap;
+    .txtInfoCont {
+        flex-grow: 1;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+}
+
+.salePrice,
+.regPrice {
+    line-height: normal;
+}
+
+.authFavBtn {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 40px;
+    width: 40px;
+    margin: 10px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: 0.3s ease;
+    * {
+        transition: 0.3s ease;
+    }
+}
+
+.authFavBtn:hover,
+.authFavBtn.isFav {
+    background: $primary;
+    color: #fff;
+    path {
+        fill: #fff;
+    }
+}
+
+.prodName {
+    font-size: 18px;
+    a {
+        color: #222;
+        text-decoration: none;
+    }
+}
+
+.ratingCont {
+    margin-bottom: 16.5px;
+    display: flex;
+    align-items: center;
+    i {
+        margin-right: 5px;
+    }
+    i:not(.nonrated) {
+        color: #ffc700;
+    }
+    .nonrated {
+        color: #cccccc;
+    }
+}
+
+.stockTxtStatus {
+    color: #886500;
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+.reviewTxt {
+    font-size: 14px;
+    color: #808080;
+    white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+    .prodName {
+        font-size: calc(100vw * 18 / 1400 + 8px);
+    }
+    .salePrice {
+        font-size: calc(100vw * 27 / 1400 + 8px);
+    }
+    .regPrice {
+        font-size: calc(100vw * 18 / 1400 + 8px);
+    }
+    .perc {
+        font-size: calc(100vw * 16 / 1400 + 8px);
+        padding: calc(100vw * 5 / 1400 + 2px) calc(100vw * 6 / 1400 + 2px);
+    }
+    .stockTxtStatus {
+        font-size: calc(100vw * 14 / 1400 + 8px);
+        margin-top: calc(100vw * 15 / 1400);
+    }
+    .reviewTxt {
+        font-size: calc(100vw * 14 / 1400 + 8px);
+    }
+    .addToCartLink,
+    .addtoCartLinkOutline {
+        height: calc(100vw * 58 / 1400 + 30px) !important;
+        font-size: calc(100vw * 16 / 1400 + 10px);
+    }
+}
+
+.rightSide {
+    width: 236px;
+    max-width: 236px;
+}
+
+.regPrice {
+    margin-right: 8px;
+}
+
+.actionCont {
+    display: none;
+    margin-top: 15px;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    .addToCartLink {
+        max-width: unset !important;
+    }
+    * {
+        margin: 0;
+    }
+}
+
+.cusBadge {
+    border-radius: 7px;
+    padding: 4px 9px;
+    background: #cccccc;
+    font-size: 14px;
+    color: grey;
+}
+
+.cusBadge.Active {
+    background-color: #00cf00af;
+    color: #013101;
+}
+
+.cusBadge.Pending {
+    background-color: #ffff00a1;
+    color: yellow;
+}
+
+.cusBadge.Removed {
+    background-color: #ff00006b;
+    color: red;
+}
+
+@media (max-width: 815px) {
+    // .imgCont {
+    //     width: 168
+    // }
+    .rightSide {
+        display: none !important;
+    }
+    .actionCont {
+        display: grid;
+    }
+}

@@ -1,0 +1,64 @@
+@import "../profile/profile.component.scss";
+@media only screen and (max-width: 700px) {
+    .sellerInfoItem {
+        display: block !important;
+    }
+}
+
+.sellerInfoItem {
+    .infoKey {
+        color: #000;
+    }
+    .infoValue {
+        color: $primary;
+        font-size: 16px;
+    }
+}
+
+.isLoadingStyle {
+    font-size: 40px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.removeBtn {
+    border: 2px solid $primary;
+    padding: 7px 15px;
+    color: $primary;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.opa {
+    opacity: 0.2;
+    cursor: not-allowed;
+}
+
+.headSection {
+    .headOption {
+        display: flex;
+        justify-content: space-between !important;
+    }
+    .pageTitle {
+        .add-address {
+            button {
+                background: $primary;
+                font-size: 15px;
+                color: #fff;
+                padding: 8px 15px;
+            }
+        }
+    }
+}
+
+.alertWrap {
+    background-color: #9C3987;
+    padding: 13px;
+    border-radius: 4px;
+    margin-bottom: 30px;
+}
+
+.removAdd {
+    max-width: 380px !important;
+    padding: 15px !important;
+}

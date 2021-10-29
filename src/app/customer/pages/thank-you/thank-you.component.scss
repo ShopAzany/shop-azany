@@ -1,0 +1,192 @@
+@import '../../../../themes/colors.scss';
+#thankYouPage {
+    padding: 42px 0 100px;
+}
+
+.topPart {
+    border-radius: 7px 7px 0 0;
+    border: 1px solid #2222224d;
+    padding: 58px 30px;
+}
+
+.thankYouHead {
+    font-size: 42px;
+    margin-bottom: 43px;
+    align-items: center;
+    b {
+        font-weight: 600;
+    }
+    img {
+        width: 63px;
+        min-width: 2px;
+        margin-left: 27px;
+    }
+}
+
+.bodyTxt {
+    font-size: 18px;
+    p {
+        margin-bottom: 20px;
+    }
+    .salutation {
+        font-size: 20px;
+    }
+    .otherInfo {
+        opacity: 0.5;
+    }
+}
+
+.bottomPart {
+    background: #22222208;
+    padding: 40px 30px 27px;
+    border-radius: 0 0 7px 7px;
+    border: 1px solid #2222224d;
+    border-top: none;
+}
+
+.topOrderFlex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    .orderInfo {
+        max-width: 323px;
+        width: 100%;
+        .orderInfoItem {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            *:last-child {
+                text-align: right;
+            }
+        }
+        .total {
+            border-top: 1px dotted #2222224d;
+            margin-top: 20px;
+            padding: 10px 0;
+        }
+    }
+    @media (max-width: 711px) {
+        .orderInfo {
+            margin-top: 30px;
+            max-width: unset;
+        }
+    }
+    .orderNumCont {
+        .orderNum {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            .numTxt {
+                color: #354e79;
+                font-size: 20px;
+                margin-left: 10px;
+            }
+        }
+        a {
+            color: $primary;
+            font-weight: bold;
+        }
+    }
+}
+
+.ordersCont {
+    border-top: 1px solid #2222224d;
+    margin-top: 60px;
+    padding: 40px 0 50px;
+}
+
+.orderItem {
+    display: flex;
+    margin-bottom: 30px;
+    .imgCont {
+        margin-right: 20px;
+        min-width: 80px;
+        width: 80px;
+        img {
+            width: 100%;
+        }
+    }
+    .txtCont {
+        flex-grow: 1;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-auto-flow: column;
+        grid-template-rows: max-content auto auto;
+        .soldBy {
+            font-size: 12px;
+            opacity: 0.7;
+        }
+        .quantity {
+            font-size: 14px;
+        }
+    }
+    @media (max-width: 500px) {
+        .txtCont {
+            grid-template-columns: 1fr;
+            grid-template-rows: max-content auto auto auto;
+            .price {
+                grid-row: 2;
+                grid-column: 1;
+                margin-top: 5px;
+            }
+        }
+    }
+}
+
+.btnCont {
+    .addToCartLink {
+        max-width: 323px;
+        margin: auto;
+    }
+}
+
+.paymentInfo {
+    border-top: 1px solid #cccccc;
+    padding-top: 20px;
+    &>h4:first-child {
+        font-size: 20px;
+        font-weight: 500;
+    }
+}
+
+.bankInfo {
+    .bankInfoItemCont {
+        width: 100%;
+        display: flex;
+        overflow-x: auto;
+    }
+    .bankInfoItem {
+        min-width: 310px;
+        max-width: 310px;
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        color: #fff;
+        border-radius: 20px;
+        margin-right: 30px;
+        padding: 26px 20px;
+        position: relative;
+        .key {
+            opacity: 0.5;
+            font-size: 10px;
+        }
+        .value {
+            font-size: 14px;
+        }
+        .delete {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+        }
+    }
+    .bankInfoItem:nth-child(odd) {
+        background: linear-gradient(112.97deg, #381385 3.71%, #136A85 100%);
+    }
+    .bankInfoItem:nth-child(even) {
+        background: linear-gradient(112.97deg, #381385 3.71%, #952D2D 100%);
+    }
+}

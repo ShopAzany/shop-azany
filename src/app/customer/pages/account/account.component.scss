@@ -1,0 +1,13 @@
+@import '../../../../themes/user-style.scss';
+.h-160 {
+    height: 160px;
+}
+
+.change-p {
+    position: absolute;
+    bottom: 10px;
+    font-weight: 600;
+    a {
+        color: $primary;
+    }
+}

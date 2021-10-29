@@ -1,0 +1,170 @@
+#sellerHome {
+    .vendorPrimaryBtn {
+        max-width: 384px;
+        margin: auto;
+        width: 100%;
+    }
+    #startSelling {
+        padding: 0;
+        // .startSelling {
+        //     display: grid;
+        //     grid-template-columns: auto auto;
+        //     padding: 0 50px;
+        //     background: #22222208;
+        //     grid-column-gap: 94px;
+        // .left-side {
+        //     width: 436px;
+        //     padding-top: 104px;
+        //     padding-bottom: 103px;
+        // }
+        @media screen and (max-width: 1059px) {
+            .cont {
+                justify-content: center;
+                .left-side {
+                    margin: auto;
+                    padding-bottom: 70px;
+                    padding-left: 0;
+                    // max-width: 600px;
+                    text-align: center;
+                    .text {
+                        h1 {
+                            font-size: 42px;
+                            width: 100%;
+                        }
+                    }
+                }
+                .right-side {
+                    display: none;
+                }
+            }
+        }
+        .right-side {
+            width: 70%;
+            padding: 0;
+            img {
+                // white-space: nowrap;
+                width: 100%;
+            }
+        }
+        background: #22222208;
+        .left-side {
+            max-width: 489px;
+            padding-top: 100px;
+            padding-left: 50px;
+            flex-grow: 1;
+            .text {
+                // white-space: nowrap;
+                width: 100%;
+                // margin-bottom: 60px;
+                align-items: center;
+                h1 {
+                    font-weight: bold;
+                    font-size: 30px;
+                }
+                p {
+                    font-size: 17px;
+                }
+            }
+            .buttonSell {
+                .vendorPrimaryBtn {
+                    margin: 60px 0 0;
+                }
+                @media (max-width: 1059px) {
+                    .vendorPrimaryBtn {
+                        margin: 60px auto 0;
+                    }
+                }
+            }
+        }
+        .right-side {
+            max-width: 790px;
+            padding: 0;
+            img {
+                white-space: nowrap;
+                width: 100%;
+            }
+        }
+    }
+    // }
+    .contProcess {
+        margin-top: 80px;
+        .contGrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        }
+        h2 {
+            text-align: center;
+        }
+        .items {
+            padding: 20px;
+            // width: 371px;
+            text-align: center;
+            div {
+                padding-top: 20px;
+            }
+        }
+    }
+    .containComment {
+        background: #22222208;
+        padding: 50px;
+        .comment {
+            position: relative;
+            padding: 0 80px;
+            .startQuote {
+                top: 0;
+                transform: translateY(-60%);
+                left: 0;
+            }
+            .endQuote {
+                bottom: 0;
+                right: 0;
+            }
+        }
+        .commentImage {
+            .img {
+                padding-bottom: 20px;
+            }
+            h6 {
+                font-weight: 600;
+                font-size: 20px;
+            }
+        }
+    }
+    .explore-ecomerce {
+        padding: 80px;
+        // .img,
+        // .details {
+        //     padding: 50px;
+        // }
+        .details {
+            padding: 40px;
+        }
+        img {
+            width: 100%;
+        }
+        .details {
+            h3 {
+                padding-bottom: 20px;
+                font-size: 20px;
+                margin: 0;
+            }
+            p {
+                font-size: 16px;
+                padding-bottom: 31px;
+                margin: 0;
+            }
+        }
+        .startSellingBtn {
+            border: none;
+            background: #E21E2D;
+            height: 78px;
+            border-radius: 7px;
+            color: #ffff;
+            padding: 25px;
+            font-weight: bold;
+            font-size: 18px;
+            justify-content: center;
+            cursor: pointer;
+        }
+    }
+}

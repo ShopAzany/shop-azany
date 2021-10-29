@@ -1,0 +1,129 @@
+@import "../../../../../themes/colors.scss";
+.page-wrapper {
+    padding-top: 20px;
+    .font-11 {
+        font-size: 11px;
+    }
+    .message-wrapper {
+        height: 50px;
+        background: $variantCol4;
+        border-radius: 4px;
+        text-align: center;
+        margin-bottom: 20px;
+        color: #fff;
+        padding: 12px;
+        font-size: 17px;
+        .click {
+            font-size: 25px;
+            cursor: pointer;
+        }
+    }
+    .breadCrum {
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+        .title {
+            white-space: nowrap;
+        }
+        .catItem {
+            margin-right: 5px;
+            font-size: 14px;
+            color: #000000;
+            white-space: nowrap;
+            opacity: 0.5;
+            text-transform: capitalize;
+            i {
+                margin-right: 5px;
+            }
+        }
+        .catItem.subTitle {
+            opacity: 1;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+    }
+    .product-content {
+        .title {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        .price {
+            margin-bottom: 30px;
+            .salePrice {
+                margin-right: 10px;
+            }
+            .perc {
+                margin-left: 7px;
+            }
+        }
+        .skuCont {
+            margin-bottom: 30px;
+        }
+        .pro-desc-tab {
+            margin-bottom: 50px;
+            .card {
+                border-radius: 7px;
+                overflow: hidden;
+            }
+            .card-header {
+                background: #fff;
+                padding: 0px 20px;
+                // border-radius: 7px 7px 0 0 !important;
+                height: 50px;
+                .head-title {
+                    font-size: 15px;
+                    font-weight: 550;
+                    .head-title-right {
+                        margin: 15px 0px;
+                        margin-left: 40px;
+                        padding-bottom: 10px;
+                        cursor: pointer;
+                    }
+                    .head-title-left {
+                        margin: 15px 0px;
+                        padding-bottom: 10px;
+                        cursor: pointer;
+                    }
+                    .active {
+                        border-bottom: 4px solid red;
+                    }
+                }
+            }
+            .card-body {
+                // height: 479px;
+                // overflow: auto;
+                // border-radius: 0px 0px 7px 7px !important;
+                .specif {
+                    font-weight: 550;
+                    margin: 20px 0px 20px 0px;
+                }
+                .spec-list {
+                    .d-flex {
+                        margin-bottom: 15px;
+                        font-size: 14px;
+                        .left {
+                            width: 200px;
+                        }
+                    }
+                }
+                .add-info {
+                    margin-top: 30px;
+                    h5 {
+                        font-size: 18px;
+                    }
+                    p {
+                        font-size: 14px;
+                        text-align: justify;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.btnGridCont {
+    display: grid;
+    margin-bottom: 150px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}

@@ -1,0 +1,96 @@
+@import '../../../../themes/colors.scss';
+#vendorLogin {
+    padding: 0;
+    .leftSide {
+        @media screen and (max-width: 730px) {
+            .img {
+                display: none;
+            }
+        }
+        .img {
+            background-color: purple;
+            height: 830px;
+            .h2 {
+                top: 20%;
+                // left: 50px;
+                padding: 50px;
+                h2 {
+                    text-align: center;
+                    font-weight: 800;
+                    font-size: 48px;
+                    line-height: 72px;
+                    font-style: normal;
+                    color: #E21E2D;
+                    ;
+                    span {
+                        color: #FFA3AA;
+                    }
+                }
+                p {
+                    font-style: normal;
+                    font-weight: bold;
+                    font-size: 18px;
+                    padding-left: 15px;
+                }
+            }
+        }
+    }
+}
+
+.right-side {
+    flex-grow: 1;
+    padding: 0 15px;
+    .vendorLogIn {
+        margin: 179px auto 0;
+        // flex-grow: 1;
+        max-width: 453px;
+        width: 100%;
+        h3 {
+            font-weight: 800;
+            font-size: 30px;
+            color: #CC1666;
+            margin-bottom: 40px;
+        }
+    }
+}
+
+.form-group {
+    margin-bottom: 20px !important;
+    .forgotPassword {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 10px;
+        a {
+            color: #222;
+        }
+        a:hover {
+            text-decoration: none;
+        }
+    }
+    .passwordShowIcon {
+        top: 50%;
+        right: 0%;
+        margin-right: 20px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        font-weight: bold;
+        color: $variantCol4;
+        font-size: 20px;
+    }
+}
+
+.signUpLink {
+    padding-top: 20px;
+    padding: 20px;
+    span {
+        padding-right: 10px;
+    }
+    a {
+        color: $primary;
+        font-weight: bold;
+        font-size: 18px;
+    }
+    a:hover {
+        text-decoration: none;
+    }
+}

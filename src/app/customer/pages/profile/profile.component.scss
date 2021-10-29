@@ -1,0 +1,36 @@
+@import '../../../seller/pages/auth/dashboard/dashboard.component.scss';
+.pointer {
+    cursor: pointer;
+}
+
+.font-weight-550 {
+    font-weight: 550;
+    font-size: 18px;
+}
+
+.bigDot {
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    border: 2px solid #666;
+    border-radius: 50%;
+    margin-top: 4px;
+    margin-right: 20px;
+}
+
+.activeRadio .bigDot {
+    border-color: $primary;
+    background-color: #fff;
+}
+
+.activeRadio .smaDot {
+    width: 12px;
+    height: 12px;
+    border: 2px solid $primary;
+    display: inline-block;
+    padding: 0px;
+    margin-left: 2px;
+    margin-bottom: 2.7px;
+    border-radius: 50%;
+    background: $primary;
+}

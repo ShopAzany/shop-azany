@@ -1,0 +1,83 @@
+.prodCont {
+    padding: 15px;
+    border-radius: 10px;
+    background: #f4f4f4;
+    height: 100%;
+}
+
+*:not(.prodCont):not(.prodName):not(.priceDisc):not(.starRating) {
+    background: #e6e6e6;
+}
+
+img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.imgCont {
+    margin-bottom: 20px;
+    background: #fefefe !important;
+    border-radius: 10px;
+    svg {
+        width: 100%;
+        background: none !important;
+        height: 280px;
+    }
+}
+
+.prodName {
+    margin-bottom: 15px;
+    div {
+        height: 22px;
+        margin-bottom: 7px;
+    }
+    div:last-child {
+        width: 80%;
+    }
+}
+
+.starRating {
+    margin-bottom: 20px;
+    display: flex;
+    div {
+        height: 20px;
+    }
+    div:first-child {
+        width: 60%;
+        margin-right: 10px;
+    }
+    div:last-child {
+        width: 30%;
+    }
+}
+
+.priceCont {
+    height: 35px;
+    margin-bottom: 10px;
+    width: 50%;
+}
+
+.priceDisc {
+    display: flex;
+    margin-bottom: 20px;
+    div {
+        height: 27px;
+        width: 60%;
+        margin-right: 10px;
+    }
+    div:last-child {
+        width: 25%;
+        margin: 0;
+    }
+}
+
+.qnt {
+    height: 18px;
+    width: 70%;
+    margin-bottom: 20px;
+}
+
+.addToCart {
+    border-radius: 7px;
+    height: 55px;
+}

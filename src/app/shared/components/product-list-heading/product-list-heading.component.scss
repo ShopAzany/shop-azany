@@ -1,0 +1,13 @@
+.prodListHeading {
+    padding: 40px 0 50px;
+     ::ng-deep h2 {
+        font-size: 30px;
+        font-weight: 600;
+        margin-bottom: 5px;
+        text-transform: capitalize;
+    }
+     ::ng-deep p {
+        font-size: 18px;
+        margin: 0;
+    }
+}

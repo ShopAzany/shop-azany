@@ -1,0 +1,38 @@
+<app-header></app-header>
+<div id="seller">
+    <div class="container-fluid">
+        <div class="toSignup">
+            <app-nav-bar activeLink="payment"></app-nav-bar>
+            <form [formGroup]="form" (ngSubmit)="submit()">
+                <div class="form-group">
+                    <label>Account Name</label>
+                    <input type="text" [class.error]="accName?.touched && accName?.invalid" formControlName="account_name" class="form-control" placeholder="Enter your account name">
+                    <div *ngIf="accName?.touched && accName?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
+                </div>
+                <div class="form-group">
+                    <label>Account Number</label>
+                    <input type="text number" appAllowNum [class.error]="accNum?.touched && accNum?.invalid" formControlName="account_number" class="form-control" placeholder="Enter your account number">
+                    <div *ngIf="accNum?.touched && accNum?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
+                </div>
+                <div class="form-group">
+                    <label>Account Type</label>
+                    <input type="text" formControlName="account_type" class="form-control" [class.error]="accType?.touched && accType?.invalid" placeholder="Enter your Official Company address">
+                    <div *ngIf="accType?.touched && accType?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
+                </div>
+                <div class="form-group">
+                    <label>Bank</label>
+                    <input type="text" formControlName="bank_name" class="form-control" [class.error]="bank?.touched && bank?.invalid" placeholder="Enter your Official Company address">
+                    <div *ngIf="bank?.touched && bank?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
+                </div>
+                <div class="navGridCont">
+                    <a routerLink="/seller/register/business-info" class="vendorPrimaryBtnOutline">Previous</a>
+                    <button *ngIf="!isSubmitting" type="submit" [disabled]="form.invalid" class="vendorPrimaryBtn">Start
+                        Selling</button>
+                    <button *ngIf="isSubmitting" type="button" disabled class="vendorPrimaryBtn"><i
+                            class="fa fa-spinner fa-spin"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

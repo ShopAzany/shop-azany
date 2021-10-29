@@ -1,0 +1,229 @@
+<app-header></app-header>
+<div id="authPage">
+    <app-seller-side-nav></app-seller-side-nav>
+    <main>
+        <section class="headSection">
+            <h1 class="pageTitle">Earnings & Payment</h1>
+        </section>
+        <section class="bodyPart">
+            <div class="earningSummary">
+                <div class="inner">
+                    <h6 class="earningTitle">Your Total Earnings</h6>
+                    <h3 class="salePrice"><span class="curr" [innerHTML]="currency | safeHtml">₦</span>{{totalEarn[0]}}<span class="decimal">.{{totalEarn[1]}}</span></h3>
+                    <button class="addToCartLink" [openModal]="withdrawModal">Withdraw Funds</button>
+                </div>
+                <img src="assets/images/earningsIcon.png" alt="">
+            </div>
+            <div class="bankInfo">
+                <h6 class="bankInfoTitle">Manage Banks</h6>
+                <div class="bankInfoItemCont">
+                    <div *ngFor="let bank of bankInfo" class="bankInfoItem">
+                        <div class="eachItem">
+                            <div class="key">Account Name</div>
+                            <div class="value">{{bank?.account_name}}</div>
+                        </div>
+                        <div class="eachItem">
+                            <div class="key">Account Number</div>
+                            <div class="value">{{bank?.account_number}}</div>
+                        </div>
+                        <div class="eachItem">
+                            <div class="key">Bank Name</div>
+                            <div class="value">{{bank?.bank_name}}</div>
+                        </div>
+                        <span [openModal]="deleteModal" (click)="selectedBankInfo = bank" class="delete">
+                            <svg width="22" height="30" viewBox="0 0 22 30" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M1.57143 26.6667C1.57143 28.5 2.98571 30 4.71429 30H17.2857C19.0143 30 20.4286 28.5 20.4286 26.6667V6.66667H1.57143V26.6667ZM5.43714 14.8L7.65286 12.45L11 15.9833L14.3314 12.45L16.5471 14.8L13.2157 18.3333L16.5471 21.8667L14.3314 24.2167L11 20.6833L7.66857 24.2167L5.45286 21.8667L8.78429 18.3333L5.43714 14.8ZM16.5 1.66667L14.9286 0H7.07143L5.5 1.66667H0V5H22V1.66667H16.5Z"
+                                    fill="white" fill-opacity="0.5" />
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="addBankCont" [openModal]="addBankModal">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M22 10H18V18H10V22H18V30H22V22H30V18H22V10ZM20 0C8.96 0 0 8.96 0 20C0 31.04 8.96 40 20 40C31.04 40 40 31.04 40 20C40 8.96 31.04 0 20 0ZM20 36C11.18 36 4 28.82 4 20C4 11.18 11.18 4 20 4C28.82 4 36 11.18 36 20C36 28.82 28.82 36 20 36Z"
+                                fill="#222222" />
+                        </svg>
+                        <b class="txt">Add new Bank</b>
+                    </div>
+                </div>
+            </div>
+            <div class="transactionCont">
+                <h6 class="transactionTitle">Transactions History</h6>
+                <div class="transactions">
+                    <div *ngFor="let trans of transHistory" class="transactionItem">
+                        <div *ngIf="isNaN(trans?.date)" class="itemDate">{{trans?.date}}</div>
+                        <div *ngIf="!isNaN(trans.date)" class="itemDate">{{trans?.date | date}}</div>
+                        <div *ngFor="let each of trans?.transactions" class="eachTrasaction {{each?.status?.toLowerCase()}}">
+                            <div class="statusIcon">
+                                <svg width="13" height="17" viewBox="0 0 13 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M5.99832 0.914576C6.06426 0.848954 6.14249 0.796964 6.22852 0.761576C6.31419 0.725575 6.40618 0.707031 6.49911 0.707031C6.59203 0.707031 6.68402 0.725575 6.76969 0.761576C6.85573 0.796964 6.93396 0.848954 6.9999 0.914576L12.6666 6.58124C12.7956 6.71484 12.867 6.89376 12.8654 7.07949C12.8638 7.26521 12.7893 7.44287 12.6579 7.5742C12.5266 7.70553 12.3489 7.78002 12.1632 7.78164C11.9775 7.78325 11.7986 7.71185 11.665 7.58283L7.20744 3.12528V15.582C7.20744 15.7699 7.13281 15.9501 6.99997 16.0829C6.86714 16.2157 6.68697 16.2904 6.49911 16.2904C6.31125 16.2904 6.13108 16.2157 5.99824 16.0829C5.8654 15.9501 5.79077 15.7699 5.79077 15.582V3.12528L1.33323 7.58283C1.19964 7.71185 1.02071 7.78325 0.834991 7.78164C0.649268 7.78002 0.471609 7.70553 0.340279 7.5742C0.208948 7.44287 0.134453 7.26521 0.132839 7.07949C0.131225 6.89376 0.202621 6.71484 0.33165 6.58124L5.99832 0.914576Z"
+                                        fill="white" />
+                                </svg>
+                            </div>
+                            <div class="transRemark">{{each?.note}}</div>
+                            <div class="transStatus">{{each?.status}}</div>
+                            <div class="transDate">{{each?.created_at | date}}</div>
+                            <div class="transTime">{{timeGetter(each?.created_at)}}</div>
+                            <div class="transAmt">
+                                <span class="oper">{{each?.status == 'Credit' ? '+' : '-'}}</span>
+                                <span class="curr" [innerHTML]="currency | safeHtml">₦</span>{{each?.amount | number : '1.2-2'}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+<div id="deleteModalParent">
+    <app-modal #deleteModal [closeModal]="closeModal">
+        <div class="modalContent">
+            <div class="modalHead">
+                <h4 class="modalTitle">Delete Bank?</h4>
+                <span #delClose class="closeBtn">
+                    <svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M0.366515 18.866L8.23277 10.9997L0.366515 3.13349C0.138818 2.89773 0.0128242 2.58198 0.0156723 2.25423C0.0185203 1.92649 0.149982 1.61297 0.381742 1.38121C0.613502 1.14945 0.927018 1.01799 1.25476 1.01514C1.58251 1.01229 1.89826 1.13829 2.13401 1.36599L10.0003 9.23224L17.8665 1.36599C17.9818 1.2466 18.1198 1.15137 18.2723 1.08586C18.4248 1.02035 18.5888 0.985864 18.7548 0.984422C18.9207 0.98298 19.0853 1.01461 19.239 1.07746C19.3926 1.14031 19.5321 1.23313 19.6495 1.35049C19.7669 1.46786 19.8597 1.60742 19.9225 1.76104C19.9854 1.91466 20.017 2.07926 20.0156 2.24524C20.0141 2.41121 19.9797 2.57524 19.9141 2.72774C19.8486 2.88025 19.7534 3.01818 19.634 3.13349L11.7678 10.9997L19.634 18.866C19.7534 18.9813 19.8486 19.1192 19.9141 19.2717C19.9797 19.4242 20.0141 19.5883 20.0156 19.7542C20.017 19.9202 19.9854 20.0848 19.9225 20.2384C19.8597 20.392 19.7669 20.5316 19.6495 20.649C19.5321 20.7663 19.3926 20.8592 19.239 20.922C19.0853 20.9849 18.9207 21.0165 18.7548 21.0151C18.5888 21.0136 18.4248 20.9791 18.2723 20.9136C18.1198 20.8481 17.9818 20.7529 17.8665 20.6335L10.0003 12.7672L2.13401 20.6335C1.89826 20.8612 1.58251 20.9872 1.25476 20.9843C0.927018 20.9815 0.613502 20.85 0.381742 20.6183C0.149982 20.3865 0.0185203 20.073 0.0156723 19.7452C0.0128242 19.4175 0.138818 19.1017 0.366515 18.866Z"
+                            fill="#E21E2D" />
+                    </svg>
+                </span>
+            </div>
+            <div class="modalBody">
+                <div class="warning">This would permanetly delete this Bank</div>
+                <div class="bankInfoItem delete">
+                    <div class="eachItem">
+                        <div class="key">Account Name</div>
+                        <div class="value">{{selectedBankInfo?.account_name}}</div>
+                    </div>
+                    <div class="eachItem">
+                        <div class="key">Account Number</div>
+                        <div class="value">{{selectedBankInfo?.account_number}}</div>
+                    </div>
+                    <div class="eachItem">
+                        <div class="key">Bank Name</div>
+                        <div class="value">{{selectedBankInfo?.bank_name}}</div>
+                    </div>
+                </div>
+                <button *ngIf="!deleting" class="vendorPrimaryBtn" (click)="delete()">Delete</button>
+                <button *ngIf="deleting" disabled class="vendorPrimaryBtn"><i
+                        class="fa fa-spinner fa-spin"></i></button>
+                <button class="vendorPrimaryBtnOutline" (click)="delClose.click()">Cancel, Do not Delete</button>
+            </div>
+            <div class="modalFooter"></div>
+        </div>
+    </app-modal>
+</div>
+<div id="addBankModalParent">
+    <app-modal #addBankModal [closeModal]="closeModal">
+        <div class="modalContent">
+            <div class="modalHead">
+                <h4 class="modalTitle">Add New Bank</h4>
+                <span class="closeBtn">
+                    <svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M0.366515 18.866L8.23277 10.9997L0.366515 3.13349C0.138818 2.89773 0.0128242 2.58198 0.0156723 2.25423C0.0185203 1.92649 0.149982 1.61297 0.381742 1.38121C0.613502 1.14945 0.927018 1.01799 1.25476 1.01514C1.58251 1.01229 1.89826 1.13829 2.13401 1.36599L10.0003 9.23224L17.8665 1.36599C17.9818 1.2466 18.1198 1.15137 18.2723 1.08586C18.4248 1.02035 18.5888 0.985864 18.7548 0.984422C18.9207 0.98298 19.0853 1.01461 19.239 1.07746C19.3926 1.14031 19.5321 1.23313 19.6495 1.35049C19.7669 1.46786 19.8597 1.60742 19.9225 1.76104C19.9854 1.91466 20.017 2.07926 20.0156 2.24524C20.0141 2.41121 19.9797 2.57524 19.9141 2.72774C19.8486 2.88025 19.7534 3.01818 19.634 3.13349L11.7678 10.9997L19.634 18.866C19.7534 18.9813 19.8486 19.1192 19.9141 19.2717C19.9797 19.4242 20.0141 19.5883 20.0156 19.7542C20.017 19.9202 19.9854 20.0848 19.9225 20.2384C19.8597 20.392 19.7669 20.5316 19.6495 20.649C19.5321 20.7663 19.3926 20.8592 19.239 20.922C19.0853 20.9849 18.9207 21.0165 18.7548 21.0151C18.5888 21.0136 18.4248 20.9791 18.2723 20.9136C18.1198 20.8481 17.9818 20.7529 17.8665 20.6335L10.0003 12.7672L2.13401 20.6335C1.89826 20.8612 1.58251 20.9872 1.25476 20.9843C0.927018 20.9815 0.613502 20.85 0.381742 20.6183C0.149982 20.3865 0.0185203 20.073 0.0156723 19.7452C0.0128242 19.4175 0.138818 19.1017 0.366515 18.866Z"
+                            fill="#E21E2D" />
+                    </svg>
+                </span>
+            </div>
+            <div class="modalBody">
+                <form [formGroup]="addBankForm" (ngSubmit)="addBank()">
+                    <div class="gridCont">
+                        <div class="form-group">
+                            <label>Account Number</label>
+                            <input formControlName="account_number" appAllowNum [class.error]="accNum?.touched && accNum?.invalid" class="form-control" placeholder="Account Number">
+                            <div *ngIf="accNum?.touched && accNum?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Account Full Name</label>
+                            <input formControlName="account_name" [class.error]="accNum?.touched && accNum?.invalid" class="form-control" placeholder="Account Full Name">
+                            <div *ngIf="accNum?.touched && accNum?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Bank Name</label>
+                            <input formControlName="bank_name" placeholder="Bank Name" [class.error]="bank?.touched && bank?.invalid" class="form-control">
+                            <div *ngIf="bank?.touched && bank?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Account Type</label>
+                            <input formControlName="account_type" [class.error]="accType?.touched && accType?.invalid" class="form-control" placeholder="Account Type">
+                            <div *ngIf="accType?.touched && accType?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
+                        </div>
+                    </div>
+                    <button *ngIf="!adding" [disabled]="addBankForm.invalid" class="vendorPrimaryBtn">Add Bank</button>
+                    <button *ngIf="adding" disabled class="vendorPrimaryBtn"><i
+                            class="fa fa-spinner fa-spin"></i></button>
+                </form>
+            </div>
+            <div class="modalFooter"></div>
+        </div>
+    </app-modal>
+</div>
+<div id="withdrawModalParent">
+    <app-modal #withdrawModal [closeModal]="closeModal">
+        <div class="modalContent">
+            <div class="modalHead">
+                <h4 class="modalTitle">Withdraw Funds</h4>
+                <span class="closeBtn">
+                    <svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M0.366515 18.866L8.23277 10.9997L0.366515 3.13349C0.138818 2.89773 0.0128242 2.58198 0.0156723 2.25423C0.0185203 1.92649 0.149982 1.61297 0.381742 1.38121C0.613502 1.14945 0.927018 1.01799 1.25476 1.01514C1.58251 1.01229 1.89826 1.13829 2.13401 1.36599L10.0003 9.23224L17.8665 1.36599C17.9818 1.2466 18.1198 1.15137 18.2723 1.08586C18.4248 1.02035 18.5888 0.985864 18.7548 0.984422C18.9207 0.98298 19.0853 1.01461 19.239 1.07746C19.3926 1.14031 19.5321 1.23313 19.6495 1.35049C19.7669 1.46786 19.8597 1.60742 19.9225 1.76104C19.9854 1.91466 20.017 2.07926 20.0156 2.24524C20.0141 2.41121 19.9797 2.57524 19.9141 2.72774C19.8486 2.88025 19.7534 3.01818 19.634 3.13349L11.7678 10.9997L19.634 18.866C19.7534 18.9813 19.8486 19.1192 19.9141 19.2717C19.9797 19.4242 20.0141 19.5883 20.0156 19.7542C20.017 19.9202 19.9854 20.0848 19.9225 20.2384C19.8597 20.392 19.7669 20.5316 19.6495 20.649C19.5321 20.7663 19.3926 20.8592 19.239 20.922C19.0853 20.9849 18.9207 21.0165 18.7548 21.0151C18.5888 21.0136 18.4248 20.9791 18.2723 20.9136C18.1198 20.8481 17.9818 20.7529 17.8665 20.6335L10.0003 12.7672L2.13401 20.6335C1.89826 20.8612 1.58251 20.9872 1.25476 20.9843C0.927018 20.9815 0.613502 20.85 0.381742 20.6183C0.149982 20.3865 0.0185203 20.073 0.0156723 19.7452C0.0128242 19.4175 0.138818 19.1017 0.366515 18.866Z"
+                            fill="#E21E2D" />
+                    </svg>
+                </span>
+            </div>
+            <div class="modalBody">
+                <form [formGroup]="widthdrawForm" (ngSubmit)="withdraw()">
+                    <div class="formBody">
+                        <div class="form-group">
+                            <label>How Much?</label>
+                            <div class="inputCont">
+                                <span class="curr" [innerHTML]="currency | safeHtml">₦</span>
+                                <input formControlName="amount" [class.error]="(amount?.touched && amount?.invalid) || !validAmnt" type="number" class="form-control" placeholder="Enter amount">
+                            </div>
+                            <div *ngIf="amount?.touched && amount?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
+                            <div class="warning" [class.invalid]="!validAmnt"><i class="fa fa-exclamation-circle"></i> Your available withdrawal amount is <b><span>₦</span>{{available | number}}</b></div>
+                        </div>
+                        <div class="selectBankCont">
+                            <div class="headCtrlPart d-flex align-items-center justify-content-between">
+                                <div class="instr">Choose bank to make payout</div>
+                                <div class="slideCtrlCont">
+                                    <span (click)="slide(-1, slideCont)" class="prev"><i
+                                            class="fa fa-chevron-left"></i></span>
+                                    <span (click)="slide(1, slideCont)" class="next"><i
+                                            class="fa fa-chevron-right"></i></span>
+                                </div>
+                            </div>
+                            <div #slideCont class="selectWithBankCont">
+                                <div class="selectWithdrawBank">
+                                    <div *ngFor="let bank of bankInfo" (click)="withdrawbankId = bank.id" class="bankInfoItem" [class.bankActive]="bank.id == withdrawbankId">
+                                        <div class="eachItem">
+                                            <div class="key">Account Name</div>
+                                            <div class="value">{{bank?.account_name}}</div>
+                                        </div>
+                                        <div class="eachItem">
+                                            <div class="key">Account Number</div>
+                                            <div class="value">{{bank?.account_number}}</div>
+                                        </div>
+                                        <div class="eachItem">
+                                            <div class="key">Bank Name</div>
+                                            <div class="value">{{bank?.bank_name}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button *ngIf="!withdrawing" [disabled]="widthdrawForm.invalid || withdrawbankId == -1 || !validAmnt" class="vendorPrimaryBtn">Withdraw
+                        Funds</button>
+                    <button *ngIf="withdrawing" disabled class="vendorPrimaryBtn"><i
+                            class="fa fa-spinner fa-spin"></i></button>
+                </form>
+            </div>
+            <div class="modalFooter"></div>
+        </div>
+    </app-modal>
+</div>

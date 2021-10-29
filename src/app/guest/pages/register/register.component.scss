@@ -1,0 +1,17 @@
+input.error:focus,
+select.error:focus {
+    box-shadow: 0 0 10px red;
+}
+
+input.error,
+select.error {
+    border-color: red;
+}
+
+.errorColor {
+    border-color: red;
+}
+
+.errorColor:focus {
+    border-color: red;
+}

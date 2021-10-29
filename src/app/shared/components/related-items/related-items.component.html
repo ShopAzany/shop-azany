@@ -1,0 +1,11 @@
+<section class="prodGridSection">
+    <div class="headSection">
+        <h4>Related to items you’ve viewed</h4>
+        <a routerLink="/category/{{productsData?.cat}}">See All Items</a>
+    </div>
+    <div class="gridCont">
+        <div *ngFor="let prod of productsData?.prods" class="gridItem">
+            <app-each-advert-product [currency]="productsData?.currency" [product]="prod"></app-each-advert-product>
+        </div>
+    </div>
+</section>

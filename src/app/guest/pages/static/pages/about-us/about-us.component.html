@@ -1,0 +1,94 @@
+<app-header></app-header>
+<div id="staticPage">
+    <div class="bodyContainer">
+        <div class="shopping_page containerMe">
+            <div class="azany_shopping d-flex">
+                <div class="left">
+                    <h1>{{content?.title}}</h1>
+                    <div class="e">{{content?.sub_title}}</div>
+                </div>
+                <div class="right">
+                    <div class="sideImg">
+                        <img src="{{treatImgUrl(content?.title_image)}}" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="info">
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="eachContent whatWeDo rounded">
+                            <div class="topTxt" [innerHTML]="content?.what_we_do | safeHtml">
+                                <div class="top fontS-1 px-4">What we do</div>
+                                <div class="content fontS-2 lineH px-4">
+                                    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Feugiat ullamcorper sollicitudin in facilisis. Feugiat sit ut nulla egestas ultricies. Ut elit facilisi tincidunt sed vulputate.</p>
+
+                                    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Feugiat ullamcorper sollicitudin in facilisis. Feugiat sit ut nulla egestas ultricies. Ut elit facilisi tincidunt sed vulputate. consectetur adipiscing elit.
+                                        Feugiat ullamcorper sollicitudin in </p>
+
+                                    <p>Aliquam sed semper egestas lacus, in turpis posuere convallis. Vestibulum a consectetur sed turpis risus est facilisis velit. Blandit non, in a elit.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="imgCont text-right">
+                                <img src="{{treatImgUrl(content?.what_we_do_image)}}" alt="what we do" class="w-100">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+                        <div class="eachContent ourVision rounded d-flex flex-column">
+                            <div class="topTxt" [innerHTML]="content?.vision | safeHtml">
+                                <div class="top fontS-1 px-4 fontW-2 marg">Our vision</div>
+                                <div class="content fontS-2 lineH px-4">
+                                    <p>Aliquam sed semper egestas lacus, in turpis posuere convallis. Vestibulum a consectetur sed turpis risus est facilisis velit. Blandit non, in a elit. Feugiat sit ut nulla egestas ultricies. Ut elit facilisi tincidunt
+                                        sed vulputate. consectetur adipiscing elit. Feugiat ullamcorper sollicitudin in
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="imgCont position-relative">
+
+                                <img src="{{treatImgUrl(content?.vision_image)}}" alt="vision" class="w-100">
+
+                                <!-- <img src="assets/images/basketball.png" class="position-absolute bBall" alt="">
+
+                                <img src="assets/images/sneakers.png" class="position-absolute sneakers" alt=""> -->
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-5">
+                        <div class="eachContent whoWeServe rounded">
+                            <div class="topTxt" [innerHTML]="content?.who_we_serve | safeHtml">
+                                <div class="top fontS-1 px-4 fontW-2 marg">Who we serve</div>
+                                <div class="content fontS-2 lineH px-4">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Felis laoreet ullamcorper eget aliquam arcu. Aenean euismod maecenas lorem lacus sed. Non pharetra, amet ut pharetra proin placerat tristique nullam lorem.</p>
+
+                                    <p>Tincidunt ullamcorper molestie feugiat eleifend pellentesque egestas rutrum. Turpis congue sit arcu cursus aliquam
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-5">
+                        <div class="eachContent globalMission rounded">
+                            <div class="topTxt" [innerHTML]="content?.mission | safeHtml">
+                                <div class="top fontS-1 px-4 fontW-2 marg">Our Global Mission</div>
+                                <div class="content fontS-2 lineH px-4">
+                                    <p>In non, vestibulum orci eget. Ullamcorper sit nascetur faucibus tellus posuere. Cras a interdum blandit et tristique cras enim non morbi. Ac donec natoque aliquam vel. Purus nunc libero dictum volutpat tortor, sapien.</p>
+
+                                    <p>Mauris facilisis varius consectetur diam vel. Ullamcorper sed fringilla ut mattis condimentum elit ligula. Sed enim, sit pharetra, non. Auctor enim, sed ac id massa luctus suspendisse tristique. Cursus commodo vulputate
+                                        viverra vitae proin enim massa luctus.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

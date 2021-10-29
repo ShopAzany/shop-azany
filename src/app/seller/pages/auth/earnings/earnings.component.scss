@@ -1,0 +1,390 @@
+@import '../../../../../themes/colors.scss';
+.bodyPart {
+    h6 {
+        font-weight: 600;
+        font-size: 14px;
+        opacity: 0.8;
+        margin-bottom: 10px;
+    }
+}
+
+.earningSummary {
+    padding: 30px;
+    border-radius: 20px;
+    background: #edf0f4;
+    position: relative;
+    margin-bottom: 50px;
+    .inner {
+        position: relative;
+        z-index: 7;
+    }
+    h6 {
+        margin: 0;
+    }
+    .addToCartLink {
+        width: 100%;
+        max-width: 190px !important;
+    }
+    img {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        z-index: 1;
+        opacity: 0.1;
+    }
+    .salePrice {
+        font-size: 60px;
+        font-weight: 600;
+        line-height: normal;
+        .curr {
+            color: #2F4858;
+            margin-right: 5px;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .earningSummary {
+        padding: 15px;
+        .salePrice {
+            font-size: calc(100vw * 60 / 1400 + 20px);
+            // font-weight: 600;
+            // line-height: normal;
+            .curr {
+                color: #2F4858;
+                margin-right: 5px;
+            }
+        }
+    }
+}
+
+.bankInfoItem,
+.addBankCont {
+    min-width: 310px;
+    max-width: 310px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #fff;
+    border-radius: 20px;
+    margin-right: 30px;
+    padding: 26px 20px;
+    position: relative;
+    .key {
+        opacity: 0.5;
+        font-size: 10px;
+    }
+    .value {
+        font-size: 14px;
+    }
+    .delete {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+    }
+}
+
+.bankInfoItem.delete {
+    background: linear-gradient(112.97deg, #381385 3.71%, #136A85 100%);
+    margin: auto;
+}
+
+.bankInfo,
+.selectWithdrawBank {
+    margin-bottom: 50px;
+    overflow: auto;
+    .bankInfoItemCont {
+        width: 100%;
+        display: flex;
+    }
+    .addBankCont {
+        border: 2px dashed #222222;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #222222;
+        opacity: 0.3;
+        cursor: pointer;
+        .txt {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+    }
+    .bankInfoItem:nth-child(odd) {
+        background: linear-gradient(112.97deg, #381385 3.71%, #136A85 100%);
+    }
+    .bankInfoItem:nth-child(even) {
+        background: linear-gradient(112.97deg, #381385 3.71%, #952D2D 100%);
+    }
+}
+
+.transactionCont {
+    .transactionItem {
+        margin-bottom: 30px;
+    }
+    .itemDate {
+        font-weight: 500;
+        opacity: 0.5;
+        font-size: 14px;
+        color: #000000;
+        margin-bottom: 15px;
+    }
+    .eachTrasaction {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        font-size: 18px;
+    }
+    .eachTrasaction:last-child {
+        margin: 0;
+    }
+    .statusIcon {
+        border-radius: 11px;
+        width: 35px;
+        height: 35px;
+        margin-right: 20px;
+        min-width: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .transRemark {
+        font-weight: 500;
+        color: #222222;
+        flex: 6;
+    }
+    .transStatus {
+        flex: 2;
+    }
+    .transDate {
+        flex: 3;
+    }
+    .transTime {
+        flex: 3;
+    }
+    .transAmt {
+        flex: 3;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        .oper {
+            width: 10px;
+            margin-right: 5px;
+        }
+    }
+    .eachTrasaction.credit {
+        .statusIcon {
+            background: #27ae60;
+        }
+        .transStatus {
+            color: #27ae60;
+        }
+    }
+    .eachTrasaction.debit {
+        .statusIcon {
+            background-color: #ff3ba7;
+            svg {
+                transform: rotate(180deg);
+            }
+        }
+        .transStatus {
+            color: #ff3ba7;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .transactionCont {
+        .eachTrasaction {
+            display: grid;
+            grid-template-columns: auto 1fr auto auto;
+            padding: 10px;
+            border-radius: 7px;
+            background: #fff;
+            margin-bottom: 10px;
+            box-shadow: 0 0 15px #d6d6d677;
+            font-size: calc(100vw * 18 / 1400 + 9px);
+        }
+        .statusIcon {
+            width: 20px;
+            height: 20px;
+            margin-right: 20px;
+            min-width: 20px;
+            svg {
+                width: 12px;
+                height: 12px;
+            }
+        }
+        .transRemark {
+            grid-row: 2;
+            grid-column: 2 / 4;
+        }
+        .transStatus {
+            grid-row: 2;
+            grid-column: 1;
+            align-self: flex-start;
+            font-size: calc(100vw * 12 / 1400 + 8px);
+        }
+        .transDate {
+            grid-column: 4;
+            grid-row: 1
+        }
+        .transTime {
+            grid-column: 4;
+            grid-row: 2;
+            text-align: right;
+            align-self: flex-start;
+            opacity: 0.7;
+            font-size: calc(100vw * 14 / 1400 + 8px);
+        }
+        .transAmt {
+            grid-column: 2;
+            grid-row: 1;
+            .oper {
+                display: none;
+            }
+        }
+        .eachTrasaction.credit {
+            .statusIcon {
+                background: #27ae60;
+            }
+            .transStatus {
+                color: #27ae60;
+            }
+        }
+        .eachTrasaction.debit {
+            .statusIcon {
+                background-color: #ff3ba7;
+                svg {
+                    transform: rotate(180deg);
+                }
+            }
+            .transStatus {
+                color: #ff3ba7;
+            }
+        }
+    }
+}
+
+#deleteModalParent {
+     ::ng-deep .modalContent {
+        max-width: 444px;
+    }
+    .vendorPrimaryBtnOutline {
+        border-width: 5px;
+        margin-top: 20px;
+        background: transparent;
+    }
+    .warning {
+        text-align: center;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+}
+
+#addBankModalParent {
+     ::ng-deep .modalContent {
+        max-width: 820px;
+    }
+    .gridCont {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 0 30px;
+        max-height: 500px;
+        overflow: auto;
+    }
+}
+
+#withdrawModalParent {
+     ::ng-deep .modalContent {
+        max-width: 578px;
+    }
+    .inputCont {
+        position: relative;
+        input {
+            padding-left: 30px;
+        }
+        .curr {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            transform: translateY(-50%);
+            color: #27ae60;
+        }
+    }
+    .warning {
+        opacity: 0.5;
+        margin-top: 7px;
+    }
+    .warning.invalid {
+        opacity: 1;
+        color: red;
+    }
+    .slideCtrlCont {
+        display: flex;
+        .prev {
+            margin-right: 30px;
+        }
+        * {
+            cursor: pointer;
+            color: $primary;
+        }
+    }
+    .selectWithBankCont {
+        overflow: auto;
+        scroll-behavior: smooth;
+    }
+    .selectWithBankCont::-webkit-scrollbar {
+        height: 6px;
+    }
+    .selectWithdrawBank {
+        // width: 100%;
+        display: flex;
+        margin-bottom: 40px;
+        width: fit-content;
+        .bankInfoItem {
+            margin-right: 20px;
+            cursor: pointer;
+            position: relative;
+        }
+        .bankInfoItem::before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            content: '';
+            border-radius: 20px;
+            z-index: 9;
+            background: #ffffffad;
+        }
+        .bankInfoItem.bankActive {
+            border: 5px solid $variantCol5;
+            filter: none;
+        }
+        .bankInfoItem.bankActive::before {
+            content: none;
+        }
+    }
+    .headCtrlPart {
+        margin-bottom: 10px;
+        .instr {
+            font-weight: 600;
+            font-size: 14px;
+        }
+    }
+    .formBody {
+        max-height: calc(100vh - 60px - 49.8px - 20px - 40px - 78px - 10px);
+        overflow-y: auto;
+    }
+    .formBody::-webkit-scrollbar,
+    .formBody::-webkit-scrollbar-thumb {
+        width: 7px;
+    }
+    .formBody::-webkit-scrollbar-thumb {
+        background: #a1a1a1;
+    }
+    // .selectBankCont {}
+}

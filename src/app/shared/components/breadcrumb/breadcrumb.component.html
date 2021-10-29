@@ -1,0 +1,13 @@
+<section id="crumbSuperPar">
+    <div class="bodyContainer">
+        <ul class="crumbList">
+            <li><a routerLink="/">Home</a><span>/</span></li>
+            <li><a routerLink="/category/{{category?.mainCatSlug}}">{{category?.mainCat}}</a><span>/</span></li>
+            <li *ngIf="category?.subCat"><a routerLink="/category/{{category?.mainCatSlug}}/{{category?.subCatSlug}}">{{category?.subCat}}</a><span>/</span>
+            </li>
+            <li *ngIf="category?.subSubCat"><a routerLink="/category/{{category?.mainCatSlug}}/{{category?.subCatSlug}}/{{category?.subSubCatSlug}}">{{category?.subSubCat}}</a><span *ngIf="category?.subTitle">/</span>
+            </li>
+            <li *ngIf="category?.subTitle">{{category?.subTitle}}</li>
+        </ul>
+    </div>
+</section>

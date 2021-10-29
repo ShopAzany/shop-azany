@@ -1,0 +1,36 @@
+<app-header></app-header>
+<div id="staticPage">
+    <div class="bodyContainer">
+        <div class="faq containerMe pt-5">
+            <div class="top text-center mb-5 pb-5">
+                <h1 class="marg fontS-4 fontW-3 text-center">Frequently Asked Questions</h1>
+                <div class="serve ">We’re here to serve you better</div>
+            </div>
+            <div class="main_content mb-5 pb-5">
+                <div id="accordion">
+                    <div *ngFor="let faq of faqs; let i = index;" class="trackOrder border rounded mb-3">
+                        <app-cus-accordion>
+                            <div class="trackOrderHead accHead" [class.cusCollapsed]="i != 0">
+                                <div>{{faq?.question}}</div>
+                                <i class="fa fa-plus"></i>
+                                <i class="fa fa-minus"></i>
+                            </div>
+                            <div id="trackOrder" [class.cusShow]="i == 0" class="accBody">
+                                <div class="trackOrderBody px-4  pb-4 color-1 fontS-3">
+                                    {{faq?.answer}}
+                                </div>
+                            </div>
+                        </app-cus-accordion>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom text-center pb-5 mb-5">
+                <div class="fontW-1 fontS-1">Still Have Questions?</div>
+                <div>If you cannot find answers to your qustions in our FAQ,<a href="#" class="color-2">Contact Us.</a>
+                </div>
+                <div>We will respond as quickly as possible.</div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

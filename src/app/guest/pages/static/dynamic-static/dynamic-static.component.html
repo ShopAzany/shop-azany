@@ -1,0 +1,105 @@
+<app-header></app-header>
+<div id="staticPage">
+    <app-loading *ngIf="isLoading"></app-loading>
+    <div class="bodyContainer">
+        <div *ngIf="pageContents" class="Privacy containerMe pt-5">
+            <h1 class="marg fontS-4 fontW-3">{{pageContents?.title}}</h1>
+            <div class="border marg"></div>
+
+            <div class="lastUpdate">
+                <div class="date marg pt-5">
+                    <span class="font-weight-bold"> Last updated: {{pageContents?.updated_at | date}}.</span>
+                    <!-- <span class="mx-3">To see
+                        previous version,<a href="#" class="color-2">click here</a> </span> -->
+                </div>
+                <div class="info lineH-2 mb-5" [innerHTML]="pageContents?.contents | safeHtml">
+                    <p> Quis elit ultrices lectus quis. Nunc, diam, amet id interdum nec id velit. Sem lectus facilisis at at. Id facilisis quis hac tellus dui libero id. At sodales ac senectus in. Lorem leo aliquam scelerisque cras est vel. Duis est sit
+                        egestas risus volutpat facilisis ornare non. Commodo, lectus lectus nunc, eu accumsan, pellentesque eleifend. Sit adipiscing in convallis urna proin. Enim at tincidunt ac tincidunt posuere nisl ut dui neque. Cursus gravida a, leo,
+                        adipiscing eget. Tincidunt quis leo blandit donec et leo. Senectus varius cursus velit et amet leo in cursus. Blandit neque, est lectus mi sed diam. Auctor scelerisque nisi varius cursus gravida tellus.</p>
+                    <p> Vestibulum, venenatis arcu, fermentum sociis elementum enim. Felis, fringilla porttitor amet lectus risus. Pulvinar nisi vitae id duis neque, diam diam lectus. Consequat in sit iaculis vitae, leo enim tempus. <span class="font-weight-bold">By using Azany Services,
+                            you are consenting to the practices described in this Privacy Policy document.</span> </p>
+
+
+                    <ul class="lineH-2">
+                        <li>
+                            <a href="#" class="color-2"> About This Policy</a>
+                        </li>
+                        <li>
+                            <a href="#" class="color-2"> What Personal Information do we Collect From You</a>
+                        </li>
+                        <li>
+                            <a href="#" class="color-2"> Cookies and How We Use Them</a>
+                        </li>
+                        <li>
+                            <a href="#" class="color-2"> How We Use Your Personal Data</a>
+                        </li>
+                        <li>
+                            <a href="#" class="color-2"> How Secure is my Data?</a>
+                        </li>
+                        <li>
+                            <a href="#" class="color-2"> Conditions Of Use, Notices and Revisions</a>
+                        </li>
+                        <li>
+                            <a href="#" class="color-2"> Related Practices and Information</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- <div class="abt_policy mb-5">
+                <div class="about fontS-1 fontW-1 marg">About This Policy</div>
+                <p class="fontS-3 pb-4">Accumsan etiam habitasse sagittis amet habitant interdum. Id sed convallis magna interdum quis sed dictumst dignissim vitae. Euismod odio sit eget pellentesque est viverra non fringilla. Molestie nisi sem condimentum aliquam, venenatis
+                    ut mauris risus a. Lectus sit vitae ut et. Nisi, est, mattis odio integer. Venenatis, dignissim libero pretium semper. .
+                </p>
+            </div>
+
+            <div class="personal_info mb-5">
+                <div class="about fontS-1 fontW-1 marg">What Personal Information do we Collect From You</div>
+                <p class="fontS-3 pb-4">Elit nulla in morbi massa amet sagittis tortor consectetur amet. Amet luctus nunc est fermentum sit diam massa tristique. Fames pellentesque elementum magna ac massa bibendum sed ut. Eu, ultrices praesent egestas et rhoncus senectus viverra
+                    quis. Eget pharetra, rhoncus, parturient purus, dui tortor. Ullamcorper aliquam non velit nunc, in consectetur donec sem etiam. Posuere dolor neque pharetra ut ut. Nunc, magna et pulvinar odio erat nec. Fermentum lacus fermentum suscipit
+                    venenatis, fusce nullam iaculis. At elit, morbi interdum ut elit. Vulputate mauris accumsan urna nam. Pulvinar lorem purus diam aliquam, tincidunt. Sed mi sollicitudin eu, faucibus feugiat sit dignissim. Elementum vel donec eget et
+                    ac dapibus. Hac accumsan tellus tortor venenatis, pretium pellentesque ut fermentum sagittis.
+                </p>
+            </div>
+
+            <div class="personal_data mb-5">
+                <div class="about fontS-1 fontW-1 marg">How We Use Your Personal Data</div>
+                <p class="fontS-3 pb-4">Neque a tellus sagittis morbi. Aliquam diam porta nibh enim eget integer elit lorem magna. Ultrices risus, non dignissim adipiscing consequat risus commodo integer elementum. Aliquam malesuada integer dolor nisl, condimentum et scelerisque
+                    mauris erat. Magna et habitasse dictumst nunc. Odio in fringilla pellentesque id ornare. Vulputate amet sapien in scelerisque in mollis vel ut. Proin urna, quisque enim, facilisi ac sed. Dictum tortor, amet eget viverra. Cras turpis
+                    lacus adipiscing mauris.
+                </p>
+            </div>
+
+            <div class="secure_data mb-5">
+                <div class="data fontS-1 fontW-1 marg">How Secure is my Data</div>
+                <p class="fontS-3 pb-4">Elit nulla in morbi massa amet sagittis tortor consectetur amet. Amet luctus nunc est fermentum sit diam massa tristique. Fames pellentesque elementum magna ac massa bibendum sed ut. Eu, ultrices praesent egestas et rhoncus senectus viverra
+                    quis. Eget pharetra, rhoncus, parturient purus, dui tortor. Ullamcorper aliquam non velit nunc, in consectetur donec sem etiam. Posuere dolor neque pharetra ut ut. Nunc, magna et pulvinar odio erat nec. Fermentum lacus fermentum suscipit
+                    venenatis, fusce nullam iaculis. At elit, morbi interdum ut elit. Vulputate mauris accumsan urna nam. Pulvinar lorem purus diam aliquam, tincidunt. Sed mi sollicitudin eu, faucibus feugiat sit dignissim. Elementum vel donec eget et
+                    ac dapibus. Hac accumsan tellus tortor venenatis, pretium pellentesque ut fermentum sagittis.</p>
+
+                <p>Accumsan etiam habitasse sagittis amet habitant interdum. Id sed convallis magna interdum quis sed dictumst dignissim vitae. Euismod odio sit eget pellentesque est viverra non fringilla. Molestie nisi sem condimentum aliquam, venenatis
+                    ut mauris risus a. Lectus sit vitae ut et. Nisi, est, mattis odio integer. Venenatis, dignissim libero pretium semper
+                </p>
+            </div>
+
+            <div class="condition_of_use mb-5">
+                <div class="about fontS-1 fontW-1 marg">Condition Of Use</div>
+                <p class="fontS-3 pb-4">Accumsan etiam habitasse sagittis amet habitant interdum. Id sed convallis magna interdum quis sed dictumst dignissim vitae. Euismod odio sit eget pellentesque est viverra non fringilla. Molestie nisi sem condimentum aliquam, venenatis
+                    ut mauris risus a. Lectus sit vitae ut et. Nisi, est, mattis odio integer. Venenatis, dignissim libero pretium semper. .
+
+                </p>
+            </div>
+
+            <div class="related_practices mb-5 pb-5">
+                <div class="about fontS-1 fontW-1 marg">Related Practices and Information</div>
+                <p class="fontS-3 pb-4">Elit nulla in morbi massa amet sagittis tortor consectetur amet. Amet luctus nunc est fermentum sit diam massa tristique. Fames pellentesque elementum magna ac massa bibendum sed ut. Eu, ultrices praesent egestas et rhoncus senectus viverra
+                    quis. Eget pharetra, rhoncus, parturient purus, dui tortor. Ullamcorper aliquam non velit nunc, in consectetur donec sem etiam. Posuere dolor neque pharetra ut ut. Nunc, magna et pulvinar odio erat nec. Fermentum lacus fermentum suscipit
+                    venenatis, fusce nullam iaculis. At elit, morbi interdum ut elit. Vulputate mauris accumsan urna nam. Pulvinar lorem purus diam aliquam, tincidunt. Sed mi sollicitudin eu, faucibus feugiat sit dignissim. Elementum vel donec eget et
+                    ac dapibus. Hac accumsan tellus tortor venenatis, pretium pellentesque ut fermentum sagittis.
+
+                </p>
+            </div> -->
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

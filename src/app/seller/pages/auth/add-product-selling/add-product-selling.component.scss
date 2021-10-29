@@ -1,0 +1,211 @@
+@import '../add-product-details/add-product-details.component.scss';
+.charges {
+    color: $variantCol5;
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    svg {
+        margin-right: 7px;
+        width: 16px;
+        height: 16px;
+        path {
+            fill: $variantCol5;
+        }
+    }
+}
+
+.c-border {
+    border: 2px solid #ccc;
+}
+
+.ctn-btn {
+    background: #E51924;
+    border-color: #E51924;
+    color: #fff;
+    border-radius: none;
+    font-size: 16px;
+}
+
+.def-height {
+    height: 150px;
+}
+
+// FROM HERE
+::ng-deep .angular-editor-textarea {
+    height: auto !important;
+    min-height: 220px !important;
+}
+
+.title {
+    background: $primary;
+    color: #fff;
+    font-size: 13px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-left: 1px solid #f2f2f2;
+}
+
+.title:last-child {
+    border-left: none !important;
+}
+
+.price-table table tr td,
+.price-table table tr th {
+    padding: 5px;
+}
+
+.price-table table thead {
+    background: $primary;
+    color: #fff;
+    font-size: 13px;
+}
+
+.price-table table thead tr th {
+    font-weight: 550 !important;
+}
+
+// .form-control {
+//     padding: 3px;
+//     font-size: 14px;
+// }
+// .form-group {
+//     margin-bottom: 0px;
+// }
+.error-alert {
+    background: transparent;
+    padding: 5px;
+    font-size: 13px;
+    border: none;
+    color: red;
+}
+
+.alert {
+    margin-bottom: 0px !important;
+}
+
+.requiredField {
+    color: #fff !important;
+}
+
+.tableTitle {
+    padding: 10px !important;
+    font-size: 15px;
+}
+
+.btn-primary {
+    background: $variantCol4;
+    border-color: $variantCol4;
+}
+
+.mt-38 {
+    margin-top: 38px;
+}
+
+.eachFormArray {
+    border-bottom: 2px solid #e9e9e9;
+}
+
+.addToCartLink {
+    width: 100%;
+    max-width: 220px;
+    height: 50px;
+}
+
+.input-group {
+    flex-wrap: nowrap;
+    position: relative;
+    .input-group-text {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 9;
+        height: 100%;
+        background: #2222220d;
+        padding: 19px;
+        border: none;
+    }
+    input {
+        padding-left: 50px !important;
+    }
+}
+
+.eachVariation {
+    display: flex;
+    .form-group {
+        margin-bottom: 0px !important;
+    }
+    .variationGridCont {
+        flex-grow: 1;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+    }
+    @media (max-width: 900px) {
+        .variationGridCont {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    @media (max-width: 600px) {
+        .variationGridCont {
+            grid-template-columns: 1fr;
+        }
+    }
+}
+
+.returnPolicy {
+    margin-top: 30px !important;
+}
+
+.returnPolicy>label:first-child {
+    margin-bottom: 10px !important;
+}
+
+.cusCheckbox {
+    input+label {
+        display: flex;
+        align-items: center;
+        font-weight: normal !important;
+        margin-bottom: 13px !important;
+        .checkbox {
+            width: 18px;
+            height: 18px;
+            min-width: 18px;
+            margin-right: 8px;
+            border: 2px solid #222222;
+            display: flex;
+            align-items: center;
+            border-radius: 2px;
+            justify-content: center;
+            i {
+                display: none;
+                color: #fff;
+                font-size: 14px;
+            }
+        }
+    }
+    input:checked+label {
+        .checkbox {
+            background: $primary;
+            border-color: $primary;
+            i {
+                display: block;
+            }
+        }
+    }
+}
+
+.warning {
+    margin-top: 20px;
+    opacity: 0.5;
+    svg {
+        margin-right: 7px;
+        fill-opacity: 0.3;
+    }
+}
+
+.btn.btn-danger.btn-sm {
+    height: fit-content;
+    align-self: center;
+    margin-left: 10px;
+}

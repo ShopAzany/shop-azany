@@ -1,0 +1,87 @@
+.shopping_page {
+    .azany_shopping {
+        .left {
+            h1 {
+                font-family: Poppins;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 30px;
+                line-height: 45px;
+                margin: 20px 0px;
+            }
+            .e {
+                max-width: 800px;
+                top: 65px;
+                flex: none;
+                order: 1;
+                flex-grow: 0;
+                margin: 20px 0px;
+            }
+        }
+        .right {
+            .sideImg {
+                max-width: 251.22px;
+                // position: absolute;
+                // top: 174px;
+                opacity: 0.2;
+                transform: rotate(17.2deg);
+                img {
+                    max-width: 100%;
+                }
+            }
+        }
+    }
+    .info {
+        .eachContent {
+            min-height: 400px;
+            .topTxt {
+                padding: 30px;
+                p {
+                    font-size: 14px;
+                }
+                h3 {
+                    font-size: 24px;
+                    margin-bottom: 20px;
+                    font-weight: 600;
+                }
+            }
+        }
+        .whatWeDo {
+            background-color: #FFE8E8;
+            // overflow: auto;
+            // .top {
+            //     margin: 20px 0px;
+            //     font-weight: 600;
+            // }
+        }
+        .ourVision {
+            background-color: #FFF4DB;
+            // overflow: auto;
+            // padding-bottom: 235px;
+            .imgCont {
+                width: fit-content;
+                align-self: flex-end;
+                .bBall {
+                    left: -64px;
+                    top: 100%;
+                    // right: 100%;
+                }
+                .sneakers {
+                    // left: -64px;
+                    top: 65%;
+                    right: 0;
+                }
+            }
+        }
+        .whoWeServe {
+            background-color: #E3ECFA;
+            // overflow: auto;
+            // height: 400px;
+        }
+        .globalMission {
+            background-color: #F5FFBA;
+            // overflow: auto;
+            // height: 400px;
+        }
+    }
+}

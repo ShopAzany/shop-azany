@@ -1,0 +1,152 @@
+<app-header></app-header>
+<div id="seller">
+    <div class="page-wrapper">
+        <div class="container-fluid">
+            <div class="productContainer">
+                <app-product-nav-bar activeLink="selling" [title]="lastRoute == 'edit' ? 'Edit Product Listing' : 'Create Product Listing'">
+                </app-product-nav-bar>
+
+                <div class="form-section">
+                    <h5 class="mb-5 mt-5">Selling Details</h5>
+                    <form [formGroup]="form" (ngSubmit)="submit()">
+                        <div formArrayName="morePriceVariations">
+                            <div *ngFor="let descrip of moreDescriptionFormGroup.controls; let i = index;" class="eachVariation">
+                                <div [formGroupName]="i" class="variationGridCont">
+                                    <div class="form-group">
+                                        <label>Variation</label>
+                                        <select *ngIf="i == 0" formControlName="variation" class="form-control" (change)="mainVariationChange($event, i)">
+                                            <option [ngValue]="null">--Select Variation--</option>
+                                            <optgroup *ngFor="let variation of variations;" label="{{variation.name}}">
+                                                <option *ngFor="let variValue of variation.values;"
+                                                    value="{{variation.name +'|'+ variValue.trim()}}">{{variValue}}
+                                                </option>
+                                            </optgroup>
+                                            <option *ngIf="variations?.length < 1" value="none">No variation
+                                            </option>
+                                        </select>
+
+                                        <select *ngIf="variationValues && i > 0" class="form-control" formControlName="variation">
+                                            <option [ngValue]="null" disabled>--Select Variation--</option>
+                                            <optgroup label="{{variationValues.name}}">
+                                                <option *ngFor="let variValue of variationValues.values;"
+                                                    value="{{variationValues.name + '|' + variValue}}">{{variValue}}
+                                                </option>
+                                            </optgroup>
+                                            <option *ngIf="variations?.length < 1" value="'none'">No variation
+                                            </option>
+                                        </select>
+                                        <!-- <div
+                                            *ngIf="(descrip.controls['variation'].touched && !descrip.controls['variation'].valid) || validateError">
+                                            <div class="alert alert-danger error-alert"
+                                                *ngIf="descrip.controls['variation'].errors && descrip.controls['variation'].errors.required">
+                                                Variation is required
+                                            </div>
+                                        </div> -->
+                                        <div *ngIf="((descrip.controls['variation'].touched && !descrip.controls['variation'].valid) || validateError)" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field
+                                                is required</span></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Quantity</label>
+                                        <input type="number" class="form-control" min="1" formControlName="quantity">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Regular Price</label>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text c-border" [innerHTML]="currency | safeHtml"></span>
+                                            </div>
+                                            <input type="number" class="form-control" formControlName="regular_price" placeholder="0.00">
+                                        </div>
+
+                                        <div *ngIf="descrip.controls['regular_price'].value > 0 && 
+                                                descrip.controls['sales_price'].value > descrip.controls['regular_price'].value" class="alert alert-danger error-alert">
+                                            Regular price can not be lower than sale price.
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Sales Price</label>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text c-border" [innerHTML]="currency | safeHtml"></span>
+                                            </div>
+                                            <input type="number" class="form-control" formControlName="sales_price" placeholder="0.00">
+                                        </div>
+                                        <div *ngIf="(descrip.controls['sales_price'].touched && 
+                                                !descrip.controls['sales_price'].valid) || 
+                                                validateError">
+                                            <div *ngIf="descrip.controls['sales_price'].errors && 
+                                                    descrip.controls['sales_price'].errors.required" class="alert alert-danger error-alert">
+                                                Sale price is required
+                                            </div>
+                                        </div>
+
+                                        <div *ngIf="descrip.controls['regular_price'].value > 0 && 
+                                                descrip.controls['sales_price'].value > descrip.controls['regular_price'].value" class="alert alert-danger error-alert">
+                                            Sale price can not be greater than regular price.
+                                        </div>
+                                    </div>
+                                </div>
+                                <button *ngIf="i !== 0" type="button" class="btn btn-danger btn-sm" (click)="removeDescription(i)"><i class="fa fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <button type="button" class="addToCartLink" [class.disabled]="!variationValues" (click)="!variationValues ? null : addDescription()">
+                            + Add More Variation
+                        </button>
+
+                        <div class="charges">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM11 7V9H13V7H11ZM11 11V17H13V11H11ZM4 12C4 16.41 7.59 20 12 20C16.41 20 20 16.41 20 12C20 7.59 16.41 4 12 4C7.59 4 4 7.59 4 12Z"
+                                    fill="black" />
+                            </svg>
+                            <span>Azany Charges a Tax of 10% on price of Products</span>
+                        </div>
+
+                        <div class="form-group returnPolicy">
+                            <label>Return Policy</label>
+                            <div class="cusCheckbox">
+                                <input type="checkbox" hidden id="domestic" formControlName="domestic_policy">
+                                <label for="domestic">
+                                    <div class="checkbox">
+                                        <i class="fa fa-check"></i>
+                                    </div>
+                                    <span>Domestic Return accepted</span>
+                                </label>
+                            </div>
+                            <div class="cusCheckbox">
+                                <input type="checkbox" hidden id="international" formControlName="inter_policy">
+                                <label for="international">
+                                    <div class="checkbox">
+                                        <i class="fa fa-check"></i>
+                                    </div>
+                                    <span>International Return accepted</span>
+                                </label>
+                            </div>
+
+                            <p class="warning d-flex align-items-center">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM11 7V9H13V7H11ZM11 11V17H13V11H11ZM4 12C4 16.41 7.59 20 12 20C16.41 20 20 16.41 20 12C20 7.59 16.41 4 12 4C7.59 4 4 7.59 4 12Z"
+                                        fill="black" />
+                                </svg>
+                                <span>No payments will be received until a return option is specified</span>
+                            </p>
+                        </div>
+
+                        <div class="text-center mb-5 mt-5">
+                            <button *ngIf="!isSaving" class="vendorPrimaryBtn" [disabled]="!form.valid">Continue</button>
+                            <button *ngIf="isSaving" disabled type="button" class="vendorPrimaryBtn"><i
+                                    class="fa fa-spin fa-spinner"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<app-footer></app-footer>

@@ -1,0 +1,53 @@
+@import '../../../../themes/colors.scss';
+.subscribeSection {
+    background: $variantCol1;
+    padding: 70px 0;
+    color: #fff;
+    position: relative;
+    h1 {
+        line-height: 63px;
+        font-size: 42px;
+        font-weight: bold;
+        margin-bottom: 17px;
+    }
+    p {
+        font-size: 16px;
+        line-height: 24px;
+    }
+    .formCont {
+        height: 60px;
+        display: flex;
+        input {
+            height: unset;
+            background: transparent;
+            border: 2px solid #cccccc6c;
+        }
+        input::placeholder {
+            color: #ffffff49;
+        }
+        .btn {
+            background: $primary;
+            color: #fff;
+            margin-left: 30px;
+            white-space: nowrap;
+            padding: 18px 50px;
+        }
+        @media (max-width: 500px) {
+            .btn {
+                padding: 18px 20px;
+                margin-left: 10px;
+            }
+        }
+    }
+    .positionedBg {
+        right: 0;
+        top: 0;
+        position: absolute;
+        width: 450px;
+    }
+    @media (max-width: 767px) {
+        .positionedBg {
+            opacity: 0.3;
+        }
+    }
+}

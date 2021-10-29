@@ -1,0 +1,291 @@
+@import '../../../../themes/colors.scss';
+.topGraphTrackInfo {
+    border: 2px solid #2222221a;
+    padding: 15px 20px 59px;
+    border-radius: 7px;
+    font-size: 14px;
+    margin-bottom: 30px;
+    h5 {
+        font-weight: 600;
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+    .delivDate {
+        margin-bottom: 50px;
+        .key {
+            opacity: 0.5;
+            margin-right: 10px;
+        }
+        .value {
+            color: #34A853;
+            font-weight: 600;
+        }
+    }
+    .trackingScale {
+        max-width: 751px;
+        padding: 0 20px;
+        margin: auto;
+        .trackLine {
+            position: relative;
+            height: 5px;
+            background: #c4c4c4;
+        }
+        .trackDots {
+            position: absolute;
+            min-width: 24px;
+            min-height: 24px;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            top: 50%;
+            background: #c4c4c4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            svg {
+                display: none;
+            }
+        }
+        @for $i from 1 through 4 {
+            .trackDots:nth-child(#{$i + 1}) {
+                left: calc(#{$i - 1} * 33.333333%);
+            }
+        }
+        .trackLineDone {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0;
+            height: 100%;
+            background: $variantCol5;
+        }
+        .trackLine.Pending {
+            .trackLineDone {
+                width: 0%;
+            }
+            .trackDots:nth-child(2) {
+                background: $variantCol5;
+                width: 36px;
+                height: 36px;
+                border-color: $variantCol5;
+                border: 3px solid $variantCol5;
+                svg {
+                    display: block;
+                }
+            }
+        }
+        .trackLine.Processing {
+            .trackLineDone {
+                width: 33.333333%;
+            }
+            .trackDots:nth-child(2),
+            .trackDots:nth-child(3) {
+                background: $variantCol5;
+            }
+            .trackDots:nth-child(3) {
+                width: 36px;
+                height: 36px;
+                border-color: $variantCol5;
+                border: 3px solid $variantCol5;
+                svg {
+                    display: block;
+                }
+            }
+        }
+        .trackLine.Shipped {
+            .trackLineDone {
+                width: calc(33.33333% * 2);
+            }
+            .trackDots:nth-child(2),
+            .trackDots:nth-child(3),
+            .trackDots:nth-child(4) {
+                background: $variantCol5;
+            }
+            .trackDots:nth-child(4) {
+                width: 36px;
+                height: 36px;
+                border-color: $variantCol5;
+                border: 3px solid $variantCol5;
+                svg {
+                    display: block;
+                }
+            }
+        }
+        .trackLine.Delivered,
+        .trackLine.Returned {
+            .trackLineDone {
+                width: calc(33.33333% * 3);
+            }
+            .trackDots:nth-child(2),
+            .trackDots:nth-child(3),
+            .trackDots:nth-child(4),
+            .trackDots:nth-child(5) {
+                background: $variantCol5;
+            }
+            .trackDots:nth-child(5) {
+                width: 36px;
+                height: 36px;
+                border-color: $variantCol5;
+                border: 3px solid $variantCol5;
+                svg {
+                    display: block;
+                }
+            }
+        }
+        .trackLine.Returned {
+            .trackDots:nth-child(2),
+            .trackDots:nth-child(3),
+            .trackDots:nth-child(4),
+            .trackDots:nth-child(5) {
+                background: red;
+            }
+            .trackDots:nth-child(5) {
+                border-color: red;
+                border: 3px solid red;
+            }
+        }
+        @media (max-width: 450px) {
+            .trackDots {
+                min-width: calc(((100vw * 24) / 1400) + 12px);
+                min-height: calc(((100vw * 24) / 1400) + 12px);
+            }
+            .trackLine.Pending {
+                .trackDots:nth-child(2) {
+                    width: calc(((100vw * 36) / 1400) + 20px);
+                    height: calc(((100vw * 36) / 1400) + 20px);
+                }
+            }
+            .trackLine.Processing {
+                .trackDots:nth-child(3) {
+                    width: calc(((100vw * 36) / 1400) + 20px);
+                    height: calc(((100vw * 36) / 1400) + 20px);
+                }
+            }
+            .trackLine.Shipped {
+                .trackDots:nth-child(4) {
+                    width: calc(((100vw * 36) / 1400) + 20px);
+                    height: calc(((100vw * 36) / 1400) + 20px);
+                }
+            }
+            .trackLine.Delivered {
+                .trackDots:nth-child(5) {
+                    width: calc(((100vw * 36) / 1400) + 20px);
+                    height: calc(((100vw * 36) / 1400) + 20px);
+                }
+            }
+        }
+    }
+    .statusCont {
+        position: relative;
+        margin-top: 18px;
+        font-size: 12px;
+        min-height: 59px;
+        .eachStatus {
+            text-align: center;
+            max-width: 59px;
+            position: absolute;
+            transform: translateX(-50%);
+            top: 0;
+        }
+        @for $i from 1 through 4 {
+            .eachStatus:nth-child(#{$i}) {
+                left: calc(#{$i - 1} * 33.333333%);
+            }
+        }
+    }
+    @media (max-width: 450px) {
+        .statusCont {
+            font-size: calc(((100vw * 12) / 1400) + 7px);
+        }
+    }
+}
+
+@media (max-width: 450px) {
+    .topGraphTrackInfo {
+        font-size: calc(((100vw * 14) / 1400) + 8px);
+        h5 {
+            font-size: calc(((100vw * 18) / 1400) + 11px);
+        }
+    }
+}
+
+.timeLineStatus {
+    font-size: 14px;
+    h5 {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+    .eachTimeLine {
+        display: flex;
+        flex-direction: column;
+        min-height: 60px;
+        max-width: 500px;
+        margin-bottom: 10px;
+        color: rgba(34, 34, 34, 0.8);
+        .keyValue {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            .key {
+                span:nth-child(1):not(:last-child) {
+                    display: none;
+                }
+            }
+            .value {
+                text-align: right;
+                font-weight: 500;
+                span:nth-child(1):not(:last-child) {
+                    display: none;
+                }
+            }
+        }
+        .bottomLine {
+            flex-grow: 1;
+            border-left: 2px solid #00000033;
+        }
+    }
+    .eachTimeLine.statusActive {
+        min-height: 80px;
+        .bottomLine {
+            border-left: 2px dotted $variantCol5;
+        }
+        .keyValue {
+            .key {
+                span:nth-child(1) {
+                    display: inline-block;
+                }
+                span:nth-child(2) {
+                    display: none;
+                }
+            }
+            .value {
+                font-weight: 600;
+                span:nth-child(1) {
+                    display: inline-block;
+                    color: $variantCol5;
+                }
+                span:nth-child(2) {
+                    display: none;
+                }
+            }
+        }
+    }
+    .eachTimeLine.statusActive.returned {
+        .bottomLine {
+            border-color: red;
+        }
+        .keyValue {
+            .value {
+                span:nth-child(1) {
+                    color: red;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 450px) {
+    .timeLineStatus {
+        font-size: calc(((100vw * 14) / 1400) + 10px);
+    }
+}

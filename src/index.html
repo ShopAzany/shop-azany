@@ -1,0 +1,706 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Azany</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="149376252406-d8rj94550rcfmcanqmgpa8rlc2b35hqc.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <style>
+        .loading-indicator-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+        }
+        
+        .loading-indicator {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .loadingText h3 {
+            text-align: center;
+            font-size: 16px;
+            margin-top: 15px;
+            font-weight: lighter;
+        }
+        
+        .lds-dual-ring {
+            display: inline-block;
+            width: 64px;
+            height: 64px;
+        }
+        
+        .lds-dual-ring:after {
+            content: ' ';
+            display: block;
+            width: 46px;
+            height: 46px;
+            margin: 1px;
+            border-radius: 100%;
+            border: 5px solid #e21f2d;
+            border-color: #e21f2d transparent #e21f2d transparent;
+            animation: lds-dual-ring 1.0s linear infinite;
+        }
+        
+        @keyframes lds-dual-ring {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        #placeholder {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            height: 100%;
+            color: #858585;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            z-index: 900000;
+            white-space: nowrap;
+        }
+        
+        #placeholder .preloadCont {
+            max-width: 1400px;
+            margin: auto;
+            padding: 0 15px;
+            width: 100%;
+        }
+        
+        #placeholder .headPart {
+            background-color: #eeeeee;
+        }
+        
+        #placeholder .topPart {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            padding: 10px 0;
+        }
+        
+        #placeholder .logoCont {
+            margin-right: 50px;
+        }
+        
+        #placeholder .circleCountry {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            margin-right: 20px;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            min-width: unset;
+            width: unset;
+            background: none;
+        }
+        
+        #placeholder .circleCountry span {
+            height: 30px;
+            width: 30px;
+            min-width: 30px;
+            border-radius: 50%;
+            background: #acacac;
+        }
+        
+        #placeholder .circleCountry i {
+            margin-left: 10px;
+            font-size: 12px;
+        }
+        
+        #placeholder .searchCont {
+            height: 50px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            padding: 6px 12px;
+            -webkit-box-flex: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+            border-radius: 10px;
+            background-color: #ffffffd0;
+        }
+        
+        #placeholder .searchCont i:nth-child(2) {
+            margin-left: 5px;
+            font-size: 13px;
+        }
+        
+        #placeholder .searchCont span:nth-child(3) {
+            -webkit-box-flex: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+            margin-left: 26px;
+            opacity: 0.5;
+        }
+        
+        #placeholder .eachIconTxt {
+            margin-left: 35px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+        
+        #placeholder .eachIconTxt i {
+            margin-left: 10px;
+            font-size: 12px;
+        }
+        
+        #placeholder .eachIconTxt .icon {
+            width: unset;
+            height: unset;
+            background: none;
+            margin-right: 10px;
+        }
+        
+        #placeholder .eachIconTxt h4 {
+            font-size: 14px;
+            margin-bottom: 0px;
+        }
+        
+        #placeholder .eachIconTxt span {
+            font-size: 13px;
+            line-height: 1;
+        }
+        
+        #placeholder .mobileBotton {
+            display: none;
+            margin: 20px 0;
+        }
+        
+        #placeholder .mobileBotton .searchCont span:first-child {
+            -webkit-box-flex: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+            opacity: 0.5;
+        }
+        
+        #placeholder .mobileBotton .searchCont i:last-child {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 991px) {
+            #placeholder .eachIconTxt {
+                margin-left: 15px;
+            }
+            #placeholder .eachIconTxt .txtCont {
+                display: none;
+            }
+            #placeholder .eachIconTxt .icon {
+                margin-right: 0;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            #placeholder .circleCountry {
+                margin-right: 0;
+            }
+            #placeholder .topPart {
+                padding-top: 20px;
+            }
+            #placeholder .topPart .searchCont {
+                display: none;
+            }
+            #placeholder .mobileBotton {
+                display: block;
+            }
+        }
+        
+        #placeholder .bottomPart {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            padding: 10px 0;
+        }
+        
+        #placeholder .dropdownBtn {
+            height: 58px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            background: #b8b8b8;
+            color: #fff;
+            border-radius: 7px;
+            padding: 20px;
+        }
+        
+        #placeholder .dropdownBtn .toggle {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            width: 26px;
+            height: 18px;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            margin-right: 12px;
+        }
+        
+        #placeholder .dropdownBtn .toggle span {
+            border-top: 2px solid #fff;
+        }
+        
+        #placeholder .eachLink {
+            padding: 8px 16px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+        
+        #placeholder .eachLink i {
+            font-size: 13px;
+            margin-left: 7px;
+        }
+        
+        #placeholder .eachLink span {
+            margin-left: 7px;
+        }
+        
+        @media (max-width: 1128px) {
+            #placeholder .bottomPart {
+                padding: 0px 0 20px;
+            }
+            #placeholder .eachLinkCont {
+                width: 100%;
+                padding-top: 20px;
+            }
+        }
+        
+        @media (max-width: 749px) {
+            #placeholder .eachLink span {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 500px) {
+            #placeholder .dropdownBtn {
+                height: 48px;
+            }
+            #placeholder .dropdownBtn span {
+                font-size: 12px;
+            }
+            #placeholder .circleCountry {
+                margin-right: 16px;
+            }
+            #placeholder .circleCountry span {
+                height: 24px;
+                width: 24px;
+                min-width: 24px;
+            }
+            #placeholder .circleCountry i {
+                font-size: 11px;
+            }
+            #placeholder .eachIconTxt {
+                margin-left: 16px;
+            }
+            #placeholder .eachIconTxt svg {
+                width: 24px;
+                height: 25px;
+            }
+        }
+        
+        #placeholder .bodyPart {
+            padding-top: 20px;
+            background: #fff;
+            -webkit-box-flex: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+        }
+        
+        #placeholder .gridCont {
+            min-height: calc(100vw * 543.54 / 1400 + 10px);
+            display: -ms-grid;
+            display: grid;
+            -ms-grid-columns: 60.5% auto;
+            grid-template-columns: 60.5% auto;
+            gap: 20px;
+        }
+        
+        #placeholder .carouselSect {
+            background: #cccccc;
+            border-radius: 10px;
+        }
+        
+        #placeholder .twoImgGrid {
+            display: -ms-grid;
+            display: grid;
+            gap: 20px;
+            -ms-grid-columns: 1fr;
+            grid-template-columns: 1fr;
+            /* grid-auto-rows: 1fr; */
+            -ms-grid-rows: 3fr 4fr;
+            grid-template-rows: 3fr 4fr;
+        }
+        
+        #placeholder .twoImgGrid div {
+            background-color: #cccccc;
+            border-radius: 10px;
+        }
+        
+        @media (max-width: 767px) {
+            #placeholder .gridCont {
+                -ms-grid-columns: 1fr;
+                grid-template-columns: 1fr;
+                min-height: unset;
+            }
+            #placeholder .gridCont .carouselSect {
+                height: calc(100vw * 777 / 1400 + 20px);
+            }
+            #placeholder .gridCont .twoImgGrid {
+                height: calc(100vw * 997 / 1400 + 20px);
+            }
+        }
+        
+        #placeholder #catPage,
+        #placeholder #homePage {
+            display: none;
+        }
+        
+        #placeholder #catPage .catTitleSec {
+            padding: 20px 0 58px;
+        }
+        
+        #placeholder #catPage .catTitleSec .catTitle {
+            height: 30px;
+            width: 30%;
+            background: #22222259;
+            margin-bottom: 9px;
+        }
+        
+        #placeholder #catPage .catTitleSec .catDesc {
+            height: 22px;
+            width: 47%;
+            background: #22222227;
+        }
+        
+        #placeholder #catPage .catBodySec {
+            display: -ms-grid;
+            display: grid;
+            -webkit-column-gap: 40px;
+            column-gap: 40px;
+            -ms-grid-columns: 299px 1fr;
+            grid-template-columns: 299px 1fr;
+        }
+        
+        #placeholder #catPage .catBodySec .filterPart {
+            background-color: #22222208;
+        }
+        
+        #placeholder #catPage .catBodySec .filterPart .eachFiltCont {
+            padding: 37px 15px 0 30px;
+        }
+        
+        #placeholder #catPage .catBodySec .filterPart .eachFiltCont .filtTitle {
+            height: 21px;
+            margin-bottom: 10px;
+            width: 35%;
+            background: #22222259;
+        }
+        
+        #placeholder #catPage .catBodySec .filterPart .eachFiltCont .filterOpt {
+            height: 15px;
+            width: 75%;
+            background: #22222227;
+            margin-bottom: 14px;
+        }
+        
+        #placeholder #catPage .catBodySec .prodCont .sortPart {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        #placeholder #catPage .catBodySec .prodCont .sortPart div {
+            height: 20px;
+            width: 25%;
+            background: #22222225;
+        }
+        
+        #placeholder #catPage .catBodySec .prodCont .prodGrid {
+            display: -ms-grid;
+            display: grid;
+            -ms-grid-columns: (minmax(250px, 1fr))[auto-fill];
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        #placeholder #catPage .catBodySec .prodCont .prodGrid div {
+            border-radius: 10px;
+            height: 360px;
+            background: #2222221a;
+        }
+        
+        @media (max-width: 956px) {
+            #placeholder #catPage .catBodySec {
+                -ms-grid-columns: 1fr;
+                grid-template-columns: 1fr;
+            }
+            #placeholder #catPage .catBodySec .prodCont .prodGrid {
+                -ms-grid-columns: (minmax(250px, 1fr))[auto-fill];
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 15px;
+            }
+            #placeholder #catPage .catBodySec .filterPart {
+                display: none;
+            }
+        }
+        /*# sourceMappingURL=gencss.css.map */
+    </style>
+</head>
+
+<body>
+    <div id="placeholder">
+        <div class="headPart">
+            <div class="preloadCont">
+                <div class="topPart">
+                    <div class="logoCont">
+                        <img src="data:image/png;base64,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"
+                            alt="">
+                    </div>
+                    <div class="d-flex flex-grow-1 justify-content-end align-items-center">
+                        <div class="circleCountry">
+                            <span></span>
+                            <i class="icons icon-arrow-down"></i>
+                        </div>
+                        <div class="searchCont">
+                            <span>All</span>
+                            <i class="icons icon-arrow-down"></i>
+                            <span>I am shopping for</span>
+                            <i class="icons icon-magnifier"></i>
+                        </div>
+                        <div class="eachIconTxt">
+                            <div class="icon">
+                                <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g opacity="0.8">
+                                        <path
+                                            d="M15 14.25C16.2361 14.25 17.4445 13.8834 18.4723 13.1967C19.5001 12.5099 20.3012 11.5338 20.7742 10.3918C21.2473 9.24974 21.3711 7.99307 21.1299 6.78069C20.8888 5.56831 20.2935 4.45466 19.4194 3.58059C18.5453 2.70651 17.4317 2.11125 16.2193 1.87009C15.0069 1.62894 13.7503 1.75271 12.6082 2.22576C11.4662 2.6988 10.4901 3.49988 9.80331 4.52769C9.11656 5.5555 8.75 6.76387 8.75 8C8.75198 9.657 9.4111 11.2456 10.5828 12.4172C11.7544 13.5889 13.343 14.248 15 14.25ZM15 4.25C15.7417 4.25 16.4667 4.46994 17.0834 4.88199C17.7001 5.29405 18.1807 5.87972 18.4645 6.56494C18.7484 7.25016 18.8226 8.00416 18.6779 8.73159C18.5333 9.45902 18.1761 10.1272 17.6517 10.6517C17.1272 11.1761 16.459 11.5333 15.7316 11.6779C15.0042 11.8226 14.2502 11.7484 13.5649 11.4646C12.8797 11.1807 12.294 10.7001 11.882 10.0834C11.4699 9.46671 11.25 8.74168 11.25 8C11.25 7.00544 11.6451 6.05161 12.3483 5.34835C13.0516 4.64509 14.0054 4.25 15 4.25ZM5 29.25H25C25.3315 29.25 25.6495 29.1183 25.8839 28.8839C26.1183 28.6495 26.25 28.3315 26.25 28C26.25 25.0163 25.0647 22.1548 22.955 20.0451C20.8452 17.9353 17.9837 16.75 15 16.75C12.0163 16.75 9.15483 17.9353 7.04505 20.0451C4.93526 22.1548 3.75 25.0163 3.75 28C3.75 28.3315 3.8817 28.6495 4.11612 28.8839C4.35054 29.1183 4.66848 29.25 5 29.25ZM15 19.25C17.1035 19.2526 19.1358 20.0117 20.7259 21.3886C22.3161 22.7656 23.3579 24.6685 23.6613 26.75H6.33875C6.64207 24.6685 7.68392 22.7656 9.27406 21.3886C10.8642 20.0117 12.8965 19.2526 15 19.25Z"
+                                            fill="#222222" />
+                                    </g>
+                                </svg>
+                            </div>
+                            <div class="txtCont">
+                                <h4>Account</h4>
+                                <span>Login/Signup</span>
+                            </div>
+                            <i class="icons icon-arrow-down"></i>
+                        </div>
+                        <div class="eachIconTxt">
+                            <div class="icon">
+                                <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g opacity="0.8">
+                                        <path
+                                            d="M3.75 4.25H6.25V21.75C6.25 22.0815 6.3817 22.3995 6.61612 22.6339C6.85054 22.8683 7.16848 23 7.5 23H22.5C22.7689 23 23.0307 22.9133 23.2464 22.7528C23.4621 22.5922 23.6203 22.3664 23.6975 22.1088L27.4475 9.60875C27.5034 9.42211 27.5149 9.22499 27.4811 9.03311C27.4473 8.84123 27.3691 8.65991 27.2528 8.50362C27.1365 8.34733 26.9852 8.2204 26.8111 8.13296C26.637 8.04552 26.4448 7.99999 26.25 8H8.75V3C8.75 2.66848 8.6183 2.35054 8.38388 2.11612C8.14946 1.8817 7.83152 1.75 7.5 1.75H3.75C3.41848 1.75 3.10054 1.8817 2.86612 2.11612C2.6317 2.35054 2.5 2.66848 2.5 3C2.5 3.33152 2.6317 3.64946 2.86612 3.88388C3.10054 4.1183 3.41848 4.25 3.75 4.25ZM8.75 10.5H24.57L21.57 20.5H8.75V10.5ZM8.125 24.25C8.49584 24.25 8.85835 24.36 9.16669 24.566C9.47504 24.772 9.71536 25.0649 9.85727 25.4075C9.99919 25.7501 10.0363 26.1271 9.96397 26.4908C9.89163 26.8545 9.71305 27.1886 9.45083 27.4508C9.1886 27.713 8.85451 27.8916 8.49079 27.964C8.12708 28.0363 7.75008 27.9992 7.40747 27.8573C7.06486 27.7154 6.77202 27.475 6.56599 27.1667C6.35997 26.8584 6.25 26.4958 6.25 26.125C6.25 25.6277 6.44754 25.1508 6.79917 24.7992C7.15081 24.4475 7.62772 24.25 8.125 24.25ZM20.625 24.25C20.9958 24.25 21.3584 24.36 21.6667 24.566C21.975 24.772 22.2154 25.0649 22.3573 25.4075C22.4992 25.7501 22.5363 26.1271 22.464 26.4908C22.3916 26.8545 22.213 27.1886 21.9508 27.4508C21.6886 27.713 21.3545 27.8916 20.9908 27.964C20.6271 28.0363 20.2501 27.9992 19.9075 27.8573C19.5649 27.7154 19.272 27.475 19.066 27.1667C18.86 26.8584 18.75 26.4958 18.75 26.125C18.75 25.6277 18.9475 25.1508 19.2992 24.7992C19.6508 24.4475 20.1277 24.25 20.625 24.25Z"
+                                            fill="#222222" />
+                                    </g>
+                                </svg>
+                            </div>
+                            <div class="txtCont">
+                                <h4>Cart</h4>
+                                <span>0 Items</span>
+                            </div>
+                            <i class="icons icon-arrow-down"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="mobileBotton">
+                    <div class="searchCont">
+                        <span>I am shopping for</span>
+                        <i class="icons icon-magnifier"></i>
+                    </div>
+                </div>
+                <div class="bottomPart flex-wrap" id="bottomHead">
+                    <div class="d-flex">
+                        <div class="dropdownBtn">
+                            <div class="toggle">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <span>Shop By Category</span>
+                        </div>
+                        <div class="eachLink">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path opacity="0.8"
+                                    d="M7.49299 22.862C7.69031 22.9781 7.92149 23.0229 8.1479 22.9891C8.37431 22.9552 8.58226 22.8447 8.73699 22.676L19.737 10.676C19.8682 10.533 19.955 10.3548 19.9867 10.1633C20.0184 9.97177 19.9936 9.77516 19.9155 9.59746C19.8374 9.41976 19.7092 9.26865 19.5466 9.16256C19.384 9.05647 19.1941 8.99998 19 9H13.133L13.992 2.124C14.019 1.90423 13.9724 1.6817 13.8593 1.49132C13.7463 1.30093 13.5732 1.15344 13.3673 1.072C13.1614 0.990551 12.9343 0.979748 12.7216 1.04128C12.5089 1.10281 12.3226 1.2332 12.192 1.412L4.19199 12.412C4.08358 12.5611 4.01851 12.7373 4.00397 12.9211C3.98943 13.1049 4.02598 13.2892 4.10959 13.4535C4.1932 13.6178 4.32062 13.7558 4.47775 13.8523C4.63488 13.9487 4.81562 13.9998 4.99999 14H9.61199L7.05199 21.684C6.97956 21.9012 6.98382 22.1366 7.06409 22.351C7.14435 22.5654 7.29575 22.7458 7.49299 22.862ZM6.96399 12L11.526 5.727L11.008 9.876C10.9904 10.0167 11.0029 10.1595 11.0448 10.2949C11.0866 10.4304 11.1567 10.5554 11.2505 10.6617C11.3443 10.768 11.4597 10.8531 11.5889 10.9115C11.7181 10.9698 11.8582 11 12 11H16.727L10.432 17.867L11.948 13.316C11.998 13.1657 12.0117 13.0058 11.9878 12.8492C11.9639 12.6926 11.9032 12.544 11.8106 12.4155C11.7181 12.287 11.5963 12.1823 11.4554 12.1101C11.3144 12.0379 11.1584 12.0001 11 12H6.96399Z"
+                                    fill="#222222" />
+                            </svg> Today Deals
+                        </div>
+                    </div>
+                    <div class="d-flex eachLinkCont justify-content-between">
+                        <div class="eachLink">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path opacity="0.8"
+                                    d="M20.16 5.00001C19.1 3.93722 17.6948 3.28855 16.1983 3.17118C14.7019 3.05381 13.2128 3.47548 12 4.36001C10.7277 3.41365 9.14399 2.98452 7.56792 3.15905C5.99185 3.33358 4.54044 4.09879 3.50597 5.3006C2.47151 6.5024 1.93082 8.05153 1.9928 9.63603C2.05478 11.2205 2.71482 12.7227 3.84 13.84L10.05 20.06C10.57 20.5718 11.2704 20.8586 12 20.8586C12.7296 20.8586 13.43 20.5718 13.95 20.06L20.16 13.84C21.3276 12.6653 21.9829 11.0763 21.9829 9.42001C21.9829 7.76374 21.3276 6.17475 20.16 5.00001ZM18.75 12.46L12.54 18.67C12.4693 18.7414 12.3852 18.798 12.2925 18.8367C12.1999 18.8753 12.1004 18.8952 12 18.8952C11.8996 18.8952 11.8001 18.8753 11.7075 18.8367C11.6148 18.798 11.5307 18.7414 11.46 18.67L5.25 12.43C4.46576 11.6284 4.02661 10.5515 4.02661 9.43001C4.02661 8.30855 4.46576 7.23167 5.25 6.43001C6.04916 5.641 7.12697 5.19858 8.25 5.19858C9.37303 5.19858 10.4508 5.641 11.25 6.43001C11.343 6.52374 11.4536 6.59814 11.5754 6.6489C11.6973 6.69967 11.828 6.72581 11.96 6.72581C12.092 6.72581 12.2227 6.69967 12.3446 6.6489C12.4664 6.59814 12.577 6.52374 12.67 6.43001C13.4692 5.641 14.547 5.19858 15.67 5.19858C16.793 5.19858 17.8708 5.641 18.67 6.43001C19.465 7.22116 19.9186 8.2922 19.9335 9.4137C19.9485 10.5352 19.5236 11.6179 18.75 12.43V12.46Z"
+                                    fill="#222222" />
+                            </svg><span>Wish List</span>
+                        </div>
+                        <div class="eachLink">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path opacity="0.8"
+                                    d="M17 3.3C13.1 1.1 8.3 1.8 5.1 4.8V3C5.1 2.4 4.7 2 4.1 2C3.5 2 3.1 2.4 3.1 3V7.5C3.1 8.1 3.5 8.5 4.1 8.5H8.6C9.2 8.5 9.6 8.1 9.6 7.5C9.6 6.9 9.2 6.5 8.6 6.5H6.2C7.7 4.9 9.8 4 12 4C16.4 4 20 7.6 20 12C20 16.4 16.4 20 12 20C7.6 20 4 16.4 4 12C4 11.4 3.6 11 3 11C2.4 11 2 11.4 2 12C2 17.5 6.5 22 12 22C15.6 22 18.9 20.1 20.7 17C23.4 12.2 21.8 6.1 17 3.3ZM12 8C11.4 8 11 8.4 11 9V12C11 12.6 11.4 13 12 13H14C14.6 13 15 12.6 15 12C15 11.4 14.6 11 14 11H13V9C13 8.4 12.6 8 12 8Z"
+                                    fill="#222222" />
+                            </svg><span>Recently Viewed Items</span>
+                        </div>
+                        <div class="eachLink">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path opacity="0.8"
+                                    d="M22 7.82001C22.0048 7.75677 22.0048 7.69325 22 7.63001L20 2.63001C19.9219 2.43237 19.7828 2.26475 19.603 2.15147C19.4232 2.03819 19.212 1.98514 19 2.00001H5C4.79972 1.99982 4.604 2.05977 4.43818 2.17209C4.27237 2.28442 4.1441 2.44395 4.07 2.63001L2.07 7.63001C2.06518 7.69325 2.06518 7.75677 2.07 7.82001C2.03677 7.87568 2.01311 7.93652 2 8.00001C2.01113 8.69125 2.20123 9.36781 2.55174 9.96369C2.90226 10.5596 3.40124 11.0544 4 11.4V21C4 21.2652 4.10536 21.5196 4.29289 21.7071C4.48043 21.8947 4.73478 22 5 22H19C19.2652 22 19.5196 21.8947 19.7071 21.7071C19.8946 21.5196 20 21.2652 20 21V11.44C20.6046 11.091 21.1072 10.5898 21.4581 9.98635C21.809 9.38287 21.9958 8.69807 22 8.00001C22.0094 7.94038 22.0094 7.87965 22 7.82001ZM13 20H11V16H13V20ZM18 20H15V15C15 14.7348 14.8946 14.4804 14.7071 14.2929C14.5196 14.1054 14.2652 14 14 14H10C9.73478 14 9.48043 14.1054 9.29289 14.2929C9.10536 14.4804 9 14.7348 9 15V20H6V12C6.56947 11.9968 7.13169 11.872 7.64905 11.634C8.16642 11.3961 8.627 11.0503 9 10.62C9.37537 11.0456 9.83701 11.3865 10.3542 11.62C10.8715 11.8535 11.4325 11.9743 12 11.9743C12.5675 11.9743 13.1285 11.8535 13.6458 11.62C14.163 11.3865 14.6246 11.0456 15 10.62C15.373 11.0503 15.8336 11.3961 16.3509 11.634C16.8683 11.872 17.4305 11.9968 18 12V20ZM18 10C17.4696 10 16.9609 9.7893 16.5858 9.41423C16.2107 9.03915 16 8.53045 16 8.00001C16 7.7348 15.8946 7.48044 15.7071 7.29291C15.5196 7.10537 15.2652 7.00001 15 7.00001C14.7348 7.00001 14.4804 7.10537 14.2929 7.29291C14.1054 7.48044 14 7.7348 14 8.00001C14 8.53045 13.7893 9.03915 13.4142 9.41423C13.0391 9.7893 12.5304 10 12 10C11.4696 10 10.9609 9.7893 10.5858 9.41423C10.2107 9.03915 10 8.53045 10 8.00001C10 7.7348 9.89464 7.48044 9.70711 7.29291C9.51957 7.10537 9.26522 7.00001 9 7.00001C8.73478 7.00001 8.48043 7.10537 8.29289 7.29291C8.10536 7.48044 8 7.7348 8 8.00001C8.00985 8.26266 7.96787 8.52467 7.87646 8.77109C7.78505 9.01751 7.646 9.24351 7.46725 9.43619C7.28849 9.62887 7.07354 9.78446 6.83466 9.89407C6.59578 10.0037 6.33764 10.0652 6.075 10.075C5.54457 10.0949 5.02796 9.90327 4.63882 9.54226C4.44614 9.36351 4.29055 9.14855 4.18094 8.90967C4.07133 8.67079 4.00985 8.41266 4 8.15001L5.68 4.00001H18.32L20 8.15001C19.9621 8.65403 19.7348 9.125 19.3637 9.46822C18.9927 9.81143 18.5054 10.0014 18 10Z"
+                                    fill="#222222" />
+                            </svg><span>Sell on Azany</span>
+                            <i class="icons icon-arrow-down"></i>
+                        </div>
+                        <div class="eachLink">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path opacity="0.8"
+                                    d="M9.29 13.29C9.247 13.3375 9.20693 13.3876 9.17 13.44C9.13216 13.4957 9.10189 13.5563 9.08 13.62C9.05117 13.6767 9.03095 13.7374 9.02001 13.8C9.0151 13.8666 9.0151 13.9334 9.02001 14C9.01663 14.1312 9.04402 14.2613 9.10001 14.38C9.14492 14.5041 9.21657 14.6168 9.30989 14.7101C9.40321 14.8034 9.51591 14.8751 9.64001 14.92C9.75971 14.9729 9.88913 15.0002 10.02 15.0002C10.1509 15.0002 10.2803 14.9729 10.4 14.92C10.5241 14.8751 10.6368 14.8034 10.7301 14.7101C10.8234 14.6168 10.8951 14.5041 10.94 14.38C10.9844 14.2584 11.0048 14.1294 11 14C11.0008 13.8684 10.9755 13.7379 10.9258 13.6161C10.876 13.4943 10.8027 13.3834 10.71 13.29C10.617 13.1963 10.5064 13.1219 10.3846 13.0711C10.2627 13.0203 10.132 12.9942 10 12.9942C9.86799 12.9942 9.73729 13.0203 9.61543 13.0711C9.49357 13.1219 9.38297 13.1963 9.29 13.29ZM10 0C8.02219 0 6.08879 0.58649 4.4443 1.6853C2.79981 2.78412 1.51809 4.3459 0.761209 6.17317C0.00433284 8.00043 -0.193701 10.0111 0.192152 11.9509C0.578004 13.8907 1.53041 15.6725 2.92894 17.0711C4.32746 18.4696 6.10929 19.422 8.0491 19.8079C9.98891 20.1937 11.9996 19.9957 13.8268 19.2388C15.6541 18.4819 17.2159 17.2002 18.3147 15.5557C19.4135 13.9112 20 11.9778 20 10C20 8.68678 19.7413 7.38642 19.2388 6.17317C18.7363 4.95991 17.9997 3.85752 17.0711 2.92893C16.1425 2.00035 15.0401 1.26375 13.8268 0.761205C12.6136 0.258658 11.3132 0 10 0ZM10 18C8.41775 18 6.87104 17.5308 5.55544 16.6518C4.23985 15.7727 3.21447 14.5233 2.60897 13.0615C2.00347 11.5997 1.84504 9.99113 2.15372 8.43928C2.4624 6.88743 3.22433 5.46197 4.34315 4.34315C5.46197 3.22433 6.88743 2.4624 8.43928 2.15372C9.99113 1.84504 11.5997 2.00346 13.0615 2.60896C14.5233 3.21447 15.7727 4.23984 16.6518 5.55544C17.5308 6.87103 18 8.41775 18 10C18 12.1217 17.1572 14.1566 15.6569 15.6569C14.1566 17.1571 12.1217 18 10 18ZM10 5C9.47307 4.99966 8.95534 5.13812 8.49891 5.40144C8.04249 5.66476 7.66347 6.04366 7.4 6.5C7.32765 6.61382 7.27907 6.7411 7.25718 6.87418C7.23529 7.00726 7.24055 7.14339 7.27263 7.27439C7.30472 7.40538 7.36297 7.52854 7.44389 7.63643C7.52481 7.74433 7.62671 7.83475 7.74348 7.90224C7.86024 7.96974 7.98945 8.01292 8.12334 8.02918C8.25722 8.04544 8.39301 8.03445 8.52254 7.99688C8.65207 7.9593 8.77266 7.89591 8.87705 7.81052C8.98145 7.72513 9.06749 7.6195 9.13 7.5C9.21811 7.3474 9.34497 7.22078 9.49775 7.13298C9.65053 7.04518 9.82379 6.9993 10 7C10.2652 7 10.5196 7.10536 10.7071 7.29289C10.8946 7.48043 11 7.73478 11 8C11 8.26522 10.8946 8.51957 10.7071 8.70711C10.5196 8.89464 10.2652 9 10 9C9.73479 9 9.48043 9.10536 9.2929 9.29289C9.10536 9.48043 9 9.73478 9 10V11C9 11.2652 9.10536 11.5196 9.2929 11.7071C9.48043 11.8946 9.73479 12 10 12C10.2652 12 10.5196 11.8946 10.7071 11.7071C10.8946 11.5196 11 11.2652 11 11V10.82C11.6614 10.58 12.2174 10.1152 12.5708 9.50687C12.9242 8.89851 13.0525 8.18529 12.9334 7.49189C12.8143 6.79849 12.4552 6.16902 11.919 5.71352C11.3828 5.25801 10.7035 5.00546 10 5Z"
+                                    fill="#222222" />
+                            </svg><span>Help & Support</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bodyPart">
+            <div class="preloadCont">
+                <div id="homePage">
+                    <div class="gridCont">
+                        <div class="carouselSect"></div>
+                        <div class="twoImgGrid">
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="catPage">
+                    <div class="catTitleSec">
+                        <div class="catTitle"></div>
+                        <div class="catDesc"></div>
+                    </div>
+                    <div class="catBodySec">
+                        <div class="filterPart">
+                            <div class="eachFiltCont">
+                                <div class="filtTitle"></div>
+                                <div class="filterOpt"></div>
+                                <div class="filterOpt"></div>
+                                <div class="filterOpt"></div>
+                                <div class="filterOpt"></div>
+                                <div class="filterOpt"></div>
+                                <div class="filterOpt"></div>
+                            </div>
+                            <div class="eachFiltCont">
+                                <div class="filtTitle"></div>
+                                <div class="filterOpt"></div>
+                                <div class="filterOpt"></div>
+                                <div class="filterOpt"></div>
+                                <div class="filterOpt"></div>
+                                <div class="filterOpt"></div>
+                            </div>
+                        </div>
+                        <div class="prodCont">
+                            <div class="sortPart">
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div class="prodGrid">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-root>
+        <!-- <div class="loading-indicator-wrapper">
+            <div class="loading-indicator">
+                <div class="lds-dual-ring"></div>
+            </div>
+            <div class="loadingText">
+                <h3>Loading...</h3>
+            </div>
+        </div> -->
+    </app-root>
+    <script>
+        const bottomHead = document.querySelector('#bottomHead');
+        const homePage = document.querySelector('#homePage');
+        const catPage = document.querySelector('#catPage');
+        console.log(location.href, location.href.split('/'));
+        if (!location.href.includes('recommended') && !location.href.includes('recently-viewed') && !location.href.includes('deals') && !location.href.includes('category')) {
+            if (location.href.split('/').filter(each => each).length > 2) {
+                if (location.href.split('/').filter(url => url).slice(-1)[0] != 'recent') {
+                    bottomHead.style.display = 'none';
+                } else {
+                    catPage.style.display = 'block';
+                }
+            }
+        } else {
+            catPage.style.display = 'block';
+        }
+        if (location.href.split('/').filter(url => url).length == 2) {
+            homePage.style.display = 'block';
+        }
+        window.onload = () => {
+            document.querySelector('#placeholder').style.display = "none";
+        }
+    </script>
+</body>
+
+</html>

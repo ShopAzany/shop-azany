@@ -1,0 +1,95 @@
+<footer>
+    <div class="watermark position-absolute">
+        <img src="assets/images/watermark.png" alt="">
+    </div>
+    <div class="widthControl">
+        <div class="topPart">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="azanyInfo">
+                        <a routerLink="/" class="logo">
+                            <img src="assets/images/footer-logo.png" alt="">
+                        </a>
+                        <p>
+                            {{settings?.site_description}}
+                        </p>
+                        <div class="socialCont">
+                            <a *ngFor="let link of settings?.social_link" href="{{link?.link}}" class="eachSocial">
+                                <i class="{{link?.icon}}"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="gridCont">
+                        <div class="gridItem">
+                            <div class="eachLinkGrid">
+                                <h4>Account</h4>
+                                <ul>
+                                    <li><a routerLink="/login">Login/Sign Up</a></li>
+                                    <li><a routerLink="/seller">Sell on Azany</a></li>
+                                    <li><a routerLink="/pages/refund-policy">Refund Policy</a></li>
+                                    <li><a routerLink="/deals">Deals and Promos</a></li>
+                                    <li><a routerLink="/customer-service">Help & Support</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="gridItem">
+                            <div class="eachLinkGrid">
+                                <h4>Quick Links</h4>
+                                <ul>
+                                    <li><a routerLink="/faq">FAQ</a></li>
+                                    <li><a routerLink="/about">About Us</a></li>
+                                    <li><a routerLink="/pages/privacy-policy">Privacy Policy</a></li>
+                                    <li><a routerLink="/pages/seller-privacy-policy">Merchant's Privacy Policy</a></li>
+                                    <li><a routerLink="/pages/terms-and-conditions">Terms and Conditions</a></li>
+                                    <li><a routerLink="/pages/seller-terms-and-conditions">Merchant's Terms and
+                                            Conditions</a></li>
+                                    <li><a routerLink="/careers">Careers</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="gridItem">
+                            <div class="eachLinkGrid reachUs">
+                                <h4>Reach us</h4>
+                                <ul>
+                                    <li>
+                                        <a href="mailto:{{settings?.site_email}}">
+                                            <span class="iconCont"><i class="fa fa-envelope"></i></span>
+                                            <span>{{settings?.site_email}}</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="tel:{{settings?.biz_phone}}">
+                                            <span class="iconCont"><i class="fa fa-phone"></i></span>
+                                            <span>{{settings?.biz_phone}}</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)">
+                                            <span class="iconCont"><i class="fa fa-map-marker"></i></span>
+                                            <span>
+                                                {{settings?.biz_addr}}, {{settings?.biz_city}}, {{settings?.biz_state}},
+                                                {{settings?.biz_country}}
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyrightCont">
+            <div>All Rights Reserved <span class="d-none">Designed by <a
+                        href="https://creativeweb.com.ng">Creativeweb</a></span></div>
+            <div class="otherLinks">
+                <a routerLink="/pages/terms-and-conditions">Terms & Condition</a>
+                <a routerLink="/pages/privacy-policy">Privacy Policy</a>
+                <a routerLink="/">Sitemap</a>
+                <a routerLink="/pages/disclaimer">Disclaimer</a>
+            </div>
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,22 @@
+.accHead {
+    padding: 24px;
+    font-weight: 500;
+}
+
+.accHead:not(.cusCollapsed) {
+    .fa-minus {
+        display: block;
+    }
+    .fa-plus {
+        display: none;
+    }
+}
+
+.accHead.cusCollapsed {
+    .fa-minus {
+        display: none;
+    }
+    .fa-plus {
+        display: block;
+    }
+}

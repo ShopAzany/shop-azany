@@ -1,0 +1,44 @@
+@import '../../../../themes/colors.scss';
+.addCartSuccess {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    padding: 5px 15px;
+    background: #007e00f6;
+    border-radius: 5px;
+    transition: 0.5s ease;
+    opacity: 0;
+    z-index: -1;
+    width: 100%;
+    color: #fff;
+    margin-bottom: 10px;
+    span:not(.cancel) {
+        flex-grow: 1;
+        max-width: calc(100% - 13.73px - 15px);
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: block;
+        text-align: center;
+    }
+    .cancel {
+        margin-left: 15px;
+        cursor: pointer;
+    }
+    .viewCart {
+        font-weight: 600;
+        margin: 0 15px;
+        color: #fff;
+        font-size: 12px;
+        padding: 5px 15px;
+        border-radius: 5px;
+        border: 1px solid #fff;
+        white-space: nowrap;
+        text-decoration: none !important;
+    }
+}
+
+.addCartSuccess.cusShow {
+    opacity: 1;
+    z-index: 90000;
+}

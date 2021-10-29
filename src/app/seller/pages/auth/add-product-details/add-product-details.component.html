@@ -1,0 +1,192 @@
+<app-header></app-header>
+
+<div id="seller">
+    <div class="page-wrapper" style="padding: 50px 0px;">
+        <div class="container-fluid">
+            <div class="productContainer">
+                <app-product-nav-bar activeLink="productDetails" [title]="lastRoute == 'edit' ? 'Edit Product Listing' : 'Create Product Listing'">
+                </app-product-nav-bar>
+                <div class="form-section">
+                    <h5 class="mb-5 mt-5"><span *ngIf="lastRoute == 'edit'">Edit</span> Product Details</h5>
+                    <form [formGroup]="form" (ngSubmit)="submit()">
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select class="custom-select form-control" [class.error]="theCat?.touched && theCat?.invalid" (change)="catChange('category')" formControlName="theCat">
+                                <option hidden value="" label="--- Select Category ---"></option>
+                                <option *ngFor="let category of categories" value="{{category.cat_slug}}">
+                                    {{category.cat_name}}</option>
+                            </select>
+                            <div *ngIf="theCat?.touched && theCat?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
+                        </div>
+
+                        <div class="form-group mt-4">
+                            <label>Sub Category</label>
+                            <select class="custom-select form-control" (change)="catChange('subcategory')" formControlName="theSubCat">
+                                <option hidden value="" label="--- Select Sub Category ---"></option>
+                                <option *ngFor="let subcategory of realSubCategories"
+                                    value="{{subcategory.subcat_slug}}">{{subcategory?.subcat_name}}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group mt-4">
+                            <label>Sub Category Child</label>
+                            <select class="custom-select form-control" (change)="catChange('subsubcategory')" formControlName="theSubCatChild">
+                                <option hidden value="" label="--- Select Sub Category Child ---"></option>
+                                <option *ngFor="let subchildcategory of realSubChildCategories"
+                                    value="{{subchildcategory.sub_subcat_slug}}">
+                                    {{subchildcategory?.sub_subcat_name}}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group mt-4">
+                            <label>Title</label>
+                            <input type="text" formControlName="title" class="form-control" [class.error]="title?.touched && title?.invalid" placeholder="Enter the product name/title">
+                            <div *ngIf="title?.touched && title?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
+                        </div>
+
+                        <div class="form-group mt-4">
+                            <label>Subtitle</label>
+                            <input type="text" formControlName="sub_title" placeholder="Optional" class="form-control">
+                        </div>
+
+                        <div class="form-group mt-4">
+                            <label>Condition</label>
+                            <select class="custom-select form-control" [class.error]="pro_condition?.touched && pro_condition?.invalid" formControlName="pro_condition">
+                                <option hidden value="" label="--- Select Sub Category Child ---"></option>
+                                <option value="New">New</option>
+                                <option value="Used">Used</option>
+                                <option value="Refurbish">Refurbish</option>
+                            </select>
+                            <div *ngIf="pro_condition?.touched && pro_condition?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
+                        </div>
+
+                        <div class="form-group photoParent">
+                            <label for="">Add Photos</label>
+                            <input type="file" (change)="selectImage($event)" accept=".png, .jpeg, .jpg" name="" id="image" hidden>
+                            <div class="pictureGridCont">
+                                <label for="image" class="addPic">
+                                    <div class="cusPlus">
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                    <div class="txt">Add Photos</div>
+                                </label>
+                                <div class="selImagesCont">
+                                    <div *ngFor="let img of selImages; let i = index" class="imgCont">
+                                        <div *ngIf="!uploadingProgress || i != selImages.length - 1" class="actionsCont">
+                                            <div class="defaultCont">
+                                                <span *ngIf="featured_img.value == img" class="setDefault">Default</span>
+                                                <span *ngIf="featured_img.value != img" class="setDefault" (click)="setPrimary(img)">Set as Default</span>
+                                                <span *ngIf="featured_img.value != img" class="remove" (click)="remove(i)">Remove</span>
+                                            </div>
+                                            <div class="view" (click)="displayImage(img)"><i class="icons icon-magnifier"></i></div>
+                                        </div>
+                                        <div *ngIf="uploadingProgress && i == selImages.length - 1" class="uploading">
+                                            <div class="text">{{uploadingProgress}}%</div>
+                                        </div>
+                                        <img [src]="img" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="warning d-flex">
+                                <svg [class.fileErr]="fileMaxError || unsupportedFormat" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM11 7V9H13V7H11ZM11 11V17H13V11H11ZM4 12C4 16.41 7.59 20 12 20C16.41 20 20 16.41 20 12C20 7.59 16.41 4 12 4C7.59 4 4 7.59 4 12Z"
+                                        fill="black" fill-opacity="0.54" />
+                                </svg>
+                                <div class="txt">
+                                    <div [class.fileErr]="fileMaxError">Each Image must be less than 2MB.</div>
+                                    <div [class.fileErr]="unsupportedFormat">Supported formats are .jpg and .png</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="specification mt-5">
+                            <h5>Specification of Item</h5>
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-6">
+                                    <div class="form-group">
+                                        <label>Brand</label>
+                                        <input class="form-control" formControlName="brand" placeholder="Enter product brand">
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-6 col-lg-6 col-md-6">
+                                    <div class="form-group">
+                                        <label>Size Type</label>
+                                        <input type="text" class="form-control" placeholder="Optional" formControlName="size">
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-6 col-lg-6 col-md-6">
+                                    <div class="form-group">
+                                        <label>Material</label>
+                                        <input type="text" class="form-control" placeholder="Optional" formControlName="material">
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-6 col-lg-6 col-md-6">
+                                    <div class="form-group">
+                                        <label>Country of Manufacture</label>
+                                        <select class="form-control custom-select" formControlName="manufacture_country" [class.error]="manufacture_country?.touched && manufacture_country?.invalid">
+                                            <option value="" disabled>--Select Country--</option>
+                                            <option *ngFor="let country of countries" value="{{country.name}}">
+                                                {{country.name}}</option>
+                                        </select>
+                                        <div *ngIf="manufacture_country?.touched && manufacture_country?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field
+                                                is required</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-12 col-lg-12 col-md-12">
+                                    <div formArrayName="features" class="form-group">
+                                        <label>Features</label>
+                                        <div *ngFor="let feat of features.controls; let i = index" class="eachFeature d-flex" [formGroupName]="i">
+                                            <input class="form-control" formControlName="feature" placeholder="Enter each product feature">
+                                            <span *ngIf="i != 0" class="removeBtn" (click)="removeFeature(i)"><i
+                                                    class="fa fa-trash"></i></span>
+                                        </div>
+                                        <span class="addMoreBtn" (click)="addMoreFeatures()">+ Add more features</span>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-12 mt-4">
+                                    <div class="form-group">
+                                        <label class="mb-0">Give Additional Description of the Item</label><br>
+                                        <small class="text-muted mb-5">Buyers may be interested in more
+                                            information
+                                            about the item</small>
+                                        <angular-editor id="editor1" formControlName="description" [config]="editorConfig"></angular-editor>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-5">
+                            <button *ngIf="!isSubmitting" class="vendorPrimaryBtn" [disabled]="!form.valid">Continue</button>
+                            <button *ngIf="isSubmitting" disabled type="button" class="vendorPrimaryBtn"><i
+                                    class="fa fa-spin fa-spinner"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="imgViewer" [class.cusShow]="viewImage">
+    <div class="close" (click)="viewImage = false"></div>
+    <div class="viewImgCont">
+        <span class="closeBtn" (click)="viewImage = false">
+            <svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M0.366515 18.866L8.23277 10.9997L0.366515 3.13349C0.138818 2.89773 0.0128242 2.58198 0.0156723 2.25423C0.0185203 1.92649 0.149982 1.61297 0.381742 1.38121C0.613502 1.14945 0.927018 1.01799 1.25476 1.01514C1.58251 1.01229 1.89826 1.13829 2.13401 1.36599L10.0003 9.23224L17.8665 1.36599C17.9818 1.2466 18.1198 1.15137 18.2723 1.08586C18.4248 1.02035 18.5888 0.985864 18.7548 0.984422C18.9207 0.98298 19.0853 1.01461 19.239 1.07746C19.3926 1.14031 19.5321 1.23313 19.6495 1.35049C19.7669 1.46786 19.8597 1.60742 19.9225 1.76104C19.9854 1.91466 20.017 2.07926 20.0156 2.24524C20.0141 2.41121 19.9797 2.57524 19.9141 2.72774C19.8486 2.88025 19.7534 3.01818 19.634 3.13349L11.7678 10.9997L19.634 18.866C19.7534 18.9813 19.8486 19.1192 19.9141 19.2717C19.9797 19.4242 20.0141 19.5883 20.0156 19.7542C20.017 19.9202 19.9854 20.0848 19.9225 20.2384C19.8597 20.392 19.7669 20.5316 19.6495 20.649C19.5321 20.7663 19.3926 20.8592 19.239 20.922C19.0853 20.9849 18.9207 21.0165 18.7548 21.0151C18.5888 21.0136 18.4248 20.9791 18.2723 20.9136C18.1198 20.8481 17.9818 20.7529 17.8665 20.6335L10.0003 12.7672L2.13401 20.6335C1.89826 20.8612 1.58251 20.9872 1.25476 20.9843C0.927018 20.9815 0.613502 20.85 0.381742 20.6183C0.149982 20.3865 0.0185203 20.073 0.0156723 19.7452C0.0128242 19.4175 0.138818 19.1017 0.366515 18.866Z"
+                    fill="#E21E2D" />
+            </svg>
+        </span>
+        <img [src]="selectedImg" alt="">
+    </div>
+</div>
+
+<app-footer></app-footer>

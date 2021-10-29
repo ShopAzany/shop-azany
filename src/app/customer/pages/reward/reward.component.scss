@@ -1,0 +1,135 @@
+@import '../../../../themes/user-style.scss';
+
+.reward-box{
+    position: absolute;
+    width: 561px;
+    height: 300px;
+    left: 0px;
+    background: url(../../../../assets/images/seller/rewardpic.png);
+    mix-blend-mode: darken;
+    opacity: none;
+    border-radius: 20px;
+    text-align: center;
+}
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+.intro {
+    position: static;
+    width: 138px;
+    height: 21px;
+    left: 49.5px;
+    top: 0px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    /* identical to box height */
+    color: #222222;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 10px 55px;
+    justify-self: center;
+}
+.reward-point-bg{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 40px;
+    position: static;
+    width: 237px;
+    height: 126px;
+    left: 0px;
+    top: 31px;
+    /* #624B8D */
+    background: #624B8D;
+    box-shadow: 3px 3px 5px rgba(98, 75, 141, 0.3);
+    border-radius: 30px;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 10px 0px;
+}
+.reward-point-text{
+    position: static;
+    width: 157px;
+    height: 96px;
+    left: 0px;
+    top: 0px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 64px;
+    line-height: 96px;
+    /* identical to box height */
+    letter-spacing: 0.1em;
+    color: #FFFFFF;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 5px;
+}
+.level{
+    position: static;
+    width: 90px;
+    height: 36px;
+    left: 73.5px;
+    top: 167px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 36px;
+    /* identical to box height */
+    /* #9C3987 */
+    color: #9C3987;
+    opacity: 0.8;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+    margin: 10px 75px;
+}
+.how-to-earn-box{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 30px;
+    position: absolute;
+    width: 426px;
+    height: 300px;
+    /* #624B8D */
+    background: #624B8D;
+    border-radius: 20px;
+}
+.heading{
+    position: static;
+    width: 366px;
+    height: 21px;
+    left: 30px;
+    top: 30px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 21px;
+    /* identical to box height */
+    color: #FFAED2;
+    opacity: 0.8;
+
+    /* Inside Auto Layout */
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 0;
+    margin: 10px 0px;
+}

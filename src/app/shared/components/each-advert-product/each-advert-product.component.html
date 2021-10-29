@@ -1,0 +1,33 @@
+<div class="eachProd advertProd">
+    <div class="imgCont">
+        <a routerLink="/product/{{product?.pid}}/{{slug}}">
+            <img class="w-100" src="{{treatedImgUrl}}" alt="{{product?.name}}">
+        </a>
+        <!-- <img class="w-100" src="assets/images/c1.png " alt=" "> -->
+        <a href="javascript:void(0)" [class.isFav]="product?.isFavorite" (click)="updateFav()" class="favBtn">
+            <svg *ngIf="!(updatingFav?.pid == product?.pid && updatingFav?.status)" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M25.625 5.76113C24.9407 4.93312 24.0812 4.2672 23.1086 3.81134C22.1359 3.35548 21.0742 3.12103 20 3.12488C18.1621 3.06923 16.3727 3.72012 15 4.94363C13.6274 3.72012 11.838 3.06923 10 3.12488C8.92583 3.12103 7.86416 3.35548 6.89149 3.81134C5.91881 4.2672 5.05935 4.93312 4.37502 5.76113C3.18377 7.20613 1.93752 9.82238 2.76377 14.0861C4.08252 20.8949 13.9713 26.4824 14.3888 26.7111C14.5749 26.8149 14.7844 26.8694 14.9975 26.8694C15.2106 26.8694 15.4202 26.8149 15.6063 26.7111C16.0263 26.4774 25.915 20.8899 27.2313 14.0861C28.0625 9.82238 26.8163 7.20613 25.625 5.76113ZM24.7825 13.6111C23.85 18.4249 17.0725 22.9024 15 24.1749C12.08 22.4124 6.07252 17.9874 5.22377 13.6111C4.58252 10.3036 5.46002 8.38238 6.31002 7.35238C6.75953 6.81002 7.3235 6.37386 7.96147 6.07519C8.59944 5.77652 9.2956 5.62274 10 5.62488C10.7524 5.56845 11.5065 5.70795 12.1889 6.02976C12.8713 6.35157 13.4587 6.84472 13.8938 7.46113C14.0011 7.65855 14.1593 7.82358 14.3521 7.93902C14.5448 8.05447 14.765 8.11611 14.9897 8.11751C15.2144 8.11892 15.4353 8.06004 15.6295 7.94701C15.8237 7.83398 15.984 7.67094 16.0938 7.47488C16.528 6.85367 17.1166 6.35635 17.8016 6.03194C18.4866 5.70753 19.2443 5.56723 20 5.62488C20.7059 5.62144 21.4038 5.7746 22.0434 6.07331C22.683 6.37203 23.2483 6.80887 23.6988 7.35238C24.5463 8.38238 25.4238 10.3036 24.7825 13.6111Z"
+                    fill="#222222" />
+            </svg>
+            <i *ngIf="(updatingFav?.pid == product?.pid && updatingFav?.status)" class="fa fa-spinner fa-spin"></i>
+        </a>
+    </div>
+    <h4 class="itemName"><a routerLink="/product/{{product?.pid}}/{{slug}}">{{product?.name}}</a></h4>
+    <div class="priceCont">
+        <h5 class="salePrice"><span class="curr" [innerHTML]="currency | safeHtml"></span>{{salePrice[0]}}<span class="decimal">.{{salePrice[1]}}</span>
+        </h5>
+        <div *ngIf="regularPrice" class="percRegPrice">
+            <span class="regPrice"><span class="curr" [innerHTML]="currency | safeHtml"></span>{{regularPrice | number : '1.2-2'}}
+            </span>
+            <span class="perc">{{perc | number : '1.0-0'}}% Off</span>
+        </div>
+        <!-- <h5 class="salePrice">
+            ₦279,448<span class="decimal">.69</span>
+        </h5>
+        <div class="percRegPrice">
+            <span class="regPrice">₦279,448.69</span>
+            <span class="perc">20% Off</span>
+        </div> -->
+    </div>
+</div>

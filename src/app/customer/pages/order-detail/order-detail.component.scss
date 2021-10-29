@@ -1,0 +1,87 @@
+@import '../orders/orders.component.scss';
+.trackBtnCont {
+    max-width: 200px;
+    min-width: 200px;
+    width: 200px;
+}
+
+.order-img-wrap {
+    background: none !important;
+    img {
+        height: unset !important;
+    }
+}
+
+.trackDiv {
+    margin-top: 20px;
+}
+
+.fadeOrderInfo {
+    opacity: 0.5;
+    font-size: 14px;
+}
+
+.cancel-order-btn {
+    background: $primary;
+    padding: 10px 20px;
+    color: #fff;
+    margin-top: 20px;
+}
+
+.modalContent {
+    max-width: 320px;
+    padding: 15px;
+}
+
+.sure-cancel {
+    font-weight: 550;
+    font-size: 14px;
+}
+
+.addToCartLink {
+    max-width: unset !important;
+}
+
+.isCancel {
+    .head {
+        opacity: 0.2;
+    }
+    .text {
+        opacity: 0.2;
+    }
+    .dave {
+        opacity: 0.2;
+    }
+    .authName {
+        opacity: 0.2;
+    }
+}
+
+.price {
+    margin-top: 16px;
+}
+
+.order-cont-wrap {
+    padding: 0 20px;
+    margin-left: 0 !important;
+}
+
+// @media (max-width: )
+.cancelOrder {
+    margin-top: 30px;
+    .addToCartLink {
+        max-width: 300px !important;
+        width: 100%;
+    }
+}
+
+@media (max-width: 493px) {
+    .trackBtnCont {
+        min-width: unset;
+        width: 100%;
+        max-width: unset;
+    }
+    .order-cont-wrap {
+        padding: 0;
+    }
+}

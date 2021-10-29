@@ -1,0 +1,16 @@
+<section class="featuresSection">
+    <div class="widthControl">
+        <div class="gridCont">
+            <div *ngFor="let feat of features; let i = index" class="gridItem">
+                <div class="eachFeature">
+                    <div class="iconCont" [innerHTML]="feat?.svg | safeHtml"></div>
+                    <h4>{{feat?.title}}</h4>
+                    <p [class.more]="more?.i == i && more?.status">{{feat?.content}}
+                        <a *ngIf="feat?.content?.length > 61 && !(more?.i == i && more?.status)" href="javascript:void(0)" (click)="toggleMore(i)">...Read More</a>
+                        <a *ngIf="feat?.content?.length > 61 && (more?.i == i && more?.status)" href="javascript:void(0)" (click)="toggleMore(i)">Read Less</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

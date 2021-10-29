@@ -1,0 +1,315 @@
+<div id="cartSuccessCont" [class.cusShow]="addCartProdName">
+    <app-add-cart-success [addCartProdName]="addCartProdName"></app-add-cart-success>
+</div>
+<app-header [secondNav]="true"></app-header>
+<app-product-list-heading>
+    <h2 *ngIf="!searchObj">{{headObj.heading}}</h2>
+    <h2 *ngIf="searchObj" class="search">Search Results For <span>“{{searchObj.keyword}}”</span></h2>
+    <p>{{headObj?.subheading}}</p>
+</app-product-list-heading>
+<div id="productListing" #productListingPar>
+    <div class="bodyContainer">
+        <div class="prodListingFlex">
+            <div *ngIf="!localProds" class="sideFilterPar">
+                <app-filter-sidebar>
+                    <div *ngIf="!mainCat" class="dealCategory">
+                        <h5>Category</h5>
+                        <div class="d-flex categoryContain">
+                            <div *ngFor="let cat of categories; let i = index" class="categoryItems">
+                                <input type="checkbox" id="product{{i}}" (change)="selectFilter($event.target)" name="category" value="category|category|{{cat?.mainCats.cat_slug}}" hidden />
+                                <label for="product{{i}}">
+                                    <div class="cutomCheckbox">
+                                        <i class="fa fa-check"></i>
+                                    </div>
+                                    <span>{{cat?.mainCats?.cat_name}}</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="mainCat" class="dealCategory">
+                        <h5>Category</h5>
+                        <div *ngIf="subCats" class="d-flex categoryContain">
+                            <a routerLink="/category/{{mainCat}}/{{subcat?.Subcategory?.subcat_slug}}" *ngFor="let subcat of subCats; let i = index" class="categoryItems">
+                                {{subcat?.Subcategory?.subcat_name}}
+                            </a>
+                        </div>
+                        <div *ngIf="subSubCats" class="d-flex categoryContain">
+                            <a routerLinkActive="catActive" [routerLinkActiveOptions]="{exact: true}" routerLink="/category/{{mainCat}}/{{subCat}}/{{subsubcat?.sub_subcat_slug}}" *ngFor="let subsubcat of subSubCats; let i = index" class="categoryItems">
+                                {{subsubcat?.sub_subcat_name}}
+                            </a>
+                        </div>
+                    </div>
+                    <div *ngFor="let vari of categoryVariations; let i = index" class="dealCategory">
+                        <div>
+                            <h5>{{vari?.name}}</h5>
+                            <div class="d-flex categoryContain">
+                                <div *ngFor="let value of vari?.values; let j = index" class="categoryItems">
+                                    <input type="checkbox" id="vari_{{i}}_{{j}}" (change)="selectFilter($event.target)" name="{{vari?.slug}}" value="{{vari?.name}}|{{vari?.slug}}|{{urlValue(value)}}" hidden />
+                                    <label for="vari_{{i}}_{{j}}">
+                                        <div class="cutomCheckbox">
+                                            <i class="fa fa-check"></i>
+                                        </div>
+                                        <span>{{value.trim()}}</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="dealCategory">
+                        <h5>Deal Type</h5>
+                        <div class="d-flex categoryContain">
+                            <div class="dealItems">
+                                <div>
+                                    <a href="#">
+                                        <span>Savings & Sales</span>
+                                    </a>
+                                </div>
+                                <div>
+                                    <a href="#">
+                                        <span>Deal of the Day</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div> -->
+                    <div class="dealCategory">
+                        <h5>Price</h5>
+                        <div class="d-flex categoryContain">
+                            <div class="categoryItems">
+                                <input type="radio" id="price1" (change)="selectFilter($event.target)" name="price" value="price|price|0-5000" hidden />
+                                <label for="price1">
+                                    <div class="cutomRadio"><i class="fa fa-circle"></i></div>
+                                    <span>Below ₦5,000</span>
+                                </label>
+                            </div>
+                            <div class="categoryItems">
+                                <input type="radio" id="price2" name="price" (change)="selectFilter($event.target)" value="price|price|5000-20000" hidden />
+                                <label for="price2">
+                                    <div class="cutomRadio"><i class="fa fa-circle"></i></div>
+                                    <span>₦5,000 to ₦20,000</span>
+                                </label>
+                            </div>
+                            <div class="categoryItems">
+                                <input type="radio" id="price3" name="price" (change)="selectFilter($event.target)" value="price|price|20000-100000" hidden />
+                                <label for="price3">
+                                    <div class="cutomRadio"><i class="fa fa-circle"></i></div>
+                                    <span>₦20,000 to ₦100,000</span>
+                                </label>
+                            </div>
+                            <div class="categoryItems">
+                                <input type="radio" id="price4" name="price" (change)="selectFilter($event.target)" value="price|price|100000+" hidden />
+                                <label for="price4">
+                                    <div class="cutomRadio"><i class="fa fa-circle"></i></div>
+                                    <span>Above ₦100,000</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dealCategory">
+                        <h5>Discount</h5>
+                        <div class="d-flex categoryContain">
+                            <div class="categoryItems">
+                                <input type="radio" id="discount1" name="discount" (change)="selectFilter($event.target)" value="discount|discount|10-100" hidden />
+                                <label for="discount1">
+                                    <div class="cutomRadio"><i class="fa fa-circle"></i></div>
+                                    <span>10% Off or More</span>
+                                </label>
+                            </div>
+                            <div class="categoryItems">
+                                <input type="radio" id="discount2" name="discount" (change)="selectFilter($event.target)" value="discount|discount|25-100" hidden />
+                                <label for="discount2">
+                                    <div class="cutomRadio"><i class="fa fa-circle"></i></div>
+                                    <span>25% Off or More</span>
+                                </label>
+                            </div>
+                            <div class="categoryItems">
+                                <input type="radio" id="discount3" name="discount" (change)="selectFilter($event.target)" value="discount|discount|30-100" hidden />
+                                <label for="discount3">
+                                    <div class="cutomRadio"><i class="fa fa-circle"></i></div>
+                                    <span>30% Off or More</span>
+                                </label>
+                            </div>
+                            <div class="categoryItems">
+                                <input type="radio" id="discount4" name="discount" (change)="selectFilter($event.target)" value="discount|discount|50-100" hidden />
+                                <label for="discount4">
+                                    <div class="cutomRadio"><i class="fa fa-circle"></i></div>
+                                    <span>50% Off or More</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dealCategory">
+                        <h5>Product Rating</h5>
+                        <div class="d-flex categoryContain">
+                            <div class="categoryItems">
+                                <input type="radio" id="review1" name="review" (change)="selectFilter($event.target)" value="rating|rating|4-5" hidden />
+                                <label for="review1">
+                                    <div class="cutomRadio"><i class="fa fa-circle"></i></div>
+                                    <div class="d-flex ratingsCount">
+                                        <svg width="120" height="24" viewBox="0 0 120 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M21.5 9.757L16.222 14.111L17.871 21.5L12 17.278L6.129 21.5L7.778 14.111L2.5 9.757L8.833 8.833L12 2.5L15.167 8.833L21.5 9.757Z"
+                                                fill="#FEB700" />
+                                            <path
+                                                d="M45.5 9.757L40.222 14.111L41.871 21.5L36 17.278L30.129 21.5L31.778 14.111L26.5 9.757L32.833 8.833L36 2.5L39.167 8.833L45.5 9.757Z"
+                                                fill="#FEB700" />
+                                            <path
+                                                d="M69.5 9.757L64.222 14.111L65.871 21.5L60 17.278L54.129 21.5L55.778 14.111L50.5 9.757L56.833 8.833L60 2.5L63.167 8.833L69.5 9.757Z"
+                                                fill="#FEB700" />
+                                            <path
+                                                d="M93.5 9.757L88.222 14.111L89.871 21.5L84 17.278L78.129 21.5L79.778 14.111L74.5 9.757L80.833 8.833L84 2.5L87.167 8.833L93.5 9.757Z"
+                                                fill="#FEB700" />
+                                            <path
+                                                d="M117.5 9.757L112.222 14.111L113.871 21.5L108 17.278L102.129 21.5L103.778 14.111L98.5 9.757L104.833 8.833L108 2.5L111.167 8.833L117.5 9.757Z"
+                                                fill="#BBBBBB" />
+                                        </svg>
+                                        <span>& above</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="categoryItems">
+                                <input type="radio" id="review2" name="review" (change)="selectFilter($event.target)" value="rating|rating|3-5" hidden />
+                                <label for="review2">
+                                    <div class="cutomRadio"><i class="fa fa-circle"></i></div>
+                                    <div class="d-flex ratingsCount">
+                                        <svg width="120" height="24" viewBox="0 0 120 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M21.5 9.757L16.222 14.111L17.871 21.5L12 17.278L6.129 21.5L7.778 14.111L2.5 9.757L8.833 8.833L12 2.5L15.167 8.833L21.5 9.757Z"
+                                                fill="#FEB700" />
+                                            <path
+                                                d="M45.5 9.757L40.222 14.111L41.871 21.5L36 17.278L30.129 21.5L31.778 14.111L26.5 9.757L32.833 8.833L36 2.5L39.167 8.833L45.5 9.757Z"
+                                                fill="#FEB700" />
+                                            <path
+                                                d="M69.5 9.757L64.222 14.111L65.871 21.5L60 17.278L54.129 21.5L55.778 14.111L50.5 9.757L56.833 8.833L60 2.5L63.167 8.833L69.5 9.757Z"
+                                                fill="#FEB700" />
+                                            <path
+                                                d="M93.5 9.757L88.222 14.111L89.871 21.5L84 17.278L78.129 21.5L79.778 14.111L74.5 9.757L80.833 8.833L84 2.5L87.167 8.833L93.5 9.757Z"
+                                                fill="#BBBBBB" />
+                                            <path
+                                                d="M117.5 9.757L112.222 14.111L113.871 21.5L108 17.278L102.129 21.5L103.778 14.111L98.5 9.757L104.833 8.833L108 2.5L111.167 8.833L117.5 9.757Z"
+                                                fill="#BBBBBB" />
+                                        </svg>
+                                        <span>& above</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="categoryItems">
+                                <input type="radio" id="review3" name="review" (change)="selectFilter($event.target)" value="rating|rating|2-5" hidden />
+                                <label for="review3">
+                                    <div class="cutomRadio"><i class="fa fa-circle"></i></div>
+                                    <div class="d-flex ratingsCount">
+                                        <svg width="120" height="24" viewBox="0 0 120 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M21.5 9.757L16.222 14.111L17.871 21.5L12 17.278L6.129 21.5L7.778 14.111L2.5 9.757L8.833 8.833L12 2.5L15.167 8.833L21.5 9.757Z"
+                                                fill="#FEB700" />
+                                            <path
+                                                d="M45.5 9.757L40.222 14.111L41.871 21.5L36 17.278L30.129 21.5L31.778 14.111L26.5 9.757L32.833 8.833L36 2.5L39.167 8.833L45.5 9.757Z"
+                                                fill="#FEB700" />
+                                            <path
+                                                d="M69.5 9.757L64.222 14.111L65.871 21.5L60 17.278L54.129 21.5L55.778 14.111L50.5 9.757L56.833 8.833L60 2.5L63.167 8.833L69.5 9.757Z"
+                                                fill="#BBBBBB" />
+                                            <path
+                                                d="M93.5 9.757L88.222 14.111L89.871 21.5L84 17.278L78.129 21.5L79.778 14.111L74.5 9.757L80.833 8.833L84 2.5L87.167 8.833L93.5 9.757Z"
+                                                fill="#BBBBBB" />
+                                            <path
+                                                d="M117.5 9.757L112.222 14.111L113.871 21.5L108 17.278L102.129 21.5L103.778 14.111L98.5 9.757L104.833 8.833L108 2.5L111.167 8.833L117.5 9.757Z"
+                                                fill="#BBBBBB" />
+                                        </svg>
+                                        <span>& above</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="categoryItems">
+                                <input type="radio" id="review4" name="review" (change)="selectFilter($event.target)" value="rating|rating|1-5" hidden />
+                                <label for="review4">
+                                    <div class="cutomRadio"><i class="fa fa-circle"></i></div>
+                                    <div class="d-flex ratingsCount">
+                                        <svg width="120" height="24" viewBox="0 0 120 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M21.5 9.757L16.222 14.111L17.871 21.5L12 17.278L6.129 21.5L7.778 14.111L2.5 9.757L8.833 8.833L12 2.5L15.167 8.833L21.5 9.757Z"
+                                                fill="#FEB700" />
+                                            <path
+                                                d="M45.5 9.757L40.222 14.111L41.871 21.5L36 17.278L30.129 21.5L31.778 14.111L26.5 9.757L32.833 8.833L36 2.5L39.167 8.833L45.5 9.757Z"
+                                                fill="#BBBBBB" />
+                                            <path
+                                                d="M69.5 9.757L64.222 14.111L65.871 21.5L60 17.278L54.129 21.5L55.778 14.111L50.5 9.757L56.833 8.833L60 2.5L63.167 8.833L69.5 9.757Z"
+                                                fill="#BBBBBB" />
+                                            <path
+                                                d="M93.5 9.757L88.222 14.111L89.871 21.5L84 17.278L78.129 21.5L79.778 14.111L74.5 9.757L80.833 8.833L84 2.5L87.167 8.833L93.5 9.757Z"
+                                                fill="#BBBBBB" />
+                                            <path
+                                                d="M117.5 9.757L112.222 14.111L113.871 21.5L108 17.278L102.129 21.5L103.778 14.111L98.5 9.757L104.833 8.833L108 2.5L111.167 8.833L117.5 9.757Z"
+                                                fill="#BBBBBB" />
+                                        </svg>
+                                        <span>& above</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </app-filter-sidebar>
+            </div>
+            <div class="prodListMainCont" #gridCont>
+                <div *ngIf="isLoading || products?.length">
+                    <div *ngIf="eachFilters.length > 0" class="filtersCont">
+                        <div class="selFilter d-flex flex-wrap">
+                            <div *ngFor="let filter of eachFilters; let i = index;" class="eachFilter">
+                                <span class="cancel" (click)="removeFilter(filter)">&times;</span>
+                                <span class="filterTxt" innerHTML="{{filter.txt}}"></span>
+                            </div>
+                        </div>
+                        <span class="clearQuery" (click)="clearQuery()">Clear All</span>
+                    </div>
+                    <div class="sortCountCont d-flex align-items-center justify-content-between">
+                        <div class="count">Showing {{prodStart}}-{{prodEnd}} of {{prodCount}} Results</div>
+                        <div *ngIf="!localProds" class="sortCont d-flex align-items-center">
+                            <b>Sort By: </b>
+                            <div class="cusDropdown">
+                                <div appDropdown class="clickable">
+                                    <span>{{sortFilter.txt}}</span>
+                                    <i class="fa fa-angle-down"></i>
+                                </div>
+                                <div class="dropped">
+                                    <div class="dropItem" (click)="applySort('popularity', $event)">Popularity</div>
+                                    <div class="dropItem" (click)="applySort('newest', $event)">Newest Arrival</div>
+                                    <div class="dropItem" (click)="applySort('lowtohigh', $event)">Price - Low to High
+                                    </div>
+                                    <div class="dropItem" (click)="applySort('hightolow', $event)">Price - High to Low
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="!isLoading" class="gridCont">
+                        <div *ngFor="let prod of products" class="gridItem">
+                            <app-each-product [product]="prod" [currency]="currency" (favEv)="updateFav($event)" [addingCart]="addingCart" (addCartEv)="addToCart($event)" [updatingFav]="updatingFav">
+                            </app-each-product>
+                        </div>
+                    </div>
+                    <div *ngIf="isLoading" class="gridCont">
+                        <div *ngFor="let prod of [1,1,1,1,1,1,1,1,1]" class="gridItem">
+                            <app-product-loader></app-product-loader>
+                        </div>
+                    </div>
+                    <div *ngIf="prodCount > limit" class="paginationCont">
+                        <a *ngFor="let pageLink of paginationLinks" href="javascript:void(0)" class="{{pageLink.linkStatus}}" (click)="page == pageLink.num ? null : setCurrPage(pageLink.num, gridCont)"><i
+                                *ngIf="isNaN(pageLink?.text) && pageLink?.text != 'Next'" class="fa fa-angle-left"></i>
+                            {{
+                            pageLink.text }} <i *ngIf="pageLink?.text != 'Prev' && isNaN(pageLink?.text)"
+                                class="fa fa-angle-right"></i></a>
+                    </div>
+                </div>
+                <app-empty-page *ngIf="!isLoading && !products?.length" [emptyInfo]="{title: 'No products found in this category', otherInfo: 'Select another category or go back to the home page for other products.'}">
+                </app-empty-page>
+            </div>
+        </div>
+    </div>
+</div>
+<app-features></app-features>
+<app-subscribe></app-subscribe>
+<app-footer></app-footer>

@@ -1,0 +1,90 @@
+<app-header></app-header>
+<div id="loginPage" class="authPageCont">
+    <div class="leftSection">
+        <h1>Continue your
+            <span>Shopping</span>
+        </h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Diam convallis volutpat in turpis. Placerat fringilla felis, nisl, praesent imperdiet </p>
+        <div class="userImgsCont d-flex align-items-center">
+            <img src="assets/images/user.png" alt="">
+            <img src="assets/images/user2.png" alt="">
+            <img src="assets/images/user3.png" alt="">
+            <img src="assets/images/user4.png" alt="">
+        </div>
+        <div>Join the 10k+ people who shop with us </div>
+    </div>
+    <div class="rightSection">
+        <form [formGroup]="form" (ngSubmit)="submit()">
+            <h2>Login</h2>
+            <div class="gridCont">
+
+                <div #errorEL>
+                    <div *ngIf="authErrorMssg" class="alert alert-danger alert-dismissible fade show">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button> {{authErrorMssg}}
+                    </div>
+                </div>
+
+
+                <div class="formGroup">
+                    <label for="name">Email Address</label>
+                    <input type="text" [class.error]="user?.touched && user?.invalid" class="form-control" placeholder="Enter Email Address" formControlName="user">
+                    <div *ngIf="user?.touched && user?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
+                </div>
+                <div class="formGroup">
+                    <label for="name">Password</label>
+                    <div class="inputCont">
+                        <input type="password" [class.error]="password?.touched && password?.invalid" class="form-control" placeholder="Enter your password" formControlName="password">
+                        <i appPassToggle class="fa fa-eye-slash passToggle"></i>
+                    </div>
+                    <div *ngIf="password?.touched && password?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span>
+                    </div>
+                </div>
+            </div>
+            <div class="text-right"><a routerLink="/forgot-password">Forgot Password?</a></div>
+            <div class="btnTxtCont">
+                <button *ngIf="!isSubmitting" [disabled]='form.invalid' type="submit" class="submitBtn">Login</button>
+                <button *ngIf="isSubmitting" type="submit" class="submitBtn"><i class="fa fa-spin fa-spinner mr-2"></i>
+                    Login in</button>
+                <div class="orCont">
+                    <span>OR</span>
+                </div>
+                <div class="socialLogin">
+                    <!-- <a class="facebook" href="#">
+                        <i class="fa fa-facebook"></i>
+                        <span>Login with Facebook</span>
+                    </a> -->
+                    <!-- <a class="google" href="#">
+                        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0)">
+                                <path
+                                    d="M5.26599 10.265C5.73387 8.84945 6.63685 7.61781 7.84611 6.7458C9.05536 5.87378 10.5091 5.40594 12 5.409C13.69 5.409 15.218 6.009 16.418 6.991L19.91 3.5C17.782 1.645 15.055 0.5 12 0.5C7.26999 0.5 3.19799 3.198 1.23999 7.15L5.26599 10.265Z"
+                                    fill="#EA4335" />
+                                <path
+                                    d="M16.0401 18.5131C14.9501 19.2161 13.5661 19.5911 12.0001 19.5911C10.5151 19.5941 9.06686 19.13 7.8603 18.2644C6.65373 17.3988 5.75 16.1757 5.27706 14.7681L1.23706 17.8351C2.22831 19.8414 3.76233 21.5295 5.66488 22.7076C7.56744 23.8858 9.76227 24.5068 12.0001 24.5001C14.9331 24.5001 17.7351 23.4571 19.8341 21.5001L16.0411 18.5131H16.0401Z"
+                                    fill="#34A853" />
+                                <path
+                                    d="M19.834 21.5001C22.029 19.4521 23.454 16.4041 23.454 12.5001C23.454 11.7901 23.345 11.0271 23.182 10.3181H12V14.9551H18.436C18.119 16.5141 17.266 17.7211 16.041 18.5131L19.834 21.5001Z"
+                                    fill="#4A90E2" />
+                                <path
+                                    d="M5.27712 14.7679C5.03247 14.0368 4.90819 13.2708 4.90912 12.4999C4.90912 11.7179 5.03412 10.9669 5.26612 10.2649L1.24012 7.1499C0.416494 8.81259 -0.00807994 10.6444 0.000116455 12.4999C0.000116455 14.4199 0.445116 16.2299 1.23712 17.8349L5.27712 14.7679Z"
+                                    fill="#FBBC05" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0">
+                                    <rect width="24" height="24" fill="white" transform="translate(0 0.5)" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        <span>Login with Google</span>
+                    </a> -->
+                    <app-fb-login (sellerLogoutEv)="logoutSeller()"></app-fb-login>
+                    <app-google-login (sellerLogoutEv)="logoutSeller()"></app-google-login>
+                </div>
+                <div class="altAuth">
+                    <span>Don't have an account?</span>
+                    <a routerLink="/register">CREATE ACCOUNT</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

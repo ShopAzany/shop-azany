@@ -1,0 +1,68 @@
+<app-header></app-header>
+
+<div id="authPage">
+    <app-sidebar></app-sidebar>
+
+    <main>
+        <app-add-cart-success [addCartProdName]="addCartProdName"></app-add-cart-success>
+        <section class="headSection">
+            <h1 class="pageTitle">Your Wish List</h1>
+        </section>
+        <section class="bodyPart">
+            <div *ngIf="message" class="alertWrap">
+                <p class="text-center mb-0 text-white"><i class="fa fa-times-circle mr-3 pointer" (click)="removeMessage()"></i> Product Successfully Removed</p>
+            </div>
+
+            <div *ngIf="!isLoading">
+
+                <div *ngIf="wishCounts > 0" class="itemsQty my-3 font-weight-bold mt-5">
+                    {{wishCounts}} item (s)
+                </div>
+                <div *ngIf="wishCounts > 0">
+                    <button class="d-none" #modalOpener [openModal]="removeModal"></button>
+                    <app-auth-each-product *ngFor="let wish of wishLists" (addCartEv)="addToCart($event)" (delEv)="removeItem($event, modalOpener)" [addingCart]="addingCart" [wishlist]="true" owner="user" [currency]="currencyObj?.symbol" [product]="wish">
+                    </app-auth-each-product>
+                    <button *ngIf="wishCounts > 0 && !isLoadingMore" (click)="wishCounts <= wishLists.length ? null : loadMore()" [disabled]="wishCounts <= wishLists.length" class="addToCartLink loadMore">Load more</button>
+                    <button *ngIf="isLoadingMore" disabled class="addToCartLink loadMore"><i
+                            class="fa fa-spin fa-spinner"></i>
+                        Loading...</button>
+                </div>
+
+                <app-empty-page *ngIf="!wishCounts" [emptyInfo]="{title: 'You haven’t saved an item yet!', otherInfo: 'Found something you liike? Tap on the heart icon next to the item
+                to add it to your wish list. All saved items will be available here.'}"></app-empty-page>
+            </div>
+
+            <app-loading *ngIf="isLoading"></app-loading>
+        </section>
+    </main>
+
+
+
+    <app-modal #removeModal [closeModal]="closeModal">
+        <div class="modalContent">
+            <div class="modalHead">
+                <h4 class="modalTitle">Remove Product</h4>
+                <span class="closeBtn">
+                    <svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M0.366515 18.866L8.23277 10.9997L0.366515 3.13349C0.138818 2.89773 0.0128242 2.58198 0.0156723 2.25423C0.0185203 1.92649 0.149982 1.61297 0.381742 1.38121C0.613502 1.14945 0.927018 1.01799 1.25476 1.01514C1.58251 1.01229 1.89826 1.13829 2.13401 1.36599L10.0003 9.23224L17.8665 1.36599C17.9818 1.2466 18.1198 1.15137 18.2723 1.08586C18.4248 1.02035 18.5888 0.985864 18.7548 0.984422C18.9207 0.98298 19.0853 1.01461 19.239 1.07746C19.3926 1.14031 19.5321 1.23313 19.6495 1.35049C19.7669 1.46786 19.8597 1.60742 19.9225 1.76104C19.9854 1.91466 20.017 2.07926 20.0156 2.24524C20.0141 2.41121 19.9797 2.57524 19.9141 2.72774C19.8486 2.88025 19.7534 3.01818 19.634 3.13349L11.7678 10.9997L19.634 18.866C19.7534 18.9813 19.8486 19.1192 19.9141 19.2717C19.9797 19.4242 20.0141 19.5883 20.0156 19.7542C20.017 19.9202 19.9854 20.0848 19.9225 20.2384C19.8597 20.392 19.7669 20.5316 19.6495 20.649C19.5321 20.7663 19.3926 20.8592 19.239 20.922C19.0853 20.9849 18.9207 21.0165 18.7548 21.0151C18.5888 21.0136 18.4248 20.9791 18.2723 20.9136C18.1198 20.8481 17.9818 20.7529 17.8665 20.6335L10.0003 12.7672L2.13401 20.6335C1.89826 20.8612 1.58251 20.9872 1.25476 20.9843C0.927018 20.9815 0.613502 20.85 0.381742 20.6183C0.149982 20.3865 0.0185203 20.073 0.0156723 19.7452C0.0128242 19.4175 0.138818 19.1017 0.366515 18.866Z"
+                            fill="#E21E2D" />
+                    </svg>
+                </span>
+            </div>
+            <div class="modalBody">
+                <p class="text-center sure-cancel">Are you sure you want to remove this product?</p>
+
+                <div class="mt-5">
+                    <button *ngIf="!isRemoving" class="addToCartLink w-100 mb-3" (click)="removeWishNow()">Remove
+                        Product</button>
+                    <button *ngIf="isRemoving" class="addToCartLink w-100 mb-3" disabled><i
+                            class="fa fa-spin fa-spinner"></i></button>
+                    <button class="addtoCartLinkOutline w-100" (click)="closeModalWish()">No I'll Keep It</button>
+                </div>
+            </div>
+            <div class="modalFooter"></div>
+        </div>
+    </app-modal>
+
+</div>

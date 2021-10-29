@@ -1,0 +1,170 @@
+@import '../../../../themes/colors.scss';
+.eachProd {
+    padding: 15px;
+    height: 100%;
+    border-radius: 10px;
+    background: $lightBg;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    color: #222222;
+    .imgCont {
+        width: 100%;
+        border-radius: 10px;
+        overflow: hidden;
+        background: #fff;
+        position: relative;
+        a:not(.favBtn) {
+            display: block;
+            width: 100%;
+            height: fit-content;
+        }
+        img {
+            width: 100%;
+        }
+        .favBtn {
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
+        }
+    }
+    .txtDetails {
+        flex-grow: 1;
+    }
+    .itemName {
+        max-height: 54px;
+        font-size: 18px;
+        margin: 0;
+        overflow: hidden;
+        margin-top: 15px;
+        font-weight: normal;
+        line-height: 27px;
+        a {
+            color: #222;
+            text-decoration: none !important;
+        }
+        a:hover {
+            color: $primary;
+        }
+    }
+    .ratingReviewCont {
+        margin: 16.5px 0;
+        .starRatingCont {
+            display: flex;
+            i {
+                color: #FEB700;
+                font-size: 20px;
+                margin-right: 3px;
+            }
+            i.norating {
+                color: #bbbbbb;
+            }
+        }
+        .reviewTxt {
+            margin: 0;
+            font-size: 14px;
+            line-height: 21px;
+            color: #808080;
+        }
+    }
+    // .priceCont {
+    //     // height: calc(41px + 2px + 27px);
+    // }
+    .heightPreserve {
+        height: 51.8px;
+    }
+    .otherInfo {
+        padding: 16px 0 15px;
+        line-height: 21px;
+        margin: 0;
+        font-size: 14px;
+        color: $variantCol1;
+    }
+    .addtoCartBtn {
+        display: flex;
+        background: $primary;
+        color: #fff;
+        width: 100%;
+        border-radius: 7px;
+        .dropdownCont {
+            width: 54px;
+            border-left: 1px solid #fff;
+            .dropdownToggle {
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+            }
+            .dropped {
+                position: absolute;
+                display: none;
+            }
+        }
+    }
+}
+
+@media (max-width: 581px) {
+    .eachProd {
+        padding: 10px;
+        .itemName {
+            max-height: 42px;
+            font-size: 14px;
+            overflow: hidden;
+            margin-top: 10px;
+            line-height: 21px;
+        }
+        .favBtn {
+            height: 30px;
+            width: 30px;
+            svg {
+                width: 20px;
+                height: 20px;
+            }
+        }
+        .ratingReviewCont {
+            margin: 10px 0;
+            svg {
+                height: 20px;
+                width: 100px;
+            }
+            .reviewTxt {
+                font-size: 10px;
+                line-height: 15px;
+            }
+        }
+        .salePrice {
+            font-size: 20px;
+            line-height: 30px;
+            margin-bottom: 1px;
+        }
+        .regPrice {
+            font-size: 12px;
+            line-height: 18px;
+        }
+        .perc {
+            padding: 4px;
+            line-height: 12px;
+            font-size: 10px;
+        }
+        .heightPreserve {
+            height: 48.6px;
+        }
+        .otherInfo {
+            font-size: 12px;
+            line-height: 18px;
+        }
+        .addtoCartBtn {
+            border-radius: 7px;
+            overflow: hidden;
+            .addToCartLink {
+                height: 48px;
+                font-size: 12px;
+                line-height: 18px;
+            }
+            .dropdownCont {
+                display: none;
+            }
+        }
+    }
+}

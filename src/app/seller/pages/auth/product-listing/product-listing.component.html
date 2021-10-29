@@ -1,0 +1,22 @@
+<app-header></app-header>
+<div id="authPage">
+    <app-seller-side-nav owner="productListing"></app-seller-side-nav>
+    <main>
+        <section class="headSection">
+            <h1 class="pageTitle">My Products Listings</h1>
+            <a routerLink="/seller/auth/product-manager/add" class="addToCartLink">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M1 9H9V1C9 0.734784 9.10536 0.48043 9.29289 0.292893C9.48043 0.105357 9.73478 0 10 0C10.2652 0 10.5196 0.105357 10.7071 0.292893C10.8946 0.48043 11 0.734784 11 1V9H19C19.2652 9 19.5196 9.10536 19.7071 9.29289C19.8946 9.48043 20 9.73478 20 10C20 10.2652 19.8946 10.5196 19.7071 10.7071C19.5196 10.8946 19.2652 11 19 11H11V19C11 19.2652 10.8946 19.5196 10.7071 19.7071C10.5196 19.8946 10.2652 20 10 20C9.73478 20 9.48043 19.8946 9.29289 19.7071C9.10536 19.5196 9 19.2652 9 19V11H1C0.734784 11 0.48043 10.8946 0.292893 10.7071C0.105357 10.5196 0 10.2652 0 10C0 9.73478 0.105357 9.48043 0.292893 9.29289C0.48043 9.10536 0.734784 9 1 9Z"
+                        fill="white" />
+                </svg>
+                <span>New Product</span>
+            </a>
+        </section>
+        <section class="bodyPart">
+            <app-loading *ngIf="isLoading"></app-loading>
+            <app-auth-each-product [deleting]="deleting" [currency]="currency" (delEv)="delete($event)" owner="seller" *ngFor="let prod of products" [product]="prod">
+            </app-auth-each-product>
+        </section>
+    </main>
+</div>

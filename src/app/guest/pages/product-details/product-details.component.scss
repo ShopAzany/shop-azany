@@ -1,0 +1,478 @@
+@import '../../../../themes/colors.scss';
+#productDetails {
+    min-height: calc(100vh - 70px);
+}
+
+.shareProduct {
+    margin: 40px 0;
+    color: #000;
+    .shareTitle {
+        margin-bottom: 20px;
+    }
+    a {
+        min-width: 40px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #22222212;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.3s ease;
+        color: #000;
+        text-decoration: none;
+        margin-right: 24px;
+        font-size: 18px;
+    }
+    a:hover {
+        background-color: $primary;
+        color: #fff;
+    }
+}
+
+.margBottom {
+    margin-bottom: 100px;
+}
+
+.rightProdInfoTxt {
+    a {
+        color: $primary;
+    }
+    .prodName {
+        font-size: 20px;
+        line-height: 30px;
+        font-weight: normal;
+        margin-bottom: 23px;
+    }
+    .ratingFavCont {
+        .starRateCont {
+            display: flex;
+            i {
+                color: #FEB700;
+                margin-right: 2px;
+                font-size: 18px;
+            }
+            i.norating {
+                color: #bbbbbb;
+            }
+        }
+        .ratingTxt {
+            margin: 0 22.5px 0 2.5px;
+            font-size: 14px;
+            line-height: 21px;
+            color: #808080;
+        }
+    }
+    .pricePerPar {
+        padding-bottom: 20px;
+        margin-bottom: 40px;
+        border-bottom: 1px solid #2222221a;
+        .salePrice {
+            margin: 0;
+            margin-right: 10px;
+        }
+        // .regPrice {
+        //     margin-left: 10px;
+        // }
+        .perc {
+            margin-left: 8px;
+        }
+        .discountTxt {
+            font-size: 14px;
+            line-height: 21px;
+            margin-top: 16px;
+        }
+    }
+    .eachVariation {
+        margin-bottom: 30px;
+        max-width: 398px;
+    }
+    .variationHead {
+        margin-bottom: 10px;
+        font-size: 16px;
+        line-height: 24px;
+    }
+    .variationBody {
+        display: grid;
+        grid-template-columns: repeat(6, auto);
+        gap: 10px;
+        img {
+            width: 100%;
+        }
+        label {
+            margin: 0;
+            display: block;
+            padding: 15px 15px;
+            font-size: 16px;
+            line-height: 24px;
+            border-radius: 5px;
+            border: 1px solid rgba(34, 34, 34, 0.3);
+            text-align: center;
+            cursor: pointer;
+        }
+        input:checked+label {
+            border-color: $primary;
+            background-color: $primary;
+            color: #fff;
+        }
+    }
+    .variationBody.imgGrid {
+        grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+        label {
+            padding: 0;
+        }
+    }
+    .quantPar {
+        margin-bottom: 30px;
+        .quantHead {
+            margin-bottom: 22px;
+        }
+        .quantCont {
+            margin-right: 12.5px;
+            .minus,
+            .plus {
+                cursor: pointer;
+            }
+            .qntTxt {
+                min-width: calc(22.25px * 2);
+                text-align: center;
+            }
+        }
+        .quantInfo {
+            color: #22222280;
+            font-size: 14px;
+        }
+    }
+    .shippingDeliveryCont {
+        max-width: 335px;
+        .shipPrice {
+            margin-bottom: 5px;
+            a {
+                font-size: 14px;
+            }
+        }
+        .toLocationDelivery {
+            margin-bottom: 40px;
+            .accHead {
+                cursor: pointer;
+                padding-bottom: 5px;
+                span {
+                    font-size: 16px;
+                    // line-height: 24px;
+                }
+                i {
+                    font-size: 11px;
+                    font-weight: bold;
+                }
+            }
+            .accBody {
+                border-bottom: none;
+            }
+            .delivery {
+                color: #22222280;
+                span {
+                    color: #222222;
+                }
+                .deliveryValue {
+                    margin-left: 5px;
+                }
+            }
+        }
+    }
+    .btnCont {
+        display: grid;
+        margin-bottom: 40px;
+        grid-template-columns: repeat(auto-fill, minmax(228px, 228px));
+        gap: 10px;
+        button {
+            border-radius: 7px;
+        }
+        button.disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    }
+    @media (max-width: 520px) {
+        .btnCont {
+            grid-template-columns: repeat(auto-fit, minmax(228px, 1fr));
+        }
+    }
+    .protectionInfo {
+        margin-bottom: 40px;
+        .iconCont {
+            margin-right: 15px;
+        }
+        h5 {
+            margin-bottom: 2px;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 24px;
+        }
+        span {
+            font-size: 14px;
+            line-height: 21px;
+        }
+    }
+    .sellerInfo {
+        border: 1px solid #2222224d;
+        border-radius: 7px;
+        max-width: 414px;
+        .sellerAcc {
+            padding: 20px 20px 14px;
+            border-bottom: 1px solid #2222224d;
+        }
+        .accHead {
+            cursor: pointer;
+            margin-bottom: 2px;
+            h5 {
+                font-size: 16px;
+                line-height: 24px;
+                font-weight: 600;
+            }
+            i {
+                font-size: 12px;
+                font-weight: bold;
+            }
+        }
+        .sellerNameRating {
+            color: #000;
+            margin-bottom: 8px;
+        }
+        .otherInfo {
+            color: #000000;
+            opacity: 0.5;
+            font-size: 14px;
+            .eachInfo:first-child {
+                color: #222222;
+            }
+            .eachInfo {
+                line-height: 21px;
+                .value {
+                    font-weight: 600;
+                    margin-left: 5px;
+                }
+            }
+        }
+        .linkCont {
+            padding: 10px 20px;
+            font-size: 14px;
+            line-height: 21px;
+            border-bottom: 1px dashed #2222224d;
+            display: grid;
+            grid-template-columns: auto;
+            gap: 4px;
+            a {
+                color: $variantCol1;
+            }
+        }
+        .status {
+            line-height: 18px;
+            font-size: 12px;
+            padding: 10px 20px;
+            color: #22222280;
+        }
+    }
+}
+
+.prodInfoItem {
+    border: 1px solid #2222224d;
+    border-radius: 5px;
+    margin-bottom: 40px;
+    .headPart {
+        padding: 20px 30px;
+        border-bottom: 1px solid #2222224d;
+        font-weight: 600;
+        line-height: 30px;
+        font-size: 20px;
+    }
+    .bodyPart {
+        padding: 30px;
+        line-height: 160%;
+        .featureHeading {
+            font-weight: normal;
+            margin-bottom: 10px;
+        }
+        .key {
+            font-weight: 600;
+            margin-right: 5px;
+        }
+    }
+}
+
+.reviewCont {
+    padding: 20px 0px 20px 30px;
+    display: flex;
+    color: #222;
+    .leftPart {
+        width: 276px;
+        h4 {
+            margin-bottom: 30px;
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 30px;
+        }
+        .starRatingCont {
+            border-radius: 7px;
+            margin-bottom: 30px;
+            background-color: #2222220d;
+            width: 188px;
+            height: 189px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            .rateScore {
+                font-size: 27px;
+                line-height: 40px;
+                margin-bottom: 10.5px;
+                .score {
+                    font-weight: 600;
+                }
+            }
+            .starRating {
+                margin-bottom: 8px;
+            }
+            .ratingTxt {
+                font-size: 16px;
+                line-height: 24px;
+            }
+        }
+        .ratingBarItem {
+            display: flex;
+            align-items: center;
+            .ratingBar {
+                position: relative;
+                margin: 0 10px;
+                border-radius: 7px;
+                height: 11px;
+                flex-grow: 1;
+                background: #e7e7e7;
+                .ratingIndic {
+                    width: 10%;
+                    height: 100%;
+                    border-radius: 7px;
+                    background: #FEB700;
+                }
+            }
+        }
+    }
+    .rightPart {
+        flex-grow: 1;
+        .rightReviewsInner {
+            max-width: 810px;
+            margin: auto;
+        }
+        .reviewsHead {
+            margin-bottom: 30px;
+            font-size: 20px;
+            line-height: 30px;
+        }
+        .eachReview {
+            margin-bottom: 50px;
+            .userInfo {
+                margin-bottom: 8px;
+                .userImgCont {
+                    width: 40px;
+                    min-width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    background: #c4c4c4;
+                    margin-right: 16px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    img {
+                        width: 100%;
+                    }
+                }
+            }
+            .ratingRecomStatus {
+                margin-bottom: 20px;
+                b {
+                    margin: 0 10px 0 6.5px;
+                    font-weight: 600;
+                }
+                .status {
+                    padding: 0 11px;
+                    border-left: 2px solid #c4c4c4;
+                    span {
+                        font-size: 12px;
+                        line-height: 160%;
+                        margin-left: 5px;
+                        color: #27AE60;
+                    }
+                }
+            }
+            .reviewTxt {
+                line-height: 160%;
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+            .reviewDate {
+                opacity: 0.5;
+                color: #222;
+            }
+        }
+        .allReviewLinkCont {
+            max-width: 934px;
+            margin-left: auto;
+            padding: 16px 0 80px;
+            border-top: 1px solid #2222224d;
+            a {
+                color: $primary;
+                font-weight: 600;
+                text-decoration: none;
+                i {
+                    font-weight: bold;
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}
+
+.prodGridSection {
+    margin-bottom: 100px;
+    .headSection {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 30px;
+        a {
+            color: $primary;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 27px;
+        }
+        h4 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 36px;
+        }
+    }
+    .gridCont {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+        gap: 33px;
+    }
+    @media (max-width: 620px) {
+        .headSection {
+            a {
+                font-size: 14px;
+                line-height: normal;
+            }
+            h4 {
+                font-size: 16px;
+                line-height: normal;
+            }
+        }
+        .gridCont {
+            grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+            gap: 15px;
+        }
+    }
+}
+
+// }

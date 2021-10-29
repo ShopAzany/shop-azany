@@ -1,0 +1,154 @@
+<app-header></app-header>
+
+
+<div class="page-wrapper bodyContainer">
+    <div *ngIf="lastRoute == 'success'" class="message-wrapper d-flex align-items-center">
+        <span class="flex-grow-1"><i class="fa fa-check-circle-o"></i> Your Product Has Been Created
+            Successfully</span>
+    </div>
+
+    <div class="breadCrum">
+        <span class="text-dark title mr-1">Listed in category: </span>
+        <span class="catItem">Home</span>
+        <span *ngFor="let cat of catList; let i = index" class="catItem"><i>/</i>{{cleanText(cat)}} </span>
+        <span *ngIf="product?.sub_title" class="catItem subTitle"><i>/</i>{{product?.sub_title}}</span>
+    </div>
+
+    <div class="row d-flex justify-content-center">
+        <div class="col-xl-4 col-lg-5 col-md-5 col-sm-8">
+            <div class="prodDetailsImgSection">
+                <div class="imgCont">
+                    <img *ngFor="let img of product?.images; let i = index" src="{{img}}" [class.cusActive]="i == activeImg" width="100%">
+                </div>
+
+                <div class="slideInd">
+                    <app-flex-slider *ngIf="!gettingProd" [slideResizeConfig]="slideResizeConfig">
+                        <div class="flexCont">
+                            <div *ngFor="let img of product?.images; let i = index" (touchstart)="activeImg = i" (click)="activeImg = i" class="carouselItem">
+                                <img src="{{img}}" [class.cusActive]="i == activeImg" alt="">
+                            </div>
+                        </div>
+                        <span class="prev"><i class="icons icon-arrow-left"></i></span>
+                        <span class="next"><i class="icons icon-arrow-right"></i></span>
+                    </app-flex-slider>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-8 col-lg-7 col-md-7 col-sm-8">
+            <div class="product-content">
+                <div class="title">{{product?.name}}</div>
+                <div class="price d-flex align-items-center flex-wrap">
+                    <h4 class="salePrice">${{numberFormat(product?.variation[0]?.sales_price)[0]}}<span class="decimal">.{{numberFormat(product?.variation[0]?.sales_price)[1]}}</span></h4>
+                    <div class="regPercCont d-flex align-items-center">
+                        <span class="regPrice">${{product?.variation[0]?.regular_price | number : '1.2-2'}}</span>
+                        <span class="perc">{{product?.variation[0]?.discount}}% Off</span>
+                    </div>
+                </div>
+
+                <div *ngIf="product?.sku" class="skuCont">
+                    Azany Item Number: <span>{{product?.sku}}</span>
+                </div>
+
+                <div class="pro-desc-tab">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-start head-title">
+                                <div class="head-title-left" [class.active]="isDescription" (click)='clickDescription()'>DESCRIPTION</div>
+                                <div class="head-title-right" [class.active]="isShipping" (click)='clickShipping()'>
+                                    SHIPPING AND PAYMENT</div>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="describtion-tab" *ngIf="isDescription">
+
+                                <p class="specif">Item Specification</p>
+
+                                <div class="spec-list">
+                                    <div class="d-flex justify-content-start">
+                                        <div class="left">Condition:</div>
+                                        <div class="right">{{product?.pro_condition}}</div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-start">
+                                        <div class="left">Country:</div>
+                                        <div class="right">{{product?.manufacture_country}}
+                                            <span>{{product?.manufacture_state}}</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- <div class="d-flex justify-content-start">
+                                        <div class="left">Type:</div>
+                                        <div class="right">{{product?.type}}</div>
+                                    </div> -->
+
+                                    <div *ngIf="product?.brand" class="d-flex justify-content-start">
+                                        <div class="left">Brand:</div>
+                                        <div class="right">{{product?.brand}}</div>
+                                    </div>
+
+                                    <div *ngIf="product?.size" class="d-flex justify-content-start">
+                                        <div class="left">Size:</div>
+                                        <div class="right">{{product?.size}}</div>
+                                    </div>
+
+                                    <div *ngIf="product?.material" class="d-flex justify-content-start">
+                                        <div class="left">Material:</div>
+                                        <div class="right">{{product?.material}}</div>
+                                    </div>
+
+                                    <!-- <div class="d-flex justify-content-start">
+                                        <div class="left">Color:</div>
+                                        <div class="right">{{product?.color}}</div>
+                                    </div> -->
+                                </div>
+
+                                <div class="add-info">
+                                    <h5>Additional Product Information</h5>
+                                    <p [innerHTML]="product?.description"></p>
+                                </div>
+                            </div>
+
+                            <div class="shipping-tab" *ngIf="isShipping">
+                                <p class="specif">Shipping and Handling</p>
+
+                                <div class="spec-list">
+                                    <div class="d-flex justify-content-start">
+                                        <div class="left">Manufacture Location:</div>
+                                        <div class="right"><span *ngIf="product?.manufacture_state">{{product?.manufacture_state}},
+                                            </span>{{product?.manufacture_country}}</div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-start">
+                                        <div class="left">Item Location:</div>
+                                        <div class="right"><span *ngIf="product?.pro_location_state">{{product?.pro_location_state}},
+                                            </span>{{product?.pro_location_country}}</div>
+                                    </div>
+
+                                    <!-- <div class="d-flex justify-content-start">
+                                            <div class="left">Color:</div>
+                                            <div class="right">Black, Gray, Blue</div>
+                                        </div> -->
+                                </div>
+
+                                <div class="add-info">
+                                    <h5>Return Policy</h5>
+                                    <p *ngIf="!product?.domestic_policy && !product?.inter_policy">No accepting returns
+                                    </p>
+                                    <p *ngIf="product?.domestic_policy"><i class="fa fa-check-circle"></i> Domestic Return Policy Accepted</p>
+                                    <p *ngIf="product?.inter_policy"><i class="fa fa-check-circle"></i> International Return Policy Accepted</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="btnGridCont">
+                    <a routerLink="/seller/auth/product-manager/{{product?.pid}}/details/{{cleanedUrl}}/edit" class="vendorPrimaryBtnOutline">Edit Product</a>
+                    <a routerLink="/seller/auth/product-manager" class="vendorPrimaryBtn">Back to Listing</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

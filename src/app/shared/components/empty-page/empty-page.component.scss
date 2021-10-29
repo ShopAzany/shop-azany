@@ -1,0 +1,26 @@
+.centeredCont {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding-top: 150px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    max-width: 586px;
+}
+
+.title {
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.otherInfo {
+    opacity: 0.5;
+    margin-bottom: 50px;
+}
+
+.vendorPrimaryBtn {
+    max-width: 284px;
+    margin: auto;
+    width: 100%;
+}

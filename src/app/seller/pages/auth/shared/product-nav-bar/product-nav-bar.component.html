@@ -1,0 +1,21 @@
+<div class="section">
+    <h2 class="title text-center">{{title}}</h2>
+    <div class="tabPar">
+        <div class="d-flex tabs" [class.business]="activeLink == 'selling'" [class.payment]="activeLink == 'shipping'">
+            <div class="eachTab" [class.navActive]="activeLink == 'productDetails'">
+                <span class="roundBg">1</span>
+                <span>Product Details</span>
+                <i class="fa fa-angle-right"></i>
+            </div>
+            <div class="eachTab" [class.navActive]="activeLink == 'selling'">
+                <span class="roundBg">2</span>
+                <span>Selling Details</span>
+                <i class="fa fa-angle-right"></i>
+            </div>
+            <div class="eachTab" [class.navActive]="activeLink == 'shipping'">
+                <span class="roundBg">3</span>
+                <span>Shipping Information</span>
+            </div>
+        </div>
+    </div>
+</div>

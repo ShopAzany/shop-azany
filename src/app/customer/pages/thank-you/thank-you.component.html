@@ -1,0 +1,89 @@
+<app-header></app-header>
+<div id="thankYouPage">
+    <div class="bodyContainer">
+        <div class="topPart">
+            <div class="thankYouHead d-flex">
+                <div class="txt"><b>Thank You,</b> your order has been placed</div>
+                <img src="assets/images/thank-you.png" alt="">
+            </div>
+            <div class="bodyTxt" [innerHTML]="thankYouMsg | safeHtml">
+                <p class="salutation">Hey <b>{{auth?.full_name?.split(' ')[0]}},</b></p>
+                <p class="introduction">Your order has been confirmed. You will receive an email shortly, containing your order and shipping details</p>
+                <p class="otherInfo">
+                    Aliquam sed semper egestas lacus, in turpis posuere convallis. Vestibulum a consectetur sed turpis risus est facilisis velit. Blandit non, in a elit. Rhoncus urna eu, faucibus diam orci purus metus. Lectus ultrices mi et enim ullamcorper turpis dignissim
+                    eget quam. Gravida volutpat phasellus neque fermentum.
+                </p>
+            </div>
+            <section *ngIf="payMethod == 'bank'" class="paymentInfo mt-4">
+                <h4 class="step-tite">PAYMENT</h4>
+                <p>Please pay to any of the bank accounts below.</p>
+                <div class="bankInfo">
+                    <div class="bankInfoItemCont">
+                        <div *ngFor="let bank of accounts" class="bankInfoItem">
+                            <div class="eachItem">
+                                <div class="key">Account Name</div>
+                                <div class="value">{{bank?.account_name}}</div>
+                            </div>
+                            <div class="eachItem">
+                                <div class="key">Account Number</div>
+                                <div class="value">{{bank?.account_number}}</div>
+                            </div>
+                            <div class="eachItem">
+                                <div class="key">Account Type</div>
+                                <div class="value">{{bank?.account_type}}</div>
+                            </div>
+                            <div class="eachItem">
+                                <div class="key">Bank Name</div>
+                                <div class="value">{{bank?.bank}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="bottomPart">
+            <div class="topOrderFlex">
+                <div class="orderNumCont">
+                    <div class="orderNum">Order: <span class="numTxt">#{{orderNo}}</span></div>
+                    <a routerLink="/customer/orders">View or Manage Order</a>
+                </div>
+                <div class="orderInfo">
+                    <div class="orderInfoItem">
+                        <span>Subtotal:</span>
+                        <span><span [innerHTML]="curr | safeHtml"></span>{{subTotal | number : '1.2-2'}}</span>
+                    </div>
+                    <div class="orderInfoItem">
+                        <span>Shipping:</span>
+                        <span><span [innerHTML]="curr | safeHtml"></span>{{shipping | number : '1.2-2'}}</span>
+                    </div>
+                    <!-- <div class="orderInfoItem">
+                        <span>Tax:</span>
+                        <span><span [innerHTML]="curr | safeHtml"></span>{{tax | number : '1.2-2'}}</span>
+                    </div> -->
+                    <div class="orderInfoItem total">
+                        <b>Total:</b>
+                        <b><span [innerHTML]="curr | safeHtml"></span>{{total | number : '1.2-2'}}</b>
+                    </div>
+                </div>
+            </div>
+            <div class="ordersCont">
+                <div *ngFor="let order of orders" class="orderItem">
+                    <div class="imgCont">
+                        <img src="{{treatImgUrl(order?.featured_img)}}" alt="">
+                    </div>
+                    <div class="txtCont">
+                        <div class="prodName">{{order?.product_name}}</div>
+                        <div class="quantity">Quantity: {{order?.quantity}}</div>
+                        <div class="soldBy">Sold By: {{order?.biz_name}}</div>
+                        <div class="price"><span [innerHTML]="curr | safeHtml"></span>{{order?.sales_price | number : '1.2-2'}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="btnCont">
+                <a routerLink="/" class="addToCartLink">Continue Shopping</a>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

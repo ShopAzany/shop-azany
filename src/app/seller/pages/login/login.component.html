@@ -1,0 +1,54 @@
+<app-header></app-header>
+<div id="seller">
+    <div class="container-fluid" id="vendorLogin">
+        <div class="d-flex">
+            <div class="leftSide">
+                <div class="img position-relative">
+                    <img src="assets/images/seller/img1.png" alt="">
+                    <div class="h2 position-absolute">
+                        <h2>
+                            <span>Sell On</span> Azany
+                        </h2>
+                        <p class="text-white">Vendor Login</p>
+                    </div>
+                </div>
+            </div>
+            <div class="right-side">
+                <div class="vendorLogIn">
+                    <h3>Vendor Login</h3>
+                    <div class="forms">
+                        <form [formGroup]="form" (ngSubmit)="submit()">
+                            <div #userEl class="form-group">
+                                <label for="exampleInputEmail1">Email Address or Mobile Number</label>
+                                <input type="text" class="form-control" [class.error]="(user?.touched && user?.invalid) || userServerErr" formControlName="user" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Email Address or Mobile Number">
+                                <div *ngIf="user?.touched && user?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
+                                <div *ngIf="userServerErr" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>{{userServerErr}}</span></div>
+                            </div>
+                            <div #passEl class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <div class="pasword position-relative">
+                                    <input type="password" [class.error]="password?.touched && password?.invalid || passwordServerErr" class="form-control" formControlName="password" id="exampleInputPassword1" placeholder="Enter your password">
+                                    <span appPassToggle class="passwordShowIcon position-absolute fa fa-eye-slash"></span>
+                                </div>
+                                <div *ngIf="password?.touched && password?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span>
+                                </div>
+                                <div *ngIf="passwordServerErr" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>{{passwordServerErr}}</span>
+                                </div>
+                                <div class="forgotPassword">
+                                    <a routerLink="/seller/forgot-password">Forgot Password?</a>
+                                </div>
+                            </div>
+                            <button *ngIf="!isLogginin" type="submit" [disabled]="form.invalid" class="vendorPrimaryBtn">Login</button>
+                            <button *ngIf="isLogginin" type="button" disabled class="vendorPrimaryBtn"><i
+                                    class="fa fa-spinner fa-spin"></i></button>
+                        </form>
+                        <div class="signUpLink">
+                            <span class="text-muted">Don’t have an account?</span>
+                            <a routerLink="/seller/register">CREATE ACCOUNT</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
