@@ -1,6 +1,6 @@
 <app-header homePage="seller"></app-header>
 <div id="sellerHome">
-    <!--div class="container-fluid" id="startSelling">
+    <div class="container-fluid" id="startSelling">
         <div class="d-flex justify-content-between cont">
             <div class="left-side">
                 <div class="text">
@@ -8,7 +8,7 @@
                     <p>{{content?.banner_info?.sub_title}}
                     </p>
                     <div class="buttonSell">
-                        <a routerLink="/seller/register" class="vendorPrimaryBtn">Sign Up</a>
+                        <a routerLink="/seller/register" class="vendorPrimaryBtn" style="width: 550px;">Choose plan</a>
                     </div>
                 </div>
             </div>
@@ -16,30 +16,42 @@
                 <img src="{{treatImgUrl(content?.banner_info?.banner)}}" alt="">
             </div>
         </div>
-    </div-->
-    <div class="container">
-        <div class="row mt-5 contain">
-            <div class="card col-lg-4">
-                <div class="card-container">
-                    <h3 class="card-title">Basic</h3>
-                    <h4> 3000/<span style="font-size: smaller;">month</span></h4>
-                    <hr>
+    </div>
+    
+
+    <div class="body2">
+        <div class="container2">
+
+            <div class="card2">
+              <div class="face face1">
+                <div class="content">
+                  <span class="stars"></span>
+                  <h2 class="card-title">Basic</h2>
+                  <h3 class="java"> 3000/<span style="font-size: smaller;">month</span></h3>
+                  <hr>
+                  <div class="java">
                     <ul>
                         <li>1 Free personal Ad</li>
                         <li>Free Azany Business Newsletter</li>
                         <li>Unlimited Access to Azany Marketplace</li>
                         <li>Reward Points</li>
                     </ul>
-                    <div class="buttonSell">
+                    <div class="buttonSell" style="">
                         <a routerLink="/seller/register" class="vendorPrimaryBtn">Sign Up</a>
                     </div>
                 </div>
+                </div>
+              </div>
             </div>
-            <div class="card col-lg-4">
-                <div class="card-container">
-                    <h3 class="card-title">Standard</h3>
-                    <h4> 5000/<span style="font-size: smaller;">month</span></h4>
-                    <hr>
+          
+            <div class="card2">
+              <div class="face face1">
+                <div class="content">
+                  <span class="stars"></span>
+                  <h2 class="card-title">Standard</h2>
+                  <h3 class="python"> 5000/<span style="font-size: smaller;">month</span></h3>
+                  <hr>
+                  <div class="python">
                     <ul>
                         <li>2 Free personal Ad</li>
                         <li>Double Reward Points</li>
@@ -51,17 +63,22 @@
                         <a routerLink="/seller/register" class="vendorPrimaryBtn">Sign Up</a>
                     </div>
                 </div>
+                </div>
+              </div>
             </div>
-            <div class="card col-lg-4">
-                <div class="card-container">
-                    <h3 class="card-title">Premium</h3>
-                    <h4> 7000/<span style="font-size: smaller;">month</span></h4>
-                    <hr>
+          
+            <div class="card2">
+              <div class="face face1">
+                <div class="content">
+                  <h2 class="card-title">Premium</h2>
+                  <h3 class="cSharp"> 7000/<span style="font-size: smaller;">month</span></h3>
+                  <hr>
+                  <div class="cSharp">
                     <ul>
                         <li>3 Free personal Ad</li>
                         <li>Double Reward Points</li>
                         <li>Live Shows On Our Platform</li>
-                        <li>Free Shipping On Oders Above 400K Naira</li>
+                        <li>Free Shipping On Oders Above 400K</li>
                         <li>Free 2Gb Naira Data Card</li>
                         <li>Free Azany Business Newsletter</li>
                         <li>Free Business Mentoring</li>
@@ -72,8 +89,36 @@
                     <div class="buttonSell">
                         <a routerLink="/seller/register" class="vendorPrimaryBtn">Sign Up</a>
                     </div>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
+    </div>
+
+    <div class="body2">
+        <div class="container2">
+
+            <div class="card2" style="height:300px ;">
+              <div class="face face1">
+                <div class="content">
+                  <span class="stars"></span>
+                  <h2 class="card-title">US Premium Plan</h2>
+                  <h3 class="java"> $34.99<span style="font-size: smaller;">month</span></h3>
+                  <hr>
+                  <div class="java">
+                    <ul>
+                        <li>2 Free personal Ad with your products</li>
+                        <li>Business Mentoring</li>
+                    </ul>
+                    <div class="buttonSell" style="">
+                        <a routerLink="/seller/register" class="vendorPrimaryBtn">Sign Up</a>
+                    </div>
+                </div>
+                </div>
+              </div>
+            </div>
+        
         </div>
     </div>
     
@@ -96,7 +141,7 @@
             <div class="col-md-7 d-flex align-items-center">
                 <div class="comment">
                     <span class="position-absolute startQuote">
-                        <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="50" height="50" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g opacity="0.3">
                                 <path
                                     d="M21.6667 33.3375C20.9233 33.3375 20.21 33.4508 19.5 33.5542C19.73 32.7808 19.9667 31.9942 20.3467 31.2875C20.7267 30.2608 21.32 29.3708 21.91 28.4742C22.4033 27.5042 23.2733 26.8475 23.9133 26.0175C24.5833 25.2108 25.4967 24.6742 26.22 24.0042C26.93 23.3042 27.86 22.9542 28.6 22.4608C29.3733 22.0175 30.0467 21.5275 30.7667 21.2942L32.5633 20.5542L34.1433 19.8975L32.5267 13.4375L30.5367 13.9175C29.9 14.0775 29.1233 14.2642 28.24 14.4875C27.3367 14.6542 26.3733 15.1108 25.3 15.5275C24.24 16.0008 23.0133 16.3208 21.8733 17.0808C20.7267 17.8075 19.4033 18.4142 18.2367 19.3875C17.1067 20.3908 15.7433 21.2608 14.7367 22.5375C13.6367 23.7308 12.55 24.9842 11.7067 26.4108C10.73 27.7708 10.0667 29.2642 9.36666 30.7408C8.73333 32.2175 8.22333 33.7275 7.80666 35.1942C7.01666 38.1342 6.66333 40.9275 6.52666 43.3175C6.41333 45.7108 6.48 47.7008 6.62 49.1408C6.67 49.8208 6.76333 50.4808 6.83 50.9375L6.91333 51.4975L7 51.4775C7.59287 54.2469 8.95767 56.7919 10.9365 58.8181C12.9154 60.8443 15.4275 62.2688 18.1821 62.9269C20.9368 63.585 23.8215 63.4498 26.5025 62.5369C29.1835 61.6241 31.5513 59.9708 33.332 57.7684C35.1127 55.5661 36.2335 52.9046 36.5647 50.0918C36.896 47.2791 36.4241 44.43 35.2038 41.8742C33.9834 39.3185 32.0645 37.1604 29.6688 35.6497C27.2732 34.1389 24.4988 33.3373 21.6667 33.3375ZM58.3333 33.3375C57.59 33.3375 56.8767 33.4508 56.1667 33.5542C56.3967 32.7808 56.6333 31.9942 57.0133 31.2875C57.3933 30.2608 57.9867 29.3708 58.5767 28.4742C59.07 27.5042 59.94 26.8475 60.58 26.0175C61.25 25.2108 62.1633 24.6742 62.8867 24.0042C63.5967 23.3042 64.5267 22.9542 65.2667 22.4608C66.04 22.0175 66.7133 21.5275 67.4333 21.2942L69.23 20.5542L70.81 19.8975L69.1933 13.4375L67.2033 13.9175C66.5667 14.0775 65.79 14.2642 64.9067 14.4875C64.0033 14.6542 63.04 15.1108 61.9667 15.5275C60.91 16.0042 59.68 16.3208 58.54 17.0842C57.3933 17.8108 56.07 18.4175 54.9033 19.3908C53.7733 20.3942 52.41 21.2642 51.4033 22.5375C50.3033 23.7308 49.2167 24.9842 48.3733 26.4108C47.3967 27.7708 46.7333 29.2642 46.0333 30.7408C45.4 32.2175 44.89 33.7275 44.4733 35.1942C43.6833 38.1342 43.33 40.9275 43.1933 43.3175C43.08 45.7108 43.1467 47.7008 43.2867 49.1408C43.3367 49.8208 43.43 50.4808 43.4967 50.9375L43.58 51.4975L43.6667 51.4775C44.2595 54.2469 45.6243 56.7919 47.6032 58.8181C49.5821 60.8443 52.0941 62.2688 54.8488 62.9269C57.6035 63.585 60.4881 63.4498 63.1692 62.5369C65.8502 61.6241 68.218 59.9708 69.9987 57.7684C71.7794 55.5661 72.9001 52.9046 73.2314 50.0918C73.5626 47.2791 73.0908 44.43 71.8704 41.8742C70.6501 39.3185 68.7311 37.1604 66.3355 35.6497C63.9399 34.1389 61.1655 33.3373 58.3333 33.3375Z"
@@ -138,13 +183,13 @@
         <div class="row flex-md-row flex-column justify-content-between ">
             <div class="col-md-5 d-flex align-items-center justify-content-center">
                 <div class="img">
-                    <img src="{{treatImgUrl(content?.explore?.banner)}}" alt="">
+                    <img src="{{treatImgUrl(content?.explore?.banner)}}" alt="" style="width: 300px;">
                 </div>
             </div>
             <div class="col-md-7 d-flex align-items-center ">
                 <div class="details" [innerHTML]="content?.explore?.sub_title | safeHtml">
                     <h3>Register Your Business</h3>
-                    <p>Tortor morbi in urna leo turpis ullamcorper felis. Faucibus mi purus augue habitant blandit. Est dui eget felis lectus volutpat. Tortor pulvinar dignissim curabitur netus condimentum. Et nisl, et, sagittis erat. </p>
+                    <p>Tortor morbi in urna leo turpis ullamcorper felis. Faucibus mi purus augue habitant blandit. Est dui eget felis lectus volutpat. </p>
                     <h3>Put Your Products Out There</h3>
                     <p>Tortor morbi in urna leo turpis ullamcorper felis. Faucibus mi purus augue habitant blandit. Est dui eget felis lectus volutpat. </p>
                     <h3>Get Paid</h3>
@@ -153,7 +198,7 @@
             </div>
         </div>
         <div class="d-flex justify-content-center">
-            <a routerLink="/seller/register" class="vendorPrimaryBtn">Start Selling on Azany</a>
+            <a routerLink="/seller/register" class="vendorPrimaryBtn">Choose Plan</a>
         </div>
     </div>
 </div>
