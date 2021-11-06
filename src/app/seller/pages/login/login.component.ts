@@ -71,7 +71,8 @@ export class LoginComponent implements OnInit {
             this.shoppingCartService.shoppingCart().subscribe();
             this.guestHomeService.getOtherData().subscribe();
           }
-          this.router.navigateByUrl('/seller/auth');
+          //this.router.navigateByUrl('/seller/auth');
+          console.log("success");
         } else {
           if (res.data.toLowerCase().includes('record') || res.data.toLowerCase().includes('blocked')) {
             this.userServerErr = res.data;

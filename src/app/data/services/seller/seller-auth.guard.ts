@@ -35,13 +35,13 @@ export class SellerAuthGuard implements CanLoad {
           this.router.navigate(['/seller/login']);
           return of(false);
         }
-        if (isAuth.biz_info_status == 0) {
+        /*if (isAuth.biz_info_status == 0) {
           this.router.navigateByUrl('/seller/register/business-info');
           return of(false);
         } else if (isAuth.bank_info_status == 0) {
           this.router.navigateByUrl('/seller/register/additional-info');
           return of(false);
-        }
+        }*/
         return of(true);
       }),
     );
@@ -51,13 +51,13 @@ export class SellerAuthGuard implements CanLoad {
     this.authService.seller.subscribe(isAuth => {
       if (!isAuth) {
         this.router.navigate(['/seller/login']);
-      } else {
+      } /*else {
         if (isAuth.biz_info_status == 0) {
           this.router.navigateByUrl('/seller/register/business-info');
         } else if (isAuth.bank_info_status == 0) {
           this.router.navigateByUrl('/seller/register/additional-info');
         }
-      }
+      }*/
     });
   }
 

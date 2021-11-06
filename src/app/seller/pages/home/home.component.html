@@ -5,10 +5,13 @@
             <div class="left-side">
                 <div class="text">
                     <h1>{{content?.banner_info?.title}}</h1>
-                    <p>{{content?.banner_info?.sub_title}}
-                    </p>
+                    <p>{{content?.banner_info?.sub_title}}</p>
                     <div class="buttonSell">
-                        <a routerLink="/seller/register" class="vendorPrimaryBtn" style="width: 550px;">Choose plan</a>
+                        <a href="localhost:4200/#choose" class="vendorPrimaryBtn" style="width: 550px;">Choose plan</a>
+                    </div>
+                    <p>Already have a Vendor's account?</p>
+                    <div class="buttonSell">
+                        <a routerLink="/seller/login" class="vendorPrimaryBtn" style="width: 550px;">Log In</a>
                     </div>
                 </div>
             </div>
@@ -17,11 +20,36 @@
             </div>
         </div>
     </div>
-    
+
+    <!--div class="container">
+        <mat-form-field>
+            <mat-select [(value)]="selected">
+              <mat-option>None</mat-option>
+              <mat-option value="option1">Option 1</mat-option>
+              <mat-option value="option2">Option 2</mat-option>
+              <mat-option value="option3">Option 3</mat-option>
+            </mat-select>
+          </mat-form-field>
+          
+          <div *ngIf="selected">You selected: {{selected}}</div>
+    </div-->
+
+    <div class="container mt-5" id="choose">
+        <form [formGroup]="form">
+            <div class="form-group">
+                <label for="country">Select your Country to see your available plans</label>
+                <select type="text" [class.error]="country?.touched && country?.invalid" class="form-control" formControlName="country" id="country" placeholder="Choose Country from dropdown Menu">
+                    <option value="" disabled>Choose Country from dropdown Menu</option>
+                    <option *ngFor="let country of countries" value="{{country?.name}}">{{country?.name}}</option>
+                </select>
+                <div *ngIf="country?.touched && country?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
+            </div>    
+        </form>
+    </div>
 
     <div class="body2">
+        
         <div class="container2">
-
             <div class="card2">
               <div class="face face1">
                 <div class="content">
@@ -36,8 +64,8 @@
                         <li>Unlimited Access to Azany Marketplace</li>
                         <li>Reward Points</li>
                     </ul>
-                    <div class="buttonSell" style="">
-                        <a routerLink="/seller/register" class="vendorPrimaryBtn">Sign Up</a>
+                    <div class="buttonSell">
+                        <a routerLink="/seller/register/basic" class="vendorPrimaryBtn">Sign Up</a>
                     </div>
                 </div>
                 </div>
@@ -60,7 +88,7 @@
                         <li>Unlimited Access To Azany Marketplace</li>
                     </ul>
                     <div class="buttonSell">
-                        <a routerLink="/seller/register" class="vendorPrimaryBtn">Sign Up</a>
+                        <a routerLink="/seller/register/standard" class="vendorPrimaryBtn">Sign Up</a>
                     </div>
                 </div>
                 </div>
@@ -87,7 +115,7 @@
                         <li>Unlimited Access To Azany Marketplace</li>
                     </ul>
                     <div class="buttonSell">
-                        <a routerLink="/seller/register" class="vendorPrimaryBtn">Sign Up</a>
+                        <a routerLink="/seller/register/premium" class="vendorPrimaryBtn">Sign Up</a>
                     </div>
                   </div>
                 </div>
@@ -111,8 +139,8 @@
                         <li>2 Free personal Ad with your products</li>
                         <li>Business Mentoring</li>
                     </ul>
-                    <div class="buttonSell" style="">
-                        <a routerLink="/seller/register" class="vendorPrimaryBtn">Sign Up</a>
+                    <div class="buttonSell">
+                        <a routerLink="/seller/register/uspremium" class="vendorPrimaryBtn">Sign Up</a>
                     </div>
                 </div>
                 </div>

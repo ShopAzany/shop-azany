@@ -1,0 +1,124 @@
+<app-header></app-header>
+<div id="seller">
+    <div id="signUp">
+        <div class="container-fluid">
+            <div class="toSignup">
+                <div class="section">
+                    <h2 class="title text-center">Sign Up to Become A Seller on Azany</h2>
+                    <!--div class="tabPar">
+                        <div class="d-flex tabs" [class.business]="activeLink == 'business'" [class.payment]="activeLink == 'payment'">
+                            <div class="eachTab" [class.navActive]="activeLink == 'create'">
+                                <span class="roundBg">1</span>
+                                <span>Create Seller Account</span>
+                                <i class="fa fa-angle-right"></i>
+                            </div>
+                        </div>
+                    </div-->
+                </div>
+                <div class="signUpForm">
+                    <form [formGroup]="form" (ngSubmit)="submit()">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" [class.error]="firstName?.touched && firstName?.invalid" class="form-control" formControlName="first_name" placeholder="Enter your first name">
+                            <div *ngIf="firstName?.touched && firstName?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" [class.error]="lastName?.touched && lastName?.invalid" class="form-control" formControlName="last_name" placeholder="Enter your last name">
+                            <div *ngIf="lastName?.touched && lastName?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
+                        </div>
+                        <div #emailEl class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" [class.error]="(email?.touched && email?.invalid) || (email?.touched && email?.valid && !validateEmail) || emailServerError" class="form-control" formControlName="email" placeholder="Enter your Business Email">
+                            <div *ngIf="email?.touched && email?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
+                            <div *ngIf="email?.touched && email?.valid && !validateEmail" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>Enter a valid email</span></div>
+                            <div *ngIf="emailServerError" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>{{emailServerError}}</span></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="country">Select your Country</label>
+                            <select type="text" [class.error]="country?.touched && country?.invalid" class="form-control" formControlName="country" id="country" placeholder="Choose Country from dropdown Menu">
+                                <option value="" disabled>Choose Country from dropdown Menu</option>
+                                <option *ngFor="let country of countries" value="{{country?.name}}">{{country?.name}}</option>
+                            </select>
+                            <div *ngIf="country?.touched && country?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
+                        </div>
+                        <div #phoneEl class="form-group">
+                            <label>Phone Number</label>
+                            <div class="gridCont">
+                                <div class="code">
+                                    <input type="text" placeholder="Code" [class.error]="(countryCode?.touched && countryCode?.invalid) || phoneServerError || invalidCountryCode" appAllowNum maxlength="4" formControlName="country_code">
+                                </div>
+                                <div class="number">
+                                    <input type="text" appAllowNum [class.error]="(phone?.touched && phone?.invalid) || phoneServerError" class="form-control" formControlName="phone" placeholder="Enter your Business Phone Number">
+                                </div>
+                            </div>
+                            <div *ngIf="phoneServerError" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>{{phoneServerError}}</span></div>
+                            <div *ngIf="countryCode?.touched && countryCode?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>Country code is required</span></div>
+                            <div *ngIf="invalidCountryCode" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>Invalid country code</span></div>
+                            <div *ngIf="phone?.touched && phone?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>Phone number is required</span></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Store Name</label>
+                            <input type="text" [class.error]="storeName?.touched && storeName?.invalid" class="form-control" formControlName="store_name" placeholder="Enter your store name">
+                            <div *ngIf="storeName?.touched && storeName?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
+                        </div>
+                        <div class="form-group">
+                            <label>Create Password</label>
+                            <div class="inputCont position-relative">
+                                <input type="password" [class.error]="password?.touched && password?.invalid" class="form-control" formControlName="password" placeholder="At least 8 characters">
+                                <span appPassToggle class="passToggle fa fa-eye-slash"></span>
+                            </div>
+                            <div *ngIf="password?.touched && password?.invalid">
+                                <div *ngIf="password?.errors?.required" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span>
+                                </div>
+                                <div *ngIf="password?.errors?.minlength" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>A minimum of 8 characters is
+                                        required</span></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="rePassword">Retype Password</label>
+                            <div class="inputCont position-relative">
+                                <input type="password" formControlName="retPass" [class.error]="passMismatch || (retPass?.touched && retPass?.invalid)" class="form-control" placeholder="At least 8 characters">
+                                <span appPassToggle class="passToggle fa fa-eye-slash"></span>
+                            </div>
+                            <div *ngIf="retPass?.touched && retPass?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
+                            <div *ngIf="passMismatch && retPass?.valid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>Password mismatch error</span></div>
+                        </div>
+
+                        <div class="form-group" style="visibility: hidden;">
+                            <label for="Plan">Chosen Plan</label>
+                            <input type="text" value="{{ plan }}" formControlName = "payment_plan" [class.error]="planName?.touched && planName?.invalid">
+                            <div *ngIf="planName?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
+                        </div>
+
+                        <div class="checkTerms">
+                            <div class="cusCheckbox">
+                                <input (change)="agreement = !agreement" type="checkbox" id="agreement" class="check" hidden>
+                                <label for="agreement">
+                                    <div class="checkbox">
+                                        <i class="fa fa-check"></i>
+                                    </div>
+                                    <span>
+                                        By creating an account, you accept Azany’s
+                                        <a routerLink="/pages/seller-terms-and-conditions">terms and conditions</a> & <a
+                                            routerLink="/pages/seller-privacy-policy">privacy policy</a>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="btnCont">
+                            <button *ngIf="!isSubmitting" type="submit" [disabled]=" !validateEmail || !agreement || passMismatch" class="vendorPrimaryBtn">Sign Up</button>
+                            <button type="button" *ngIf="isSubmitting" disabled class="vendorPrimaryBtn"><i
+                                    class="fa fa-spinner fa-spin"></i></button>
+                        </div>
+                        <div class="altLogin text-center">
+                            <span>Already have an account?</span>
+                            <a routerLink="/seller/login">SIGN IN</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

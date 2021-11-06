@@ -1,22 +1,27 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, RouterStateSnapshot } from '@angular/router';
 import { StorageService } from 'src/app/data/helpers/storage.service';
 import { CountryService } from 'src/app/data/services/local-data/country.service';
 import { SellerAuthService } from 'src/app/data/services/seller/seller-auth.service';
 
 @Component({
-  selector: 'app-create-account',
-  templateUrl: './create-account.component.html',
-  styleUrls: ['./create-account.component.scss']
+  selector: 'app-registern',
+  templateUrl: './registern.component.html',
+  styleUrls: ['./registern.component.scss']
 })
-export class CreateAccountComponent implements OnInit {
+export class RegisternComponent implements OnInit {
 
   @ViewChild('emailEl') emailGroup: ElementRef;
   @ViewChild('phoneEl') phoneGroup: ElementRef;
 
+  //public p: string;
+  plan;
+  auth;
+
   emailServerError;
   phoneServerError;
+  countries;
 
   agreement = false;
   isSubmitting = false;
@@ -31,28 +36,48 @@ export class CreateAccountComponent implements OnInit {
     email: new FormControl('', [
       Validators.required
     ]),
-    country_code: new FormControl('', [Validators.required]),
-    phone: new FormControl('', [
-      Validators.required
-    ]),
     password: new FormControl('', [
       Validators.required,
       Validators.minLength(8)
     ]),
+    phone: new FormControl('', [
+      Validators.required
+    ]),
+    store_name: new FormControl('', [
+      Validators.required
+    ]),
+    country: new FormControl('', [
+      Validators.required
+    ]),
+    country_code: new FormControl('', [Validators.required]),
     retPass: new FormControl('', [
       Validators.required,
     ]),
+    payment_plan: new FormControl(this.routee.snapshot.paramMap.get('plan'), [
+      Validators.required,
+    ]
+    ),
   });
 
+  @Input() activeLink;
+
   constructor(
-    private route: Router,
+    private route: Router, 
+    private routee: ActivatedRoute,
     private authService: SellerAuthService,
     private countryService: CountryService,
     private storageService: StorageService,
   ) { }
 
-  ngOnInit(): void {
-    //this.checkAuth();
+  ngOnInit() {
+    this.checkAuth();
+    this.checkPlan();
+    this.countries = this.countryService.getCountries();
+  }
+
+  private checkPlan() {
+    this.plan = this.routee.snapshot.paramMap.get('plan');
+    //console.log(this.plan);
   }
 
   /*private checkAuth() {
@@ -69,6 +94,14 @@ export class CreateAccountComponent implements OnInit {
     });
   }*/
 
+  private checkAuth() {
+    this.authService.seller.subscribe(auth => {
+      if (auth) {
+        this.route.navigateByUrl('/seller/auth');
+      }
+    });
+  }
+
   get firstName() {
     return this.form.get('first_name');
   }
@@ -78,17 +111,26 @@ export class CreateAccountComponent implements OnInit {
   get email() {
     return this.form.get('email');
   }
+  get password() {
+    return this.form.get('password');
+  }
   get phone() {
     return this.form.get('phone');
   }
-  get password() {
-    return this.form.get('password');
+  get country() {
+    return this.form.get('country');
+  }
+  get storeName() {
+    return this.form.get('store_name');
   }
   get retPass() {
     return this.form.get('retPass');
   }
   get countryCode() {
     return this.form.get('country_code');
+  }
+  get planName() {
+    return this.form.get('payment_plan');
   }
 
   get validateEmail() {
@@ -121,8 +163,15 @@ export class CreateAccountComponent implements OnInit {
     this.isSubmitting = true;
     delete this.form.value.retPass;
     const data = JSON.stringify(this.form.value);
-    this.authService.signup(data).subscribe(res => {
-      if (res.status) {
+    console.log(data)
+    this.authService.signup(data).subscribe(/*res*/auth => {
+      this.auth = auth;
+        if (auth) {
+          this.route.navigateByUrl('/seller/auth');
+        } else {
+          this.route.navigateByUrl('/seller/register');
+        }
+      /*if (res.status) {
         if (res.status == 'success') {
           this.route.navigateByUrl('/seller/auth');
         } else {
@@ -133,10 +182,18 @@ export class CreateAccountComponent implements OnInit {
             this.phoneServerError = res.data;
             this.phoneGroup.nativeElement.scrollIntoView();
           }
-        }
-      }
-      this.isSubmitting = false;
+        }*/    
     });
   }
 
 }
+/*this.route.navigateByUrl('/seller/auth');
+      this.authService.seller.subscribe(auth => {
+        this.auth = auth;
+        if (auth) {
+          this.route.navigateByUrl('/seller/auth');
+        } else {
+          this.route.navigateByUrl('/seller/register');
+        }
+      });*/
+      //this.isSubmitting = false;

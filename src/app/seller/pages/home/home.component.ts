@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ConfigService } from 'src/app/data/services/config.service';
 import { StaticContentService } from 'src/app/data/services/guest/static-content.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { CountryService } from 'src/app/data/services/local-data/country.service';
 
 @Component({
   selector: 'app-home',
@@ -9,15 +11,30 @@ import { StaticContentService } from 'src/app/data/services/guest/static-content
   encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit {
+  selected: any;
   content;
+
+  countries;
+
+  form = new FormGroup({
+    country: new FormControl('', [
+      Validators.required
+    ])
+  });
+
+  get country() {
+    return this.form.get('country');
+  }
 
   constructor(
     private staticContentService: StaticContentService,
     private configService: ConfigService,
+    private countryService: CountryService,
   ) { }
 
   ngOnInit(): void {
     this.getContent();
+    this.countries = this.countryService.getCountries();
   }
 
   private getContent() {

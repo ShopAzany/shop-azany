@@ -20,8 +20,10 @@
                         <form [formGroup]="form" (ngSubmit)="submit()">
                             <div #userEl class="form-group">
                                 <label for="exampleInputEmail1">Email Address or Mobile Number</label>
-                                <input type="text" class="form-control" [class.error]="(user?.touched && user?.invalid) || userServerErr" formControlName="user" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Email Address or Mobile Number">
+                                <input type="text" class="form-control" [class.error]="user?.touched && user?.invalid || userServerErr" formControlName="user" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Email Address or Mobile Number">
+                                <!-- check if there is input-->
                                 <div *ngIf="user?.touched && user?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
+                                <!-- error message-->
                                 <div *ngIf="userServerErr" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>{{userServerErr}}</span></div>
                             </div>
                             <div #passEl class="form-group">
@@ -30,8 +32,10 @@
                                     <input type="password" [class.error]="password?.touched && password?.invalid || passwordServerErr" class="form-control" formControlName="password" id="exampleInputPassword1" placeholder="Enter your password">
                                     <span appPassToggle class="passwordShowIcon position-absolute fa fa-eye-slash"></span>
                                 </div>
+                                <!-- check if there is input-->
                                 <div *ngIf="password?.touched && password?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span>
                                 </div>
+                                <!-- error message-->
                                 <div *ngIf="passwordServerErr" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>{{passwordServerErr}}</span>
                                 </div>
                                 <div class="forgotPassword">
