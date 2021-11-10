@@ -13,11 +13,13 @@ import { CountryService } from 'src/app/data/services/local-data/country.service
 export class HomeComponent implements OnInit {
   selected: any;
   content;
+  selectedValue = 0;
+  selectedCountry;
 
   countries;
 
   form = new FormGroup({
-    country: new FormControl('', [
+    country: new FormControl('Choose a Country', [
       Validators.required
     ])
   });
@@ -48,5 +50,9 @@ export class HomeComponent implements OnInit {
   treatImgUrl(url) {
     return this.configService.treatImgUrl(url);
   }
+
+  scroll(el: HTMLElement) {
+    el.scrollIntoView();
+}
 
 }

@@ -1,9 +1,11 @@
+import { Country } from './../../../data/model/country';
 import { Component, ElementRef, OnInit, ViewChild, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, RouterStateSnapshot } from '@angular/router';
 import { StorageService } from 'src/app/data/helpers/storage.service';
 import { CountryService } from 'src/app/data/services/local-data/country.service';
 import { SellerAuthService } from 'src/app/data/services/seller/seller-auth.service';
+import { CookieService } from 'ngx-cookie';
 
 @Component({
   selector: 'app-registern',
@@ -16,12 +18,15 @@ export class RegisternComponent implements OnInit {
   @ViewChild('phoneEl') phoneGroup: ElementRef;
 
   //public p: string;
+  Country;
   plan;
   auth;
+  private cookieValue: string;
 
   emailServerError;
   phoneServerError;
   countries;
+  code;
 
   agreement = false;
   isSubmitting = false;
@@ -46,10 +51,10 @@ export class RegisternComponent implements OnInit {
     store_name: new FormControl('', [
       Validators.required
     ]),
-    country: new FormControl('', [
+    country: new FormControl(this.routee.snapshot.paramMap.get('country'), [
       Validators.required
     ]),
-    country_code: new FormControl('', [Validators.required]),
+    country_code: new FormControl(this.lookCountryCode(), [Validators.required]),
     retPass: new FormControl('', [
       Validators.required,
     ]),
@@ -67,17 +72,28 @@ export class RegisternComponent implements OnInit {
     private authService: SellerAuthService,
     private countryService: CountryService,
     private storageService: StorageService,
+    private CookieService: CookieService
   ) { }
 
   ngOnInit() {
+    this.lookCountryCode();
     this.checkAuth();
     this.checkPlan();
+    this.checkCountry();
     this.countries = this.countryService.getCountries();
+    this.lookCountryCode();
   }
 
   private checkPlan() {
     this.plan = this.routee.snapshot.paramMap.get('plan');
     //console.log(this.plan);
+  }
+  private checkCountry() {
+    this.Country = this.routee.snapshot.paramMap.get('country');
+  }
+  private lookCountryCode() {
+    var code = this.countryService.getCountry(this.routee.snapshot.paramMap.get('country')).dailing;
+    return code;
   }
 
   /*private checkAuth() {
@@ -162,15 +178,23 @@ export class RegisternComponent implements OnInit {
     this.phoneServerError = null;
     this.isSubmitting = true;
     delete this.form.value.retPass;
+    //const data = this.form.value;
     const data = JSON.stringify(this.form.value);
-    console.log(data)
+    this.CookieService.put('reg-data', data);
+    //this.route.navigateByUrl('/seller/verify')
+    //console.log(data)
+    //console.log(this.CookieService.get('reg-data'))
+    //this.CookieService.set('reg-data', data);
+    //this.cookieValue = this.CookieService.get('reg-data');
+    //console.log(this.cookieValue)
     this.authService.signup(data).subscribe(/*res*/auth => {
       this.auth = auth;
         if (auth) {
-          this.route.navigateByUrl('/seller/auth');
+          this.route.navigateByUrl('/seller/verify');
         } else {
           this.route.navigateByUrl('/seller/register');
         }
+
       /*if (res.status) {
         if (res.status == 'success') {
           this.route.navigateByUrl('/seller/auth');

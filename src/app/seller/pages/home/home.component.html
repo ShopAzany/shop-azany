@@ -7,7 +7,7 @@
                     <h1>{{content?.banner_info?.title}}</h1>
                     <p>{{content?.banner_info?.sub_title}}</p>
                     <div class="buttonSell">
-                        <a href="localhost:4200/#choose" class="vendorPrimaryBtn" style="width: 550px;">Choose plan</a>
+                        <a (click)="scroll(target)" class="vendorPrimaryBtn" style="width: 550px; cursor: pointer;">Choose plan</a>
                     </div>
                     <p>Already have a Vendor's account?</p>
                     <div class="buttonSell">
@@ -34,12 +34,12 @@
           <div *ngIf="selected">You selected: {{selected}}</div>
     </div-->
 
-    <div class="container mt-5" id="choose">
+    <div class="container mt-5" #target>
         <form [formGroup]="form">
             <div class="form-group">
                 <label for="country">Select your Country to see your available plans</label>
-                <select type="text" [class.error]="country?.touched && country?.invalid" class="form-control" formControlName="country" id="country" placeholder="Choose Country from dropdown Menu">
-                    <option value="" disabled>Choose Country from dropdown Menu</option>
+                <select [(ngModel)]="selectedCountry" type="text" [class.error]="country?.touched && country?.invalid" class="form-control" formControlName="country" id="country">
+                    <option value="Choose a Country">Choose a Country</option>
                     <option *ngFor="let country of countries" value="{{country?.name}}">{{country?.name}}</option>
                 </select>
                 <div *ngIf="country?.touched && country?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
@@ -47,9 +47,21 @@
         </form>
     </div>
 
+    <!--select name="" id="" [(ngModel)]="selectedValue">
+        <option selected>single</option>
+        <option value="1">Weekly</option>
+        <option value="2">Monthly</option>
+        <option value="3">Yearly</option>
+    </select>
+
+    <div *ngIf="selectedValue == 0">single working fine</div>
+    <div *ngIf="selectedValue == 1">Weekly working fine</div>
+    <div *ngIf="selectedValue == 2">monthly working fine</div>
+    <div *ngIf="selectedValue == 3">yearly working fine</div-->
+
     <div class="body2">
         
-        <div class="container2">
+        <div class="container2" *ngIf="selectedCountry == 'Nigeria'">
             <div class="card2">
               <div class="face face1">
                 <div class="content">
@@ -65,7 +77,7 @@
                         <li>Reward Points</li>
                     </ul>
                     <div class="buttonSell">
-                        <a routerLink="/seller/register/basic" class="vendorPrimaryBtn">Sign Up</a>
+                        <a routerLink="/seller/register/{{ selectedCountry }}/basic" class="vendorPrimaryBtn">Sign Up</a>
                     </div>
                 </div>
                 </div>
@@ -88,7 +100,7 @@
                         <li>Unlimited Access To Azany Marketplace</li>
                     </ul>
                     <div class="buttonSell">
-                        <a routerLink="/seller/register/standard" class="vendorPrimaryBtn">Sign Up</a>
+                        <a routerLink="/seller/register/{{ selectedCountry }}/standard" class="vendorPrimaryBtn">Sign Up</a>
                     </div>
                 </div>
                 </div>
@@ -115,7 +127,7 @@
                         <li>Unlimited Access To Azany Marketplace</li>
                     </ul>
                     <div class="buttonSell">
-                        <a routerLink="/seller/register/premium" class="vendorPrimaryBtn">Sign Up</a>
+                        <a routerLink="/seller/register/{{ selectedCountry }}/premium" class="vendorPrimaryBtn">Sign Up</a>
                     </div>
                   </div>
                 </div>
@@ -124,14 +136,14 @@
           </div>
     </div>
 
-    <div class="body2">
+    <div class="body2" *ngIf="selectedCountry == 'United States'">
         <div class="container2">
 
             <div class="card2" style="height:300px ;">
               <div class="face face1">
                 <div class="content">
                   <span class="stars"></span>
-                  <h2 class="card-title">US Premium Plan</h2>
+                  <h2 class="card-title">USA and Canada Plan</h2>
                   <h3 class="java"> $34.99<span style="font-size: smaller;">month</span></h3>
                   <hr>
                   <div class="java">
@@ -140,7 +152,60 @@
                         <li>Business Mentoring</li>
                     </ul>
                     <div class="buttonSell">
-                        <a routerLink="/seller/register/uspremium" class="vendorPrimaryBtn">Sign Up</a>
+                        <a routerLink="/seller/register/{{ selectedCountry }}/usaplan" class="vendorPrimaryBtn">Sign Up</a>
+                    </div>
+                </div>
+                </div>
+              </div>
+            </div>
+        
+        </div>
+    </div>
+
+    <div class="body2" *ngIf="selectedCountry == 'Canada'">
+        <div class="container2">
+
+            <div class="card2" style="height:300px ;">
+              <div class="face face1">
+                <div class="content">
+                  <span class="stars"></span>
+                  <h2 class="card-title">USA and Canada Plan</h2>
+                  <h3 class="java"> $34.99<span style="font-size: smaller;">month</span></h3>
+                  <hr>
+                  <div class="java">
+                    <ul>
+                        <li>2 Free personal Ad with your products</li>
+                        <li>Business Mentoring</li>
+                    </ul>
+                    <div class="buttonSell">
+                        <a routerLink="/seller/register/{{ selectedCountry }}/canadaplan" class="vendorPrimaryBtn">Sign Up</a>
+                    </div>
+                </div>
+                </div>
+              </div>
+            </div>
+        
+        </div>
+    </div>
+
+    <div class="body2" *ngIf="selectedCountry">
+        <div class="container2">
+
+            <div class="card2" style="height:300px ;">
+              <div class="face face1">
+                <div class="content">
+                  <span class="stars"></span>
+                  <h2 class="card-title">{{selectedCountry }} Plan</h2>
+                  <p style="padding: 20px;">There are no plans available for your country yet. However you can proceed to Sign up</p>
+                  <!--h3 class="java"> $34.99<span style="font-size: smaller;">month</span></h3-->
+                  <hr>
+                  <div class="java">
+                    <!--ul>
+                        <li>2 Free personal Ad with your products</li>
+                        <li>Business Mentoring</li>
+                    </ul-->
+                    <div class="buttonSell">
+                        <a routerLink="/seller/register/{{ selectedCountry }}/{{ selectedCountry }}plan" class="vendorPrimaryBtn">Sign Up</a>
                     </div>
                 </div>
                 </div>

@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { CookieModule } from 'ngx-cookie';
+import { CookieModule, CookieService } from 'ngx-cookie';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,7 +18,8 @@ import { AuthGuard } from './data/services/auth.guard';
     HttpClientModule
   ],
   providers: [
-    AuthGuard
+    AuthGuard,
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

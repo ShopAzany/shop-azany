@@ -1,0 +1,21 @@
+<app-header></app-header>
+<div class="container-md">
+    <form style="margin-top: 50px; margin-bottom: 50px;" (ngSubmit)="submit()" [formGroup]="form">
+        <div hidden style="visibility: hidden;" #emailEl class="form-group">
+            <label>Email Address</label>
+            <input value="{{ email }}" type="email" class="form-control" formControlName="email" placeholder="Enter your Business Email">
+        </div>
+        <div class="form-group">
+            <label>Enter the token Code sent to your email</label>
+            <input type="number" [class.error]="tokenCode?.touched && tokenCode?.invalid" class="form-control" formControlName="token_code">
+            <div *ngIf="tokenCode?.touched && tokenCode?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
+            <div *ngIf="tokenError" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>{{tokenError}}</span></div>
+        </div>
+        <div class="btnCont">
+            <button *ngIf="!isSubmitting" type="submit" [disabled]="invalid" class="vendorPrimaryBtn">Verify</button>
+            <button type="button" *ngIf="isSubmitting" disabled class="vendorPrimaryBtn"><i
+                    class="fa fa-spinner fa-spin"></i></button>
+        </div>
+    </form>
+</div>
+<app-footer></app-footer>

@@ -1,3 +1,4 @@
+import { filter } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Country } from '../../model/country';
 
@@ -257,6 +258,10 @@ export class CountryService {
 
   getCountry(name: string): Country {
     return this.countries.filter(country => country.name === name)[0];
+  }
+
+  getCountryWithName(name) {
+    return this.countries.filter(country => country.dailing == name);
   }
 
   getCountryWithDialing(dialing) {

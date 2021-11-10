@@ -9,6 +9,7 @@ import { SellerAuthGuard } from '../data/services/seller/seller-auth.guard';
 import { RegisterModule } from './pages/register/register.module';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { RegisternComponent } from './pages/registern/registern.component';
+import { VerificationComponent } from './pages/verification/verification.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { RegisternComponent } from './pages/registern/registern.component';
     LoginComponent,
     ForgotPasswordComponent,
     RegisternComponent,
+    VerificationComponent,
   ],
   imports: [
     CommonModule,

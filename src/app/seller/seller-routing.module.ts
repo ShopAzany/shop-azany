@@ -9,13 +9,15 @@ import { LoginComponent } from './pages/login/login.component';
 //import { BusinessInfoComponent } from './pages/register/components/business-info/business-info.component';
 //import { CreateAccountComponent } from './pages/register/components/create-account/create-account.component';
 import { RegisternComponent } from './pages/registern/registern.component';
+import { VerificationComponent } from './pages/verification/verification.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   //{ path: 'register', component: CreateAccountComponent },
-  { path: 'register/:plan', component: RegisternComponent },
+  { path: 'register/:country/:plan', component: RegisternComponent },
+  { path: 'verify', component: VerificationComponent },
   //{ path: 'register/business-info', component: BusinessInfoComponent },
   //{ path: 'register/additional-info', component: AdditionalInfoComponent },
   {

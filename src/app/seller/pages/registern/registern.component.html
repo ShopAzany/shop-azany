@@ -35,18 +35,19 @@
                             <div *ngIf="emailServerError" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>{{emailServerError}}</span></div>
                         </div>
                         <div class="form-group">
-                            <label for="country">Select your Country</label>
-                            <select type="text" [class.error]="country?.touched && country?.invalid" class="form-control" formControlName="country" id="country" placeholder="Choose Country from dropdown Menu">
+                            <label for="country">Country</label>
+                            <input disabled type="text" class="form-control" formControlName="country">
+                            <!--select type="text" [class.error]="country?.touched && country?.invalid" class="form-control" formControlName="country" id="country" placeholder="Choose Country from dropdown Menu">
                                 <option value="" disabled>Choose Country from dropdown Menu</option>
-                                <option *ngFor="let country of countries" value="{{country?.name}}">{{country?.name}}</option>
-                            </select>
-                            <div *ngIf="country?.touched && country?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
+                                <option disabled *ngFor="let country of countries" value="{{country?.name}}">{{country?.name}}</option>
+                            </select-->
+                            <!--div *ngIf="country?.touched && country?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div-->
                         </div>
                         <div #phoneEl class="form-group">
                             <label>Phone Number</label>
                             <div class="gridCont">
                                 <div class="code">
-                                    <input type="text" placeholder="Code" [class.error]="(countryCode?.touched && countryCode?.invalid) || phoneServerError || invalidCountryCode" appAllowNum maxlength="4" formControlName="country_code">
+                                    <input disabled type="text" placeholder="Code" [class.error]="(countryCode?.touched && countryCode?.invalid) || phoneServerError || invalidCountryCode" appAllowNum maxlength="4" formControlName="country_code">
                                 </div>
                                 <div class="number">
                                     <input type="text" appAllowNum [class.error]="(phone?.touched && phone?.invalid) || phoneServerError" class="form-control" formControlName="phone" placeholder="Enter your Business Phone Number">

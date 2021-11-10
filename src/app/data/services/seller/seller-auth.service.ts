@@ -187,6 +187,13 @@ export class SellerAuthService {
     );
   }
 
+  verifyEmail(postData: string) {
+    return this.http.post<any>(
+      `${this.serverUrl}seller/register/verify_token`,
+      { data: postData }
+    );
+  }
+
 
   changePassword(postData: string) {
     return this.http.post<any>(
