@@ -1,3 +1,4 @@
+import { CountrynotService } from './../../../data/services/local-data/countrynot.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ConfigService } from 'src/app/data/services/config.service';
 import { StaticContentService } from 'src/app/data/services/guest/static-content.service';
@@ -17,6 +18,7 @@ export class HomeComponent implements OnInit {
   selectedCountry;
 
   countries;
+  countriesnot;
 
   form = new FormGroup({
     country: new FormControl('Choose a Country', [
@@ -32,11 +34,13 @@ export class HomeComponent implements OnInit {
     private staticContentService: StaticContentService,
     private configService: ConfigService,
     private countryService: CountryService,
+    private countrynotService: CountrynotService,
   ) { }
 
   ngOnInit(): void {
     this.getContent();
     this.countries = this.countryService.getCountries();
+    this.countriesnot = this.countrynotService.getCountriesnot();
   }
 
   private getContent() {

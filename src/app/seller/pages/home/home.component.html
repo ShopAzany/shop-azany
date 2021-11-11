@@ -67,7 +67,7 @@
                 <div class="content">
                   <span class="stars"></span>
                   <h2 class="card-title">Basic</h2>
-                  <h3 class="java"> 3000/<span style="font-size: smaller;">month</span></h3>
+                  <h3 class="java"> &#8358;3000/<span style="font-size: smaller;">month</span></h3>
                   <hr>
                   <div class="java">
                     <ul>
@@ -89,7 +89,7 @@
                 <div class="content">
                   <span class="stars"></span>
                   <h2 class="card-title">Standard</h2>
-                  <h3 class="python"> 5000/<span style="font-size: smaller;">month</span></h3>
+                  <h3 class="python"> &#8358;5000/<span style="font-size: smaller;">month</span></h3>
                   <hr>
                   <div class="python">
                     <ul>
@@ -111,7 +111,7 @@
               <div class="face face1">
                 <div class="content">
                   <h2 class="card-title">Premium</h2>
-                  <h3 class="cSharp"> 7000/<span style="font-size: smaller;">month</span></h3>
+                  <h3 class="cSharp"> &#8358;7000/<span style="font-size: smaller;">month</span></h3>
                   <hr>
                   <div class="cSharp">
                     <ul>
@@ -188,33 +188,33 @@
         </div>
     </div>
 
-    <div class="body2" *ngIf="selectedCountry">
-        <div class="container2">
-
-            <div class="card2" style="height:300px ;">
-              <div class="face face1">
-                <div class="content">
-                  <span class="stars"></span>
-                  <h2 class="card-title">{{selectedCountry }} Plan</h2>
-                  <p style="padding: 20px;">There are no plans available for your country yet. However you can proceed to Sign up</p>
-                  <!--h3 class="java"> $34.99<span style="font-size: smaller;">month</span></h3-->
-                  <hr>
-                  <div class="java">
-                    <!--ul>
-                        <li>2 Free personal Ad with your products</li>
-                        <li>Business Mentoring</li>
-                    </ul-->
-                    <div class="buttonSell">
-                        <a routerLink="/seller/register/{{ selectedCountry }}/{{ selectedCountry }}plan" class="vendorPrimaryBtn">Sign Up</a>
+    <div>
+        <div class="container">
+            <div *ngFor="let countriesnot of countriesnot; let i = index">  
+                    <div *ngIf="selectedCountry == countriesnot.name" class="card2" style="height:300px;">
+                        <div class="face face1">
+                          <div class="content">
+                            <span class="stars"></span>
+                            <h2 class="card-title">{{selectedCountry }} Plan</h2>
+                            <p style="padding: 30px;">There are no plans available for your country yet. However, you can proceed to Sign up</p>
+                            <!--h3 class="java"> $34.99<span style="font-size: smaller;">month</span></h3-->
+                            <hr>
+                                <div class="java">
+                                <!--ul>
+                                    <li>2 Free personal Ad with your products</li>
+                                    <li>Business Mentoring</li>
+                                </ul-->
+                                <div class="buttonSell">
+                                    <a routerLink="/seller/register/{{ selectedCountry }}/{{ selectedCountry }}plan" class="vendorPrimaryBtn">Sign Up</a>
+                                </div>
+                          </div>
+                        </div>
                     </div>
-                </div>
-                </div>
-              </div>
             </div>
-        
         </div>
     </div>
-    
+
+
     <div *ngIf="content?.how_it_work && content?.how_it_work?.length" class="container-fluid contProcess">
         <h2>How it Works</h2>
         <div class="contGrid">
