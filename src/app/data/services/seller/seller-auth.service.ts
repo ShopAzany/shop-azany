@@ -41,10 +41,12 @@ export class SellerAuthService {
     //   location = resp;
     // });
     return this.http.post<any>(
-      `${this.serverUrl}seller/register`, { data: postData }
+      //`${this.serverUrl}seller/register`, { data: postData }
+      `https://manage.shopazany.com/seller/register`, { data: postData }
     ).pipe(tap(res => {
       if (res.status && res.status == 'success') {
         this.token = res.data.token;
+        console.log(this.token)
         this.storeAuthData(res.data);
       }
     }));
@@ -189,7 +191,8 @@ export class SellerAuthService {
 
   verifyEmail(postData: string) {
     return this.http.post<any>(
-      `${this.serverUrl}seller/register/verify_token`,
+      //`${this.serverUrl}seller/register/verify_token`,
+      `https://manage.shopazany.com/seller/register/verify_token`,
       { data: postData }
     );
   }

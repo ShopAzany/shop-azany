@@ -16,6 +16,7 @@ export class VerificationComponent implements OnInit {
   comEmailForm = false;
   resetPassForm = false;
   tokenError: any;
+  newreg = false;
 
   auth;
 
@@ -30,7 +31,7 @@ export class VerificationComponent implements OnInit {
     email: new FormControl(this.getemail(), [
       Validators.required
     ]),
-    token_code: new FormControl('', [
+    token: new FormControl('', [
       Validators.required,
       Validators.maxLength(6),
       Validators.minLength(6)
@@ -38,7 +39,7 @@ export class VerificationComponent implements OnInit {
   });
 
   get tokenCode() {
-    return this.form.get('token_code');
+    return this.form.get('token');
   }
   get email() {
     return this.form.get('email');
@@ -60,10 +61,13 @@ export class VerificationComponent implements OnInit {
   submit(){
     this.isSubmitting = true;
     const data = JSON.stringify(this.form.value);
+    //console.log(data)
     this.authService.verifyEmail(data).subscribe(res => {
+      //console.log(res)
       if (res && res.status === 'success') {
         //this.route.navigateByUrl('/seller/login');
-        const data2 =this.CookieService.get('reg-data');
+        this.newreg = true;
+        const data2 = this.CookieService.get('reg-data');
         this.authService.signup(data2).subscribe(/*res*/auth => {
           this.auth = auth;
             if (auth) {

@@ -96,6 +96,7 @@
                     <img src="{{treatImgUrl(ctry?.image)}}" alt="">
                     <span>{{ctry?.country}}</span>
                 </a>
+
                 <!-- <a href="javascript:void(0)"  (click)="setCountry('ghana')" [class.cusActive]="selCountry == 'ghana'" class="eachTab">
                     <img src="assets/images/Group108.png" alt="">
                     <span>Ghana</span>
@@ -121,6 +122,9 @@
                         <app-each-product [currency]="currency" (favEv)="updateFav($event)" [addingCart]="addingCart" (addCartEv)="addToCart($event)" [updatingFav]="updatingFav" [product]="prod">
                         </app-each-product>
                     </div>
+                </div>
+                <div *ngIf= "ctry?.selectedPro.length == 0">
+                    <p>There are no products available from this country yet.</p>
                 </div>
             </div>
             <!-- <div [class.cusActive]="selCountry == 'south_africa'" class="eachBody" id="country1">

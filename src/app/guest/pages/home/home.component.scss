@@ -34,9 +34,9 @@
             color: #222;
             h4 {
                 font-weight: 600;
-                font-size: 24px;
+                font-size: 22px;
                 white-space: nowrap;
-                line-height: 36px;
+                line-height: 34px;
                 margin: 0;
             }
             p {
@@ -50,10 +50,10 @@
             display: grid;
             padding: 0 20px;
             align-items: center;
-            grid-template-columns: repeat(4, 1fr);
-            overflow-x: auto;
+            grid-template-columns: repeat(6, 1fr);
+            overflow-x: auto; //hidden;
             overflow-y: hidden;
-            column-gap: 40px;
+            column-gap: 10px;
             a {
                 display: flex;
                 flex-direction: column;
@@ -78,7 +78,7 @@
     }
     .tabBody {
         background: $deepBg;
-        padding: 20px;
+        padding: 40px;
         border-radius: 0 0 10px 10px;
         .eachBody {
             display: none;

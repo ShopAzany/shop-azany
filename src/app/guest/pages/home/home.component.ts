@@ -50,6 +50,7 @@ export class HomeComponent implements OnInit {
     this.getOtherData();
     this.getGenSettings();
     this.getAuth();
+    console.log(this.shopByCountry.image);
   }
 
   // setCountry(country) {
@@ -97,7 +98,8 @@ export class HomeComponent implements OnInit {
             this.featuredProdBanner = res.featProBan;
           }
           if (res.HomeProduct.shop_by_country == 'Enabled') {
-            this.shopByCountry = res.shopByCountry ? res.shopByCountry.filter(each => each.selectedPro.length) : [];
+            this.shopByCountry = res.shopByCountry;
+            console.log(res.shopByCountry) //? res.shopByCountry.filter(each => each.selectedPro.length) : [];
           }
           this.topCategories = res.top_categories;
           if (res.HomeProduct.today_deals == 'Enabled') {
