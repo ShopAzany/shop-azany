@@ -1,0 +1,21 @@
+<div class="section">
+    <h2 class="title text-center">Complete your Sign Up</h2>
+    <div class="tabPar">
+        <div class="d-flex tabs" [class.business]="activeLink == 'business'" [class.payment]="activeLink == 'payment'">
+            <!--div class="eachTab" [class.navActive]="activeLink == 'create'">
+                <span class="roundBg">1</span>
+                <span>Create Seller Account</span>
+                <i class="fa fa-angle-right"></i>
+            </div-->
+            <div class="eachTab" [class.navActive]="activeLink == 'business'">
+                <span class="roundBg">1</span>
+                <span>Business Information</span>
+                <i class="fa fa-angle-right"></i>
+            </div>
+            <div class="eachTab" [class.navActive]="activeLink == 'payment'">
+                <span class="roundBg">2</span>
+                <span>Additional Information</span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -3,99 +3,11 @@
     <app-seller-side-nav owner="dashboard"></app-seller-side-nav>
     <main>
         <section class="headSection">
-            <h1 class="pageTitle">My Account</h1>
+            <h1 class="pageTitle">My Profile</h1>
         </section>
         <section class="bodyPart">
-            <div *ngIf="bizerr" class="">
-                <div class="alert alert-info fade show">
-                    Welcome! Click <a routerLink="register/business-info" >here</a> to complete your Registration before you can upload a product
-                </div>
-            </div>
-            <div class="statParent">
-
-                <div class="statChartCont" [class.optionLoading]="optionLoading">
-                    <div class="headPart d-flex align-items-center justify-content-between">
-                        <h4 class="m-0">Products Statistics</h4>
-                        <div class="rightSide d-flex align-items-center">
-                            <div class="cusDropdown statDropdown">
-                                <div appDropdown class="clickable">
-                                    <span>{{durationObj?.txt}}</span>
-                                    <i class="fa fa-caret-down"></i>
-                                </div>
-                                <div class="dropped">
-                                    <div class="dropItem" (click)="setDuration($event.target, 'days')">Daily</div>
-                                    <div class="dropItem" (click)="setDuration($event.target, 'months')">Monthly</div>
-                                    <div class="dropItem" (click)="setDuration($event.target, 'years')">Yearly</div>
-                                </div>
-                            </div>
-                            <div class="vertOption">
-                                <i class="fa fa-ellipsis-v"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="statIdentity d-flex justify-content-between">
-                        <div class="totalProdStatCont">
-                            <div class="pieChartCont">
-                                <app-pie-chart *ngIf="!infoLoading" [totalItems]="(+totalActiveProducts + +totalInactiveProducts)" [mainItems]="+totalActiveProducts" mainItemCol="#6418C3" totalItemCol="#f5f5f5">
-                                </app-pie-chart>
-                            </div>
-                            <div class="txtRep">
-                                <h5>{{totalActiveProducts | number}}</h5>
-                                <div>Total Products</div>
-                            </div>
-                        </div>
-                        <div class="salesWishListCont d-flex">
-                            <div class="eachStat">
-                                <div class="dotNumCont d-flex align-items-center">
-                                    <div class="dot sales"></div>
-                                    <h5 class="m-0 num">{{totalSales | number}}</h5>
-                                </div>
-                                <div class="txtInterp">Sales</div>
-                            </div>
-                            <div class="eachStat">
-                                <div class="dotNumCont d-flex align-items-center">
-                                    <div class="dot wish"></div>
-                                    <h5 class="m-0 num">{{totalWishList | number}}</h5>
-                                </div>
-                                <div class="txtInterp">WishListing</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="barCharCont">
-                        <app-bar-chart yAxis="quantity" [durationUnit]="durationObj?.value" durationNo="7" [rawData]="rawData"></app-bar-chart>
-                    </div>
-                </div>
-                <div class="chartSummary">
-                    <div class="eachChartSummary">
-                        <h2 class="summaryNo"><span class="curr" [innerHTML]="currency | safeHtml"></span>{{totalRevenue | number}}</h2>
-                        <h5 class="summaryTitle">Total Revenue</h5>
-                        <p class="summaryComment"><b class="good">+0.5%</b> than last month</p>
-                        <div class="graphCont">
-                            <app-graph yAxis="total" durationUnit="day" durationNo="30" [rawData]="revenuGraph">
-                            </app-graph>
-                        </div>
-                    </div>
-                    <div class="eachChartSummary">
-                        <h2 class="summaryNo">{{totalProductsSold | number}}</h2>
-                        <h5 class="summaryTitle">Products</h5>
-                        <p class="summaryComment"><b class="bad">-2%</b> than last month</p>
-                        <div class="graphCont">
-                            <app-graph yAxis="quantity" durationUnit="day" durationNo="30" [rawData]="revenuGraph">
-                            </app-graph>
-                        </div>
-                    </div>
-                    <div class="eachChartSummary">
-                        <h2 class="summaryNo">{{totalCustomers | number}}</h2>
-                        <h5 class="summaryTitle">Customers</h5>
-                        <p class="summaryComment"><b class="bad">-2%</b> than last month</p>
-                        <div class="graphCont">
-                            <app-graph yAxis="customer" durationUnit="day" durationNo="30" [rawData]="customerGraph">
-                            </app-graph>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--div class="sellerInfoPar">
+            
+            <div class="sellerInfoPar">
                 <div class="sellerInfoItem">
                     <div class="leftPart">
                         <div class="infoKey">Full Name</div>
@@ -168,7 +80,8 @@
                         <a href="javascript:void(0)" [openModal]="bizRegNumModal" class="action">EDIT</a>
                     </div>
                 </div>
-            </div-->
+                
+            </div>
         </section>
     </main>
 </div>

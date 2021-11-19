@@ -7,13 +7,11 @@ import { DashboardService } from 'src/app/data/services/seller/dashboard.service
 import { SellerAuthService } from 'src/app/data/services/seller/seller-auth.service';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.scss']
 })
-export class DashboardComponent implements OnInit {
-
-  bizerr = false;
+export class ProfileComponent implements OnInit {
 
   countries
   isSaving = false;
@@ -30,56 +28,7 @@ export class DashboardComponent implements OnInit {
   currency;
   durationObj = { txt: 'Daily', value: 'days' };
   optionLoading = false;
-  rawData = [
-    [], []
-    // [
-    //   {
-    //     created_at: '2021-08-06 03:21:03',
-    //     product_name: 'product 1',
-    //     quantity: 1
-    //   },
-    //   {
-    //     created_at: '2021-08-06 03:21:03',
-    //     product_name: 'product 1',
-    //     quantity: 1
-    //   },
-    //   {
-    //     created_at: '2021-08-06 03:21:03',
-    //     product_name: 'product 1',
-    //     quantity: 1
-    //   },
-    //   {
-    //     created_at: '2021-08-09 03:21:03',
-    //     product_name: 'product 1',
-    //     quantity: 1
-    //   },
-    //   {
-    //     created_at: '2021-08-10 03:21:03',
-    //     product_name: 'product 1',
-    //     quantity: 1
-    //   },
-    // ],
-    // [
-    //   {
-    //     created_at: '2021-08-06 03:21:03',
-    //     product_name: 'product 1',
-    //   },
-    //   {
-    //     created_at: '2021-08-07 03:21:03',
-    //     product_name: 'product 1',
-    //   },
-    //   {
-    //     created_at: '2021-08-09 03:21:03',
-    //     product_name: 'product 1',
-    //   },
-    // ],
-  ];
-
-  graphData = [];
-
-  revenuGraph = [];
-  customerGraph = [];
-
+  
   closeModal = new BehaviorSubject<boolean>(false);
 
   auth;
@@ -165,6 +114,8 @@ export class DashboardComponent implements OnInit {
     }
     return null;
   }
+ 
+
   constructor(
     private countryService: CountryService,
     private authService: SellerAuthService,
@@ -175,9 +126,8 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.countries = this.countryService.getCountries();
     this.getAuth();
-    this.getDashboardInfo();
+    //this.getDashboardInfo();
     this.getCurrency();
-    this.checkbiz();
   }
 
   private getCurrency() {
@@ -192,13 +142,13 @@ export class DashboardComponent implements OnInit {
     if (value == this.durationObj.value) return;
     this.optionLoading = true;
     this.durationObj = { txt: el.innerHTML, value: value };
-    this.getDashboardInfo();
+    //this.getDashboardInfo();
     // setTimeout(() => {
     //   this.optionLoading = false;
     // }, 1000);
   }
 
-  private getDashboardInfo() {
+  /*private getDashboardInfo() {
     this.dashboardService.dashboardInfo(this.durationObj.value).subscribe(res => {
       // console.log(res);
       if (res) {
@@ -216,28 +166,20 @@ export class DashboardComponent implements OnInit {
       this.infoLoading = false;
       this.optionLoading = false;
     });
-  }
+  }*/
 
   private getAuth() {
     this.authService.seller.subscribe(auth => {
       this.auth = auth;
-      console.log(this.auth)
       if (this.auth) {
         this.initiateFormValues();
       }
     });
   }
 
-  private checkbiz() {
-    const bizInfo = this.auth.biz_info;
-    if (bizInfo.bizName = '') {
-      this.bizerr = true;
-    }
-  }
-
   private initiateFormValues() {
     const bizInfo = this.auth.biz_info;
-    this.bizName.setValue(this.auth.biz_info);
+    this.bizName.setValue(bizInfo.biz_name);
     this.bizAddress.setValue(bizInfo.biz_address);
     this.bizReg.setValue(bizInfo.biz_reg_number);
     this.bizType.setValue(bizInfo.biz_type);
@@ -279,5 +221,6 @@ export class DashboardComponent implements OnInit {
       })
     }
   }
+
 
 }

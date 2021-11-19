@@ -13,6 +13,11 @@ import { AddProductShippingComponent } from './add-product-shipping/add-product-
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { ProductPreviewComponent } from './product-preview/product-preview.component';
 import { ProductNavBarComponent } from './shared/product-nav-bar/product-nav-bar.component';
+import { ProfileComponent } from './profile/profile.component';
+import { StoreManagerComponent } from './store-manager/store-manager.component';
+//import { AdditionalInfoComponent } from './register/components/additional-info/additional-info.component';
+//import { BusinessInfoComponent } from './register/components/business-info/business-info.component';
+//import { RegisterComponent } from 'src/app/seller/pages/auth/register/register.component';
 
 
 @NgModule({
@@ -25,7 +30,11 @@ import { ProductNavBarComponent } from './shared/product-nav-bar/product-nav-bar
     AddProductSellingComponent,
     AddProductShippingComponent,
     ProductPreviewComponent,
-    ProductNavBarComponent
+    ProductNavBarComponent,
+    ProfileComponent,
+    StoreManagerComponent,
+    //AdditionalInfoComponent,
+    //BusinessInfoComponent
   ],
   imports: [
     CommonModule,

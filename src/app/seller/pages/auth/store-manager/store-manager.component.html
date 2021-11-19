@@ -1,0 +1,195 @@
+<app-header></app-header>
+
+<div id="authPage">
+    <app-seller-side-nav owner="dashboard"></app-seller-side-nav>
+
+    <main>
+        <section class="headSection">
+            <h1 class="pageTitle">Store Manager</h1>
+            <a href="javascript:()" class="addToCartLink" [openModal]="addAddress">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M1 9H9V1C9 0.734784 9.10536 0.48043 9.29289 0.292893C9.48043 0.105357 9.73478 0 10 0C10.2652 0 10.5196 0.105357 10.7071 0.292893C10.8946 0.48043 11 0.734784 11 1V9H19C19.2652 9 19.5196 9.10536 19.7071 9.29289C19.8946 9.48043 20 9.73478 20 10C20 10.2652 19.8946 10.5196 19.7071 10.7071C19.5196 10.8946 19.2652 11 19 11H11V19C11 19.2652 10.8946 19.5196 10.7071 19.7071C10.5196 19.8946 10.2652 20 10 20C9.73478 20 9.48043 19.8946 9.29289 19.7071C9.10536 19.5196 9 19.2652 9 19V11H1C0.734784 11 0.48043 10.8946 0.292893 10.7071C0.105357 10.5196 0 10.2652 0 10C0 9.73478 0.105357 9.48043 0.292893 9.29289C0.48043 9.10536 0.734784 9 1 9Z"
+                        fill="white" />
+                </svg>
+                <span>Add Manager</span>
+            </a>
+        </section>
+        <section class="bodyPart">
+
+            <div *ngIf="message" class="alertWrap">
+                <p class="text-center mb-0 text-white"><i class="fa fa-times-circle mr-3 pointer" (click)="removeMessage()"></i> {{theMessage}}</p>
+            </div>
+
+
+            <div *ngIf="!isLoading" class="sellerInfoPar">
+                <div *ngFor="let address of addresses" class="sellerInfoItem">
+                    <div class="leftPart">
+                        <div class="infoKey">
+                            <p class="mb-1">{{manager?.manager_name}}</p>
+                            <p class="mb-1">{{manager?.manager_email}}, {{manager?.manager_email}}</p>
+                            <p class="mb-1">{{manager?.manager_role}}</p>
+                        </div>
+                        <div *ngIf="address.add_status" class="infoValue">Default Address</div>
+                    </div>
+                    <div class="rightPart">
+                        <a href="javascript:()" [openModal]="editAdress" (click)="removeAddr(manager?.id)" class="action mr-3">EDIT</a>
+                        <button [disabled]="manager.add_status" [class.opa]="manager.add_status" class="removeBtn btn" [openModal]="removeModal" (click)="removeAddr(address?.id)"><i class="fa fa-trash"></i>
+                            Remove</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <app-loading *ngIf="isLoading"></app-loading>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+
+
+<app-modal #addAddress [closeModal]="closeModal">
+    <div class="modalContent">
+        <div class="modalHead">
+            <h4 class="modalTitle">Add a New Manager</h4>
+            <span class="closeBtn">
+                <svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M0.366515 18.866L8.23277 10.9997L0.366515 3.13349C0.138818 2.89773 0.0128242 2.58198 0.0156723 2.25423C0.0185203 1.92649 0.149982 1.61297 0.381742 1.38121C0.613502 1.14945 0.927018 1.01799 1.25476 1.01514C1.58251 1.01229 1.89826 1.13829 2.13401 1.36599L10.0003 9.23224L17.8665 1.36599C17.9818 1.2466 18.1198 1.15137 18.2723 1.08586C18.4248 1.02035 18.5888 0.985864 18.7548 0.984422C18.9207 0.98298 19.0853 1.01461 19.239 1.07746C19.3926 1.14031 19.5321 1.23313 19.6495 1.35049C19.7669 1.46786 19.8597 1.60742 19.9225 1.76104C19.9854 1.91466 20.017 2.07926 20.0156 2.24524C20.0141 2.41121 19.9797 2.57524 19.9141 2.72774C19.8486 2.88025 19.7534 3.01818 19.634 3.13349L11.7678 10.9997L19.634 18.866C19.7534 18.9813 19.8486 19.1192 19.9141 19.2717C19.9797 19.4242 20.0141 19.5883 20.0156 19.7542C20.017 19.9202 19.9854 20.0848 19.9225 20.2384C19.8597 20.392 19.7669 20.5316 19.6495 20.649C19.5321 20.7663 19.3926 20.8592 19.239 20.922C19.0853 20.9849 18.9207 21.0165 18.7548 21.0151C18.5888 21.0136 18.4248 20.9791 18.2723 20.9136C18.1198 20.8481 17.9818 20.7529 17.8665 20.6335L10.0003 12.7672L2.13401 20.6335C1.89826 20.8612 1.58251 20.9872 1.25476 20.9843C0.927018 20.9815 0.613502 20.85 0.381742 20.6183C0.149982 20.3865 0.0185203 20.073 0.0156723 19.7452C0.0128242 19.4175 0.138818 19.1017 0.366515 18.866Z"
+                        fill="#E21E2D" />
+                </svg>
+            </span>
+        </div>
+        <div class="modalBody">
+            <form [formGroup]="addForm" (ngSubmit)="submitAdd()">
+                <div class="form-group">
+                    <label for="">Manager Name</label>
+                    <input type="text" [class.error]="(manager_name?.touched && manager_name?.invalid)" formControlName="manager_name" class="form-control" placeholder="Manager Name">
+                    <div *ngIf="manager_name?.touched && manager_name?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>Manager Email is required</span></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="">Manager Email</label>
+                    <input type="email" [class.error]="(manager_email?.touched && manager_email?.invalid)" formControlName="manager_email" class="form-control" placeholder="Manager Email">
+                    <div *ngIf="manager_email?.touched && manager_email?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>Manager Email is required</span></div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                            <label for="">Manager Role</label>
+                            <select class="form-control custom-select" formControlName="manager_role">
+                                <option value="" selected disabled>Select a Role</option>
+                                <option value="Admin">Admin</option>
+                                <option value="Product Manager">Product Manager</option>
+                            </select>
+                            <div *ngIf="manager_role?.touched && manager_role?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>Manager Role is required</span></div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <button *ngIf="!isSaving" [disabled]="addForm.invalid" class="vendorPrimaryBtn">ADD MANAGER</button>
+                <button *ngIf="isSaving" disabled class="vendorPrimaryBtn"><i class="fa fa-spinner fa-spin"></i>
+                    ADDING...</button>
+            </form>
+        </div>
+    </div>
+</app-modal>
+
+
+
+
+<app-modal #editAdress [closeModal]="closeModal">
+    <div class="modalContent">
+        <div class="modalHead">
+            <h4 class="modalTitle">Add a New Address</h4>
+            <span class="closeBtn">
+                <svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M0.366515 18.866L8.23277 10.9997L0.366515 3.13349C0.138818 2.89773 0.0128242 2.58198 0.0156723 2.25423C0.0185203 1.92649 0.149982 1.61297 0.381742 1.38121C0.613502 1.14945 0.927018 1.01799 1.25476 1.01514C1.58251 1.01229 1.89826 1.13829 2.13401 1.36599L10.0003 9.23224L17.8665 1.36599C17.9818 1.2466 18.1198 1.15137 18.2723 1.08586C18.4248 1.02035 18.5888 0.985864 18.7548 0.984422C18.9207 0.98298 19.0853 1.01461 19.239 1.07746C19.3926 1.14031 19.5321 1.23313 19.6495 1.35049C19.7669 1.46786 19.8597 1.60742 19.9225 1.76104C19.9854 1.91466 20.017 2.07926 20.0156 2.24524C20.0141 2.41121 19.9797 2.57524 19.9141 2.72774C19.8486 2.88025 19.7534 3.01818 19.634 3.13349L11.7678 10.9997L19.634 18.866C19.7534 18.9813 19.8486 19.1192 19.9141 19.2717C19.9797 19.4242 20.0141 19.5883 20.0156 19.7542C20.017 19.9202 19.9854 20.0848 19.9225 20.2384C19.8597 20.392 19.7669 20.5316 19.6495 20.649C19.5321 20.7663 19.3926 20.8592 19.239 20.922C19.0853 20.9849 18.9207 21.0165 18.7548 21.0151C18.5888 21.0136 18.4248 20.9791 18.2723 20.9136C18.1198 20.8481 17.9818 20.7529 17.8665 20.6335L10.0003 12.7672L2.13401 20.6335C1.89826 20.8612 1.58251 20.9872 1.25476 20.9843C0.927018 20.9815 0.613502 20.85 0.381742 20.6183C0.149982 20.3865 0.0185203 20.073 0.0156723 19.7452C0.0128242 19.4175 0.138818 19.1017 0.366515 18.866Z"
+                        fill="#E21E2D" />
+                </svg>
+            </span>
+        </div>
+        <div class="modalBody">
+            <form [formGroup]="editForm" (ngSubmit)="submitEdit()">
+                <div class="form-group">
+                    <label for="">Manager Name</label>
+                    <input type="text" [class.error]="(manager_name?.touched && manager_name?.invalid)" formControlName="manager_name" class="form-control" placeholder="Manager Name">
+                    <div *ngIf="manager_name?.touched && manager_name?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>Street address is required</span></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="">Manager Email</label>
+                    <input type="email" [class.error]="(manager_email?.touched && manager_email?.invalid)" formControlName="manager_email" class="form-control" placeholder="Manager Email">
+                    <div *ngIf="manager_email?.touched && manager_email?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>Street address is required</span></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="form-group">
+                            <label for="">Manager Role</label>
+                            <select class="form-control custom-select" formControlName="manager_role">
+                                <option value="" selected disabled>Select a Role</option>
+                                <option value="Admin">Admin</option>
+                                <option value="Product Manager">Product Manager</option>
+                            </select>
+                            <div *ngIf="manager_role?.touched && manager_role?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>Country code is required</span></div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-12">
+                        <div class="form-group">
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" formControlName="defaultAdd" class="custom-control-input" id="switch1">
+                                <label class="custom-control-label" for="switch1">Set As Default</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <button *ngIf="!isSaving" [disabled]="editForm.invalid" class="vendorPrimaryBtn">UPDATE MANAGER</button>
+                <button *ngIf="isSaving" disabled class="vendorPrimaryBtn"><i class="fa fa-spinner fa-spin"></i>
+                    UPDATING...</button>
+            </form>
+        </div>
+    </div>
+</app-modal>
+
+
+
+<app-modal #removeModal [closeModal]="closeModal">
+    <div class="modalContent removAdd">
+        <div class="modalHead">
+            <h4 class="modalTitle">remove Manager</h4>
+            <span class="closeBtn">
+                <svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M0.366515 18.866L8.23277 10.9997L0.366515 3.13349C0.138818 2.89773 0.0128242 2.58198 0.0156723 2.25423C0.0185203 1.92649 0.149982 1.61297 0.381742 1.38121C0.613502 1.14945 0.927018 1.01799 1.25476 1.01514C1.58251 1.01229 1.89826 1.13829 2.13401 1.36599L10.0003 9.23224L17.8665 1.36599C17.9818 1.2466 18.1198 1.15137 18.2723 1.08586C18.4248 1.02035 18.5888 0.985864 18.7548 0.984422C18.9207 0.98298 19.0853 1.01461 19.239 1.07746C19.3926 1.14031 19.5321 1.23313 19.6495 1.35049C19.7669 1.46786 19.8597 1.60742 19.9225 1.76104C19.9854 1.91466 20.017 2.07926 20.0156 2.24524C20.0141 2.41121 19.9797 2.57524 19.9141 2.72774C19.8486 2.88025 19.7534 3.01818 19.634 3.13349L11.7678 10.9997L19.634 18.866C19.7534 18.9813 19.8486 19.1192 19.9141 19.2717C19.9797 19.4242 20.0141 19.5883 20.0156 19.7542C20.017 19.9202 19.9854 20.0848 19.9225 20.2384C19.8597 20.392 19.7669 20.5316 19.6495 20.649C19.5321 20.7663 19.3926 20.8592 19.239 20.922C19.0853 20.9849 18.9207 21.0165 18.7548 21.0151C18.5888 21.0136 18.4248 20.9791 18.2723 20.9136C18.1198 20.8481 17.9818 20.7529 17.8665 20.6335L10.0003 12.7672L2.13401 20.6335C1.89826 20.8612 1.58251 20.9872 1.25476 20.9843C0.927018 20.9815 0.613502 20.85 0.381742 20.6183C0.149982 20.3865 0.0185203 20.073 0.0156723 19.7452C0.0128242 19.4175 0.138818 19.1017 0.366515 18.866Z"
+                        fill="#E21E2D" />
+                </svg>
+            </span>
+        </div>
+        <div class="modalBody">
+            <p class="text-center sure-cancel">Are you sure you want to remove this manager?</p>
+
+            <div class="mt-5">
+                <button *ngIf="!isRemoving" class="addToCartLink w-100 mb-4" (click)="removeAddrNow()">Remove
+                    Manager</button>
+                <button *ngIf="isRemoving" class="addToCartLink w-100 mb-4" disabled><i
+                        class="fa fa-spin fa-spinner"></i> Removing...</button>
+                <button class="addtoCartLinkOutline w-100" (click)="closeModalAddr()">No I'll Keep It</button>
+            </div>
+        </div>
+        <div class="modalFooter"></div>
+    </div>
+</app-modal>
