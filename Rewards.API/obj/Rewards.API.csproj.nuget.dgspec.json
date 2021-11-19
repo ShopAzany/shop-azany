@@ -1,0 +1,553 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Rewards.API\\Rewards.API.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Modules\\Rewards\\Rewards.Application\\Rewards.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Modules\\Rewards\\Rewards.Application\\Rewards.Application.csproj",
+        "projectName": "Rewards.Application",
+        "projectPath": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Modules\\Rewards\\Rewards.Application\\Rewards.Application.csproj",
+        "packagesPath": "C:\\Users\\emmanuel.chukwujindu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Modules\\Rewards\\Rewards.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\emmanuel.chukwujindu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Modules\\Rewards\\Rewards.Domain\\Rewards.Domain.csproj": {
+                "projectPath": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Modules\\Rewards\\Rewards.Domain\\Rewards.Domain.csproj"
+              },
+              "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Modules\\Rewards\\Rewards.NHibernate\\Rewards.NHibernate.csproj": {
+                "projectPath": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Modules\\Rewards\\Rewards.NHibernate\\Rewards.NHibernate.csproj"
+              },
+              "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Shared\\Application.Shared\\Application.Shared.csproj": {
+                "projectPath": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Shared\\Application.Shared\\Application.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Modules\\Rewards\\Rewards.Domain\\Rewards.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Modules\\Rewards\\Rewards.Domain\\Rewards.Domain.csproj",
+        "projectName": "Rewards.Domain",
+        "projectPath": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Modules\\Rewards\\Rewards.Domain\\Rewards.Domain.csproj",
+        "packagesPath": "C:\\Users\\emmanuel.chukwujindu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Modules\\Rewards\\Rewards.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\emmanuel.chukwujindu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Shared\\Application.Shared\\Application.Shared.csproj": {
+                "projectPath": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Shared\\Application.Shared\\Application.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Modules\\Rewards\\Rewards.Infrastructure\\Rewards.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Modules\\Rewards\\Rewards.Infrastructure\\Rewards.Infrastructure.csproj",
+        "projectName": "Rewards.Infrastructure",
+        "projectPath": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Modules\\Rewards\\Rewards.Infrastructure\\Rewards.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\emmanuel.chukwujindu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Modules\\Rewards\\Rewards.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\emmanuel.chukwujindu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Modules\\Rewards\\Rewards.Application\\Rewards.Application.csproj": {
+                "projectPath": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Modules\\Rewards\\Rewards.Application\\Rewards.Application.csproj"
+              },
+              "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Modules\\Rewards\\Rewards.Domain\\Rewards.Domain.csproj": {
+                "projectPath": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Modules\\Rewards\\Rewards.Domain\\Rewards.Domain.csproj"
+              },
+              "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Modules\\Rewards\\Rewards.NHibernate\\Rewards.NHibernate.csproj": {
+                "projectPath": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Modules\\Rewards\\Rewards.NHibernate\\Rewards.NHibernate.csproj"
+              },
+              "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Shared\\Application.Shared.Infrastructure\\Application.Shared.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Shared\\Application.Shared.Infrastructure\\Application.Shared.Infrastructure.csproj"
+              },
+              "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Shared\\NHibernate.Configuration\\NHibernate.Configuration.csproj": {
+                "projectPath": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Shared\\NHibernate.Configuration\\NHibernate.Configuration.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Modules\\Rewards\\Rewards.NHibernate\\Rewards.NHibernate.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Modules\\Rewards\\Rewards.NHibernate\\Rewards.NHibernate.csproj",
+        "projectName": "Rewards.NHibernate",
+        "projectPath": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Modules\\Rewards\\Rewards.NHibernate\\Rewards.NHibernate.csproj",
+        "packagesPath": "C:\\Users\\emmanuel.chukwujindu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Modules\\Rewards\\Rewards.NHibernate\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\emmanuel.chukwujindu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Modules\\Rewards\\Rewards.Domain\\Rewards.Domain.csproj": {
+                "projectPath": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Modules\\Rewards\\Rewards.Domain\\Rewards.Domain.csproj"
+              },
+              "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Shared\\NHibernate.Configuration\\NHibernate.Configuration.csproj": {
+                "projectPath": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Shared\\NHibernate.Configuration\\NHibernate.Configuration.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Rewards.API\\Rewards.API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Rewards.API\\Rewards.API.csproj",
+        "projectName": "Rewards.API",
+        "projectPath": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Rewards.API\\Rewards.API.csproj",
+        "packagesPath": "C:\\Users\\emmanuel.chukwujindu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Rewards.API\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\emmanuel.chukwujindu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Modules\\Rewards\\Rewards.Domain\\Rewards.Domain.csproj": {
+                "projectPath": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Modules\\Rewards\\Rewards.Domain\\Rewards.Domain.csproj"
+              },
+              "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Modules\\Rewards\\Rewards.Infrastructure\\Rewards.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Modules\\Rewards\\Rewards.Infrastructure\\Rewards.Infrastructure.csproj"
+              },
+              "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Shared\\Application.Shared.Infrastructure\\Application.Shared.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Shared\\Application.Shared.Infrastructure\\Application.Shared.Infrastructure.csproj"
+              },
+              "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Shared\\Application.Shared\\Application.Shared.csproj": {
+                "projectPath": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Shared\\Application.Shared\\Application.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.1.4, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Shared\\Application.Shared.Infrastructure\\Application.Shared.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Shared\\Application.Shared.Infrastructure\\Application.Shared.Infrastructure.csproj",
+        "projectName": "Application.Shared.Infrastructure",
+        "projectPath": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Shared\\Application.Shared.Infrastructure\\Application.Shared.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\emmanuel.chukwujindu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Shared\\Application.Shared.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\emmanuel.chukwujindu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Shared\\Application.Shared\\Application.Shared.csproj": {
+                "projectPath": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Shared\\Application.Shared\\Application.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Autofac": {
+              "target": "Package",
+              "version": "[6.2.0, )"
+            },
+            "MailKit": {
+              "target": "Package",
+              "version": "[2.11.1, )"
+            },
+            "MimeKit": {
+              "target": "Package",
+              "version": "[2.11.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Shared\\Application.Shared\\Application.Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Shared\\Application.Shared\\Application.Shared.csproj",
+        "projectName": "Application.Shared",
+        "projectPath": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Shared\\Application.Shared\\Application.Shared.csproj",
+        "packagesPath": "C:\\Users\\emmanuel.chukwujindu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Shared\\Application.Shared\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\emmanuel.chukwujindu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.Extensions.Logging.Abstractions": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Shared\\NHibernate.Configuration\\NHibernate.Configuration.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Shared\\NHibernate.Configuration\\NHibernate.Configuration.csproj",
+        "projectName": "NHibernate.Configuration",
+        "projectPath": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Shared\\NHibernate.Configuration\\NHibernate.Configuration.csproj",
+        "packagesPath": "C:\\Users\\emmanuel.chukwujindu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Shared\\NHibernate.Configuration\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\emmanuel.chukwujindu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Shared\\Application.Shared\\Application.Shared.csproj": {
+                "projectPath": "C:\\Users\\emmanuel.chukwujindu\\Documents\\Projects\\repo\\Rewards.API\\Shared\\Application.Shared\\Application.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Autofac": {
+              "target": "Package",
+              "version": "[6.2.0, )"
+            },
+            "FluentMigrator": {
+              "target": "Package",
+              "version": "[3.2.15, )"
+            },
+            "FluentMigrator.Runner": {
+              "target": "Package",
+              "version": "[3.2.15, )"
+            },
+            "FluentNHibernate": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "System.Data.SQLite.Core": {
+              "target": "Package",
+              "version": "[1.0.113.7, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
