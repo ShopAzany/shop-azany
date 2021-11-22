@@ -50,10 +50,13 @@ export class AdditionalInfoComponent implements OnInit {
   private checkAuth() {
     this.authService.seller.subscribe(auth => {
       if (auth) {
+        //change back to 0
         if (auth.biz_info_status == 0) {
           this.router.navigateByUrl('/seller/register/business-info');
         } else if (auth.bank_info_status == 1) {
+          // form test
           this.router.navigateByUrl('/seller/auth');
+          //this.router.navigateByUrl('/seller/register/business-info');
         }
       } else {
         this.router.navigateByUrl('/seller/register');

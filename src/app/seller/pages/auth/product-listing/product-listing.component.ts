@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GeneralSettingsService } from 'src/app/data/services/general-settings.service';
 import { GuestHomeService } from 'src/app/data/services/guest/guest-home.service';
 import { ProductManagerService } from 'src/app/data/services/seller/product-manager.service';
+import { SellerAuthService } from 'src/app/data/services/seller/seller-auth.service';
 
 @Component({
   selector: 'app-product-listing',
@@ -9,21 +10,29 @@ import { ProductManagerService } from 'src/app/data/services/seller/product-mana
   styleUrls: ['./product-listing.component.scss']
 })
 export class ProductListingComponent implements OnInit {
+
+  bizerr = false;
+
   products;
   prodCounts;
   deleting = { status: false, pid: -1 };
   currency;
   isLoading = true;
 
+  auth;
+
   constructor(
     private productManagerService: ProductManagerService,
     private generalSettings: GeneralSettingsService,
     private guestHomeService: GuestHomeService,
+    private authService: SellerAuthService,
   ) { }
 
   ngOnInit(): void {
     this.getProducts();
     this.getCurrency();
+    this.checkbiz();
+    this.getAuth();
   }
 
   private getProducts() {
@@ -40,6 +49,23 @@ export class ProductListingComponent implements OnInit {
         this.currency = res.currency.symbol;
       }
     });
+  }
+
+  private getAuth() {
+    this.authService.seller.subscribe(auth => {
+      this.auth = auth;
+      console.log(this.auth)
+    });
+  }
+
+  private checkbiz() {
+    const bizInfo = this.auth.biz_info;
+    if (this.auth.biz_info_status = 0) {
+      this.bizerr = true;
+      console.log(this.bizerr, this.auth.biz_info)
+    } else {
+      this.bizerr = false;
+    }
   }
 
   private updateProducts(res) {

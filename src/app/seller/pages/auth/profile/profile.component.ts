@@ -13,6 +13,8 @@ import { SellerAuthService } from 'src/app/data/services/seller/seller-auth.serv
 })
 export class ProfileComponent implements OnInit {
 
+  bizerr = false;
+
   countries
   isSaving = false;
   emailServerError;
@@ -128,6 +130,7 @@ export class ProfileComponent implements OnInit {
     this.getAuth();
     //this.getDashboardInfo();
     this.getCurrency();
+    this.checkbiz();
   }
 
   private getCurrency() {
@@ -175,6 +178,16 @@ export class ProfileComponent implements OnInit {
         this.initiateFormValues();
       }
     });
+  }
+
+  private checkbiz() {
+    const bizInfo = this.auth.biz_info;
+    if (this.auth.biz_info_status = 0) {
+      this.bizerr = true;
+      console.log(this.bizerr, this.auth.biz_info)
+    } else {
+      this.bizerr = false;
+    }
   }
 
   private initiateFormValues() {

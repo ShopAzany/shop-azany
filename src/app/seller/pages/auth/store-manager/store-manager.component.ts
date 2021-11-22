@@ -14,6 +14,8 @@ import { ManagerService } from 'src/app/data/services/seller/manager.service'
 })
 export class StoreManagerComponent implements OnInit {
 
+  bizerr = false;
+
   closeModal = new BehaviorSubject<boolean>(false);
 
   managers: any;
@@ -63,6 +65,17 @@ export class StoreManagerComponent implements OnInit {
     this.getAddress();
     this.getAuth();
     //this.countries = this.countryService.getCountries();
+    this.checkbiz();
+  }
+
+  private checkbiz() {
+    const bizInfo = this.auth.biz_info;
+    if (this.auth.biz_info_status = 0) {
+      this.bizerr = true;
+      console.log(this.bizerr, this.auth.biz_info)
+    } else {
+      this.bizerr = false;
+    }
   }
 
   private getAddress(){

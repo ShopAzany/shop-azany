@@ -4,6 +4,7 @@
     <app-seller-side-nav owner="dashboard"></app-seller-side-nav>
 
     <main>
+        
         <section class="headSection">
             <h1 class="pageTitle">Store Manager</h1>
             <a href="javascript:()" class="addToCartLink" [openModal]="addAddress">
@@ -16,6 +17,11 @@
             </a>
         </section>
         <section class="bodyPart">
+            <div *ngIf="bizerr" class="">
+                <div class="alert alert-info fade show">
+                    Welcome! Click <a routerLink="register/business-info" >here</a> to complete your Registration before you can upload a product
+                </div>
+            </div>
 
             <div *ngIf="message" class="alertWrap">
                 <p class="text-center mb-0 text-white"><i class="fa fa-times-circle mr-3 pointer" (click)="removeMessage()"></i> {{theMessage}}</p>

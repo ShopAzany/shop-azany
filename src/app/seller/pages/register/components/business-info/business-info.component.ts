@@ -48,7 +48,11 @@ export class BusinessInfoComponent implements OnInit {
       Validators.required,
     ]),
     biz_reg_number: new FormControl(null),
-    biz_certificate: new FormControl(null)
+    biz_certificate: new FormControl(null),
+
+    id_type: new FormControl('', [
+      Validators.required,
+    ]),
   });
 
   get businessName() {
@@ -81,6 +85,9 @@ export class BusinessInfoComponent implements OnInit {
   get fileValid() {
     return this.fileTouched ? this.certificate.valid : true;
   }
+  get id_type() {
+    return this.form.get('id_type');
+  }
 
   constructor(
     private route: Router,
@@ -106,6 +113,7 @@ export class BusinessInfoComponent implements OnInit {
       if (auth) {
         if (auth.bank_info_status == 1) {
           this.route.navigateByUrl('/seller/auth');
+          //this.route.navigateByUrl('/seller/auth/register/business-info');
         }
         this.checkStoredForm();
       } else {

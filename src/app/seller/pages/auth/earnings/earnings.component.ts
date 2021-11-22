@@ -12,6 +12,11 @@ import { SellerAuthService } from 'src/app/data/services/seller/seller-auth.serv
   styleUrls: ['./earnings.component.scss']
 })
 export class EarningsComponent implements OnInit {
+
+  auth;
+
+  bizerr = false;
+
   rawTrans;
   totalEarnings;
   available;
@@ -88,6 +93,18 @@ export class EarningsComponent implements OnInit {
     this.getAuth();
     this.getTransHistory();
     this.getCurrency();
+    this.checkbiz();
+    this.getAuth();
+  }
+
+  private checkbiz() {
+    const bizInfo = this.auth.biz_info;
+    if (this.auth.biz_info_status = 0) {
+      this.bizerr = true;
+      console.log(this.bizerr, this.auth.biz_info)
+    } else {
+      this.bizerr = false;
+    }
   }
 
   private getCurrency() {

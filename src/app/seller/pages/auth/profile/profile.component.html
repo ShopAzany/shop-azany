@@ -3,9 +3,15 @@
     <app-seller-side-nav owner="dashboard"></app-seller-side-nav>
     <main>
         <section class="headSection">
-            <h1 class="pageTitle">My Profile</h1>
+            <h1 class="pageTitle">Personal Details</h1>
         </section>
         <section class="bodyPart">
+            <div *ngIf="bizerr" class="">
+                <div class="alert alert-info fade show">
+                    Welcome! Click <a routerLink="register/business-info" >here</a> to complete your Registration before you can upload a product
+                </div>
+            </div>
+
             
             <div class="sellerInfoPar">
                 <div class="sellerInfoItem">
@@ -15,24 +21,6 @@
                     </div>
                     <div class="rightPart">
                         <a href="javascript:void(0)" [openModal]="fullNameModal" class="action">EDIT</a>
-                    </div>
-                </div>
-                <div class="sellerInfoItem">
-                    <div class="leftPart">
-                        <div class="infoKey">Business Name</div>
-                        <div class="infoValue">{{bizName?.value}}</div>
-                    </div>
-                    <div class="rightPart">
-                        <a href="javascript:void(0)" [openModal]="business" class="action">EDIT</a>
-                    </div>
-                </div>
-                <div class="sellerInfoItem">
-                    <div class="leftPart">
-                        <div class="infoKey">Business Type</div>
-                        <div class="infoValue">{{bizType?.value}}</div>
-                    </div>
-                    <div class="rightPart">
-                        <a href="javascript:void(0)" [openModal]="bizTypeModal" class="action">EDIT</a>
                     </div>
                 </div>
                 <div class="sellerInfoItem">
@@ -55,6 +43,40 @@
                 </div>
                 <div class="sellerInfoItem">
                     <div class="leftPart">
+                        <div class="infoKey">City</div>
+                        <div class="infoValue">{{city?.value}}</div>
+                    </div>
+                    <div class="rightPart">
+                        <a href="javascript:void(0)" [openModal]="bizCityModal" class="action">EDIT</a>
+                    </div>
+                </div>
+                
+            </div>
+
+            <section class="headSection mt-2">
+                <h1 class="pageTitle">Business Details</h1>
+            </section>
+            <div class="sellerInfoPar">
+                <div class="sellerInfoItem">
+                    <div class="leftPart">
+                        <div class="infoKey">Business Name</div>
+                        <div class="infoValue">{{bizName?.value}}</div>
+                    </div>
+                    <div class="rightPart">
+                        <a href="javascript:void(0)" [openModal]="business" class="action">EDIT</a>
+                    </div>
+                </div>
+                <div class="sellerInfoItem">
+                    <div class="leftPart">
+                        <div class="infoKey">Business Type</div>
+                        <div class="infoValue">{{bizType?.value}}</div>
+                    </div>
+                    <div class="rightPart">
+                        <a href="javascript:void(0)" [openModal]="bizTypeModal" class="action">EDIT</a>
+                    </div>
+                </div>
+                <div class="sellerInfoItem">
+                    <div class="leftPart">
                         <div class="infoKey">Business Address</div>
                         <div class="infoValue">{{bizAddress?.value}}</div>
                     </div>
@@ -64,16 +86,7 @@
                 </div>
                 <div class="sellerInfoItem">
                     <div class="leftPart">
-                        <div class="infoKey">City</div>
-                        <div class="infoValue">{{city?.value}}</div>
-                    </div>
-                    <div class="rightPart">
-                        <a href="javascript:void(0)" [openModal]="bizCityModal" class="action">EDIT</a>
-                    </div>
-                </div>
-                <div class="sellerInfoItem">
-                    <div class="leftPart">
-                        <div class="infoKey">Business Registration Number</div>
+                        <div class="infoKey">Means of Identification Number</div>
                         <div class="infoValue">{{bizReg?.value}}</div>
                     </div>
                     <div class="rightPart">
@@ -82,6 +95,7 @@
                 </div>
                 
             </div>
+
         </section>
     </main>
 </div>
