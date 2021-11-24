@@ -4,7 +4,8 @@ import { BehaviorSubject } from 'rxjs';
 import { AuthService } from 'src/app/data/services/auth.service';
 //import { AddressService } from 'src/app/data/services/customer/address.service';
 import { CountryService } from 'src/app/data/services/local-data/country.service';
-import { ManagerService } from 'src/app/data/services/seller/manager.service'
+import { ManagerService } from 'src/app/data/services/seller/manager.service';
+import { SellerAuthService } from 'src/app/data/services/seller/seller-auth.service';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class StoreManagerComponent implements OnInit {
   closeModal = new BehaviorSubject<boolean>(false);
 
   managers: any;
-  auth: any;
+  auth;
   isLoading = true;
   isSaving = false;
   isRemoving = false;
@@ -56,27 +57,27 @@ export class StoreManagerComponent implements OnInit {
 
   constructor(
     //private addressService: AddressService,
-    private authService: AuthService,
+    private authService: SellerAuthService,
     private countryService: CountryService,
     private managerService: ManagerService
   ) { }
 
   ngOnInit(): void {
-    this.getAddress();
     this.getAuth();
+    this.getAddress();
     //this.countries = this.countryService.getCountries();
     this.checkbiz();
   }
 
   private checkbiz() {
-    const bizInfo = this.auth.biz_info;
-    if (this.auth.biz_info_status = 0) {
+    console.log(this.auth)
+    if (this.auth.biz_info_status == 0) {
       this.bizerr = true;
-      console.log(this.bizerr, this.auth.biz_info)
     } else {
       this.bizerr = false;
     }
   }
+
 
   private getAddress(){
     //this.isLoading = true;
@@ -89,10 +90,8 @@ export class StoreManagerComponent implements OnInit {
   }
 
   private getAuth() {
-    this.authService.customer.subscribe(res => {
-      if (res && res.login_id) { 
-        this.auth = res; 
-      }
+    this.authService.seller.subscribe(auth => {
+      this.auth = auth;
     });
   }
 

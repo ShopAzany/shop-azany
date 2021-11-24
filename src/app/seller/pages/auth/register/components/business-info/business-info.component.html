@@ -69,12 +69,22 @@
                     <div *ngIf="city?.touched && city?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
                 </div>
                 <div class="form-group">
-                    <label for="regNumber">Business Registration Number</label>
-                    <input type="text" [class.error]="regNumber?.touched && regNumber?.invalid" formControlName="biz_reg_number" class="form-control" id="regNumber" placeholder="Business Registration Number">
+                    <label for="id_type">Identity Type</label>
+                    <select type="text" [class.error]="id_type?.touched && id_type?.invalid" class="form-control" formControlName="id_type" id="id_type" placeholder="Choose means of Identification from dropdown Menu">
+                        <option value="" selected disabled>Choose means of Identification from dropdown Menu</option>
+                        <option value="National Identity Number">National Identity Number</option>
+                        <option value="Driving License">Driving License</option>
+                        <option value="Passport">Passport</option>
+                    </select>
+                    <div *ngIf="country?.touched && country?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
+                </div>
+                <div class="form-group">
+                    <label for="regNumber">Identity Document Number</label>
+                    <input type="text" [class.error]="regNumber?.touched && regNumber?.invalid" formControlName="biz_reg_number" class="form-control" id="regNumber" placeholder="Identity Document Number">
                     <div *ngIf="regNumber?.touched && regNumber?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
                 </div>
                 <div class="form-group upload">
-                    <label>Upload Business Certificate</label>
+                    <label>Upload Identity Document</label>
                     <div [class.d-none]="imgUrl" class="align-items-center fileCont">
                         <input (change)="selectFile($event)" type="file" name="" id="file" hidden>
                         <label (click)="fileTouched = true" for="file" class="uploadBtn">Upload</label>

@@ -16,7 +16,7 @@
         <section class="bodyPart">
             <div *ngIf="bizerr" class="">
                 <div class="alert alert-info fade show">
-                    Welcome! Click <a routerLink="register/business-info" >here</a> to complete your Registration before you can upload a product
+                    Welcome! Click <a [routerLink]="['../register/business-info']" >here</a> to complete your Registration before you can upload a product
                 </div>
             </div>
             <app-loading *ngIf="isLoading"></app-loading>

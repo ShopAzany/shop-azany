@@ -13,6 +13,8 @@ import { SellerAuthService } from 'src/app/data/services/seller/seller-auth.serv
 })
 export class DashboardComponent implements OnInit {
 
+  seller_id;
+
   bizerr = false;
 
   countries
@@ -178,6 +180,12 @@ export class DashboardComponent implements OnInit {
     this.getDashboardInfo();
     this.getCurrency();
     this.checkbiz();
+    this.get_seller_id();
+  }
+
+  private get_seller_id() {
+    this.seller_id = this.auth.seller_id;
+    //console.log(this.seller_id);
   }
 
   private getCurrency() {
@@ -200,7 +208,7 @@ export class DashboardComponent implements OnInit {
 
   private getDashboardInfo() {
     this.dashboardService.dashboardInfo(this.durationObj.value).subscribe(res => {
-      // console.log(res);
+      console.log(this.seller_id);
       if (res) {
         this.rawData = [res.lastSevenDayWish, res.lastSevenDayOrder];
         this.totalSales = res.lastSevenSold;
@@ -229,22 +237,18 @@ export class DashboardComponent implements OnInit {
   }
 
   private checkbiz() {
-    const bizInfo = this.auth.biz_info;
-    if (this.auth.biz_info_status = 0) {
+    if (this.auth.biz_info_status == 0) {
       this.bizerr = true;
-      console.log(this.auth.biz_info)
-    } else {
-      this.bizerr = false;
     }
   }
 
   private initiateFormValues() {
-    const bizInfo = this.auth.biz_info;
-    this.bizName.setValue(this.auth.biz_info);
-    this.bizAddress.setValue(bizInfo.biz_address);
-    this.bizReg.setValue(bizInfo.biz_reg_number);
-    this.bizType.setValue(bizInfo.biz_type);
-    this.city.setValue(bizInfo.city);
+    //const bizInfo = this.auth.biz_info;
+    //this.bizName.setValue(this.auth.biz_info);
+    //this.bizAddress.setValue(bizInfo.biz_address);
+    //this.bizReg.setValue(bizInfo.biz_reg_number);
+    //this.bizType.setValue(bizInfo.biz_type);
+    //this.city.setValue(bizInfo.city);
 
     this.email.setValue(this.auth.email);
     this.firstName.setValue(this.auth.first_name);
@@ -261,7 +265,7 @@ export class DashboardComponent implements OnInit {
     this.isSaving = true;
     const data = JSON.stringify(fg.value);
     if (personal) {
-      this.authService.updateProfile(data).subscribe(res => {
+      this.authService.updateProfile(data, this.seller_id).subscribe(res => {
         if (res) {
           if (res.status == 'success') {
             this.closeModal.next(true);
@@ -272,7 +276,7 @@ export class DashboardComponent implements OnInit {
         this.isSaving = false;
       });
     } else {
-      this.authService.updateBizInfo(data).subscribe(res => {
+      this.authService.updateBizInfo(data, this.seller_id).subscribe(res => {
         if (res) {
           if (res.status == 'success') {
             this.closeModal.next(true);

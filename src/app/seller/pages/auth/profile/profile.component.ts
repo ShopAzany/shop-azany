@@ -13,6 +13,8 @@ import { SellerAuthService } from 'src/app/data/services/seller/seller-auth.serv
 })
 export class ProfileComponent implements OnInit {
 
+  seller_id;
+
   bizerr = false;
 
   countries
@@ -60,6 +62,9 @@ export class ProfileComponent implements OnInit {
   });
   bizRegNumForm = new FormGroup({
     biz_reg_number: new FormControl('', Validators.required),
+  });
+  id_typeForm = new FormGroup({
+    id_type: new FormControl('', Validators.required),
   });
   get firstName() {
     return this.fullNameForm.get('first_name');
@@ -116,6 +121,9 @@ export class ProfileComponent implements OnInit {
     }
     return null;
   }
+  get id_type() {
+    return this.id_typeForm.get('id_type');
+  }
  
 
   constructor(
@@ -126,11 +134,17 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.countries = this.countryService.getCountries();
     this.getAuth();
+    this.checkbiz();
+    this.get_seller_id();
+    this.countries = this.countryService.getCountries();
     //this.getDashboardInfo();
     this.getCurrency();
-    this.checkbiz();
+  }
+
+  private get_seller_id() {
+    this.seller_id = this.auth.seller_id;
+    //console.log(this.seller_id);
   }
 
   private getCurrency() {
@@ -181,28 +195,30 @@ export class ProfileComponent implements OnInit {
   }
 
   private checkbiz() {
-    const bizInfo = this.auth.biz_info;
-    if (this.auth.biz_info_status = 0) {
+    console.log(this.auth)
+    if (this.auth.biz_info_status == 0) {
       this.bizerr = true;
-      console.log(this.bizerr, this.auth.biz_info)
     } else {
       this.bizerr = false;
     }
   }
 
   private initiateFormValues() {
-    const bizInfo = this.auth.biz_info;
-    this.bizName.setValue(bizInfo.biz_name);
-    this.bizAddress.setValue(bizInfo.biz_address);
-    this.bizReg.setValue(bizInfo.biz_reg_number);
-    this.bizType.setValue(bizInfo.biz_type);
-    this.city.setValue(bizInfo.city);
-
     this.email.setValue(this.auth.email);
     this.firstName.setValue(this.auth.first_name);
     this.lastName.setValue(this.auth.last_name);
     this.phone.setValue(this.auth.phone);
     this.countryCode.setValue(this.auth.country_code);
+
+    if (this.auth.biz_info_status == 1) {
+      const bizInfo = this.auth.biz_info;
+      this.bizName.setValue(bizInfo.biz_name);
+      this.bizAddress.setValue(bizInfo.biz_address);
+      this.bizReg.setValue(bizInfo.biz_reg_number);
+      this.bizType.setValue(bizInfo.biz_type);
+      this.city.setValue(bizInfo.city);
+      this.id_type.setValue(bizInfo.id_type);
+    }
   }
 
   setCountryCode(i) {
@@ -213,7 +229,7 @@ export class ProfileComponent implements OnInit {
     this.isSaving = true;
     const data = JSON.stringify(fg.value);
     if (personal) {
-      this.authService.updateProfile(data).subscribe(res => {
+      this.authService.updateProfile(data, this.seller_id).subscribe(res => {
         if (res) {
           if (res.status == 'success') {
             this.closeModal.next(true);
@@ -224,7 +240,7 @@ export class ProfileComponent implements OnInit {
         this.isSaving = false;
       });
     } else {
-      this.authService.updateBizInfo(data).subscribe(res => {
+      this.authService.updateBizInfo(data, this.seller_id).subscribe(res => {
         if (res) {
           if (res.status == 'success') {
             this.closeModal.next(true);

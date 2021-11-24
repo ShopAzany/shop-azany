@@ -15,6 +15,7 @@ export class DashboardService {
   private token: string;
   private _product = new BehaviorSubject<any>(null);
   private subject = new Subject<any>();
+  private seller_id: number;
 
   constructor(
     private http: HttpClient,
@@ -27,14 +28,17 @@ export class DashboardService {
     this.sellerAuthService.seller.subscribe(auth => {
       if (auth) {
         this.token = auth.token;
+        this.seller_id = auth.seller_id;
       }
     });
   }
 
 
   dashboardInfo(duration) {
+    console.log(this.token)
     return this.http.get<any>(
-      `${this.serverUrl}${this.sellerUrl}/account_settings/dashboard_info/${this.token}/${duration}`
+      //`${this.serverUrl}${this.sellerUrl}/account_settings/dashboard_info/${this.token}/${duration}`
+      `${this.serverUrl}${this.sellerUrl}/account_settings/dashboard_info_alt/${this.seller_id}/${duration}`
     );
   }
 

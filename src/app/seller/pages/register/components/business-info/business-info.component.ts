@@ -136,6 +136,7 @@ export class BusinessInfoComponent implements OnInit {
       this.city.setValue(formData.city);
       this.country.setValue(formData.country);
       this.setFieldReq();
+      this.id_type.setValue(formData.id_type);
     }
   }
 

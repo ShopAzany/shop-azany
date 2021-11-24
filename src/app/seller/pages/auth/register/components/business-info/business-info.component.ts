@@ -14,6 +14,9 @@ import { SellerAuthService } from 'src/app/data/services/seller/seller-auth.serv
   styleUrls: ['./business-info.component.scss']
 })
 export class BusinessInfoComponent implements OnInit {
+
+  seller_id;
+
   auth;
   imgUrl;
 
@@ -48,7 +51,10 @@ export class BusinessInfoComponent implements OnInit {
       Validators.required,
     ]),
     biz_reg_number: new FormControl(null),
-    biz_certificate: new FormControl(null)
+    biz_certificate: new FormControl(null),
+    id_type: new FormControl('', [
+      Validators.required,
+    ])
   });
 
   get businessName() {
@@ -81,6 +87,9 @@ export class BusinessInfoComponent implements OnInit {
   get fileValid() {
     return this.fileTouched ? this.certificate.valid : true;
   }
+  get id_type() {
+    return this.form.get('id_type');
+  }
 
   constructor(
     private route: Router,
@@ -94,6 +103,7 @@ export class BusinessInfoComponent implements OnInit {
   ngOnInit(): void {
     this.getAuth();
     this.countries = this.countryService.getCountries();
+    this.get_seller_id();
   }
 
   sanitizeUrl(url) {
@@ -114,6 +124,10 @@ export class BusinessInfoComponent implements OnInit {
     });
   }
 
+  get_seller_id() {
+    this.seller_id = this.auth.seller_id;
+  }
+
   private checkStoredForm() {
     if (this.storageService.hasKey('biz_info')) {
       const formData = JSON.parse(this.storageService.getString('biz_info'));
@@ -128,6 +142,7 @@ export class BusinessInfoComponent implements OnInit {
       this.city.setValue(formData.city);
       this.country.setValue(formData.country);
       this.setFieldReq();
+      this.id_type.setValue(formData.id_type);
     }
   }
 
@@ -150,7 +165,7 @@ export class BusinessInfoComponent implements OnInit {
     this.isSubmitting = true;
     const data = JSON.stringify(this.form.value);
     this.storageService.storeString('biz_info', data);
-    this.authService.signupBizInfo(data).subscribe(res => {
+    this.authService.signupBizInfo(data, this.seller_id).subscribe(res => {
       if (res) {
         if (res.status == 'success') {
           this.route.navigateByUrl('/seller/auth/register/additional-info');

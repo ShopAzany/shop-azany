@@ -1,5 +1,5 @@
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, ɵHttpInterceptingHandler } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError, BehaviorSubject, of } from 'rxjs';
 
@@ -18,6 +18,7 @@ export class SellerAuthService {
   private _seller = new BehaviorSubject<any>(null);
   private token: string;
 
+
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private http: HttpClient,
@@ -34,6 +35,7 @@ export class SellerAuthService {
   get seller() {
     return this._seller.asObservable();
   }
+
 
   signup(postData: string) {
     // let location;
@@ -52,10 +54,11 @@ export class SellerAuthService {
     }));
   }
 
-  signupBizInfo(data: string) {
+  //updated
+  signupBizInfo(data: string, seller_id: number) {
     console.log(this.token);
     return this.http.post<any>(
-      `${this.serverUrl}seller/account_settings/register_business_info/${this.token}`, { data: data }
+      `${this.serverUrl}seller/account_settings/register_business_info_alt/${seller_id}`, { data: data }
     ).pipe(tap(res => {
       if (res && res.status == 'success') {
         this.updateSellerData('biz_info_status', 1);
@@ -64,10 +67,11 @@ export class SellerAuthService {
     }));
   }
 
-  updateBizInfo(data: string) {
+  //updated
+  updateBizInfo(data: string, seller_id: number) {
     console.log(this.token);
     return this.http.post<any>(
-      `${this.serverUrl}seller/account_settings/update_business_info/${this.token}`, { data: data }
+      `${this.serverUrl}seller/account_settings/update_business_info_alt/${seller_id}`, { data: data }
     ).pipe(tap(res => {
       if (res && res.status == 'success') {
         this.updateSellerData('biz_info_status', 1);
@@ -76,9 +80,11 @@ export class SellerAuthService {
     }))
   }
 
-  signupBankInfo(data: string) {
+  //updated
+  signupBankInfo(data: string, seller_id:number) {
     return this.http.post<any>(
-      `${this.serverUrl}seller/account_settings/update_bank_info/${this.token}`, { data: data }
+      //`${this.serverUrl}seller/account_settings/update_bank_info/${this.token}`, { data: data }
+      `${this.serverUrl}seller/account_settings/update_bank_info_alt/${seller_id}`, { data: data }
     ).pipe(tap(res => {
       if (res && res.status == 'success') {
         this.updateSellerData('bank_info_status', 1);
@@ -87,9 +93,10 @@ export class SellerAuthService {
     }))
   }
 
-  deleteBank(id) {
+  //updated
+  deleteBank(id, seller_id: number) {
     return this.http.get<any>(
-      `${this.serverUrl}seller/account_settings/delete_bank_info/${this.token}/${id}`
+      `${this.serverUrl}seller/account_settings/delete_bank_info_alt/${seller_id}/${id}`
     ).pipe(tap(res => {
       if (res && res.status == 'success') {
         this.updateSellerData('bank_info', res.data);
@@ -97,9 +104,11 @@ export class SellerAuthService {
     }));
   }
 
-  updateProfile(data: string) {
+  //updated
+  updateProfile(data: string, seller_id: number) {
     return this.http.post<any>(
-      `${this.serverUrl}seller/account_settings/updateProfile/${this.token}`, { data: data }
+      //`${this.serverUrl}seller/account_settings/updateProfile/${this.token}`, { data: data }
+      `${this.serverUrl}seller/account_settings/updateProfile_alt/${seller_id}`, { data: data }
     ).pipe(tap(res => {
       if (res && res.status == 'success') {
         this.storeAuthData(res.data);

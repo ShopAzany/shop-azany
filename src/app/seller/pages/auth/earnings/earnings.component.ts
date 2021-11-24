@@ -13,6 +13,8 @@ import { SellerAuthService } from 'src/app/data/services/seller/seller-auth.serv
 })
 export class EarningsComponent implements OnInit {
 
+  seller_id;
+
   auth;
 
   bizerr = false;
@@ -94,16 +96,16 @@ export class EarningsComponent implements OnInit {
     this.getTransHistory();
     this.getCurrency();
     this.checkbiz();
-    this.getAuth();
+    this.get_seller_id();
+  }
+
+  private get_seller_id(){
+    this.seller_id = this.auth.seller_id;
   }
 
   private checkbiz() {
-    const bizInfo = this.auth.biz_info;
-    if (this.auth.biz_info_status = 0) {
+    if (this.auth.biz_info_status == 0) {
       this.bizerr = true;
-      console.log(this.bizerr, this.auth.biz_info)
-    } else {
-      this.bizerr = false;
     }
   }
 
@@ -117,9 +119,8 @@ export class EarningsComponent implements OnInit {
 
   private getAuth() {
     this.authService.seller.subscribe(auth => {
-      if (auth) {
-        this.bankInfo = auth.bank_info;
-      }
+      this.auth = auth;
+      console.log(this.auth)
     });
   }
 
@@ -184,7 +185,7 @@ export class EarningsComponent implements OnInit {
 
   delete() {
     this.deleting = true;
-    this.authService.deleteBank(this.selectedBankInfo.id).subscribe(res => {
+    this.authService.deleteBank(this.selectedBankInfo.id, this.seller_id).subscribe(res => {
       this.deleting = false;
       this.closeModal.next(true);
     });
@@ -193,7 +194,7 @@ export class EarningsComponent implements OnInit {
   addBank() {
     this.adding = true;
     const data = JSON.stringify(this.addBankForm.value);
-    this.authService.signupBankInfo(data).subscribe(res => {
+    this.authService.signupBankInfo(data, this.seller_id).subscribe(res => {
       this.adding = false;
       this.closeModal.next(true);
     });

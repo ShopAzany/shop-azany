@@ -10,6 +10,11 @@ import { SellerAuthService } from 'src/app/data/services/seller/seller-auth.serv
   styleUrls: ['./additional-info.component.scss']
 })
 export class AdditionalInfoComponent implements OnInit {
+
+  seller_id;
+
+  auth;
+
   isSubmitting = false;
   form = new FormGroup({
     account_name: new FormControl('', [
@@ -44,7 +49,16 @@ export class AdditionalInfoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.checkAuth()
+    this.checkAuth();
+    this.getAuth();
+    this.get_seller_id();
+  }
+
+  private getAuth() {
+    this.authService.seller.subscribe(auth => {
+      this.auth = auth;
+      console.log(this.auth)
+    });
   }
 
   private checkAuth() {
@@ -61,10 +75,14 @@ export class AdditionalInfoComponent implements OnInit {
     })
   }
 
+  private get_seller_id() {
+    this.seller_id = this.auth.seller_id;
+  }
+
   submit() {
     this.isSubmitting = true;
     const data = JSON.stringify(this.form.value);
-    this.authService.signupBankInfo(data).subscribe(res => {
+    this.authService.signupBankInfo(data, this.seller_id).subscribe(res => {
       if (res) {
         if (res.status == 'success') {
           this.storageService.remove('biz_info');

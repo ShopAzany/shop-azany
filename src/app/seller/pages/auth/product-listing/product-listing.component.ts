@@ -29,10 +29,10 @@ export class ProductListingComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getAuth();
     this.getProducts();
     this.getCurrency();
     this.checkbiz();
-    this.getAuth();
   }
 
   private getProducts() {
@@ -59,12 +59,9 @@ export class ProductListingComponent implements OnInit {
   }
 
   private checkbiz() {
-    const bizInfo = this.auth.biz_info;
-    if (this.auth.biz_info_status = 0) {
+    console.log(this.auth)
+    if (this.auth.biz_info_status == 0) {
       this.bizerr = true;
-      console.log(this.bizerr, this.auth.biz_info)
-    } else {
-      this.bizerr = false;
     }
   }
 

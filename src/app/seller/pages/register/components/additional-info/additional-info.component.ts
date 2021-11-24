@@ -67,15 +67,15 @@ export class AdditionalInfoComponent implements OnInit {
   submit() {
     this.isSubmitting = true;
     const data = JSON.stringify(this.form.value);
-    this.authService.signupBankInfo(data).subscribe(res => {
-      if (res) {
-        if (res.status == 'success') {
-          this.storageService.remove('biz_info');
-          this.router.navigateByUrl('/seller/auth');
-        }
-      }
-      this.isSubmitting = false;
-    })
+    //this.authService.signupBankInfo(data).subscribe(res => {
+      //if (res) {
+        //if (res.status == 'success') {
+          //this.storageService.remove('biz_info');
+          //this.router.navigateByUrl('/seller/auth');
+        //}
+      //}
+      //this.isSubmitting = false;
+    //})
 
   }
 
