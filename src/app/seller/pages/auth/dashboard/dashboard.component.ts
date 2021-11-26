@@ -208,7 +208,7 @@ export class DashboardComponent implements OnInit {
 
   private getDashboardInfo() {
     this.dashboardService.dashboardInfo(this.durationObj.value).subscribe(res => {
-      console.log(this.seller_id);
+      //console.log(this.seller_id);
       if (res) {
         this.rawData = [res.lastSevenDayWish, res.lastSevenDayOrder];
         this.totalSales = res.lastSevenSold;

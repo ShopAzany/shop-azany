@@ -16,6 +16,8 @@ export class ProductManagerService {
   private _product = new BehaviorSubject<any>(null);
   private subject = new Subject<any>();
 
+  private seller_id: number;
+
   constructor(
     private http: HttpClient,
     private config: ConfigService,
@@ -27,6 +29,7 @@ export class ProductManagerService {
     this.sellerAuthService.seller.subscribe(auth => {
       if (auth) {
         this.token = auth.token;
+        this.seller_id = auth.seller_id;
       }
     });
   }
@@ -41,52 +44,55 @@ export class ProductManagerService {
   }
 
 
+  //updated
   addProduct(postData: string) {
     return this.http.post<any>(
-      `${this.serverUrl}${this.sellerUrl}/product_manager/add_pro_detail/${this.token}`, { data: postData }
+      `${this.serverUrl}${this.sellerUrl}/product_manager/add_pro_detail_alt/${this.seller_id}`, { data: postData }
     );
   }
 
+  //updated
   single(pid, url = null) {
     return this.http.get<any>(
-      `${this.serverUrl}${this.sellerUrl}/product_manager/single/${this.token}/${pid}/${url}`
+      `${this.serverUrl}${this.sellerUrl}/product_manager/single_alt/${this.seller_id}/${pid}/${url}`
     )
       .pipe(tap(resData => {
         if (resData) { this._product.next(resData); }
       }));
   }
 
+  //updated
   delete(pid) {
     return this.http.get<any>(
-      `${this.serverUrl}${this.sellerUrl}/product_manager/remove_product/${this.token}/${pid}`
+      `${this.serverUrl}${this.sellerUrl}/product_manager/remove_product_alt/${this.seller_id}/${pid}`
     )
   }
 
   getProducts() {
     return this.http.get<any>(
-      `${this.serverUrl}${this.sellerUrl}/product_manager/${this.token}`,
+      `${this.serverUrl}${this.sellerUrl}/product_manager/${this.seller_id}`,
     );
   }
 
-
+  //updated
   updatePricing(postData: string) {
     return this.http.post<any>(
-      `${this.serverUrl}${this.sellerUrl}/product_manager/update_pricing/${this.token}`, { data: postData }
+      `${this.serverUrl}${this.sellerUrl}/product_manager/update_pricing_alt/${this.seller_id}`, { data: postData }
     );
   }
 
 
-
+  //updated
   updateShipping(postData: string) {
     return this.http.post<any>(
-      `${this.serverUrl}${this.sellerUrl}/product_manager/update_shipping/${this.token}`, { data: postData }
+      `${this.serverUrl}${this.sellerUrl}/product_manager/update_shipping_alt/${this.seller_id}`, { data: postData }
     );
   }
 
-
+  //updated
   priceVariation(postData: string) {
     return this.http.post<any>(
-      `${this.serverUrl}${this.sellerUrl}/product_manager/priceVariation/${this.token}`, { data: postData }
+      `${this.serverUrl}${this.sellerUrl}/product_manager/priceVariation_alt/${this.seller_id}`, { data: postData }
     );
   }
 
