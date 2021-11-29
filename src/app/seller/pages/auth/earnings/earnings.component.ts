@@ -120,7 +120,7 @@ export class EarningsComponent implements OnInit {
   private getAuth() {
     this.authService.seller.subscribe(auth => {
       this.auth = auth;
-      console.log(this.auth)
+      //console.log(this.auth)
     });
   }
 

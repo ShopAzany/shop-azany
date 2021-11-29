@@ -229,7 +229,7 @@ export class DashboardComponent implements OnInit {
   private getAuth() {
     this.authService.seller.subscribe(auth => {
       this.auth = auth;
-      console.log(this.auth)
+      //console.log(this.auth)
       if (this.auth) {
         this.initiateFormValues();
       }

@@ -30,19 +30,34 @@ export class ProductListingComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAuth();
-    this.getProducts();
-    this.getCurrency();
+    //this.getProducts();
     this.checkbiz();
+    this.getProductsNew();
+    this.getCurrency();
   }
 
-  private getProducts() {
+  /*private getProducts() {
     this.productManagerService.getProducts().subscribe(res => {
+      console.log(res.data)
       if (res) {
         this.updateProducts(res);
       }
       this.isLoading = false;
     });
+  }*/
+
+  private getProductsNew(){
+    this.productManagerService.getProductsnew().subscribe(res => {
+      console.log(res)
+      if (res) {
+        this.updateProducts(res);
+      }
+      this.isLoading = false;
+    })
   }
+
+
+
   private getCurrency() {
     this.generalSettings.genSettings.subscribe(res => {
       if (res) {
@@ -54,12 +69,12 @@ export class ProductListingComponent implements OnInit {
   private getAuth() {
     this.authService.seller.subscribe(auth => {
       this.auth = auth;
-      console.log(this.auth)
+      //console.log(this.auth)
     });
   }
 
   private checkbiz() {
-    console.log(this.auth)
+    //console.log(this.auth)
     if (this.auth.biz_info_status == 0) {
       this.bizerr = true;
     }

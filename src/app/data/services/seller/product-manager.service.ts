@@ -43,6 +43,11 @@ export class ProductManagerService {
     return this.subject.asObservable();
   }
 
+  getProductsnew(){
+    return this.http.get<any>(
+      `${this.serverUrl}${this.sellerUrl}/product_manager/index_alt/${this.seller_id}/30/1`,
+    );
+  }
 
   //updated
   addProduct(postData: string) {

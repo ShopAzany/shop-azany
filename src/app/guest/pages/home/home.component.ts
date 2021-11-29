@@ -99,7 +99,7 @@ export class HomeComponent implements OnInit {
           }
           if (res.HomeProduct.shop_by_country == 'Enabled') {
             this.shopByCountry = res.shopByCountry;
-            console.log(res.shopByCountry) //? res.shopByCountry.filter(each => each.selectedPro.length) : [];
+            //console.log(res.shopByCountry) //? res.shopByCountry.filter(each => each.selectedPro.length) : [];
           }
           this.topCategories = res.top_categories;
           if (res.HomeProduct.today_deals == 'Enabled') {
