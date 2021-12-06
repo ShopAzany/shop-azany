@@ -1,8 +1,8 @@
-<?php
-
-namespace Illuminate\Contracts\Queue;
-
-interface ShouldQueue
-{
-    //
-}
+<?php
+
+namespace Illuminate\Contracts\Queue;
+
+interface ShouldQueue
+{
+    //
+}

@@ -1,5 +1,5 @@
-<?php
-namespace Ratchet;
-
-interface MessageComponentInterface extends ComponentInterface, MessageInterface {
-}
+<?php
+namespace Ratchet;
+
+interface MessageComponentInterface extends ComponentInterface, MessageInterface {
+}

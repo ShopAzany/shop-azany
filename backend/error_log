@@ -1,2 +1,193 @@
 [09-Sep-2021 14:49:40 UTC] PHP Parse error:  syntax error, unexpected 'take' (T_STRING) in /home/shopazan/public_html/backend/app/controllers/guest/all_deals.php on line 64
 [09-Sep-2021 14:49:40 UTC] PHP Parse error:  syntax error, unexpected 'take' (T_STRING) in /home/shopazan/public_html/backend/app/controllers/guest/all_deals.php on line 64
+[17-Oct-2021 04:19:55 UTC] PHP Warning:  require_once(app/controllers/guest/error404.php): failed to open stream: No such file or directory in /home/shopazan/public_html/backend/app/core/app.php on line 85
+[17-Oct-2021 04:19:55 UTC] PHP Fatal error:  require_once(): Failed opening required 'app/controllers/guest/error404.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home/shopazan/public_html/backend/app/core/app.php on line 85
+[09-Nov-2021 12:21:17 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'shopazan_azany_creativeweb.currencies' doesn't exist in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php:326
+Stack trace:
+#0 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(326): PDO->prepare('select * from `...')
+#1 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(657): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#2 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(624): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#3 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(333): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#4 /home/shopazan/public_html/backend/vendor/illuminate/database/Query/Builder.php(1748): Illuminate\Database\Connection->select('select * from ` in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php on line 664
+[09-Nov-2021 12:21:17 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'shopazan_azany_creativeweb.currencies' doesn't exist in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php:326
+Stack trace:
+#0 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(326): PDO->prepare('select * from `...')
+#1 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(657): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#2 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(624): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#3 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(333): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#4 /home/shopazan/public_html/backend/vendor/illuminate/database/Query/Builder.php(1748): Illuminate\Database\Connection->select('select * from ` in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php on line 664
+[09-Nov-2021 12:22:00 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'shopazan_azany_creativeweb.currencies' doesn't exist in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php:326
+Stack trace:
+#0 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(326): PDO->prepare('select * from `...')
+#1 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(657): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#2 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(624): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#3 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(333): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#4 /home/shopazan/public_html/backend/vendor/illuminate/database/Query/Builder.php(1748): Illuminate\Database\Connection->select('select * from ` in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php on line 664
+[09-Nov-2021 12:22:00 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'shopazan_azany_creativeweb.currencies' doesn't exist in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php:326
+Stack trace:
+#0 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(326): PDO->prepare('select * from `...')
+#1 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(657): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#2 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(624): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#3 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(333): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#4 /home/shopazan/public_html/backend/vendor/illuminate/database/Query/Builder.php(1748): Illuminate\Database\Connection->select('select * from ` in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php on line 664
+[09-Nov-2021 12:22:12 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'shopazan_azany_creativeweb.currencies' doesn't exist in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php:326
+Stack trace:
+#0 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(326): PDO->prepare('select * from `...')
+#1 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(657): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#2 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(624): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#3 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(333): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#4 /home/shopazan/public_html/backend/vendor/illuminate/database/Query/Builder.php(1748): Illuminate\Database\Connection->select('select * from ` in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php on line 664
+[09-Nov-2021 12:22:12 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'shopazan_azany_creativeweb.currencies' doesn't exist in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php:326
+Stack trace:
+#0 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(326): PDO->prepare('select * from `...')
+#1 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(657): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#2 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(624): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#3 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(333): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#4 /home/shopazan/public_html/backend/vendor/illuminate/database/Query/Builder.php(1748): Illuminate\Database\Connection->select('select * from ` in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php on line 664
+[09-Nov-2021 12:22:29 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'shopazan_azany_creativeweb.currencies' doesn't exist in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php:326
+Stack trace:
+#0 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(326): PDO->prepare('select * from `...')
+#1 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(657): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#2 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(624): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#3 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(333): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#4 /home/shopazan/public_html/backend/vendor/illuminate/database/Query/Builder.php(1748): Illuminate\Database\Connection->select('select * from ` in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php on line 664
+[09-Nov-2021 12:22:30 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'shopazan_azany_creativeweb.currencies' doesn't exist in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php:326
+Stack trace:
+#0 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(326): PDO->prepare('select * from `...')
+#1 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(657): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#2 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(624): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#3 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(333): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#4 /home/shopazan/public_html/backend/vendor/illuminate/database/Query/Builder.php(1748): Illuminate\Database\Connection->select('select * from ` in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php on line 664
+[09-Nov-2021 12:26:46 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'shopazan_azany_creativeweb.currencies' doesn't exist in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php:326
+Stack trace:
+#0 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(326): PDO->prepare('select * from `...')
+#1 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(657): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#2 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(624): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#3 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(333): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#4 /home/shopazan/public_html/backend/vendor/illuminate/database/Query/Builder.php(1748): Illuminate\Database\Connection->select('select * from ` in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php on line 664
+[09-Nov-2021 12:26:46 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'shopazan_azany_creativeweb.currencies' doesn't exist in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php:326
+Stack trace:
+#0 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(326): PDO->prepare('select * from `...')
+#1 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(657): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#2 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(624): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#3 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(333): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#4 /home/shopazan/public_html/backend/vendor/illuminate/database/Query/Builder.php(1748): Illuminate\Database\Connection->select('select * from ` in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php on line 664
+[09-Nov-2021 12:31:15 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'shopazan_azany_creativeweb.currencies' doesn't exist in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php:326
+Stack trace:
+#0 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(326): PDO->prepare('select * from `...')
+#1 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(657): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#2 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(624): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#3 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(333): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#4 /home/shopazan/public_html/backend/vendor/illuminate/database/Query/Builder.php(1748): Illuminate\Database\Connection->select('select * from ` in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php on line 664
+[09-Nov-2021 12:31:53 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'shopazan_azany_creativeweb.currencies' doesn't exist in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php:326
+Stack trace:
+#0 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(326): PDO->prepare('select * from `...')
+#1 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(657): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#2 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(624): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#3 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(333): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#4 /home/shopazan/public_html/backend/vendor/illuminate/database/Query/Builder.php(1748): Illuminate\Database\Connection->select('select * from ` in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php on line 664
+[09-Nov-2021 12:33:42 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'shopazan_azany_creativeweb.currencies' doesn't exist in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php:326
+Stack trace:
+#0 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(326): PDO->prepare('select * from `...')
+#1 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(657): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#2 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(624): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#3 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(333): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#4 /home/shopazan/public_html/backend/vendor/illuminate/database/Query/Builder.php(1748): Illuminate\Database\Connection->select('select * from ` in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php on line 664
+[09-Nov-2021 12:33:42 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'shopazan_azany_creativeweb.currencies' doesn't exist in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php:326
+Stack trace:
+#0 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(326): PDO->prepare('select * from `...')
+#1 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(657): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#2 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(624): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#3 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(333): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#4 /home/shopazan/public_html/backend/vendor/illuminate/database/Query/Builder.php(1748): Illuminate\Database\Connection->select('select * from ` in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php on line 664
+[09-Nov-2021 12:33:47 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'shopazan_azany_creativeweb.currencies' doesn't exist in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php:326
+Stack trace:
+#0 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(326): PDO->prepare('select * from `...')
+#1 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(657): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#2 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(624): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#3 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(333): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#4 /home/shopazan/public_html/backend/vendor/illuminate/database/Query/Builder.php(1748): Illuminate\Database\Connection->select('select * from ` in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php on line 664
+[09-Nov-2021 12:41:32 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'shopazan_azany_creativeweb.currencies' doesn't exist in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php:326
+Stack trace:
+#0 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(326): PDO->prepare('select * from `...')
+#1 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(657): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#2 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(624): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#3 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(333): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#4 /home/shopazan/public_html/backend/vendor/illuminate/database/Query/Builder.php(1748): Illuminate\Database\Connection->select('select * from ` in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php on line 664
+[09-Nov-2021 12:41:32 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'shopazan_azany_creativeweb.currencies' doesn't exist in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php:326
+Stack trace:
+#0 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(326): PDO->prepare('select * from `...')
+#1 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(657): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#2 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(624): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#3 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(333): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#4 /home/shopazan/public_html/backend/vendor/illuminate/database/Query/Builder.php(1748): Illuminate\Database\Connection->select('select * from ` in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php on line 664
+[09-Nov-2021 12:42:38 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'shopazan_azany_creativeweb.currencies' doesn't exist in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php:326
+Stack trace:
+#0 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(326): PDO->prepare('select * from `...')
+#1 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(657): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#2 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(624): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#3 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(333): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#4 /home/shopazan/public_html/backend/vendor/illuminate/database/Query/Builder.php(1748): Illuminate\Database\Connection->select('select * from ` in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php on line 664
+[09-Nov-2021 12:44:50 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'shopazan_azany_creativeweb.currencies' doesn't exist in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php:326
+Stack trace:
+#0 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(326): PDO->prepare('select * from `...')
+#1 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(657): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#2 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(624): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#3 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(333): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#4 /home/shopazan/public_html/backend/vendor/illuminate/database/Query/Builder.php(1748): Illuminate\Database\Connection->select('select * from ` in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php on line 664
+[09-Nov-2021 12:44:50 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'shopazan_azany_creativeweb.currencies' doesn't exist in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php:326
+Stack trace:
+#0 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(326): PDO->prepare('select * from `...')
+#1 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(657): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#2 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(624): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#3 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(333): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#4 /home/shopazan/public_html/backend/vendor/illuminate/database/Query/Builder.php(1748): Illuminate\Database\Connection->select('select * from ` in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php on line 664
+[09-Nov-2021 12:45:15 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'shopazan_azany_creativeweb.currencies' doesn't exist in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php:326
+Stack trace:
+#0 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(326): PDO->prepare('select * from `...')
+#1 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(657): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#2 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(624): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#3 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(333): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#4 /home/shopazan/public_html/backend/vendor/illuminate/database/Query/Builder.php(1748): Illuminate\Database\Connection->select('select * from ` in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php on line 664
+[09-Nov-2021 12:45:20 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'shopazan_azany_creativeweb.currencies' doesn't exist in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php:326
+Stack trace:
+#0 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(326): PDO->prepare('select * from `...')
+#1 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(657): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#2 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(624): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#3 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(333): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#4 /home/shopazan/public_html/backend/vendor/illuminate/database/Query/Builder.php(1748): Illuminate\Database\Connection->select('select * from ` in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php on line 664
+[09-Nov-2021 12:45:31 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'shopazan_azany_creativeweb.currencies' doesn't exist in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php:326
+Stack trace:
+#0 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(326): PDO->prepare('select * from `...')
+#1 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(657): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#2 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(624): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#3 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(333): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#4 /home/shopazan/public_html/backend/vendor/illuminate/database/Query/Builder.php(1748): Illuminate\Database\Connection->select('select * from ` in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php on line 664
+[09-Nov-2021 12:45:32 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'shopazan_azany_creativeweb.currencies' doesn't exist in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php:326
+Stack trace:
+#0 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(326): PDO->prepare('select * from `...')
+#1 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(657): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#2 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(624): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#3 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(333): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#4 /home/shopazan/public_html/backend/vendor/illuminate/database/Query/Builder.php(1748): Illuminate\Database\Connection->select('select * from ` in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php on line 664
+[09-Nov-2021 12:45:51 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'shopazan_azany_creativeweb.currencies' doesn't exist in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php:326
+Stack trace:
+#0 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(326): PDO->prepare('select * from `...')
+#1 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(657): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#2 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(624): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#3 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(333): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#4 /home/shopazan/public_html/backend/vendor/illuminate/database/Query/Builder.php(1748): Illuminate\Database\Connection->select('select * from ` in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php on line 664
+[09-Nov-2021 12:45:51 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'shopazan_azany_creativeweb.currencies' doesn't exist in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php:326
+Stack trace:
+#0 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(326): PDO->prepare('select * from `...')
+#1 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(657): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#2 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(624): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#3 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(333): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#4 /home/shopazan/public_html/backend/vendor/illuminate/database/Query/Builder.php(1748): Illuminate\Database\Connection->select('select * from ` in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php on line 664
+[09-Nov-2021 12:46:05 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'shopazan_azany_creativeweb.currencies' doesn't exist in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php:326
+Stack trace:
+#0 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(326): PDO->prepare('select * from `...')
+#1 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(657): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#2 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(624): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#3 /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php(333): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#4 /home/shopazan/public_html/backend/vendor/illuminate/database/Query/Builder.php(1748): Illuminate\Database\Connection->select('select * from ` in /home/shopazan/public_html/backend/vendor/illuminate/database/Connection.php on line 664

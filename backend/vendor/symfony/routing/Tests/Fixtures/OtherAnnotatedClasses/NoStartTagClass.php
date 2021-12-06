@@ -1,3 +1,3 @@
-class NoStartTagClass
-{
-}
+class NoStartTagClass
+{
+}

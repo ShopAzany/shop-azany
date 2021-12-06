@@ -1,7 +1,7 @@
-<?php
-
-namespace React\Promise\Exception;
-
-class LengthException extends \LengthException
-{
-}
+<?php
+
+namespace React\Promise\Exception;
+
+class LengthException extends \LengthException
+{
+}

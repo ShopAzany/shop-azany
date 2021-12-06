@@ -1,2 +1,2 @@
-en.res
-fr.res
+en.res
+fr.res

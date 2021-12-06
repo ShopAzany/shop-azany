@@ -1,5 +1,5 @@
-<?php
-namespace Ratchet\Wamp;
-
-class Exception extends \Exception {
-}
+<?php
+namespace Ratchet\Wamp;
+
+class Exception extends \Exception {
+}

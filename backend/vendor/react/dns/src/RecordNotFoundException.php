@@ -1,7 +1,7 @@
-<?php
-
-namespace React\Dns;
-
-class RecordNotFoundException extends \Exception
-{
-}
+<?php
+
+namespace React\Dns;
+
+class RecordNotFoundException extends \Exception
+{
+}

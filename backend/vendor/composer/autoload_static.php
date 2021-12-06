@@ -12,14 +12,16 @@ class ComposerStaticInit81eb7d45cb86396167b941f75b6bed30
         '6b06ce8ccf69c43a60a1e48495a034c9' => __DIR__ . '/..' . '/react/promise-timer/src/functions.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '72579e7bd17821bb1321b87411366eae' => __DIR__ . '/..' . '/illuminate/support/helpers.php',
-        'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
     );
 
     public static $prefixLengthsPsr4 = array (
+        'Y' => 
+        array (
+            'Yabacon\\' => 8,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Mbstring\\' => 26,
-            'Symfony\\Polyfill\\Iconv\\' => 23,
             'Symfony\\Component\\Translation\\' => 30,
             'Symfony\\Component\\Routing\\' => 26,
             'Symfony\\Component\\HttpFoundation\\' => 33,
@@ -65,13 +67,13 @@ class ComposerStaticInit81eb7d45cb86396167b941f75b6bed30
     );
 
     public static $prefixDirsPsr4 = array (
+        'Yabacon\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yabacon/paystack-php/src',
+        ),
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
-        ),
-        'Symfony\\Polyfill\\Iconv\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-iconv',
         ),
         'Symfony\\Component\\Translation\\' => 
         array (
@@ -224,6 +226,7 @@ class ComposerStaticInit81eb7d45cb86396167b941f75b6bed30
         'PageTbl' => __DIR__ . '/../..' . '/app/models/Pages.php',
         'Pagination' => __DIR__ . '/../..' . '/app/classes/pagination.php',
         'PaymentMethod' => __DIR__ . '/../..' . '/app/models/PaymentMethod.php',
+        'PaymentPlanSettings' => __DIR__ . '/../..' . '/app/models/PaymentPlanSettings.php',
         'Paypal' => __DIR__ . '/../..' . '/app/classes/Paypal.php',
         'Paystack' => __DIR__ . '/../..' . '/app/classes/Paystack.php',
         'Product' => __DIR__ . '/../..' . '/app/classes/Product.php',
@@ -240,6 +243,7 @@ class ComposerStaticInit81eb7d45cb86396167b941f75b6bed30
         'SellerBussinessInfo' => __DIR__ . '/../..' . '/app/models/SellerBussinessInfo.php',
         'SellerContent' => __DIR__ . '/../..' . '/app/models/SellerContent.php',
         'SellerLoginActivity' => __DIR__ . '/../..' . '/app/models/SellerLoginActivity.php',
+        'SellerPaymentSubscription' => __DIR__ . '/../..' . '/app/models/SellerPaymentSubscription.php',
         'SellerVerification' => __DIR__ . '/../..' . '/app/models/SellerVerification.php',
         'Session' => __DIR__ . '/../..' . '/app/classes/Session.php',
         'Settings' => __DIR__ . '/../..' . '/app/classes/Settings.php',

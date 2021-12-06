@@ -1,7 +1,7 @@
-<?php
-
-namespace React\Dns\Query;
-
-class TimeoutException extends \Exception
-{
-}
+<?php
+
+namespace React\Dns\Query;
+
+class TimeoutException extends \Exception
+{
+}

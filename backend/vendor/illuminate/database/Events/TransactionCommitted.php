@@ -1,8 +1,8 @@
-<?php
-
-namespace Illuminate\Database\Events;
-
-class TransactionCommitted extends ConnectionEvent
-{
-    //
-}
+<?php
+
+namespace Illuminate\Database\Events;
+
+class TransactionCommitted extends ConnectionEvent
+{
+    //
+}
