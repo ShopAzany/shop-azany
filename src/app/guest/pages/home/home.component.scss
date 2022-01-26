@@ -3,7 +3,7 @@
     padding-top: 20px;
     .gridCont {
         display: grid;
-        grid-template-columns: 60.5% auto;
+        // grid-template-columns: 60.5% auto;
         gap: 20px;
         .sideImages {
             display: grid;
@@ -17,6 +17,17 @@
         }
     }
 }
+.live-btn{
+    padding: 7px 20px;
+    color: #E21E2D;
+    border: 2px solid #E21E2D;
+    text-align: center;
+}
+.bg-red{
+    color: #fff !important;
+    background:#E21E2D;
+}
+
 
 .shopFromOtherCountries {
     border-radius: 10px;
@@ -125,10 +136,11 @@
     .headCont {
         align-items: center;
         h4 {
-            font-size: 22px;
+            font-size: 40px;
             // line-height: 36px;
             font-weight: 500;
-            margin: 0;
+            margin: 50px 0;
+            text-transform: uppercase;
         }
         a {
             font-size: 16px;
@@ -155,7 +167,7 @@
         display: grid;
         //grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         grid-template-columns: repeat(6, minmax(200px, 1fr));
-        gap: 33.33px;
+        gap: 0px;
     }
     @media (max-width: 581px) {
         .gridCont {
@@ -169,13 +181,13 @@
     .gridCont {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 35px;
+        gap: 0px;
     }
     .eachCat {
-        background: $lightBg;
-        padding: 4px;
+        background: transparent;
+        padding: 15px;
         text-decoration: none;
-        border-radius: 7px;
+        border-radius: 0px;
         color: #222;
         div {
             text-align: center;
@@ -282,4 +294,21 @@
 
 #cartSuccessCont.cusShow {
     z-index: 9000;
+}
+
+
+.gridVideo {
+    display: grid !important;
+    grid-template-columns: 60.5% auto !important;
+    gap: 20px !important;
+}
+.autoGrid{
+    display: grid;
+    grid-template-columns: auto;
+    gap: 20px;
+
+}
+
+.slide{
+    padding: 15px;
 }

@@ -5,260 +5,149 @@
 <app-header [secondNav]="true"></app-header>
 <div *ngIf="!contentLoading && !bannerLoading" class="bodyContainer">
     <section class="bannerSection">
-        <div class="gridCont">
-            <div class="carouselCont">
-                <app-banner-carousel *ngIf="bannerSlides">
-                    <div class="flexCont">
-                        <div *ngFor="let slide of bannerSlides?.slides; let i = index" class="carouselItem">
-                            <img class="w-100" src="{{treatImgUrl(slide?.banner)}}" alt="First slide">
-                        </div>
-                        <!-- <div class="carouselItem">
-                            <img class="w-100" src="assets/images/Slide1.png" alt="First slide">
-                        </div>
-                        <div class="carouselItem">
-                            <img class="w-100" src="assets/images/Slide2.png" alt="Second slide">
-                        </div>
-                        <div class="carouselItem">
-                            <img class="w-100" src="assets/images/Slide3.png" alt="Third slide">
-                        </div>
-                        <div class="carouselItem">
-                            <img class="w-100" src="assets/images/Slide4.png" alt="Third slide">
-                        </div>
-                        <div class="carouselItem">
-                            <img class="w-100" src="assets/images/slide5.png" alt="Third slide">
-                        </div> -->
-                    </div>
-                    <div class="carouselIndicators">
-                        <div *ngFor="let ind of bannerSlides?.slides; let i = index" [class.cusActive]="i == 0" class="indicatorItem"></div>
-                        <!-- <div class="indicatorItem cusActive"></div>
-                        <div class="indicatorItem"></div>
-                        <div class="indicatorItem"></div>
-                        <div class="indicatorItem"></div>
-                        <div class="indicatorItem"></div> -->
-                    </div>
-                    <a class="carouselCtrlPrev" href="javascript:void(0)">
-                        <i class="fa fa-angle-left"></i>
-                    </a>
-                    <a class="carouselCtrlNext" href="javascript:void(0)">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                </app-banner-carousel>
-            </div>
-            <div class="sideImages">
-                <div class="topImage">
+        <div class="row">
+            <div class="col-md-4 sideImages order-1 order-md-0">
+                <div class="topImage mb-4">
                     <img class="w-100" src="{{treatImgUrl(bannerSlides?.banners?.banner_top)}}" alt="">
-                    <!-- <img class="w-100" src="assets/images/ads2.png" alt=""> -->
                 </div>
                 <div class="bottomImage">
                     <img class="w-100 h-auto" src="{{treatImgUrl(bannerSlides?.banners?.banner_bottom)}}" alt="">
                 </div>
             </div>
+            <div class="col-md-8 mb-4 mb-md-0">
+                <div class="carouselCont">
+                    <app-banner-carousel *ngIf="bannerSlides">
+                        <div class="flexCont">
+                            <div *ngFor="let slide of bannerSlides?.slides; let i = index" class="carouselItem">
+                                <img class="w-100 h-100" src="{{treatImgUrl(slide?.banner)}}" alt="First slide">
+                            </div>
+                        </div>
+                        <div class="carouselIndicators">
+                            <div *ngFor="let ind of bannerSlides?.slides; let i = index" [class.cusActive]="i == 0"
+                                class="indicatorItem"></div>
+                        </div>
+                        <a class="carouselCtrlPrev" href="javascript:void(0)">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a class="carouselCtrlNext" href="javascript:void(0)">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </app-banner-carousel>
+                </div>
+            </div>
+
         </div>
     </section>
-    <section *ngIf="topCategories" class="eachSection topCategories">
-        <div class="headCont d-flex justify-content-between">
-            <h4>Top Categories</h4>
-            <a routerLink="/categories" class="">View All Categories</a>
+
+    <section class="threeGridAds">
+        <div class="gridCont">
+            <div *ngFor="let img of threeGridImg" class="gridItem">
+                <img src="{{treatImgUrl(img?.banner_top)}}" alt="">
+            </div>
+        </div>
+    </section>
+
+
+    <section class="eachSection topCategories">
+        <div class="headCont d-flex justify-content-center">
+            <h4>Explore Popular Categories</h4>
         </div>
         <div class="bodyCont">
+
             <div class="gridCont">
                 <a *ngFor="let cat of topCategories" routerLink="/category/{{cat?.category}}" class="eachCat">
                     <img class="w-100" src="{{treatImgUrl(cat?.banner)}}" alt="">
                     <div>{{cat?.title}}</div>
                 </a>
-                <!-- <a routerLink="/category/electronics" class="eachCat">
-                    <img class="w-100" src="assets/images/tc2.png" alt="">
-                    <div>Men’s Wear</div>
-                </a>
-                <a routerLink="/category/electronics" class="eachCat">
-                    <img class="w-100" src="assets/images/tc3.png" alt="">
-                    <div>Laptops</div>
-                </a>
-                <a routerLink="/category/electronics" class="eachCat">
-                    <img class="w-100" src="assets/images/tc4.png" alt="">
-                    <div>Office Funitures</div>
-                </a>
-                <a routerLink="/category/electronics" class="eachCat">
-                    <img class="w-100" src="assets/images/tc5.png" alt="">
-                    <div>Gaming</div>
-                </a> -->
             </div>
         </div>
     </section>
-    <section *ngIf="shopByCountry && shopByCountry?.length" class="shopFromOtherCountries">
-        <div class="tabHead">
-            <div class="titlePart">
-                <h4>Shop From Other Countries</h4>
-                <p class="">Select a store to see item prices from that country</p>
-            </div>
-            <div class="tabBtnCont">
-                <a href="javascript:void(0)" *ngFor="let ctry of shopByCountry; let i = index" (click)="selCountryInd = i" [class.cusActive]="i == selCountryInd" class="eachTab">
-                    <img src="{{treatImgUrl(ctry?.image)}}" alt="">
-                    <span>{{ctry?.country}}</span>
-                </a>
 
-                <!-- <a href="javascript:void(0)"  (click)="setCountry('ghana')" [class.cusActive]="selCountry == 'ghana'" class="eachTab">
-                    <img src="assets/images/Group108.png" alt="">
-                    <span>Ghana</span>
-                </a>
-                <a href="javascript:void(0)" (click)="setCountry('south_africa')" [class.cusActive]="selCountry == 'south_africa'" class="eachTab">
-                    <img src="assets/images/south_africa.png" alt="">
-                    <span>South Africa</span>
-                </a>
-                <a href="javascript:void(0)" (click)="setCountry('kenya')" [class.cusActive]="selCountry == 'kenya'" class="eachTab">
-                    <img src="assets/images/kenya.png" alt="">
-                    <span>Kenya</span>
-                </a>
-                <a href="javascript:void(0)" (click)="setCountry('worldwide')" [class.cusActive]="selCountry == 'worldwide'" class="eachTab">
-                    <img src="assets/images/world_wide.png" alt="">
-                    <span>Worldwide</span>
-                </a> -->
-            </div>
-        </div>
-        <div class="tabBody">
-            <div *ngFor="let ctry of shopByCountry; let i = index" [class.cusActive]="selCountryInd == i" class="eachBody" id="country0">
-                <div class="gridCont">
-                    <div *ngFor="let prod of ctry?.selectedPro" class="gridItem">
-                        <app-each-product [currency]="currency" (favEv)="updateFav($event)" [addingCart]="addingCart" (addCartEv)="addToCart($event)" [updatingFav]="updatingFav" [product]="prod">
-                        </app-each-product>
-                    </div>
-                </div>
-                <div *ngIf= "ctry?.selectedPro.length == 0">
-                    <p>There are no products available from this country yet.</p>
-                </div>
-            </div>
-            <!-- <div [class.cusActive]="selCountry == 'south_africa'" class="eachBody" id="country1">
-                <div class="gridCont">
-                    <div *ngFor="let prod of [1,1,1,1]" class="gridItem">
-                        <app-each-product [currency]="currency"></app-each-product>
-                    </div>
-                </div>
-            </div>
-            <div [class.cusActive]="selCountry == 'kenya'" class="eachBody" id="country2">
-                <div class="gridCont">
-                    <div *ngFor="let prod of [1,1,1,1]" class="gridItem">
-                        <app-each-product [currency]="currency"></app-each-product>
-                    </div>
-                </div>
-            </div>
-            <div [class.cusActive]="selCountry == 'worldwide'" class="eachBody" id="country3">
-                <div class="gridCont">
-                    <div *ngFor="let prod of [1,1,1,1]" class="gridItem">
-                        <app-each-product [currency]="currency"></app-each-product>
-                    </div>
-                </div>
-            </div> -->
-        </div>
-    </section>
-    <section *ngIf="featuredProdBanner" class="phoneAdvert">
-        <div class="row">
-            <div class="col-lg-6">
-                <img src="{{treatImgUrl(featuredProdBanner?.banner)}}" alt="">
-                <!-- <img src="assets/images/c5.png" alt=""> -->
-            </div>
-            <div class="col-lg-6 d-flex align-items-center">
-                <div class="gridCont">
-                    <div *ngFor="let prod of featuredProdBanner?.products" class="gridItem">
-                        <app-each-advert-product [currency]="currency" [product]="prod" [updatingFav]="updatingFav" (favEv)="updateFav($event)"></app-each-advert-product>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section *ngIf="deals" class="eachSection">
-        <div class="headCont d-flex justify-content-between">
-            <h4>Today Deals</h4>
-            <a routerLink="/deals" class="">See All Deals</a>
-        </div>
-        <div class="bodyCont">
-            <div class="gridCont">
-                <div *ngFor="let prod of deals" class="gridItem">
-                    <app-each-product [product]="prod" [currency]="currency" (favEv)="updateFav($event)" [addingCart]="addingCart" (addCartEv)="addToCart($event)" [updatingFav]="updatingFav">
-                    </app-each-product>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section *ngIf="recommended && recommended?.length" class="eachSection">
-        <div class="headCont d-flex justify-content-between">
-            <h4>Recommended For You</h4>
-            <a routerLink="/recommended" class="">See All Deals</a>
-        </div>
-        <div class="bodyCont">
-            <div class="gridCont">
-                <div *ngFor="let prod of recommended" class="gridItem">
-                    <app-each-product [product]="prod" [currency]="currency" (favEv)="updateFav($event)" [addingCart]="addingCart" (addCartEv)="addToCart($event)" [updatingFav]="updatingFav">
-                    </app-each-product>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section *ngIf="threeGridImg && threeGridImg?.length" class="threeGridAds">
-        <div class="gridCont">
-            <div *ngFor="let img of threeGridImg" class="gridItem">
-                <img src="{{treatImgUrl(img?.banner_top)}}" alt="">
-            </div>
-            <!-- <div class="gridItem">
-                <img src="assets/images/ads3.png" alt="">
-            </div>
-            <div class="gridItem">
-                <img src="assets/images/ads5.png" alt="">
-            </div> -->
-        </div>
-    </section>
-    <section *ngIf="topSelling && topSelling?.length" class="eachSection">
-        <div class="headCont d-flex justify-content-between">
-            <h4>Top Selling Items</h4>
-            <a routerLink="/top-selling" class="">See All Deals</a>
-        </div>
-        <div class="bodyCont">
-            <div class="gridCont">
-                <div *ngFor="let prod of topSelling" class="gridItem">
-                    <app-each-product [product]="prod" [currency]="currency" (favEv)="updateFav($event)" [addingCart]="addingCart" (addCartEv)="addToCart($event)" [updatingFav]="updatingFav">
-                    </app-each-product>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section *ngIf="liveStream && liveStream?.length" class="liveStreams eachSection">
-        <div class="headCont d-flex justify-content-between">
-            <h4>Live Streams</h4>
-            <a routerLink="/" class="">See All Live Streams</a>
-        </div>
-        <div class="bodyCont">
-            <div class="gridCont">
-                <div *ngFor="let vid of liveStream" class="eachVid">
-                    <iframe *ngIf="vid?.type == 'youtube'" width="100%" height="100%" [src]="'https://www.youtube.com/embed/'+vid?.url | safeUrl">
-                    </iframe>
-                    <video *ngIf="vid?.type == 'local'" controls>
-                        <source src="{{treatImgUrl(vid?.url)}}">
-                    </video>
-                    <!-- <img src="assets/images/Frame148.png" alt=""> -->
-                </div>
-                <!-- <div class="eachVid">
-                    <img src="assets/images/Frame149.png" alt="">
-                </div>
-                <div class="eachVid">
-                    <img src="assets/images/Frame150.png" alt="">
-                </div> -->
-            </div>
-        </div>
-    </section>
-    <section *ngIf="recentAdded && recentAdded?.length" class="eachSection">
-        <div class="headCont d-flex justify-content-between">
-            <h4>Recently Added to Azany</h4>
-            <a routerLink="/recent" class="">See All Deals</a>
+    <!-- <div *ngFor="let prod of ctry?.selectedPro" class="gridItem"> -->
+
+
+    <section class="eachSection">
+        <div class="headCont d-flex justify-content-center">
+            <h4>Shop from usa</h4>
         </div>
         <div class="bodyCont">
             <div class="gridCont">
                 <div *ngFor="let prod of recentAdded" class="gridItem">
-                    <app-each-product [product]="prod" [currency]="currency" (favEv)="updateFav($event)" [addingCart]="addingCart" (addCartEv)="addToCart($event)" [updatingFav]="updatingFav">
+                    <app-each-product [product]="prod" [currency]="currency" (favEv)="updateFav($event)"
+                        [addingCart]="addingCart" (addCartEv)="addToCart($event)" [updatingFav]="updatingFav">
                     </app-each-product>
                 </div>
             </div>
         </div>
     </section>
+
+    <section class="eachSection">
+        <div class="headCont d-flex justify-content-center">
+            <h4>Shop from other countries</h4>
+        </div>
+        <div class="bodyCont">
+            <div class="gridCont">
+                <div *ngFor="let prod of deals" class="gridItem">
+                    <app-each-product [product]="prod" [currency]="currency" (favEv)="updateFav($event)"
+                    [addingCart]="addingCart" (addCartEv)="addToCart($event)" [updatingFav]="updatingFav"></app-each-product>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="eachSection">
+        <div class="headCont d-flex justify-content-center">
+            <h4>Recommended Products</h4>
+        </div>
+        <div class="bodyCont">
+            <div class="gridCont">
+                <div *ngFor="let prod of recommended" class="gridItem">
+                    <app-each-product [product]="prod" [currency]="currency" (favEv)="updateFav($event)"
+                    [addingCart]="addingCart" (addCartEv)="addToCart($event)" [updatingFav]="updatingFav">
+                    </app-each-product>
+                </div>
+            </div>
+        </div>
+        <div class="headCont d-flex justify-content-center py-5">
+            <a routerLink="/" class="live-btn bg-red">Load More Products</a>
+        </div>
+    </section>
+    <section class="liveStreams eachSection">
+        <div class="headCont d-flex justify-content-center">
+            <h4>Live Streams</h4>
+            <!-- <a routerLink="/" class="">See All Live Streams</a> -->
+        </div>
+        <div class="bodyCont">
+            <div class="row">
+                <div class="col-md-6">
+                    <iframe *ngIf="mainVideo?.type == 'youtube'" width="100%" height="100%"
+                        [src]="'https://www.youtube.com/embed/'+mainVideo?.url | safeUrl">
+                    </iframe>
+                    <video *ngIf="mainVideo?.type == 'local'" controls width="100%" style="border-radius: 10px;">
+                        <source src="{{treatImgUrl(mainVideo?.url)}}">
+                    </video>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6 mb-0 mb-md-3" *ngFor="let vid of liveStream ; let i = index">
+                            <iframe *ngIf="vid?.type == 'youtube'" width="100%" height="100%"
+                                [src]="'https://www.youtube.com/embed/'+vid?.url | safeUrl">
+                            </iframe>
+                            <video *ngIf="vid?.type == 'local'" controls width="100%" style="border-radius: 10px;">
+                                <source src="{{treatImgUrl(vid?.url)}}">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="headCont d-flex justify-content-center py-5">
+            <a routerLink="/" class="live-btn">See All Live Streams</a>
+        </div>
+    </section>
+
 </div>
-<app-features></app-features>
 <app-subscribe></app-subscribe>
+<app-features></app-features>
 <app-footer></app-footer>

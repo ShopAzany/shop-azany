@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   customerAuth;
   @Input() secondNav;
   @Input() homePage = 'guest';
-  selectedCat = { cat_name: 'All', cat_slug: 'all' };
+  selectedCat = { cat_name: 'All Categories', cat_slug: 'all Categories' };
   noOfCartItems = 0;
 
   keyword;

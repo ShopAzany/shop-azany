@@ -2,45 +2,57 @@
 .featuresSection {
     margin-top: 80px;
     padding: 100px 0;
-    background: $smLightBg;
+    // background: $smLightBg;
     .gridCont {
         display: grid;
-        grid-template-columns: repeat(3, auto);
-        gap: 63px;
+        grid-template-columns: repeat(5, auto);
+        gap: 50px;
     }
     @media (max-width: 1100px) {
         .gridCont {
-            grid-template-columns: repeat(2, auto);
+            grid-template-columns: repeat(3, auto);
         }
     }
     @media (max-width: 600px) {
+        .featuresSection {
+            padding: 0px 0;
+        }
         .gridCont {
             grid-template-columns: repeat(1, auto);
         }
     }
     .iconCont {
         margin-bottom: 23.5px;
+        text-align: center;
+        svg{
+            fill: yellowgreen;
+        }
     }
     h4 {
-        color: #624bad;
+        color: #222;
         font-size: 16px;
         font-weight: 600;
         line-height: 24px;
+        text-align: center;
+        margin-bottom: 30px;
     }
     p {
-        color: #15143966;
+        color: #222;
         max-height: 53px;
         overflow: hidden;
         position: relative;
+        font-size: 12px;
+        text-align: center;
         a {
             position: absolute;
             bottom: 0;
             right: 0;
-            font-size: 15px;
-            color: $primary;
+            font-size: 12px;
+            color: #E21E2D;
             font-weight: 500;
-            padding: 5px 0 5px 5px;
-            background: #eeeeee;
+            padding: 0px 0 0px 5px;
+            background: white;
+
         }
     }
     p.more {

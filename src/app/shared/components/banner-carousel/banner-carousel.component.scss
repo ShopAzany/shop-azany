@@ -13,6 +13,7 @@
 ::ng-deep .carouselItem {
     width: 100%;
     margin: 0 !important;
+    height: 465px;
 }
 
 ::ng-deep .carouselIndicators {
@@ -24,16 +25,17 @@
     align-items: center;
     padding: 15px 0;
     .indicatorItem {
-        height: 15px;
-        min-width: 15px;
-        width: 15px;
+        height: 10px;
+        min-width: 10px;
+        width: 10px;
         border-radius: 50%;
-        border: 2px solid #fff;
+        border: 0px solid #fff;
+        background-color: white;
         margin: 0 5px;
         cursor: pointer;
     }
     .indicatorItem.cusActive {
-        background: #fff;
+        background: #FFA91F;
     }
 }
 
@@ -61,4 +63,9 @@
 
 ::ng-deep .carouselCtrlNext {
     right: 0;
+}
+@media (max-width:600px) {
+    ::ng-deep .carouselItem {
+        height: auto;
+    }
 }

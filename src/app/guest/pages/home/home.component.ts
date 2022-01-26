@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { element } from 'protractor';
 import { AuthService } from 'src/app/data/services/auth.service';
 import { ConfigService } from 'src/app/data/services/config.service';
 import { WishlistService } from 'src/app/data/services/customer/wishlist.service';
@@ -24,13 +25,14 @@ export class HomeComponent implements OnInit {
 
   featuredProdBanner;
   shopByCountry;
-  liveStream;
+  liveStream = [];
   recentAdded;
   recommended;
   deals;
   topSelling;
   topCategories;
   threeGridImg;
+  mainVideo;
 
   addCartProdName;
   auth;
@@ -44,6 +46,38 @@ export class HomeComponent implements OnInit {
     private wishListService: WishlistService,
     private router: Router,
   ) { }
+
+
+  slideConfig = {
+    "slidesToShow": 6,
+    "slidesToScroll": 1,
+    "dots": false,
+    "infinite": true,
+    "arrows": true,
+    // "autoplay": true,
+    "responsive": [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          arrows: true,
+          centerPadding: '60px'
+
+
+        }
+      },
+    ]
+  };
+
 
   ngOnInit(): void {
     this.getSlideBanners();
@@ -112,7 +146,10 @@ export class HomeComponent implements OnInit {
             this.recentAdded = res.recentlyAdded;
           }
           if (res.HomeProduct.live_stream == 'Enabled') {
-            this.liveStream = res.liveStream;
+            this.liveStream = [];
+            this.mainVideo = res.liveStream[0]
+            this.liveStream = res.liveStream.slice(1, res.liveStream.length );
+            
           }
           if (res.HomeProduct.top_selling == 'Enabled') {
             this.topSelling = res.topSelling;

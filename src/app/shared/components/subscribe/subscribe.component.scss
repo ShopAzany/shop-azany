@@ -1,41 +1,60 @@
 @import '../../../../themes/colors.scss';
 .subscribeSection {
-    background: $variantCol1;
-    padding: 70px 0;
+    // background: $variantCol1;
+    background-image: url('../../../../assets/images/newsletter.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 100px 0;
     color: #fff;
     position: relative;
     h1 {
-        line-height: 63px;
+        line-height: 50px;
         font-size: 42px;
-        font-weight: bold;
-        margin-bottom: 17px;
+        font-weight: 500;
+        margin-bottom: 30px;
     }
     p {
         font-size: 16px;
         line-height: 24px;
+        margin-bottom: 40px;
+        span{
+            color: #E21E2D;
+        }
     }
     .formCont {
         height: 60px;
         display: flex;
+        position: relative;
+        .icon{
+            position: absolute;
+            top: 16px;
+            left: 10px;
+        }
         input {
             height: unset;
-            background: transparent;
-            border: 2px solid #cccccc6c;
+            background: #fff;
+            // border: 2px solid #cccccc6c;
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+            padding-left: 30px;
         }
         input::placeholder {
-            color: #ffffff49;
+            color: #2222;
         }
         .btn {
-            background: $primary;
+            background: #ffaf2a;
             color: #fff;
-            margin-left: 30px;
+            // margin-left: 30px;
             white-space: nowrap;
             padding: 18px 50px;
+            border-top-left-radius: 0px;
+            border-bottom-left-radius: 0px;
         }
         @media (max-width: 500px) {
             .btn {
                 padding: 18px 20px;
-                margin-left: 10px;
+                // margin-left: 10px;
             }
         }
     }

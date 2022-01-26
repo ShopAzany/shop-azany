@@ -10,6 +10,44 @@
     transition: 0.4s ease;
     z-index: -1;
 }
+.bg-dark1{
+    background-color: #53534F !important;
+    // z-index: auto !important;
+}
+.textClr{
+    white-space: nowrap;
+    font-size: 15px;
+    color: #4A4A48;
+    font-weight: 600;
+}
+.textClr:hover{
+    text-decoration: none;
+    color: #4A4A48;
+}
+.counter{
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background: red;
+    height: 20px;
+    width: 20px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.input-group {
+    width: 60%;
+    margin: 0 auto;
+}
+.bg-warn{
+    background-color: #FFA91F !important;
+}
+.bg-warn i{
+    color: white !important;
+}
 
 .dropOverlay.cusShow {
     z-index: 100;
@@ -20,7 +58,8 @@ header {
     position: relative;
     z-index: 4000;
     .megaMenuCovering {
-        background: $smLightBg;
+        // background: $smLightBg;
+        background: white;
         position: relative;
         z-index: 200;
     }
@@ -39,7 +78,7 @@ header {
             margin: 0;
             padding: 20px 0;
             list-style-type: none;
-            background: $lightBg;
+            background: white;
             overflow-y: auto;
             overflow-x: visible;
         }
@@ -62,19 +101,25 @@ header {
         .catLink {
             display: flex;
             align-items: center;
-            color: #222;
+            color: #4A4A48;
             text-decoration: none !important;
-            height: 78px;
+            height: 26px;
             padding: 0 33px 0 50px;
             .iconCont {
                 min-width: 50px;
                 width: 50px;
             }
+            .icon-arrow-right{
+                font-size: 10px;
+                color: #4A4A48;
+                font-weight: 900
+            }
+            
             .txtCont {
                 flex-grow: 1;
                 h4 {
-                    font-size: 18px;
-                    line-height: 27px;
+                    font-size: 14px;
+                    line-height: 20px;
                     font-weight: 500;
                     margin: 0;
                 }
@@ -364,9 +409,9 @@ header {
         display: flex;
         align-items: center;
         height: 40px;
-        padding: 15px !important;
-        background: $primary;
-        border-radius: 7px;
+        padding: 25px 15px !important;
+        background: #FFA91F;
+        border-radius: 0px;
         color: #fff;
         .txt {
             margin-left: 12px;
@@ -415,12 +460,15 @@ header {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 25px;
-            min-width: 25px;
+            width: 40px;
+            min-width: 40px;
             height: 25px;
-            border-radius: 50%;
+            border-radius: 0%;
             overflow: hidden;
             margin-right: 10px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: 100%;
             img {
                 height: 100%;
             }
@@ -455,13 +503,20 @@ header {
                 min-width: 24px;
                 height: 24px;
                 width: 24px;
+                border-radius: 0;
             }
         }
     }
     .cusNavbar {
         padding: 10px 0;
         align-items: center;
+        
     }
+    .textClr{
+        font-size: 13px;
+        font-weight: 500;
+    }
+    
     .navbarBrand {
         margin-right: 48px;
         width: 123px;
@@ -479,6 +534,10 @@ header {
             .dropped {
                 width: 170px !important;
             }
+        }
+        .input-group {
+            width: 100%;
+            margin: 0 auto;
         }
     }
     .dropdownCont {
@@ -520,14 +579,15 @@ header {
         }
     }
     .topSearch {
-        border-radius: 9px;
-        height: 40px;
-        // border: 1px solid #cccc;
-        background: #ffffffd0;
+        border-radius: 0px;
+        height: 50px;
+        border: 1px solid #cccc;
+        background: #ffffff;
         position: relative;
         z-index: 200;
         * {
             background: transparent;
+            font-size: 15px;
         }
         .dropdownToggle::after {
             position: absolute;
@@ -683,7 +743,7 @@ header {
                     font-size: 14px;
                     line-height: 21px;
                     font-weight: 500;
-                    color: #222;
+                    color: #fff;
                     text-decoration: none;
                     padding: 7.5px 15px;
                 }
@@ -700,10 +760,10 @@ header {
         li>a {
             display: flex;
             align-items: center;
-            color: #222;
+            color: #fff;
             span {
-                color: #222222;
-                font-weight: 600;
+                color: #fff;
+                font-weight: 500;
                 font-size: 14px;
             }
             svg {
@@ -871,4 +931,18 @@ header {
     .dropped::-webkit-scrollbar-thumb {
         background: #cccccc;
     }
+}
+
+.cusNavbarNav svg{
+    display: none;
+}
+@media (max-width: 750px) {
+    .cusNavbarNav svg{
+        display: inline-block;
+        color: white;
+        fill: white;
+    }
+}
+.fs-30{
+    font-size: 30px;
 }

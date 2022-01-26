@@ -33,6 +33,7 @@ import { EmptyPageComponent } from './components/empty-page/empty-page.component
 import { ProductLoaderComponent } from './components/product-loader/product-loader.component';
 import { HomePageLoadPlaceholderComponent } from './components/home-page-load-placeholder/home-page-load-placeholder.component';
 import { LockValueDirective } from './directives/lock-value.directive';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 @NgModule({
   declarations: [
@@ -65,14 +66,15 @@ import { LockValueDirective } from './directives/lock-value.directive';
     EmptyPageComponent,
     ProductLoaderComponent,
     HomePageLoadPlaceholderComponent,
-    LockValueDirective
+    LockValueDirective,
   ],
   imports: [
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
-    ModalModule
+    ModalModule,
+    SlickCarouselModule
   ],
   exports: [
     SafeHtmlPipe,
@@ -80,6 +82,7 @@ import { LockValueDirective } from './directives/lock-value.directive';
     RouterModule,
     FormsModule,
     ModalModule,
+    SlickCarouselModule,
     HeaderComponent,
     FooterComponent,
     EachProductComponent,

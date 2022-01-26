@@ -3,19 +3,22 @@
     padding: 15px;
     height: 100%;
     border-radius: 10px;
-    background: $lightBg;
+    background: transparent;
     display: flex;
     align-items: flex-start;
     flex-direction: column;
     color: #222222;
     .imgCont {
         width: 100%;
-        border-radius: 10px;
+        border-radius: 0px;
         overflow: hidden;
-        background: #fff;
+        background: transparent;
         position: relative;
+        height: 180px;
+        display: flex;
+        align-items: center;
         a:not(.favBtn) {
-            display: block;
+            display: inherit;
             width: 100%;
             height: fit-content;
         }
@@ -24,12 +27,15 @@
         }
         .favBtn {
             position: absolute;
-            left: 5px;
-            bottom: 5px;
+            right: 10px;
+            bottom: 55px;
+            background-color: #feb600e1;
+            color: white;
         }
     }
     .txtDetails {
         flex-grow: 1;
+        width: 100%;
     }
     .itemName {
         max-height: 40px;
@@ -67,9 +73,11 @@
             color: #808080;
         }
     }
-    // .priceCont {
-    //     // height: calc(41px + 2px + 27px);
-    // }
+    .priceCont {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
     .heightPreserve {
         height: 51.8px;
     }
@@ -82,10 +90,17 @@
     }
     .addtoCartBtn {
         display: flex;
-        background: $primary;
+        background-color: transparent;
         color: #fff;
         width: 100%;
-        border-radius: 7px;
+        border-radius: 0;
+        position: absolute;
+        bottom: 0;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
         .dropdownCont {
             width: 54px;
             border-left: 1px solid #fff;
@@ -103,8 +118,16 @@
         }
     }
 }
-
+.salePrice {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 0;
+    color: #bb1522;
+}
 @media (max-width: 581px) {
+    .imgCont{
+        height: auto;
+    }
     .eachProd {
         padding: 10px;
         .itemName {
@@ -166,5 +189,19 @@
                 display: none;
             }
         }
+    }
+}
+.addToCartLink{
+    background-color: #feb600e1;
+    border-radius: 0;
+}
+@media (min-width: 767px){
+    .imgCont .addtoCartBtn, .favBtn{
+        display: none;
+        transition: all .5s ease;
+    }
+    .imgCont:hover .addtoCartBtn, .imgCont:hover .favBtn{
+        display: flex;
+        transition: all .5s ease;
     }
 }
