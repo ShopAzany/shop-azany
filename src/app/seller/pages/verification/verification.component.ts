@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, RouterStateSnapshot } from '@angular/router';
 import { SellerAuthService } from 'src/app/data/services/seller/seller-auth.service';
 import { CookieService } from 'ngx-cookie';
+import { UserService } from 'src/app/data/services/guest/user.service';
 
 @Component({
   selector: 'app-verification',
@@ -25,6 +26,7 @@ export class VerificationComponent implements OnInit {
     private routee: ActivatedRoute,
     private authService: SellerAuthService,
     private CookieService: CookieService,
+    private userService: UserService
   ) {}
 
   form = new FormGroup({
@@ -50,35 +52,21 @@ export class VerificationComponent implements OnInit {
   }
 
   getemail() {
-    const data =this.CookieService.get('reg-data');
-    //console.log(data);
-    let parsedData = JSON.parse(data);
-    let parsedDataa = (parsedData.email);
-    //console.log(parsedDataa);
-    return parsedDataa;
+    return window.localStorage.getItem('email');
   }
 
   submit(){
     this.isSubmitting = true;
     const data = JSON.stringify(this.form.value);
-    //console.log(data)
-    this.authService.verifyEmail(data).subscribe(res => {
-      //console.log(res)
-      if (res && res.status === 'success') {
-        //this.route.navigateByUrl('/seller/login');
-        this.newreg = true;
-        const data2 = this.CookieService.get('reg-data');
-        this.authService.signup(data2).subscribe(/*res*/auth => {
-          this.auth = auth;
-            if (auth) {
-              this.route.navigateByUrl('/seller/auth');
-            } else {
-              this.route.navigateByUrl('/seller/register');
-            }
-        });
-      } else {
-        this.tokenError = res.data
+    this.userService.verifyEmail(data).subscribe(
+      (res: any) => {
+        this.route.navigate(['/seller/auth']);
+      },
+      (err: any) => {
+        this.tokenError = err.error.message;
+        this.isSubmitting = false;
       }
-      this.isSubmitting = false;
-  })
-}}
+    );
+  }
+
+}

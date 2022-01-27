@@ -225,8 +225,12 @@ export class UserService {
   }
 
 
-  registerSeller(){
+  registerSeller(body: any){
+    return this.http.post(this.config.manageUrl() + 'seller/register', {data: body});
+  }
 
+  verifyEmail(body: any){
+    return this.http.post(this.config.manageUrl() + 'seller/register/verify_token', {data: body});
   }
 
 

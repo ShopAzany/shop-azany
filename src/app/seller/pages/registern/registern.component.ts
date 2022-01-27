@@ -184,50 +184,21 @@ export class RegisternComponent implements OnInit {
   }
 
   submit() {
-    this.emailServerError = null;
-    this.phoneServerError = null;
-    this.isSubmitting = true;
-    delete this.form.value.retPass;
-    //const data = this.form.value;
     const data = JSON.stringify(this.form.value);
-    this.CookieService.put('reg-data', data);
-    //this.route.navigateByUrl('/seller/verify')
-    //console.log(data)
-    //console.log(this.CookieService.get('reg-data'))
-    //this.CookieService.set('reg-data', data);
-    //this.cookieValue = this.CookieService.get('reg-data');
-    //console.log(this.cookieValue)
-    this.authService.signup(data).subscribe(/*res*/auth => {
-      this.auth = auth;
-        if (auth) {
-          this.route.navigateByUrl('/seller/verify');
-        } else {
-          this.route.navigateByUrl('/seller/register');
+    this.isSubmitting = true;
+    this.userService.registerSeller(data).subscribe(
+      (data) => {
+        window.localStorage.setItem('email', this.form.value.email);
+        this.route.navigateByUrl('/seller/verify');
+      },
+      (error) => {
+        this.isSubmitting = false;
+        if (error.status == 422) {
+          this.emailServerError = error.error.errors.email;
+          this.phoneServerError = error.error.errors.phone;
         }
-
-      /*if (res.status) {
-        if (res.status == 'success') {
-          this.route.navigateByUrl('/seller/auth');
-        } else {
-          if (res.data.toLowerCase().includes('email')) {
-            this.emailServerError = res.data;
-            this.emailGroup.nativeElement.scrollIntoView();
-          } else {
-            this.phoneServerError = res.data;
-            this.phoneGroup.nativeElement.scrollIntoView();
-          }
-        }*/    
-    });
+      }
+    );
   }
 
 }
-/*this.route.navigateByUrl('/seller/auth');
-      this.authService.seller.subscribe(auth => {
-        this.auth = auth;
-        if (auth) {
-          this.route.navigateByUrl('/seller/auth');
-        } else {
-          this.route.navigateByUrl('/seller/register');
-        }
-      });*/
-      //this.isSubmitting = false;
