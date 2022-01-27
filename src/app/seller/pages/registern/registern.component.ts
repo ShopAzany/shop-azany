@@ -6,6 +6,7 @@ import { StorageService } from 'src/app/data/helpers/storage.service';
 import { CountryService } from 'src/app/data/services/local-data/country.service';
 import { SellerAuthService } from 'src/app/data/services/seller/seller-auth.service';
 import { CookieService } from 'ngx-cookie';
+import { UserService } from 'src/app/data/services/guest/user.service';
 
 @Component({
   selector: 'app-registern',
@@ -72,28 +73,37 @@ export class RegisternComponent implements OnInit {
     private authService: SellerAuthService,
     private countryService: CountryService,
     private storageService: StorageService,
-    private CookieService: CookieService
+    private CookieService: CookieService,
+    private userService: UserService
   ) { }
 
+  countriesList: any;
+
   ngOnInit() {
-    this.lookCountryCode();
-    this.checkAuth();
-    this.checkPlan();
-    this.checkCountry();
-    this.countries = this.countryService.getCountries();
-    this.lookCountryCode();
+    // this.lookCountryCode();
+    // this.checkAuth();
+    // this.checkPlan();
+    // this.checkCountry();
+    // this.countries = this.countryService.getCountries();
+    // this.lookCountryCode();
+
+    this.userService.getVendorCountries().subscribe(
+      (data: any) => {
+        this.countries = data.data;
+      }
+    );
   }
 
   private checkPlan() {
-    this.plan = this.routee.snapshot.paramMap.get('plan');
+    // this.plan = this.routee.snapshot.paramMap.get('plan');
     //console.log(this.plan);
   }
   private checkCountry() {
-    this.Country = this.routee.snapshot.paramMap.get('country');
+    // this.Country = this.routee.snapshot.paramMap.get('country');
   }
   private lookCountryCode() {
-    var code = this.countryService.getCountry(this.routee.snapshot.paramMap.get('country')).dailing;
-    return code;
+    // var code = this.countryService.getCountry(this.routee.snapshot.paramMap.get('country')).dailing;
+    // return code;
   }
 
   /*private checkAuth() {

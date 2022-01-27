@@ -218,5 +218,17 @@ export class UserService {
   }
 
 
+  getVendorCountries() {
+    return this.http.get<any>(
+      this.config.manageUrl() + 'seller/register/get_vendor_countries'
+    );
+  }
+
+
+  registerSeller(){
+
+  }
+
+
 
 }

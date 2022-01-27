@@ -23,6 +23,10 @@ export class ConfigService {
     return 'https://shopazany.com/backend/';
   }
 
+  manageUrl(){
+    return 'https://manage.shopazany.com/';
+  }
+
   treatImgUrl(imgurl) {
     if (imgurl) {
       let baseIp = this.base_url().split('//')[1].split('/')[0];
