@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   //{ path: 'register', component: CreateAccountComponent },
-  { path: 'register', component: RegisternComponent }, 
+  { path: 'register/:country/:plan', component: RegisternComponent }, 
   { path: 'verify', component: VerificationComponent }, 
   //{ path: 'register/business-info', component: BusinessInfoComponent },
   //{ path: 'register/additional-info', component: AdditionalInfoComponent },

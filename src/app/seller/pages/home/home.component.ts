@@ -4,6 +4,7 @@ import { ConfigService } from 'src/app/data/services/config.service';
 import { StaticContentService } from 'src/app/data/services/guest/static-content.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CountryService } from 'src/app/data/services/local-data/country.service';
+import { UserService } from 'src/app/data/services/guest/user.service';
 
 @Component({
   selector: 'app-home',
@@ -35,12 +36,17 @@ export class HomeComponent implements OnInit {
     private configService: ConfigService,
     private countryService: CountryService,
     private countrynotService: CountrynotService,
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
     this.getContent();
-    this.countries = this.countryService.getCountries();
-    this.countriesnot = this.countrynotService.getCountriesnot();
+    this.userService.getVendorCountries().subscribe(
+      (data: any) => {
+        this.countries = data.data;
+        console.log(this.countries);
+      }
+    );
   }
 
   private getContent() {

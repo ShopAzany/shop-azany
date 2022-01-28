@@ -85,11 +85,11 @@ export class RegisternComponent implements OnInit {
     // this.checkPlan();
     // this.checkCountry();
     // this.countries = this.countryService.getCountries();
-    // this.lookCountryCode();
 
     this.userService.getVendorCountries().subscribe(
       (data: any) => {
         this.countries = data.data;
+         this.lookCountryCode();
       }
     );
   }
@@ -102,8 +102,8 @@ export class RegisternComponent implements OnInit {
     // this.Country = this.routee.snapshot.paramMap.get('country');
   }
   private lookCountryCode() {
-    // var code = this.countryService.getCountry(this.routee.snapshot.paramMap.get('country')).dailing;
-    // return code;
+    var code = this.countryService.getCountry(this.routee.snapshot.paramMap.get('country')).dailing;
+    return code;
   }
 
   /*private checkAuth() {

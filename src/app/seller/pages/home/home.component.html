@@ -39,8 +39,8 @@
             <div class="form-group">
                 <label for="country">Select your Country to see your available plans</label>
                 <select [(ngModel)]="selectedCountry" type="text" [class.error]="country?.touched && country?.invalid" class="form-control" formControlName="country" id="country">
-                    <option value="Choose a Country">Choose a Country</option>
-                    <option *ngFor="let country of countries" value="{{country?.name}}">{{country?.name}}</option>
+                    <option value="" disabled>Choose Country from dropdown Menu</option>
+                                <option *ngFor="let country of countries" value="{{country?.country}}">{{country?.country}}</option>
                 </select>
                 <div *ngIf="country?.touched && country?.invalid" class="errorDisp"><i class="fa fa-exclamation-circle"></i><span>This field is required</span></div>
             </div>    
@@ -77,8 +77,8 @@
                         <li>Reward Points</li>
                     </ul>
                     <div class="buttonSell">
-                        <!-- <a routerLink="/seller/register/{{ selectedCountry }}/basic" class="vendorPrimaryBtn">Sign Up</a> -->
-                        <a routerLink="/seller/register" class="vendorPrimaryBtn">Sign Up</a>
+                        <a routerLink="/seller/register/{{ selectedCountry }}/basic" class="vendorPrimaryBtn">Sign Up</a>
+                        <!-- <a routerLink="/seller/register" class="vendorPrimaryBtn">Sign Up</a> -->
                     </div>
                 </div>
                 </div>
@@ -101,8 +101,8 @@
                         <li>Unlimited Access To Azany Marketplace</li>
                     </ul>
                     <div class="buttonSell">
-                        <!-- <a routerLink="/seller/register/{{ selectedCountry }}/standard" class="vendorPrimaryBtn">Sign Up</a> -->
-                        <a routerLink="/seller/register" class="vendorPrimaryBtn">Sign Up</a>
+                        <a routerLink="/seller/register/{{ selectedCountry }}/standard" class="vendorPrimaryBtn">Sign Up</a>
+                        <!-- <a routerLink="/seller/register" class="vendorPrimaryBtn">Sign Up</a> -->
                     </div>
                 </div>
                 </div>
@@ -129,8 +129,8 @@
                         <li>Unlimited Access To Azany Marketplace</li>
                     </ul>
                     <div class="buttonSell">
-                        <!-- <a routerLink="/seller/register/{{ selectedCountry }}/premium" class="vendorPrimaryBtn">Sign Up</a> -->
-                        <a routerLink="/seller/register" class="vendorPrimaryBtn">Sign Up</a>
+                        <a routerLink="/seller/register/{{ selectedCountry }}/premium" class="vendorPrimaryBtn">Sign Up</a>
+                        <!-- <a routerLink="/seller/register" class="vendorPrimaryBtn">Sign Up</a> -->
                     </div>
                   </div>
                 </div>
@@ -155,8 +155,8 @@
                         <li>Business Mentoring</li>
                     </ul>
                     <div class="buttonSell">
-                        <!-- <a routerLink="/seller/register/{{ selectedCountry }}/usaplan" class="vendorPrimaryBtn">Sign Up</a> -->
-                        <a routerLink="/seller/register" class="vendorPrimaryBtn">Sign Up</a>
+                        <a routerLink="/seller/register/{{ selectedCountry }}/usaplan" class="vendorPrimaryBtn">Sign Up</a>
+                        <!-- <a routerLink="/seller/register" class="vendorPrimaryBtn">Sign Up</a> -->
                     </div>
                 </div>
                 </div>
@@ -182,8 +182,8 @@
                         <li>Business Mentoring</li>
                     </ul>
                     <div class="buttonSell">
-                        <!-- <a routerLink="/seller/register/{{ selectedCountry }}/canadaplan" class="vendorPrimaryBtn">Sign Up</a> -->
-                        <a routerLink="/seller/register" class="vendorPrimaryBtn">Sign Up</a>
+                        <a routerLink="/seller/register/{{ selectedCountry }}/canadaplan" class="vendorPrimaryBtn">Sign Up</a>
+                        <!-- <a routerLink="/seller/register" class="vendorPrimaryBtn">Sign Up</a> -->
                     </div>
                 </div>
                 </div>

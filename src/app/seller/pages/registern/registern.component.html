@@ -40,7 +40,7 @@
                         <div class="form-group">
                             <label for="country">Country</label>
                             <!-- <input type="text" class="form-control" formControlName="country"> -->
-                            <select type="text" [class.error]="country?.touched && country?.invalid" class="form-control" formControlName="country" id="country" placeholder="Choose Country from dropdown Menu">
+                            <select type="text" disabled [class.error]="country?.touched && country?.invalid" class="form-control" formControlName="country" id="country" placeholder="Choose Country from dropdown Menu">
                                 <option value="" disabled>Choose Country from dropdown Menu</option>
                                 <option *ngFor="let country of countries" value="{{country?.country}}">{{country?.country}}</option>
                             </select>
