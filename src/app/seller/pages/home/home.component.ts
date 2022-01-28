@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
     this.userService.getVendorCountries().subscribe(
       (data: any) => {
         this.countries = data.data;
-        console.log(this.countries);
+        this.countriesnot = this.countrynotService.getCountriesnot();
       }
     );
   }
